@@ -1,5 +1,5 @@
 ---
-name: 기능 구현
+name: Feature request
 about: Suggest an idea for this project
 title: ''
 labels: enhancement
