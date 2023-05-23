@@ -281,6 +281,8 @@ body {
   position: relative;
   width: 1100px;
   margin: 0 auto;
+  font-family: "Noto Sans KR";
+  
 }
 
 .hd__header .header .user-area {
@@ -763,17 +765,17 @@ body {
   position: absolute;
   left: 160px;
   bottom: 0;
-  width: 680px;
+  width: 950px;
   font-size: 0;
-  vertical-align: top;
+  vertical-align: bottom;
   z-index: 0;
 }
 
 .hd__header .header .gnb__list {
   display: inline-block;
-  vertical-align: top;
+  vertical-align: bottom;
   margin: 0 28px;
-  padding-bottom: 23px;
+  padding-bottom: 21px;
   border-bottom: 4px solid #fff;
 }
 
@@ -956,4 +958,65 @@ body {
 .hd__header.care .all.on > a:after, .hd__header.care .all-menu__inner {
   border-width: 1px;
   border-color: #bababa;
+}
+
+/* header3 */
+
+.hd__header .header .all {
+    position: relative;
+    padding-bottom: 20px;
+    width: 160px;
+    vertical-align: top;
+}
+
+.hd__header .header .all > a {
+    display: block;
+    position: relative;
+    font-size: 20px;
+    line-height: 37px;
+    white-space: nowrap;
+}
+
+a {
+    color: #1c1c1c;
+    text-decoration: none;
+}
+
+ul, ol {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+.swiper-container {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+}
+
+.gnb {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.gnb__inner {
+  display: flex;
+  width: fit-content;
+}
+
+.gnb__list {
+  margin-right: 20px;
 }
