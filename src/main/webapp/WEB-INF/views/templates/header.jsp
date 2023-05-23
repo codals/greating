@@ -6,13 +6,13 @@
 
 <!-- 헤더에 사용될 CSS 파일 -->
 <link href="${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet" />
-
+<script src="${pageContext.request.contextPath}/resources/js/header.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div id="wrap">
 	<header id="header" class="hd__header" care>
 		<!-- 맨 위 로그인/유저 관련 배너들 -->
-		<section class="user-area">
+		<div class="banner">
 			<!-- 로그인된 사용자인 경우 -->
 			<c:if test="${not empty sessionScope.loginUser}">
 				<span class="welcome-message">${sessionScope.loginUser}님</span>
@@ -34,7 +34,7 @@
 				<span class="divider"></span>
 				<span class="customer-service-label">고객센터</span>
 			</c:if>
-		</section>
+		</div>
 	
 		<div class="header">
 			<div class="header__inner">
@@ -75,99 +75,65 @@
 
 			<div id="careHeadCategory" class="navbar header__sec">
 				<div class="all">
-					<a href="#" class="L-Affiliate-Tagged"> 
-						<span class="all__icon">
-							<span></span> 
-							<span></span> 
-							<span></span> 
-						</span>
-						<div>카테고리</div>
-					</a>
-					
-					<!-- 카테고리 - 팝업 -->
- 					<!-- <div class="all-menu">
-						<div class="all-menu__inner">
-							<ul class="all-menu__depth1">
-								<li><a href="/planMeals/healthyMeals" class="L-Affiliate-Tagged">건강식단</a>
-
-									<ul class="all-menu__depth2">
-										<li><a href="/planMeals/careLow"
-											class="L-Affiliate-Tagged">저당식단</a></li>
-										<li><a href="/planMeals/careLight"
-											class="L-Affiliate-Tagged">칼로리식단</a></li>
-										<li><a href="/planMeals/careWellness"
-											class="L-Affiliate-Tagged">장수마을식단</a></li>
-										<li><a href="/planMeals/careHighP"
-											class="L-Affiliate-Tagged">고단백식단</a></li>
-										<li><a href="/planMeals/careMyGreating"
-											class="L-Affiliate-Tagged">마이그리팅</a></li>
-									</ul></li>
-
-								<li><a href="/planMeals/planMeals"
-									class="L-Affiliate-Tagged">질환맞춤식단</a>
-
-									<ul class="all-menu__depth2">
-										<li><a href="/planMeals/careDiabetes"
-											class="L-Affiliate-Tagged">당뇨식단</a></li>
-										<li><a href="/planMeals/careCancer"
-											class="L-Affiliate-Tagged">암환자식단</a></li>
-										<li><a
-											href="/market/marketDetail?itemId=136843&amp;toggle=meals"
-											class="L-Affiliate-Tagged">당뇨식단(냉동)</a></li>
-										<li><a
-											href="/market/marketDetail?itemId=136840&amp;toggle=meals"
-											class="L-Affiliate-Tagged">신장질환식단<br>(투석환자용)
-										</a></li>
-									</ul></li>
-
-								<li><a href="/planMeals/challenge"
-									class="L-Affiliate-Tagged">챌린지식단</a>
-
-									<ul class="all-menu__depth2">
-										<li><a
-											href="/market/marketDetail?itemId=102760&amp;toggle=meals"
-											class="L-Affiliate-Tagged">뷰티핏</a></li>
-										<li><a
-											href="/market/marketDetail?itemId=127243&amp;toggle=meals"
-											class="L-Affiliate-Tagged">베지라이프</a></li>
-										<li><a
-											href="/market/marketDetail?itemId=102759&amp;toggle=meals"
-											class="L-Affiliate-Tagged">프로틴업</a></li>
-									</ul></li>
-
-								<li><a href="/story/storyMain" class="L-Affiliate-Tagged">스토리</a>
-
-									<ul class="all-menu__depth2">
-										<li><a href="/story/storyMain" class="L-Affiliate-Tagged">브랜드
-												소개</a></li>
-										<li><a href="/story/greatingLife/greatingLifeList"
-											class="L-Affiliate-Tagged">그리팅 매거진</a></li>
-										<li><a href="/story/month/monthStoryList"
-											class="L-Affiliate-Tagged">그리팅 TV</a></li>
-									</ul></li>
-
-								<li><a href="#none" class="L-Affiliate-Tagged">서비스</a>
-
-									<ul class="all-menu__depth2">
-										<li><a href="/story/guideMain" class="L-Affiliate-Tagged">이용방법</a>
-										</li>
-										<li><a href="/spComn/checkAddress"
-											class="L-Affiliate-Tagged">배송안내</a></li>
-										<li><a href="/main/boardDetail?freeboardId=340"
-											class="L-Affiliate-Tagged">모바일 이용권</a></li>
-										<li><a href="/groupOrder/groupOrderMain"
-											class="L-Affiliate-Tagged">단체주문상담</a></li>
-										<li><a href="/serviceCenter/benefit"
-											class="L-Affiliate-Tagged">멤버십 안내</a></li>
-										<li><a href="/serviceCenter/notice"
-											class="L-Affiliate-Tagged">공지사항</a></li>
-										<li><a href="/serviceCenter/serviceCenterMain"
-											class="L-Affiliate-Tagged">고객센터</a></li>
-									</ul></li>
-								</ul>
-							</div>
-						</div> -->
-				</div>
+			        <a href="#" class="L-Affiliate-Tagged"> 
+			            <span class="all__icon">
+			                <span></span> 
+			                <span></span> 
+			                <span></span> 
+			            </span>
+			            <div>카테고리</div>
+			        </a>
+			        <div class="all-menu">
+			            <div class="all-menu__inner">
+			                <ul class="all-menu__depth1">
+			                    <li><a href="/planMeals/healthyMeals" class="L-Affiliate-Tagged">건강식단</a>
+			                        <ul class="all-menu__depth2">
+			                            <li><a href="/planMeals/careLow" class="L-Affiliate-Tagged">저당식단</a></li>
+			                            <li><a href="/planMeals/careLight" class="L-Affiliate-Tagged">칼로리식단</a></li>
+			                            <li><a href="/planMeals/careWellness" class="L-Affiliate-Tagged">장수마을식단</a></li>
+			                            <li><a href="/planMeals/careHighP" class="L-Affiliate-Tagged">고단백식단</a></li>
+			                            <li><a href="/planMeals/careMyGreating" class="L-Affiliate-Tagged">마이그리팅</a></li>
+			                        </ul>
+			                    </li>
+			                    <li><a href="/planMeals/planMeals" class="L-Affiliate-Tagged">질환맞춤식단</a>
+			                        <ul class="all-menu__depth2">
+			                            <li><a href="/planMeals/careDiabetes" class="L-Affiliate-Tagged">당뇨식단</a></li>
+			                            <li><a href="/planMeals/careCancer" class="L-Affiliate-Tagged">암환자식단</a></li>
+			                            <li><a href="/market/marketDetail?itemId=136843&amp;toggle=meals" class="L-Affiliate-Tagged">당뇨식단(냉동)</a></li>
+			                            <li><a href="/market/marketDetail?itemId=136840&amp;toggle=meals" class="L-Affiliate-Tagged">신장질환식단<br>(투석환자용)</a></li>
+			                        </ul>
+			                    </li>
+			                    <li><a href="/planMeals/challenge" class="L-Affiliate-Tagged">챌린지식단</a>
+			                        <ul class="all-menu__depth2">
+			                            <li><a href="/market/marketDetail?itemId=102760&amp;toggle=meals" class="L-Affiliate-Tagged">뷰티핏</a></li>
+			                            <li><a href="/market/marketDetail?itemId=127243&amp;toggle=meals" class="L-Affiliate-Tagged">베지라이프</a></li>
+			                            <li><a href="/market/marketDetail?itemId=102759&amp;toggle=meals" class="L-Affiliate-Tagged">프로틴업</a></li>
+			                        </ul>
+			                    </li>
+			                    <li><a href="/planMeals/mealDIY" class="L-Affiliate-Tagged">DIY 식단</a>
+			                        <ul class="all-menu__depth2">
+			                            <li><a href="/planMeals/diy/all" class="L-Affiliate-Tagged">전체 모아보기</a></li>
+			                            <li><a href="/planMeals/diy/popular" class="L-Affiliate-Tagged">TOP 10 모아보기</a></li>
+			                            <li><a href="/planMeals/diy/category" class="L-Affiliate-Tagged">테마별 모아보기</a></li>
+			                            <li><a href="/planMeals/diy/new" class="L-Affiliate-Tagged">DIY 식단 만들기</a></li>
+			                            <li><a href="/planMeals/diy/myList" class="L-Affiliate-Tagged">나의 DIY 식단<br>모아보기</a></li>
+			                        </ul>
+			                    </li>
+			                    <li><a href="#none" class="L-Affiliate-Tagged">서비스</a>
+			                        <ul class="all-menu__depth2">
+			                            <li><a href="/story/guideMain" class="L-Affiliate-Tagged">이용방법</a></li>
+			                            <li><a href="/spComn/checkAddress" class="L-Affiliate-Tagged">배송안내</a></li>
+			                            <li><a href="/main/boardDetail?freeboardId=340" class="L-Affiliate-Tagged">모바일 이용권</a></li>
+			                            <li><a href="/groupOrder/groupOrderMain" class="L-Affiliate-Tagged">단체주문상담</a></li>
+			                            <li><a href="/serviceCenter/benefit" class="L-Affiliate-Tagged">멤버십 안내</a></li>
+			                            <li><a href="/serviceCenter/notice" class="L-Affiliate-Tagged">공지사항</a></li>
+			                            <li><a href="/serviceCenter/serviceCenterMain" class="L-Affiliate-Tagged">고객센터</a></li>
+			                        </ul>
+			                    </li>
+			                </ul>
+			            </div>
+			        </div>
+			    </div>
 				
 				<!-- 카테고리 - 기본 - 나란히 -->
 				<div class="gnb">
