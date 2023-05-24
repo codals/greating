@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
             integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
     <link href="/greating/resources/css/reset.css" rel="stylesheet">
-    <link href="/greating/resources/css/user/login.css" rel="stylesheet">
+    <link href="/greating/resources/css/user/register.css" rel="stylesheet">
 </head>
 <body>
 <header> 헤더</header>
@@ -19,7 +19,7 @@
         HOME > 로그인
         <div class="row justify-content-center">
             <div class="col-md-4">
-                <h1 class="text-center login-title">로그인</h1>
+                <h1 class="text-center title">로그인</h1>
                 <p class="text-center small login-message">로그인을 하시면 다양한 혜택을 누리실 수 있습니다.</p>
                 <ul class="nav nav-tabs">
                     <li class="nav-item">

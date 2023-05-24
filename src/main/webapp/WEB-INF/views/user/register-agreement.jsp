@@ -19,7 +19,7 @@
         HOME > 회원가입
         <div class="row justify-content-center">
             <div class="col-md-5">
-                <h1 class="text-center login-title">약관동의</h1>
+                <h1 class="text-center title">약관동의</h1>
                 <div class="row justify-content-center social-login-img">
                     <img src="/greating/resources/images/user/register-step.png" alt="social-login.png" style="width:450px">
                 </div>

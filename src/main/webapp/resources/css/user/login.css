@@ -4,10 +4,10 @@
   margin-bottom: 20px;
 }
 
-.login-title {
+.title {
   font-size: 24px;
   font-weight: bold;
-  margin: 0 5px;
+  margin: 0 5px 40px;
 }
 
 .login-message {
