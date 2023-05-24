@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+.banner-img {
+  height: auto;
+  background: url("/greating/resources/images/diy/img_healthy.png");
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  background-size: cover;
+}
+
+.banner-title {
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: Noto Sans KR;
+  font-weight: Light;
+  font-size: 50px;
+  opacity: 1;
+  text-align: center;
+}
+
+.banner-description {
+	color: rgba(255, 255, 255, 1);
+	position: absolute;
+	top: 170px;
+	left: 50%;
+	transform: translateX(-50%);
+	font-family: NanumMyeongjo;
+	font-weight: Regular;
+	font-size: 25px;
+	line-height: 1.5;
+	opacity: 1;
+	text-align: center;
+}
+
+.banner-inner-icon {
+	position: absolute;
+	top: 270px;
+	left: 50%;
+	transform: translateX(-50%); 
+	text-align: center;
+}
+
+.banner-inner-icon img {
+  width: 70%;
+  height: auto;
+}
