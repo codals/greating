@@ -7,9 +7,7 @@ body {
 }
 
 .banner {
-	width: 65%;
-	height: 45px;
-	background: url("../images/v62_1140.png");
+	height: 30px;
 	background-repeat: no-repeat;
 	background-position: right top;
 	background-size: cover;
@@ -18,7 +16,7 @@ body {
 	top: 0px;
 	left: 0px;
 	overflow: hidden;
-	margin: 0 auto;
+	margin-right: 70px;
 	text-align: right;
 }
 
@@ -345,6 +343,7 @@ body {
 	min-width: 1200px;
 	min-height: 160px;
 	z-index: 4;
+	margin-top:10px;
 }
 
 .hd__header .topBanner {
@@ -378,7 +377,7 @@ body {
 	position: relative;
 	top: 0;
 	width: 100%;
-	height: 200px;
+	height: 175px;
 	z-index: 3;
 	background: #fff;
 }
@@ -388,6 +387,8 @@ body {
 	width: 1100px;
 	margin: 0 auto;
 	font-family: "Noto Sans KR";
+	padding-left:10px;
+	padding-right:10px;
 }
 
 .hd__header .header .user-area {
@@ -674,6 +675,7 @@ px
 	display: inline;
 	position: relative;
 	z-index: 4;
+	color:black;
 }
 
 .hd__header .header .all-menu {
@@ -970,7 +972,6 @@ px
 .hd__header .header .gnb {
 	position: absolute;
 	left: 160px;
-	bottom: 0;
 	width: 950px;
 	font-size: 0;
 	vertical-align: bottom;
@@ -1000,6 +1001,7 @@ px
 	font-size: 20px;
 	text-align: center;
 	white-space: nowrap;
+	color: black;
 }
 
 .hd__header .header .gnb__list.importand a {
@@ -1039,7 +1041,7 @@ px
 
 .hd__header .header .gnb .swiper-container {
 	display: inline-block;
-	margin: 0;
+	margin-top: 8px;
 	overflow: inherit;
 }
 
@@ -1067,7 +1069,7 @@ px
 }
 
 .hd__header .header .direct__search {
-	display: inline-block;
+	display: flex;
 	position: relative;
 	margin-right: 22px;
 	width: 420px;
@@ -1103,7 +1105,7 @@ px
 	height: 55px;
 	font-size: 0;
 	background:
-		url("${pageContext.request.contextPath}/resources/images/header-search-button.png")
+		url("/greating/resources/images/templates/header-search-button.png")
 		no-repeat center;
 }
 

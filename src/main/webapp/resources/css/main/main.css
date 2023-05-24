@@ -14,7 +14,13 @@ img {
 	
 }
 
-
+.carousel.slide{
+	text-align:center;
+}
+.carousel-inner{
+	display:inline-block;
+	width:1100px;
+}
 .carousel-item img {
 	width: 100% !important;
 	padding-left: 5%;

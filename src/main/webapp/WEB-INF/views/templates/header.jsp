@@ -5,8 +5,21 @@
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
 
 <!-- 헤더에 사용될 CSS 파일 -->
-<link href="${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/css/templates/header.css" rel="stylesheet" />
 <script src="${pageContext.request.contextPath}/resources/js/header.js"></script>
+
+<link href="/greating/resources/css/templates/reset.css" rel="stylesheet">
+
+<!--  bootstrap  -->
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	
+
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div id="wrap">

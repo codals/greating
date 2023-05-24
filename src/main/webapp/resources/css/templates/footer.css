@@ -2,7 +2,7 @@
 
 .gr_footer{
 	background: #F9F9F9;
-    padding: 40px 0 70px;
+    padding: 40px;
     height:350px;
 }
 .gr_footer_inner{
@@ -21,7 +21,6 @@
 }
 .gr_footer_info{
 	margin-top:-18px;
-	font-weight: 600;
 }
 .gr_footer_info > li, .gr_sns > li{
 	display: inline-block;
