@@ -675,6 +675,7 @@ px
 	display: inline;
 	position: relative;
 	z-index: 4;
+	color:black;
 }
 
 .hd__header .header .all-menu {
@@ -1000,6 +1001,7 @@ px
 	font-size: 20px;
 	text-align: center;
 	white-space: nowrap;
+	color: black;
 }
 
 .hd__header .header .gnb__list.importand a {
