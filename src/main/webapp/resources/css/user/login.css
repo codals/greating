@@ -1,0 +1,121 @@
+.login-message {
+  font-size: 12px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.login-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 5px;
+}
+
+.login-message {
+  font-size: 12px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+.nav-tabs {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.nav-tabs .nav-item {
+  width: 50%;
+  text-align: center;
+}
+
+.nav-tabs .nav-link {
+  font-size: 14px;
+  font-weight: bold;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: black;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+::placeholder {
+  font-size: 12px;
+}
+
+.form-check-label {
+  font-size: 12px;
+}
+
+.login-links {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.login-links span {
+  font-size: 12px;
+}
+
+.login-links a {
+  text-decoration: none;
+  color: #000;
+}
+
+.login-links .divider {
+  width: 1px;
+  height: 10px;
+  background-color: #ccc;
+  margin: 0 10px;
+}
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  background-color: #918C00;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.social-login-img {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.btn-non-member {
+  background-color: transparent;
+  color: #000000;
+  border-style: solid;
+  border-color: #918C00;
+  border-width: 1px;
+}
