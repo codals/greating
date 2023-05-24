@@ -247,7 +247,7 @@
 	</main>
 
 	<!--  footer	 -->
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="templates/footer.jsp" />
 
 </body>
 </html>
