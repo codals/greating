@@ -192,3 +192,8 @@ Temporary Items
 src/main/resources/config/database.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,macos,intellij+all
+.project
+.classpath
+WebContent/META-INF/MANIFEST.MF
+.classpath
+.project
