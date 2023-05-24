@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/greating/resources/css/reset.css" rel="stylesheet">
-<link href="/greating/resources/css/footer.css" rel="stylesheet">
+<link href="/greating/resources/css/templates/reset.css" rel="stylesheet">
+<link href="/greating/resources/css/templates/footer.css" rel="stylesheet">
 
 </head>
 <body>

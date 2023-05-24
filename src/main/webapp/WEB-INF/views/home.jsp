@@ -32,12 +32,12 @@
 <script src="/greating/resources/js/main/slick.js"></script>
 
 <!--  css  -->
-<link href="/greating/resources/css/reset.css" rel="stylesheet">
+<link href="/greating/resources/css/templates/reset.css" rel="stylesheet">
 <link href="/greating/resources/css/main/main.css" rel="stylesheet">
 
 </head>
 <body>
-	<header> 헤더 위치 </header>
+	<jsp:include page="templates/header.jsp" />
 	<main id="contents">
 		<div class="main">
 			<section class="main_slide_sec">
@@ -160,7 +160,7 @@
 
 			<section class="main_care_sec">
 				<div class="care-comm hPara fadeInUp">
-					<img src="/greating/resources/main/images/main/img_main_care.png" alt="#">
+					<img src="/greating/resources/images/main/img_main_care.png" alt="#">
 				</div>
 				<div class="row justify-content-center hPara fadeInUp "
 					style="flex-wrap: wrap;">
