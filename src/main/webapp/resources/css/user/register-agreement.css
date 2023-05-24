@@ -1,0 +1,88 @@
+.register-comment {
+  font-size: 10px;
+  font-weight: bold;
+  color: #4F4F4F;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  line-height: 20px;
+}
+
+.checkbox-container {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.checkbox-container input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-container .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px; /* 체크박스 크기 조정 */
+  height: 20px; /* 체크박스 크기 조정 */
+  /* 테두리 선 스타일 지정 */
+  border-radius: 50%; /* 동그라미 모양을 위해 반지름 지정 */
+  border: 1px solid #ACACAC;
+  background-image: url("/greating/resources/images/user/register-checkbox.png");
+  background-size: 10%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #ccc;
+  background-size: cover;
+}
+
+.checkbox-container input[type="checkbox"]:checked + .checkmark {
+  background-image: none;
+  background-color: #000; /* 체크된 상태의 배경색 지정 */
+}
+
+.checkbox-container .text {
+  font-size: 11px; /* 문구의 글꼴 크기 설정 */
+  color: #000; /* 문구의 색상 설정 */
+  margin-left: 25px; /* 이미지와 문구 사이 간격 설정 */
+  font-weight: bold;
+  /*padding-bottom: 20px;*/
+}
+
+.checkbox-container img {
+  margin-left: auto;
+}
+
+.point {
+  display: inline-block;
+  margin-left: 5px;
+  padding: 0 10px;
+  font-size: 10px;
+  font-weight: bold;
+  background: #efe435;
+  border-radius: 30px;
+  vertical-align: middle;
+}
+
+.button-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-button, .right-button {
+  flex: 1;
+  margin: 0;
+  border-color: #918c00;
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+
+.right-button {
+  color: #fff;
+  background-color: #918C00;
+}
