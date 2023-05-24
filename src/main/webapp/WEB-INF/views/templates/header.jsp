@@ -42,7 +42,7 @@
 				<div class="header__sec">
 					<h1 class="logo">
 						<a href="javascript:fnMoveHome('');">
-							<img src="${pageContext.request.contextPath}/resources/images/img_header_logo.png" alt="그리팅몰">
+							<img src="${pageContext.request.contextPath}/resources/images/templates/img_header_logo.png" alt="그리팅몰">
 						</a>
 					</h1>
 	
@@ -63,11 +63,11 @@
 								data-popup-name="popup_search">검색</a>
 						</div>
 						<a href="/spComn/checkAddress" class="direct__btn"> <img
-							src="${pageContext.request.contextPath}/resources/images/btn_header_shipping.jpg"
+							src="${pageContext.request.contextPath}/resources/images/templates/btn_header_shipping.jpg"
 							alt="하루·택배 배송안내">
 						</a> <a href="/order/orderCart" class="direct__cart"> <span
 							id="cartCnt">0</span> <img
-							src="${pageContext.request.contextPath}/resources/images/icon_header_cart.png"
+							src="${pageContext.request.contextPath}/resources/images/templates/icon_header_cart.png"
 							alt="장바구니">
 						</a>
 					</nav>
