@@ -29,12 +29,12 @@
                         <a class="nav-link active" href="#">greeting 회원</a>
                     </li>
                 </ul>
-                <form action="#" method="post">
+                <form action="/greating/login" method="post">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="username" placeholder="아이디">
+                        <input type="text" class="form-username" id="username" name="username" placeholder="아이디">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="password" placeholder="비밀번호">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호">
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input" id="rememberMe">
