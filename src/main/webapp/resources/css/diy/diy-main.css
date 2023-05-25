@@ -1,0 +1,329 @@
+@charset "UTF-8";
+
+/* 상위 배너 */
+.banner-img {
+  height: auto;
+  background: url("/greating/resources/images/diy/img_healthy.png");
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  background-size: cover;
+}
+
+.banner-title {
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: Noto Sans KR;
+  font-weight: Light;
+  font-size: 50px;
+  opacity: 1;
+  text-align: center;
+}
+
+.banner-description {
+	color: rgba(255, 255, 255, 1);
+	position: absolute;
+	top: 170px;
+	left: 50%;
+	transform: translateX(-50%);
+	font-family: NanumMyeongjo;
+	font-weight: Regular;
+	font-size: 25px;
+	line-height: 1.5;
+	opacity: 1;
+	text-align: center;
+}
+
+.banner-inner-icon {
+	position: absolute;
+	top: 270px;
+	left: 50%;
+	transform: translateX(-50%); 
+	text-align: center;
+}
+
+.banner-inner-icon img {
+  width: 70%;
+  height: auto;
+}
+
+/* 2 ~ 4 화면 */
+
+.secondary-main-content {
+  display: flex;
+  gap: 50px;
+}
+
+/* 2. 검색 모달 */
+
+.simple-search-container {
+	width: 400px;
+	height: 700px;
+	background: rgba(255, 255, 255, 1);
+	opacity: 1;
+	position: absolute;
+	top: 650px;
+	box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.25);
+	overflow: hidden;
+	display: flex;
+    flex-direction: column;
+    padding: 20 8;
+}
+
+/* Add olive-colored strip */
+.simple-search-container::before {
+  content: "";
+  display: block;
+  height: 8px;
+  background-color: #918c00;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.simple-search-container .title {
+  width: 328px;
+  color: rgba(28,28,28,1);
+  position: absolute;
+  top: 30px;
+  left: 17px;
+  font-family: Noto Sans KR;
+  font-weight: Bold;
+  font-size: 28px;
+  opacity: 1;
+  text-align: left;
+}
+
+.simple-search-container .search-text {
+  width: 370px;
+  color: #999;
+  position: absolute;
+  top: 75px;
+  left: 17px;
+  font-family: Noto Sans KR;
+  font-weight: DemiLight;
+  font-size: 18px;
+  opacity: 1;
+  text-align: left;
+}
+
+.simple-search-container .search-box  {
+	width: 360px;
+	height: 50px;
+	background: rgba(255, 255, 255, 0);
+	opacity: 1;
+	position: absolute;
+	top: 135px;
+	left: 16px;
+	border: 2px solid rgba(178, 172, 0, 1);
+	border-radius: 40px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+}
+
+.simple-search-container .search-box input {
+	width: 300px;
+	color: #666666; 
+	border: none;
+    outline: none;
+    padding-left: 15px;
+}
+
+.simple-search-container .search-box input::placeholder {
+  font-family: Noto Sans KR;
+  font-weight: 100;
+  font-size: 17px;
+  color: #ccc;
+}
+
+  .simple-search-container .search-box .icon {
+    width: 22px;
+    height: 22px;
+    background: url("/greating/resources/images/diy/img_search_button.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    margin-left: 18px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+  }
+  
+  .simple-search-container .sub-title {
+  width: 360px;
+  color: rgba(28,28,28,1);
+  position: absolute;
+  left: 17px;
+  font-family: Noto Sans KR;
+  font-weight: Bold;
+  font-size: 19px;
+  opacity: 1;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.greating-category-sec {
+  top: 230px;
+}
+
+.greating-country-sec {
+	top: 330px;
+}
+
+.greating-rice-sec {
+	top: 430px;
+}
+
+.greating-soup-sec {
+	top: 530px;
+}
+
+.greating-category-sec>span, 
+.greating-country-sec>span,
+.greating-rice-sec>span,
+.greating-soup-sec>span {
+	font-size: 25px;
+	font-weight: bold;
+	margin: 10px 0px 10px 0px;
+	display: block;
+}
+.greating-category-btns label,
+.greating-country-btns label,
+.greating-rice-btns label,
+.greating-soup-btns label {
+	background: white;
+	border: 1.5px solid #C3C3C3;
+	border-radius: 20px;
+	padding: 10px;
+	margin-right: 5px;
+	cursor: pointer;
+	text-align: center;
+	display: inline-block;
+}
+
+.greating-category-btns label {
+    width: 120px;
+}
+
+.greating-country-btns label {
+	width: 100px;
+}
+
+.greating-rice-btns label,
+.greating-soup-btns label {
+	width: 80px;
+}
+
+.greating-category-btns,
+.greating-country-btns,
+.greating-rice-btns,
+.greating-soup-btns {
+	margin-top: 10px;
+	display: flex;
+}
+
+.greating-category-btns>input,
+.greating-country-btns>input,
+.greating-rice-btns>input,
+.greating-soup-btns>input {
+	display: none;
+}
+
+.greating-category-btns>input[type="checkbox"]:checked+label,
+.greating-country-btns>input[type="checkbox"]:checked+label {
+	border: 2px solid rgba(178, 172, 0, 1);
+	border-radius: 20px;
+	padding: 10px;
+	margin-right: 10px;
+	cursor: pointer;
+	text-align: center;
+	background-color: rgba(178, 172, 0, 1);
+    color: white;
+}
+
+.greating-rice-btns>input[type="radio"]:checked+label,
+.greating-soup-btns>input[type="radio"]:checked+label {
+	border: 2px solid rgba(178, 172, 0, 1);
+	border-radius: 20px;
+	padding: 10px;
+	margin-right: 10px;
+	cursor: pointer;
+	text-align: center;
+	background-color: rgba(178, 172, 0, 1);
+    color: white;
+}
+
+.greating-category-sec label,
+.greating-country-sec label,
+.greating-rice-sec label,
+.greating-soup-sec label {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 100;
+  font-size: 15px;
+  color: #999;
+}
+
+.button-group {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: auto;
+	margin-bottom: 30px;
+}
+
+.rectangle-gray-button {
+  width: 120px;
+  height: 40px;
+  border: none;
+  background-color: #99;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.rectangle-gray-button:hover {
+  background-color: #777;
+}
+
+.rectangle-green-button {
+  width: 120px;
+  height: 40px;
+  border: none;
+  background-color: #918c00;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.rectangle-green-button:hover {
+  background-color: #7e7900; /* 마우스를 갖다 대었을 때의 배경색 */
+}
+
+.post-containers {
+   flex-grow: 1;
+   margin-left: 20px;
+}
+
+.post-containers .sub-title {
+  width: 360px;
+  color: rgba(28,28,28,1);
+  position: absolute;
+  left: 17px;
+  font-family: Noto Sans KR;
+  font-weight: Bold;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
