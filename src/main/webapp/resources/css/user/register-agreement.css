@@ -77,15 +77,19 @@
 .left-button, .right-button {
   flex: 1;
   margin: 0;
-  border-color: #918c00;
   display: block;
   width: 100%;
   padding: 12px;
   font-size: 16px;
   font-weight: bold;
   text-align: center;
-  border: none;
+  border: none #918c00;
   cursor: pointer;
+}
+
+.left-button {
+  background: #FFF;
+  border: 1px solid #ccc;
 }
 
 .right-button {
