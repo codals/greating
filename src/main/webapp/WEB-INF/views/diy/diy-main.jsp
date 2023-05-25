@@ -35,6 +35,8 @@
 		
 		<div class="main-content hd__inner1100">
 		
+		<div class="secondary-main-content">
+		
 			<!-- 2. 검색 모달 -->
 			<div class="simple-search-container">
 			
@@ -105,9 +107,15 @@
 			  	
 		  	</div>
 			
-
+			<!-- 3. 인기글 부분 -->
+			<div class="post-containers">
+				<div class="today-post-container">
+					<div class="sub-title">오늘 업로드된 식단</div>
+				</div>				
+			</div>
 
 		</div>
+	</div>
 						
 
 	<!-- footer 가져오기 -->

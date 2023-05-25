@@ -50,6 +50,13 @@
   height: auto;
 }
 
+/* 2 ~ 4 화면 */
+
+.secondary-main-content {
+  display: flex;
+  gap: 50px;
+}
+
 /* 2. 검색 모달 */
 
 .simple-search-container {
@@ -267,7 +274,7 @@
 	justify-content: center;
 	align-items: center;
 	margin-top: auto;
-	margin-bottom: 30px; /* 아래쪽 여백 설정 */
+	margin-bottom: 30px;
 }
 
 .rectangle-gray-button {
@@ -283,7 +290,7 @@
 }
 
 .rectangle-gray-button:hover {
-  background-color: #777; /* 마우스를 갖다 대었을 때의 배경색 */
+  background-color: #777;
 }
 
 .rectangle-green-button {
@@ -300,5 +307,23 @@
 
 .rectangle-green-button:hover {
   background-color: #7e7900; /* 마우스를 갖다 대었을 때의 배경색 */
+}
+
+.post-containers {
+   flex-grow: 1;
+   margin-left: 20px;
+}
+
+.post-containers .sub-title {
+  width: 360px;
+  color: rgba(28,28,28,1);
+  position: absolute;
+  left: 17px;
+  font-family: Noto Sans KR;
+  font-weight: Bold;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+  margin-bottom: 20px;
 }
 
