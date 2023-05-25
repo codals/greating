@@ -13,10 +13,13 @@
     <link href="/greating/resources/css/user/register.css" rel="stylesheet">
 </head>
 <body>
-<header> 헤더</header>
+<jsp:include page="/WEB-INF/views/templates/header.jsp"/>
 <div class="main-content hd__inner1100">
+    <ul class="content-info">
+        <li>HOME</li>
+        <li>로그인</li>
+    </ul>
     <div class="container">
-        HOME > 로그인
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <h1 class="text-center title">로그인</h1>
@@ -58,5 +61,6 @@
         </div>
     </div>
 </div>
+<jsp:include page="/WEB-INF/views/templates/footer.jsp"/>
 </body>
 </html>

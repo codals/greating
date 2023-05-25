@@ -1,16 +1,46 @@
-.title {
-  font-size: 24px;
+.content-info > li {
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+  font-size: 14px;
+  color: #888;
+}
+
+.content-info li:last-child {
+  color: #1c1c1c;
   font-weight: bold;
-  margin: 0 5px 40px;
+}
+
+.content-info li:last-child:before {
+  content: '>';
+  color: #888;
+  margin: 0 10px;
+}
+
+.form-main {
+  width: 750px;
+  margin: 0 auto;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.title {
+  margin: 50px 0 50px;
+  text-align: center;
+  font-size: 36px;
+  font-weight: 600;
 }
 
 .register-comment {
-  font-size: 10px;
-  font-weight: bold;
   color: #4F4F4F;
   margin-top: 25px;
-  margin-bottom: 20px;
-  line-height: 20px;
+  margin-bottom: 25px;
+  color: #888;
+  line-height: 1.8;
 }
 
 .checkbox-container {
@@ -23,14 +53,17 @@
   display: none;
 }
 
+.all-agreement-check {
+  padding: 8px 0px 8px 0px;
+}
+
 .checkbox-container .checkmark {
   position: absolute;
   top: 0;
   left: 0;
-  width: 20px; /* 체크박스 크기 조정 */
-  height: 20px; /* 체크박스 크기 조정 */
-  /* 테두리 선 스타일 지정 */
-  border-radius: 50%; /* 동그라미 모양을 위해 반지름 지정 */
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
   border: 1px solid #ACACAC;
   background-image: url("/greating/resources/images/user/register-checkbox.png");
   background-size: 10%;
@@ -41,37 +74,43 @@
 }
 
 .checkbox-container input[type="checkbox"]:checked + .checkmark {
-  background-image: none;
-  background-color: #000; /* 체크된 상태의 배경색 지정 */
+  background-color: #918c00; /* 체크된 상태의 배경색 지정 */
 }
 
 .checkbox-container .text {
-  font-size: 11px; /* 문구의 글꼴 크기 설정 */
-  color: #000; /* 문구의 색상 설정 */
-  margin-left: 25px; /* 이미지와 문구 사이 간격 설정 */
-  font-weight: bold;
-  /*padding-bottom: 20px;*/
+  color: #000;
+  margin-left: 35px;
+  position: relative;
+  /*padding: 20px 0;*/
+  background: none;
+  font-weight: 600;
 }
 
 .checkbox-container img {
   margin-left: auto;
 }
 
+.flex-right {
+  width: 30px;
+}
+
 .point {
   display: inline-block;
   margin-left: 5px;
-  padding: 0 10px;
-  font-size: 10px;
-  font-weight: bold;
+  padding: 4px 10px;
+  font-size: 14px;
   background: #efe435;
   border-radius: 30px;
   vertical-align: middle;
 }
 
 .button-container {
-  margin-top: 30px;
+
   display: flex;
   justify-content: space-between;
+  height: 50px;
+  line-height: 50px;
+  align-items: center;
 }
 
 .left-button, .right-button {
@@ -80,7 +119,7 @@
   display: block;
   width: 100%;
   padding: 12px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   text-align: center;
   border: none #918c00;

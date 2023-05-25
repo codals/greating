@@ -13,12 +13,15 @@
     <link href="/greating/resources/css/user/register-agreement.css" rel="stylesheet">
 </head>
 <body>
-<header> 헤더</header>
+<jsp:include page="/WEB-INF/views/templates/header.jsp"/>
 <div class="main-content hd__inner1100">
-    <div class="container">
-        HOME > 회원가입
+    <ul class="content-info">
+        <li>HOME</li>
+        <li>회원가입</li>
+    </ul>
+    <div class="form-main">
         <div class="row justify-content-center">
-            <div class="col-md-5">
+            <div class="col">
                 <h1 class="text-center title">약관동의</h1>
                 <div class="row justify-content-center social-login-img">
                     <img src="/greating/resources/images/user/register-step.png" alt="social-login.png" style="width:450px">
@@ -28,7 +31,7 @@
                     - 선택 약관에 동의하지 않으셔도 회원가입이 가능합니다.
                 </p>
                 <hr>
-                <label class="checkbox-container">
+                <label class="checkbox-container d-flex align-items-center justify-content-between all-agreement-check">
                     <input type="checkbox">
                     <span class="checkmark"></span>
                     <span class="text">전체 약관 동의</span>
@@ -38,14 +41,14 @@
                     <input type="checkbox">
                     <span class="checkmark"></span>
                     <span class="text">회원 서비스 이용약관 (필수)</span>
-                    <img src="/greating/resources/images/user/register-plus.png" class="flex-right" alt="register-plus.png" width="30px">
+                    <img src="/greating/resources/images/user/register-plus.png" class="flex-right" alt="register-plus.png">
                 </label>
                 <hr>
                 <label class="checkbox-container d-flex align-items-center justify-content-between">
                     <input type="checkbox">
                     <span class="checkmark"></span>
                     <span class="text">개인정보 수집 및 이용동의 (필수)</span>
-                    <img src="/greating/resources/images/user/register-plus.png" class="flex-right" alt="register-plus.png" width="30px">
+                    <img src="/greating/resources/images/user/register-plus.png" class="flex-right" alt="register-plus.png">
                 </label>
                 <hr>
                 <label class="checkbox-container d-flex align-items-center justify-content-between">
@@ -53,7 +56,7 @@
                     <span class="checkmark"></span>
                     <span class="text">마케팅 수신 동의 (선택)</span>
                     <span class="point" id="marketing_spoon">+1,000스푼 적립!</span>
-                    <img src="/greating/resources/images/user/register-plus.png" class="flex-right" alt="register-plus.png" width="30px">
+                    <img src="/greating/resources/images/user/register-plus.png" class="flex-right" alt="register-plus.png">
                 </label>
                 <hr>
                 <label class="checkbox-container d-flex align-items-center justify-content-between">
@@ -61,7 +64,7 @@
                     <span class="checkmark"></span>
                     <span class="text">평생회원 신청 동의 (선택)</span>
                     <span class="point" id="marketing_spoon">+1,000스푼 적립!</span>
-                    <img src="/greating/resources/images/user/register-plus.png" class="flex-right" alt="register-plus.png" width="30px">
+                    <img src="/greating/resources/images/user/register-plus.png" class="flex-right" alt="register-plus.png">
                 </label>
                 <hr>
                 <p class="text small register-comment">
@@ -76,12 +79,13 @@
                 </p>
                 <div class="button-container">
                     <button class="left-button">취소</button>
-                    <button class="right-button">다음</button>
+                    <button class="right-button"><a href="/greating/register-form">다음</a></button>
                 </div>
 
             </div>
         </div>
     </div>
 </div>
+<jsp:include page="/WEB-INF/views/templates/footer.jsp"/>
 </body>
 </html>
