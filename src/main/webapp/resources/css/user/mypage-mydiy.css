@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+.hr {
+	width: 100%;
+	height: 1px;
+	border: 0.5px solid #8f8f8f;
+}
+
+.page-category {
+	display: block;
+}
+
+.mypage-main {
+	margin-top: 50px;
+	width: 100%;
+}
+
+.sub-cont {
+	float: left;
+	width: 870px;
+}
+
+.myDiy-cont {
+	margin-top: 20px;
+}
+
+.select-box {
+	padding: 10px;
+	height: 50px;
+	border-top: 1px solid black;
+}
+
+.myDiy-card {
+	height: 250px;
+	width: 100%;
+	display: flex;
+	border-top: 2px solid #8f8f8f;
+}
+
+.myDiy-card-img {
+	display: inline-block;
+}
+
+.myDiy-card-img img {
+	width: 200px;
+	height: 200px;
+	margin-right: 35px;
+}
+
+.myDiy-card-info {
+	display: inline-block;
+	width: 100%;
+}
+
+.myDiy-card-info, .myDiy-card-img {
+	margin-top: 20px;
+}
+
+.myDiy-card-info>span {
+	display: block;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.myDiy-card-tags, .myDiy-vote {
+	margin-top: 15px;
+	margin-left: 5px;
+}
+
+.myDiy-card-tag {
+	border: 1px solid #8f8f8f;
+	margin-left: 15px;
+	padding: 5px 20px 5px 20px;
+	margin-right: 15px;
+	font-weight: bold;
+	color: #918c01;
+}
+
+.myDiy-vote {
+	margin-top: 20px;
+}
+
+.myDiy-vote-num {
+	display: inline-block;
+	margin-left: 15px;
+}
+
+.myDiy-vote-num>span {
+	font-size: 20px;
+	font-weight: bold;
+	color: #918c01;
+	vertical-align: bottom;
+}
