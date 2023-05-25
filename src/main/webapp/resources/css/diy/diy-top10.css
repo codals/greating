@@ -1,0 +1,81 @@
+@charset "UTF-8";
+
+.hr {
+	width: 100%;
+	height: 1px;
+	border: 0.5px solid #9E9E9E;
+}
+
+.top-category {
+	display: inline-block;
+	height: 50px;
+	line-height: 50px;
+	font-size: 15px;
+	color: #888;
+	font-family: "Noto Sans Korean";
+}
+
+.main-content-title {
+	font-size: 40px;
+	font-weight: 500;
+	color: black;
+	margin: 10px 0px 30px 0px;
+	text-align: center;
+	font-family: "Noto Sans Korean";
+}
+
+.healthy-top, .care-top, .challenge-top {
+	margin-bottom: 70px;
+}
+
+.care-top {
+	margin-top: 50px;
+}
+
+.challenge-top {
+	margin-top: 50px;
+	margin-bottom: 100px;
+}
+
+.healthy-top-title, .care-top-title, .challenge-top-title {
+	font-size: 25px;
+	font-weight: 500;
+	color: black;
+	margin-bottom: 10px;
+}
+
+.healthy-card, .care-card, .challenge-card {
+	width: 225px !important;
+	height: 225px !important;
+	display: inline-block;
+	position: relative;
+	text-align: center;
+}
+
+.healthy-card>span, .care-card>span, .challenge-card>span {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.healthy-card>img, .challenge-card>img, .care-card>img {
+	width: 200px;
+	height: 200px;
+	border-radius: 20px;
+	margin: 0 auto;
+}
+
+.slick-list {
+	margin: 0 30px 0 30px;
+}
+
+.slick-prev:before, .slick-next:before {
+	font-family: 'slick';
+	font-size: 40px;
+	width: 20px;
+	height: 20px;
+	line-height: 1;
+	opacity: .75;
+	color: #918c01;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
