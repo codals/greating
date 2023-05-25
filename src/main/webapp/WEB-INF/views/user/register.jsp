@@ -19,8 +19,7 @@
 </head>
 
 <body>
-
-	<header> 헤더 위치 </header>
+	<jsp:include page="/WEB-INF/views/templates/header.jsp" />
 	<div class="main-content hd__inner1100">
 		<ul class="content-info">
 			<li>HOME</li>
@@ -104,13 +103,13 @@
 						본인인증 절차없이 사용중인 이메일 또는<br> SNS계정 정보로 간편하게 가입하실 수 있습니다.
 					</p>
 					<div class="btn">
-                            <a href="#" class="btn-init green" id="hpointJoin"> 일반회원 가입하기</a>
+                            <a href="/greating/register-agreement" class="btn-init green" id="hpointJoin"> 일반회원 가입하기</a>
                         </div>
 
 				</div>
 			</section>
 		</div>
 	</div>
-
+	<jsp:include page="/WEB-INF/views/templates/footer.jsp" />
 </body>
 </html>
