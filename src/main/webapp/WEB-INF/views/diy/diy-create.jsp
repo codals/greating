@@ -178,10 +178,10 @@
 					<span> Main Dish </span>
 					<div class="hr"></div>
 					<div class="diy-diet-main-btns">
-						<input id="main-y" type="checkbox" name="main" value="포함"
+						<input id="main-y" type="checkbox" name="mainCheckbox" value="포함"
 							onchange="handleCheckboxChange(this)"> <label
 							for="main-y">포함 </label> <input id="main-n" type="checkbox"
-							name="soup" value="밥미포함" onchange="handleCheckboxChange(this)">
+							name="mainCheckbox" value="밥미포함" onchange="handleCheckboxChange(this)">
 						<label for="main-n">미포함 </label>
 
 					</div>
@@ -313,18 +313,16 @@
 
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary"
+								<button type="button" class="modalCloseBtn"
 									data-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary">Save
-									changes</button>
+								<button type="button" class="modalSaveBtn">Save</button>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- Modal -->
-				<div class="modal fade" id="mainDishModal" tabindex="-1"
-					role="dialog" aria-labelledby="mainDishModalLabel"
-					aria-hidden="true">
+				<div class="modal fade" id="mainDishModal" tabindex="-1" role="dialog"
+					aria-labelledby="mainDishModalLabel" aria-hidden="true">
 					<div class="modal-dialog  modal-lg" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -335,23 +333,38 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<span class="d-flex"> Main Dish </span> <span class="d-flex">
-									원하는 Main Dish를 선택하세요. </span>
+								<span class="d-flex modalTitle"> Main Dish </span> <span
+									class="d-flex modalTitleDesc"> 원하는 Main Dish를 선택하세요. ( 1개 )</span>
+								<div class="modal-food-content">
+									<c:forEach var="i" begin="1" end="5">
+
+										<input class="modal-food-card" type="checkbox"
+											id="modalFood-main-${i}" name="soupModalCheckBox"
+											onchange="handleCheckboxChange(this)">
+										<label for="modalFood-main-${i}"> <img
+											class="modalFoodImg"
+											src="/greating/resources/images/market/LA갈비.png"> <span
+											class="d-flex">LA갈비 맛있음 </span> <span
+											class="d-flex modal-food-card-name">LA갈비 </span> <span
+											class="d-flex modal-food-card-price">5800원 </span>
+										</label>
+									</c:forEach>
+
+								</div>
 
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary"
+								<button type="button" class="modalCloseBtn"
 									data-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary">Save
-									changes</button>
+								<button type="button" class="modalSaveBtn">Save</button>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- Modal -->
-				<div class="modal fade" id="sideDishModal" tabindex="-1"
-					role="dialog" aria-labelledby="sideDishModalLabel"
-					aria-hidden="true">
+				
+						<!-- Modal -->
+				<div class="modal fade" id="sideDishModal" tabindex="-1" role="dialog"
+					aria-labelledby="sideDishModalLabel" aria-hidden="true">
 					<div class="modal-dialog  modal-lg" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -362,22 +375,38 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<span class="d-flex"> Side Dish </span> <span class="d-flex">
-									원하는 Side Dish를 선택하세요. </span>
+								<span class="d-flex modalTitle"> Side Dish </span> <span
+									class="d-flex modalTitleDesc"> 원하는 Side Dish를 선택하세요. ( 0 - 2개 )</span>
+								<div class="modal-food-content">
+									<c:forEach var="i" begin="1" end="5">
+
+										<input class="modal-food-card" type="checkbox"
+											id="modalFood-side-${i}" name="soupModalCheckBox">
+										<label for="modalFood-side-${i}"> <img
+											class="modalFoodImg"
+											src="/greating/resources/images/market/깻잎지.png"> <span
+											class="d-flex">깻잎지 맛있음 </span> <span
+											class="d-flex modal-food-card-name">깻잎지 </span> <span
+											class="d-flex modal-food-card-price">3000원 </span>
+										</label>
+									</c:forEach>
+
+								</div>
+
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary"
+								<button type="button" class="modalCloseBtn"
 									data-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary">Save
-									changes</button>
+								<button type="button" class="modalSaveBtn">Save</button>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- Modal -->
-				<div class="modal fade" id="etcFoodModal" tabindex="-1"
-					role="dialog" aria-labelledby="etcFoodModalLabel"
-					aria-hidden="true">
+				
+					
+						<!-- Modal -->
+				<div class="modal fade" id="etcFoodModal" tabindex="-1" role="dialog"
+					aria-labelledby="etcFoodModalLabel" aria-hidden="true">
 					<div class="modal-dialog  modal-lg" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -388,21 +417,34 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<span class="d-flex"> 추가 구성 </span> <span class="d-flex">
-									원하는 건강마켓 상품을 선택하세요. </span>
+								<span class="d-flex modalTitle"> 추가 구성  </span> <span
+									class="d-flex modalTitleDesc"> 원하는 추가 구성품을 선택하세요. ( 0 - 2개 )</span>
+								<div class="modal-food-content">
+									<c:forEach var="i" begin="1" end="5">
+
+										<input class="modal-food-card" type="checkbox"
+											id="modalFood-etc-${i}" name="soupModalCheckBox"
+											onchange="handleCheckboxChange(this)">
+										<label for="modalFood-etc-${i}"> <img
+											class="modalFoodImg"
+											src="/greating/resources/images/market/탕수육.png"> <span
+											class="d-flex">탕수육 겁나 맛있음 </span> <span
+											class="d-flex modal-food-card-name">탕수육  </span> <span
+											class="d-flex modal-food-card-price">3000원 </span>
+										</label>
+									</c:forEach>
+
+								</div>
 
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary"
+								<button type="button" class="modalCloseBtn"
 									data-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary">Save
-									changes</button>
+								<button type="button" class="modalSaveBtn">Save</button>
 							</div>
 						</div>
 					</div>
 				</div>
-
-
 
 
 			</form>
