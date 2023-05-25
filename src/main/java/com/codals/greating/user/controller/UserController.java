@@ -28,4 +28,19 @@ public class UserController {
         }
         return "home";
     }
+
+    @GetMapping("/register")
+    public String redirectRegister() {
+        return "user/register";
+    }
+
+    @GetMapping("/register-agreement")
+    public String redirectRegisterAgreement() {
+        return "user/register-agreement";
+    }
+
+    @GetMapping("/register-form")
+    public String redirectForm() {
+        return "user/register-form";
+    }
 }

@@ -32,7 +32,7 @@
 
 </head>
 <body>
-	<jsp:include page="templates/header.jsp" />
+	<jsp:include page="/WEB-INF/views/templates/header.jsp" />
 	<main id="contents">
 		<div class="main">
 			<section class="main_slide_sec">
@@ -242,7 +242,7 @@
 	</main>
 
 	<!--  footer	 -->
-	<jsp:include page="templates/footer.jsp" />
+	<jsp:include page="/WEB-INF/views/templates/footer.jsp" />
 
 </body>
 </html>

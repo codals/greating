@@ -41,7 +41,7 @@
 			<c:if test="${empty sessionScope.loginUser}">
 				<span class="link"><a href="/greating/login" class="no-underline">로그인</a></span>
 				<span class="divider"></span>
-				<span class="link"><a href="/greating/signup" class="no-underline">회원가입</a></span>
+				<span class="link"><a href="/greating/register" class="no-underline">회원가입</a></span>
 				<span class="divider"></span>
 				<span class="link">쿠폰등록</span>
 				<span class="divider"></span>
