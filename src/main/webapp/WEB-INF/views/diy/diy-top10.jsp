@@ -33,6 +33,7 @@
 	<div class="hr"></div>
 
 	<main class="contents hd__inner1100">
+		<span class="top-category"> DIY 식단  > DIY 식단 TOP 10</span>
 		<div class="main-content hd__inner960">
 			<div class="main-content-title">DIY 식단 TOP 10</div>
 
@@ -162,5 +163,10 @@
 		</div>
 
 	</main>
+	
+	
+	<!--  footer	 -->
+	<jsp:include page="../templates/footer.jsp" />
+	
 </body>
 </html>
