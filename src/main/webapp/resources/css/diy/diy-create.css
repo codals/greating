@@ -242,11 +242,12 @@
 
 .image-container {
 	width: 100%;
-	overflow-x: scroll;
+	overflow-x: auto;
 	white-space: nowrap;
 	border: 1px solid #c3c3c3;
 	border-radius: 10px;
 	padding: 14px;
+	white-space: nowrap;
 }
 
 .image-wrapper {
@@ -315,66 +316,82 @@
 .modal-content {
 	width: 900px !important;
 	height: 700px !important;
-		overflow-y: scroll;
-	
+	overflow-y: auto;
 }
 
 .modal-header {
 	background: #918c01;
 }
-.modal-food-content{
-	width :100%;
+
+.modal-food-content {
+	width: 100%;
 }
 
-.modal-food-card+label{
-	
-	display:inline-block;
-	margin : 10px 10px 10px 5px;
-	text-align:center;
-
-	
+.modal-food-card+label {
+	display: inline-block;
+	margin: 10px 10px 10px 5px;
+	text-align: center;
 }
 
 .modal-food-card[type="checkbox"] {
 	display: none;
 }
 
-.modal-food-card[type="checkbox"]:checked+label > img {
-	display:inline-block;
-	margin : 10px 10px 10px 5px;
-	text-align:center;
-		border : 3px solid #918c01;
+.modal-food-card[type="checkbox"]:checked+label>img {
+	display: inline-block;
+	margin: 10px 5px 10px 5px;
+	text-align: center;
+	border: 3px solid #918c01;
 }
 
-.modal-food-card[type="checkbox"]:checked+label > span {
-	padding-left:10px;
+.modal-food-card[type="checkbox"]:checked+label>span {
+	padding-left: 10px;
 }
 
-.modalFoodImg{
+.modalFoodImg {
 	width: 250px;
 	height: 250px;
-	    border-radius: 10px;
-    margin-top: 10px;
-}
-.modal-food-card-price{
-	    font-size: 25px;
-    font-weight: bold;
-        line-height: 26px;
-}
-.modal-food-card-name{
-	font-size:20px;
-	font-weight:bold;
-	    line-height: 18px;
+	border-radius: 10px;
+	margin-top: 10px;
 }
 
-.modalTitle{
-	font-size : 30px;
+.modal-food-card-price {
+	font-size: 25px;
+	font-weight: bold;
+	line-height: 26px;
+}
+
+.modal-food-card-name {
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 18px;
+}
+
+.modalTitle {
+	font-size: 30px;
 	font-weight: bold;
 	color: #918c01;
 }
-.modalTitleDesc{
-	    margin: 5px 0px 15px 0px;
-    font-size: 18px;
+
+.modalTitleDesc {
+	margin: 5px 0px 15px 0px;
+	font-size: 18px;
+}
+
+.modalCloseBtn {
+	background: white;
+	color: black;
+	width: 100px;
+	height: 44px;
+	border: 1px solid #918c01;
+}
+
+.modalSaveBtn {
+	background: #918c01;
+	color: white;
+	width: 100px;
+	height: 44px;
+	border: 1px solid #918c01;
 }
 
 .side-choice-desc {
@@ -412,12 +429,11 @@
 
 #diy-diet-form-cancelbtn {
 	margin: 50px 30px 50px 30px;
-	color: #918c01;
+	color: black;
 	background: white;
-	border: 2px solid #918c01;
-	border-radius: 25px;
+	border: 0.5px solid #918c01;
 	font-weight: 600;
-	font-size: 30px;
+	font-size: 20px;
 	padding: 12px;
 	width: 150px;
 	border: 2px solid #918c01;
@@ -426,11 +442,10 @@
 #diy-diet-form-subbtn {
 	margin: 50px 30px 50px 30px;
 	background: #918c01;
+	border: 0.5px solid #918c01;
 	color: white;
-	border: none;
-	border-radius: 25px;
 	font-weight: 600;
-	font-size: 30px;
+	font-size: 20px;
 	padding: 12px;
 	width: 150px;
 }
