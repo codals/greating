@@ -9,9 +9,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
-
-<link href="${pageContext.request.contextPath}/resources/css/user/mypage-mydiy.css"
+<link href="/greating/resources/css/user/mypage-myscrap.css"
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -31,7 +32,7 @@
 			<div class="sub-cont">
 				<jsp:include page="./mypage-welcome.jsp" />
 
-				<div class="myDiy-cont">
+				<div class="myScrap-cont">
 					<div class="select-box">
 						<i class="far fa-check-circle fa-lg" style="color: #afb0b1;">
 						</i> 전체선택
@@ -39,32 +40,28 @@
 				</div>
 
 				<ul>
-					<c:forEach var="i" begin="1" end="3">
-
-						<li class="myDiy-card">
-							<div class="myDiy-card-img">
-								<img src="${pageContext.request.contextPath}/resources/images/user/mypage-main.jpg">
+					<c:forEach var="i" begin="1" end="6">
+						<li class="myScrap-card">
+							<div class="myScrap-card-img">
+								<i class="fas fa-solid fa-bookmark fa-lg" style="color: #918c01;"></i>
+								<img src="/greating/resources/images/user/mypage-scrap.jpg">
 							</div>
-							<div class="myDiy-card-info">
-								<span class="mb-2">[ 현대 그린푸드 ] 국산 대패 삼겹살 </span>
-								<div class="hr"></div>
-								<div class="myDiy-card-tags">
-									<span style="font-size: 17px;"> 메인 구성 </span> <span
-										class="myDiy-card-tag"> 귀리밥 </span> <span
-										class="myDiy-card-tag"> 귀리밥 </span> <span
-										class="myDiy-card-tag"> 귀리밥 </span>
-
+							<div class="myScrap-card-info">
+								<h3>제목</h3>
+								<div class="author-info">
+									<p>영양사</p>
+									<p>작성자정보</p>
 								</div>
-								<div class="myDiy-vote">
-									<span style="font-size: 17px;"> 투표 현황 </span>
-									<div class="myDiy-vote-num">
-										<img src="${pageContext.request.contextPath}/resources/images/user/vote.png">
-										<span> 400 Greating </span>
-									</div>
+								<div class="calorie-info">
+									<p>희망칼로리</p>
+									<p>000Kcal</p>
 								</div>
 							</div>
 						</li>
 					</c:forEach>
+				</ul>
+
+
 
 				</ul>
 			</div>
