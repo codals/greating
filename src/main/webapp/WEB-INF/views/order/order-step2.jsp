@@ -48,7 +48,7 @@
 							<span><strong>배송 희망일</strong>선택</span>
 						</h2>
 
-						<div class="radio-container">
+						<!-- <div class="radio-container">
 							<label class="radio-label"> <input class="radio-input"
 								type="radio" name="experience" value="체험팩"> <span
 								class="radio-custom">월수금</span>
@@ -59,7 +59,7 @@
 								type="radio" name="experience" value="2주"> <span
 								class="radio-custom">직접선택 (초기화)</span>
 							</label>
-						</div>
+						</div> -->
 					</div>
 				</section>
 				<!-- 달력 -->
@@ -89,9 +89,9 @@
 				</div>
 			</div>
 			<div class="meals-btn">
-				<a href="#" class="btn-init-white prev"><span>← 이전단계</span></a> <a
+				<a href="#" class="btn-init-white prev"><span>이전단계</span></a> <a
 					href="#" class="btn-init-green next" id="btn_next"><span
-					id="next_text">다음단계 →</span></a>
+					id="next_text">다음단계</span></a>
 			</div>
 
 		</form>
