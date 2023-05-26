@@ -89,8 +89,8 @@
 				</div>
 			</div>
 			<div class="meals-btn">
-				<a href="#" class="btn-init-white prev"><span>이전단계</span></a> <a
-					href="#" class="btn-init-green next" id="btn_next"><span
+				<a href="${header.referer}" class="btn-init-white prev"><span>이전단계</span></a> <a
+					href="${pageContext.request.contextPath}/diets/mygreating/orders/choice" class="btn-init-green next" id="btn_next"><span
 					id="next_text">다음단계</span></a>
 			</div>
 

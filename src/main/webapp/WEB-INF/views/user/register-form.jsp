@@ -9,8 +9,8 @@
             integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
             integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
-    <link href="/greating/resources/css/templates/reset.css" rel="stylesheet">
-    <link href="/greating/resources/css/user/register-form.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/templates/reset.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/user/register-form.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/templates/header.jsp"/>
@@ -25,11 +25,11 @@
                 <div class="col">
                     <h1 class="text-center title">정보입력</h1>
                     <div class="row justify-content-center social-login-img">
-                        <img src="/greating/resources/images/user/register-step.png" alt="social-login.png" style="width:450px">
+                        <img src="${pageContext.request.contextPath}/resources/images/user/register-step.png" alt="social-login.png" style="width:450px">
                     </div>
                     <div class="form-main-content" style="width:750px; margin: 0 auto;">
                         <span class="text register-sub-title">회원 정보 입력 (필수)</span>
-                        <form>
+                        <form action="${pageContext.request.contextPath}/register" method="post">
                             <div class="form-group">
                                 <label for="name">이름</label>
                                 <input type="text" class="register-input" id="name" required>
@@ -113,10 +113,9 @@
                                 </button>
                             </div>
                             <div class="button-container">
-                                <button class="left-button"><a href="${header.referer}">취소</a></button>
-                                <button class="right-button"><a href="/greating/register-form">회원가입</a></button>
+                                <input type="button" class="left-button" onclick="location.href='${header.referer}'" value="취소">
+                                <input type="submit" class="right-button" value="회원가입">
                             </div>
-
                         </form>
                     </div>
                 </div>

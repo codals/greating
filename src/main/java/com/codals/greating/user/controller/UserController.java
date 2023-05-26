@@ -15,7 +15,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/login")
-    public String redirectLogin() {
+    public String loadLoginPage() {
         return "user/login";
     }
 
@@ -30,17 +30,25 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String redirectRegister() {
+    public String loadRegisterPage() {
         return "user/register";
     }
 
     @GetMapping("/register-agreement")
-    public String redirectRegisterAgreement() {
+    public String loadRegisterAgreementPage() {
         return "user/register-agreement";
     }
 
     @GetMapping("/register-form")
-    public String redirectForm() {
+    public String loadRegisterFormPage() {
         return "user/register-form";
+    }
+
+    @PostMapping("/register")
+    public String register() {
+        /**
+         * 회원가입
+         */
+        return "redirect:/";
     }
 }

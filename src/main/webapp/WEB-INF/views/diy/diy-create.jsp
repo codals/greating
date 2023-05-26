@@ -12,8 +12,8 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
-<link href="/greating/resources/css/diy/diy-create.css" rel="stylesheet">
-<script src="/greating/resources/js/diy/diy-create.js"></script>
+<link href="${pageContext.request.contextPath}/resources/css/diy/diy-create.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/resources/js/diy/diy-create.js"></script>
 </head>
 <body>
 	<jsp:include page="../templates/header.jsp" />
@@ -115,7 +115,7 @@
 									<input type="checkbox" id="food-rice-${i}" name="riceCheckbox"
 										onchange="handleCheckboxChange(this)"> <label
 										for="food-rice-${i}"> <img
-										src="/greating/resources/images/food/쌀밥.png" alt="Image 1">
+										src="${pageContext.request.contextPath}/resources/images/food/쌀밥.png" alt="Image 1">
 									</label> <span>쌀밥 </span>
 								</div>
 
@@ -148,7 +148,7 @@
 									<input type="checkbox" id="food-soup-${i}" name="soupCheckbox"
 										onchange="handleCheckboxChange(this)"> <label
 										for="food-soup-${i}"> <img
-										src="/greating/resources/images/food/돼지고기콩비지찌개.png"
+										src="${pageContext.request.contextPath}/resources/images/food/돼지고기콩비지찌개.png"
 										alt="Image 1">
 									</label> <span> 돼지고기 콩비지찌개 </span>
 								</div>
@@ -193,7 +193,7 @@
 									<input type="checkbox" id="food-main-${i}" name="mainCheckbox"
 										onchange="handleCheckboxChange(this)"> <label
 										for="food-main-${i}"> <img
-										src="/greating/resources/images/food/미강돼지고기배추볶음.png"
+										src="${pageContext.request.contextPath}/resources/images/food/미강돼지고기배추볶음.png"
 										alt="Image 1">
 									</label> <span>미강돼지고기배추볶음 </span>
 								</div>
@@ -222,7 +222,7 @@
 								<div class="food-card">
 									<input type="checkbox" id="food-side-${i}" name="sideCheckbox">
 									<label for="food-side-${i}"> <img
-										src="/greating/resources/images/food/스크램블에그.png" alt="Image 1">
+										src="${pageContext.request.contextPath}/resources/images/food/스크램블에그.png" alt="Image 1">
 									</label> <span>스크램블에그 </span>
 
 								</div>
@@ -274,7 +274,7 @@
 
 				</div>
 				<div class="submut-btn mt-5">
-					<input id="diy-diet-form-cancelbtn" type="button" value="등록 취소">
+					<input id="diy-diet-form-cancelbtn" type="button" value="등록 취소" onclick=" location.href='${header.referer}'">
 					<input id="diy-diet-form-subbtn" type="submit" value="등록 완료">
 
 				</div>
@@ -302,7 +302,7 @@
 											onchange="handleCheckboxChange(this)">
 										<label for="modalFood-soup-${i}"> <img
 											class="modalFoodImg"
-											src="/greating/resources/images/market/가자미미역국.png"> <span
+											src="${pageContext.request.contextPath}/resources/images/market/가자미미역국.png"> <span
 											class="d-flex">달콤한 겨울 무 </span> <span
 											class="d-flex modal-food-card-name">쇠고기 무국 </span> <span
 											class="d-flex modal-food-card-price">5800원 </span>
@@ -343,7 +343,7 @@
 											onchange="handleCheckboxChange(this)">
 										<label for="modalFood-main-${i}"> <img
 											class="modalFoodImg"
-											src="/greating/resources/images/market/LA갈비.png"> <span
+											src="${pageContext.request.contextPath}/resources/images/market/LA갈비.png"> <span
 											class="d-flex">LA갈비 맛있음 </span> <span
 											class="d-flex modal-food-card-name">LA갈비 </span> <span
 											class="d-flex modal-food-card-price">5800원 </span>
@@ -384,7 +384,7 @@
 											id="modalFood-side-${i}" name="soupModalCheckBox">
 										<label for="modalFood-side-${i}"> <img
 											class="modalFoodImg"
-											src="/greating/resources/images/market/깻잎지.png"> <span
+											src="${pageContext.request.contextPath}/resources/images/market/깻잎지.png"> <span
 											class="d-flex">깻잎지 맛있음 </span> <span
 											class="d-flex modal-food-card-name">깻잎지 </span> <span
 											class="d-flex modal-food-card-price">3000원 </span>
@@ -427,7 +427,7 @@
 											onchange="handleCheckboxChange(this)">
 										<label for="modalFood-etc-${i}"> <img
 											class="modalFoodImg"
-											src="/greating/resources/images/market/탕수육.png"> <span
+											src="${pageContext.request.contextPath}/resources/images/market/탕수육.png"> <span
 											class="d-flex">탕수육 겁나 맛있음 </span> <span
 											class="d-flex modal-food-card-name">탕수육  </span> <span
 											class="d-flex modal-food-card-price">3000원 </span>
