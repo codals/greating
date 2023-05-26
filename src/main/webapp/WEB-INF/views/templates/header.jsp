@@ -54,14 +54,14 @@
 				<!-- 두번째 헤더 -->
 				<div class="header__sec">
 					<h1 class="logo">
-						<a href="javascript:fnMoveHome('');">
+						<a href="/greating">
 							<img src="${pageContext.request.contextPath}/resources/images/templates/img_header_logo.png" alt="그리팅몰">
 						</a>
 					</h1>
 
 					<div class="menu">
-						<a href="javascript:fnMoveHome('market');">건강마켓</a>
-						<a href="javascript:fnMoveHome('meals');" class="on">식단관리<i>N</i></a>
+						<a href="#">건강마켓</a>
+						<a href="#" class="on">식단관리<i>N</i></a>
 					</div>
 
 					<nav class="direct">
@@ -125,9 +125,8 @@
 			                    </li>
 			                    <li><a href="/greating/mealdiy" class="L-Affiliate-Tagged">DIY 식단</a>
 			                        <ul class="all-menu__depth2">
-			                            <li><a href="/greating/mealdiy/all" class="L-Affiliate-Tagged">전체 모아보기</a></li>
 			                            <li><a href="/greating/mealdiy/popular" class="L-Affiliate-Tagged">TOP 10 모아보기</a></li>
-			                            <li><a href="/greating/mealdiy/categories" class="L-Affiliate-Tagged">테마별 모아보기</a></li>
+			                            <li><a href="#" class="L-Affiliate-Tagged">테마별 모아보기</a></li>
 			                            <li><a href="/greating/mealdiy/new" class="L-Affiliate-Tagged">DIY 식단 만들기</a></li>
 			                        </ul>
 			                    </li>
