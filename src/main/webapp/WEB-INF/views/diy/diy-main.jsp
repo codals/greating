@@ -8,8 +8,8 @@
 <title>DIY 식단</title>
 
 <!-- css로 가져오기 -->
-<link href="/greating/resources/css/reset.css" rel="stylesheet">
-<link href="/greating/resources/css/diy/diy-main.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/reset.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/diy/diy-main.css" rel="stylesheet">
 
 <!-- font 가져오기 -->
 <link
@@ -32,8 +32,8 @@
 			<span class="banner-title">나만의 DIY 식단 </span> <span
 				class="banner-description"> 원하는 밥/메인반찬/사이드 반찬 등을 담아<br>
 				나만의 새로운 식단을 제안해보세요
-			</span> <span class="banner-inner-icon"> <a href="/greating/mealdiy/new"> <img
-					src="/greating/resources/images/diy/img_healthy_icon_go.png">
+			</span> <span class="banner-inner-icon"> <a href="${pageContext.request.contextPath}/mealdiy/new"> <img
+					src="${pageContext.request.contextPath}/resources/images/diy/img_healthy_icon_go.png">
 			</a>
 			</span>
 		</div>
@@ -125,7 +125,7 @@
 						<c:forEach var="i" begin="1" end="3">
 							<div class="col-4 today-post-card">
 								<div class="today-post-img">
-									<img src="/greating/resources/images/diet/우삼겹덮밥1.jpg">
+									<img src="${pageContext.request.contextPath}/resources/images/diet/우삼겹덮밥1.jpg">
 								</div>
 								<div class="today-post-info">
 									<span> 연자육 소불고기 & 두부 도시락 세트 </span>
@@ -162,7 +162,7 @@
 						<c:forEach var="i" begin="1" end="3">
 							<div class="col-4 weekly-post-card">
 								<div class="weekly-post-img">
-									<img src="/greating/resources/images/diet/갈릭포크후무스샐러드1.jpg">
+									<img src="${pageContext.request.contextPath}/resources/images/diet/갈릭포크후무스샐러드1.jpg">
 								</div>
 								<div class="weekly-post-info">
 									<span> 갈릭포크후무스샐러드 </span>
@@ -198,7 +198,7 @@
 						<c:forEach var="i" begin="1" end="3">
 							<div class="col-4 today-post-card">
 								<div class="today-post-img">
-									<img src="/greating/resources/images/diet/우삼겹덮밥1.jpg">
+									<img src="${pageContext.request.contextPath}/resources/images/diet/우삼겹덮밥1.jpg">
 								</div>
 								<div class="today-post-info">
 									<span> 연자육 소불고기 & 두부 도시락 세트 </span>

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="/greating/resources/css/order/order-step1.css"
+<link href="${pageContext.request.contextPath}/resources/css/order/order-step1.css"
 	rel="stylesheet">
 <style type="text/css">
 </style>
@@ -32,7 +32,7 @@
 			<h2 class="meals__title">
 				<span>설계하기</span>
 			</h2>
-			<img src="/greating/resources/images/order/order1step.png" />
+			<img src="${pageContext.request.contextPath}/resources/images/order/order1step.png" />
 			<ol class="meals-order">
 
 				<li class="on">기간/끼니수 선택</li>
@@ -111,7 +111,7 @@
 			<div class="meals-btn">
 				<a href="#" class="btn-init">
 					<p class="meals-span">빠른주문</p>
-				</a> <a href="/greating/diets/mygreating/orders/delivery" class="btn-init white normal"><p class="meals-span"
+				</a> <a href="${pageContext.request.contextPath}/diets/mygreating/orders/delivery" class="btn-init white normal"><p class="meals-span"
 						id="next_text">다음단계</p></a>
 			</div>
 		</form>

@@ -10,9 +10,9 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<link href="/greating/resources/css/order/order-menu-info.css"
+<link href="${pageContext.request.contextPath}/resources/css/order/order-menu-info.css"
 	rel="stylesheet">
-<script src="/greating/resources/js/order/order-menu-info.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/order/order-menu-info.js"></script>
 </head>
 <body>
 	<!-- header 가져오기 -->
@@ -39,7 +39,7 @@
 
 										<li class="meal-card">
 											<div class="meal-card-img">
-												<img src="/greating/resources/images/diet/고기듬뿍유산슬덮밥1.jpg">
+												<img src="${pageContext.request.contextPath}/resources/images/diet/고기듬뿍유산슬덮밥1.jpg">
 											</div>
 											<div class="meal-card-title">고기듬뿍 유산슬 덮밥 세트</div>
 											<div class="meal-card-price-sec">
@@ -77,7 +77,7 @@
 
 				<div class="btn">
 					<div>
-					<a href="/greating/diets/mygreating/orders/schedule" class="btn-init green btn-buy">주문하기</a>
+					<a href="${pageContext.request.contextPath}/diets/mygreating/orders/schedule" class="btn-init green btn-buy">주문하기</a>
 					<a href="#" id="giftBtn" class="btn-init gift btn-buy">선물하기</a>
 					</div>
 				</div>

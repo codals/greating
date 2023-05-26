@@ -3,7 +3,7 @@
 /* 상위 배너 */
 .banner-img {
 	height: auto;
-	background: url("/greating/resources/images/diy/img_healthy.png");
+	background: url("${pageContext.request.contextPath}/resources/images/diy/img_healthy.png");
 	position: relative;
 	height: 400px;
 	overflow: hidden;
@@ -151,7 +151,7 @@
 .simple-search-container .search-box .icon {
 	width: 22px;
 	height: 22px;
-	background: url("/greating/resources/images/diy/img_search_button.png");
+	background: url("${pageContext.request.contextPath}/resources/images/diy/img_search_button.png");
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;

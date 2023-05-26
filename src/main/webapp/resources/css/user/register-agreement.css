@@ -65,7 +65,7 @@ hr {
   height: 25px;
   border-radius: 50%;
   border: 1px solid #ACACAC;
-  background-image: url("/greating/resources/images/user/register-checkbox.png");
+  background-image: url("${pageContext.request.contextPath}/resources/images/user/register-checkbox.png");
   background-size: 10%;
   background-repeat: no-repeat;
   background-position: center;

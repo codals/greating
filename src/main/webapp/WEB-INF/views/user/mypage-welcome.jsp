@@ -4,7 +4,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<link href="/greating/resources/css/user/mypage-welcome.css"
+<link href="${pageContext.request.contextPath}/resources/css/user/mypage-welcome.css"
 	rel="stylesheet">
 
 <section class="sub-cont-sec welcome">

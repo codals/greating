@@ -24,11 +24,11 @@
 	href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 
 <!-- js -->
-<script src="/greating/resources/js/main/slick.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/main/slick.js"></script>
 
 <!--  css  -->
-<link href="/greating/resources/css/templates/reset.css" rel="stylesheet">
-<link href="/greating/resources/css/main/main.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/templates/reset.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/main/main.css" rel="stylesheet">
 
 </head>
 <body>
@@ -72,7 +72,7 @@
 			<!--  Healthy 파트  -->
 			<section class="main_healthy_sec">
 				<div class="main-healthy">
-					<img src="/greating/resources/images/main/img_main_healthy.png">
+					<img src="${pageContext.request.contextPath}/resources/images/main/img_main_healthy.png">
 
 				</div>
 
@@ -99,7 +99,7 @@
 
 				<div class="main-healthy-list fadeInUp">
 					<h3 class="main-healthy-h3 hPara fadeInUp">
-						<img src="/greating/resources/images/main/txt_main_healthy.png"
+						<img src="${pageContext.request.contextPath}/resources/images/main/txt_main_healthy.png"
 							alt="믿고 먹는 밥상주치의 그리팅">
 					</h3>
 					<div class="main-healthy-select fadeInUp">
@@ -155,7 +155,7 @@
 
 			<section class="main_care_sec">
 				<div class="care-comm hPara fadeInUp">
-					<img src="/greating/resources/images/main/img_main_care.png" alt="#">
+					<img src="${pageContext.request.contextPath}/resources/images/main/img_main_care.png" alt="#">
 				</div>
 				<div class="row justify-content-center hPara fadeInUp "
 					style="flex-wrap: wrap;">
@@ -172,7 +172,7 @@
 				<div class="care-list">
 
 					<h3 class="care-h3 hPara fadeInUp">
-						<img src="/greating/resources/images/main/txt_main_care.png"
+						<img src="${pageContext.request.contextPath}/resources/images/main/txt_main_care.png"
 							alt="질환맞춤식단 체험팩!">
 					</h3>
 					<p class="care-list-desc hPara fadeInUp">한 세트에 두 팩씩! 지금 체험해보세요</p>
@@ -192,7 +192,7 @@
 
 			<section class="main_challenge_sec">
 				<div class="hPara fadeInUp">
-					<img src="/greating/resources/images/main/img_main_challenge.png"
+					<img src="${pageContext.request.contextPath}/resources/images/main/img_main_challenge.png"
 						usemap="#main_challenge" alt="#">
 				</div>
 

@@ -8,7 +8,7 @@
 <link href="${pageContext.request.contextPath}/resources/css/templates/header.css" rel="stylesheet" />
 <script src="${pageContext.request.contextPath}/resources/js/header.js"></script>
 
-<link href="/greating/resources/css/templates/reset.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/templates/reset.css" rel="stylesheet">
 
 <!--  bootstrap  -->
 <link
@@ -39,9 +39,9 @@
 
 			<!-- 로그인되지 않은 사용자인 경우 -->
 			<c:if test="${empty sessionScope.loginUser}">
-				<span class="link"><a href="/greating/login" class="no-underline">로그인</a></span>
+				<span class="link"><a href="${pageContext.request.contextPath}/login" class="no-underline">로그인</a></span>
 				<span class="divider"></span>
-				<span class="link"><a href="/greating/register" class="no-underline">회원가입</a></span>
+				<span class="link"><a href="${pageContext.request.contextPath}/register" class="no-underline">회원가입</a></span>
 				<span class="divider"></span>
 				<span class="link">쿠폰등록</span>
 				<span class="divider"></span>
@@ -54,7 +54,7 @@
 				<!-- 두번째 헤더 -->
 				<div class="header__sec">
 					<h1 class="logo">
-						<a href="/greating">
+						<a href="${pageContext.request.contextPath}">
 							<img src="${pageContext.request.contextPath}/resources/images/templates/img_header_logo.png" alt="그리팅몰">
 						</a>
 					</h1>
@@ -105,7 +105,7 @@
 			                            <li><a href="#" class="L-Affiliate-Tagged">칼로리식단</a></li>
 			                            <li><a href="#" class="L-Affiliate-Tagged">장수마을식단</a></li>
 			                            <li><a href="#" class="L-Affiliate-Tagged">고단백식단</a></li>
-			                            <li><a href="/greating/diets/mygreating" class="L-Affiliate-Tagged">마이그리팅</a></li>
+			                            <li><a href="${pageContext.request.contextPath}/diets/mygreating" class="L-Affiliate-Tagged">마이그리팅</a></li>
 			                        </ul>
 			                    </li>
 			                    <li><a href="#" class="L-Affiliate-Tagged">질환맞춤식단</a>
@@ -123,11 +123,11 @@
 			                            <li><a href="#" class="L-Affiliate-Tagged">프로틴업</a></li>
 			                        </ul>
 			                    </li>
-			                    <li><a href="/greating/mealdiy" class="L-Affiliate-Tagged">DIY 식단</a>
+			                    <li><a href="${pageContext.request.contextPath}/mealdiy" class="L-Affiliate-Tagged">DIY 식단</a>
 			                        <ul class="all-menu__depth2">
-			                            <li><a href="/greating/mealdiy/popular" class="L-Affiliate-Tagged">TOP 10 모아보기</a></li>
+			                            <li><a href="${pageContext.request.contextPath}/mealdiy/popular" class="L-Affiliate-Tagged">TOP 10 모아보기</a></li>
 			                            <li><a href="#" class="L-Affiliate-Tagged">테마별 모아보기</a></li>
-			                            <li><a href="/greating/mealdiy/new" class="L-Affiliate-Tagged">DIY 식단 만들기</a></li>
+			                            <li><a href="${pageContext.request.contextPath}/mealdiy/new" class="L-Affiliate-Tagged">DIY 식단 만들기</a></li>
 			                        </ul>
 			                    </li>
 			                    <li><a href="#" class="L-Affiliate-Tagged">서비스</a>
@@ -154,7 +154,7 @@
 				          <li class="gnb__list"><a href="#" class="gnb__list-name L-Affiliate-Tagged">건강식단</a></li>
 				          <li class="gnb__list"><a href="#" class="gnb__list-name L-Affiliate-Tagged">질환맞춤식단</a></li>
 				          <li class="gnb__list"><a href="#" class="gnb__list-name L-Affiliate-Tagged">챌린지식단</a></li>
-				          <li class="gnb__list"><a href="/greating/mealdiy" class="gnb__list-name L-Affiliate-Tagged">DIY 식단</a></li>
+				          <li class="gnb__list"><a href="${pageContext.request.contextPath}/mealdiy" class="gnb__list-name L-Affiliate-Tagged">DIY 식단</a></li>
 				          <li class="gnb__list"><a href="#" class="gnb__list-name L-Affiliate-Tagged">이벤트</a></li>
 				          <li class="gnb__list"><a href="#" class="gnb__list-name L-Affiliate-Tagged">리뷰</a></li>
 				          <li class="gnb__list"><a href="#" class="gnb__list-name L-Affiliate-Tagged">이용방법</a></li>

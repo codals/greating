@@ -12,8 +12,8 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<link href="/greating/resources/css/reset.css" rel="stylesheet">
-<link href="/greating/resources/css/user/register.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/reset.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/user/register.css" rel="stylesheet">
 
 <title>Sign Up</title>
 </head>
@@ -83,7 +83,7 @@
 					<h3 class="green-box__title">
 						<span>통합회원 가입</span>
 					</h3>
-					<img src="/greating/resources/images/user/h_point.png"
+					<img src="${pageContext.request.contextPath}/resources/images/user/h_point.png"
 						alt="hpoint">
 					<p class="green-box__desc">
 						본인인증 절차없이 사용중인 이메일 또는<br> SNS계정 정보로 간편하게 가입하실 수 있습니다.
@@ -97,13 +97,13 @@
 					<h3 class="green-box__title">
 						<span>그리팅 일반회원 가입</span>
 					</h3>
-					<img src="/greating/resources/images/user/greating.png"
+					<img src="${pageContext.request.contextPath}/resources/images/user${pageContext.request.contextPath}.png"
 						alt="hpoint">
 					<p class="green-box__desc">
 						본인인증 절차없이 사용중인 이메일 또는<br> SNS계정 정보로 간편하게 가입하실 수 있습니다.
 					</p>
 					<div class="btn">
-                            <a href="/greating/register-agreement" class="btn-init green" id="hpointJoin"> 일반회원 가입하기</a>
+                            <a href="${pageContext.request.contextPath}/register-agreement" class="btn-init green" id="hpointJoin"> 일반회원 가입하기</a>
                         </div>
 
 				</div>
