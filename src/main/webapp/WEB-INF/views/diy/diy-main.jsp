@@ -52,8 +52,8 @@
 						<button class="icon" type="button" onclick=""></button>
 					</div>
 
-					<div class="sub-title greating-category-sec">
-						카테고리
+					<div class="greating-category-sec">
+						<div class="sub-title">카테고리</div>
 						<div class="greating-category-btns">
 							<input id="healthy-diet" type="checkbox" name="category"
 								value="건강식단"> <label for="healthy-diet">건강식단</label> <input
@@ -64,8 +64,8 @@
 						</div>
 					</div>
 
-					<div class="sub-title greating-country-sec">
-						분류
+					<div class="greating-country-sec">
+						<div class="sub-title">분류</div>
 						<div class="greating-country-btns">
 							<input id="korean-diet" type="checkbox" name="country" value="한식">
 							<label for="korean-diet">한식</label> <input id="chinese-diet"
@@ -80,8 +80,8 @@
 						</div>
 					</div>
 
-					<div class="sub-title greating-rice-sec">
-						밥
+					<div class="greating-rice-sec">
+						<div class="sub-title">밥</div>
 						<div class="greating-rice-btns">
 							<input id="rice-true" type="radio" name="rice-tf" value="포함">
 							<label for="rice-true">포함</label> <input id="rice-false"
@@ -90,8 +90,8 @@
 						</div>
 					</div>
 
-					<div class="sub-title greating-soup-sec">
-						국
+					<div class="greating-soup-sec">
+						<div class="sub-title">국</div>
 						<div class="greating-soup-btns">
 							<input id="soup-true" type="radio" name="soup-tf" value="포함">
 							<label for="soup-true">포함</label> <input id="soup-false"
