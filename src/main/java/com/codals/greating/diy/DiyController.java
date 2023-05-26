@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 public class DiyController {
 
 	@GetMapping
-	public String loadMain() {
+	public String loadMainPage() {
 		return "diy/diy-main";
 	}
 
