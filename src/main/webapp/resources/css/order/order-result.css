@@ -1,0 +1,182 @@
+.content-info>li {
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+  font-size: 14px;
+  color: #888;
+}
+
+.content-info li:last-child {
+  color: #1c1c1c;
+  font-weight: bold;
+}
+
+.content-info li:last-child:before {
+  content: '>';
+  color: #888;
+  margin: 0 10px;
+}
+
+.order-result-hp {
+  margin: 0 auto;
+  width: 1100px;
+}
+
+.meals__title {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.meals-area {
+  position: relative;
+  padding-bot6tom: 40px;
+  border-top: 3px solid #1c1c1c;
+  background: #FFF;
+  box-shadow: 0 10px 20px 5px rgba(0, 0, 0, 0.1);
+}
+
+.mealsConfirm__head {
+  position: relative;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.btn-order-check > img {
+  width: 63px;
+  height: 63px;
+}
+
+.mealsConfirm__head {
+  position: relative;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.btn-order-check {
+  margin: 20px;
+}
+
+.mealsConfirm__check span {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  font-weight: 600;
+  line-height: 1;
+  font-size: 30px;
+}
+
+.mealsConfirm__count {
+  margin: 20px 0 20px 0;
+  font-size: 20px;
+}
+
+.mealsConfirm__row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.mealsConfirm__table {
+  display: table;
+  border-collapse: collapse;
+  width: 80%;
+  margin: 30px;
+}
+
+td {
+  border: 1px solid #7e7900 !important; /* 모든 셀에 테두리 설정 */
+  padding: 10px !important; /* 셀의 내부 여백 설정 */
+  text-align: center;
+}
+
+td > strong {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.order-td-1 {
+  width: 200px;
+  padding: 30px 0px !important;
+  border-left: none !important;
+}
+
+.order-td-2 {
+  border-right: none !important;
+  vertical-align:middle;
+}
+
+.order-td-3 {
+  width: 100px;
+  border-left: none !important;
+  border-right: none !important;
+  vertical-align:middle;
+}
+
+.btn-menu-add {
+  margin-top: 10px;
+  padding: 7px 15px;
+  width: auto;
+  border: 0;
+  background-color: #F9D983;
+  border-radius: 30px;
+}
+
+.meals-btn {
+  display: flex;
+  margin-top: 80px;
+  text-align: center;
+  justify-content: center;
+}
+
+.meals-btn .btn-init {
+  display: inline-block;
+  margin: 0 1px;
+  width: 310px;
+  height: 70px;
+  line-height: 68px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.btn-init.white {
+  background: #FFF;
+  border: 1px solid #ccc;
+  color: #1c1c1c;
+  box-sizing: border-box;
+}
+
+.btn-init.orange {
+  background: #FFF;
+  border: 1px solid #918c00;
+  color: #918c00;
+}
+
+.btn-init.green {
+  background: #918c00;
+  border: 1px solid #918c00;
+  color: #FFF;
+}
+
+.meals-final {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.meals-final__cont {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 36px;
+}
+
+.meals-final__cont-txt {
+  margin-right: 5px;
+  font-size: 18px;
+}
+
+.meals-final__cont em {
+  display: inline-block;
+  position: relative;
+  font-weight: 600;
+  z-index: 1;
+}
