@@ -24,12 +24,9 @@ public class MyPageController {
         return "mypage/my-diet";
     }
 
-    @GetMapping("/diets/scraped")
-    public String loadMyScrapedPage() {
-        /**
-         * my-scraped.jsp 예정
-         */
-        return "mypage/my-diet";
+    @GetMapping("/scrap")
+    public String loadMyScrapPage() {
+        return "user/mypage-myscrap"; // mypage/my-scrap
     }
 
     @GetMapping("/voted")
