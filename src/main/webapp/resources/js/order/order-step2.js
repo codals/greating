@@ -12,22 +12,27 @@ function createCalendar() {
 	// 달력 헤더 생성
 	calendarHTML += '<table>';
 	calendarHTML += '<thead><tr class="year">';
+//	calendarHTML += '<th colspan="7">'
+//			+ currentDate.toLocaleString('default', {
+//				month : 'long',
+//				year : 'numeric'
+//			}) + '</th>';
+	calendarHTML += '<h2>'
 	calendarHTML += '<th colspan="7">'
-			+ currentDate.toLocaleString('default', {
-				month : 'long',
-				year : 'numeric'
-			}) + '</th>';
+	    + currentDate.getFullYear() + '.' + (currentDate.getMonth() + 1) + '</th>';
+	calendarHTML += '</h2>'
+
 	calendarHTML += '</tr></thead>';
 
 	// 달력 본문 생성
 	calendarHTML += '<tbody><tr>';
-	 calendarHTML += '<th>Sun</th>';
-	 calendarHTML += '<th>Mon</th>';
-	 calendarHTML += '<th>Tue</th>';
-	 calendarHTML += '<th>Wed</th>';
-	 calendarHTML += '<th>Thu</th>';
-	 calendarHTML += '<th>Fri</th>';
-	 calendarHTML += '<th>Sat</th>';
+	 calendarHTML += '<th>일</th>';
+	 calendarHTML += '<th>월</th>';
+	 calendarHTML += '<th>화</th>';
+	 calendarHTML += '<th>수</th>';
+	 calendarHTML += '<th>목</th>';
+	 calendarHTML += '<th>금</th>';
+	 calendarHTML += '<th>토</th>';
 	calendarHTML += '</tr>';
 
 	// 달력 날짜 채우기
