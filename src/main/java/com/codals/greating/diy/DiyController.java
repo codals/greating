@@ -15,4 +15,10 @@ public class DiyController {
 	public String goToMain() {
 		return "diy/diy-main";
 	}
+	
+	@GetMapping("/detail")
+	public String goToDetail() {
+		return "diy/diy-detail";
+	}
+	
 }
