@@ -77,7 +77,7 @@
 
 				<div class="btn">
 					<div>
-					<a href="#" class="btn-init green btn-buy">주문하기</a>
+					<a href="/greating/diets/mygreating/orders/schedule" class="btn-init green btn-buy">주문하기</a>
 					<a href="#" id="giftBtn" class="btn-init gift btn-buy">선물하기</a>
 					</div>
 				</div>

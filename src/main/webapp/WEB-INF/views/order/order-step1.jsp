@@ -111,8 +111,8 @@
 			<div class="meals-btn">
 				<a href="#" class="btn-init">
 					<p class="meals-span">빠른주문</p>
-				</a> <a href="#" class="btn-init white normal"><p class="meals-span"
-						id="next_text">선택을 완료해주세요</p></a>
+				</a> <a href="/greating/diets/mygreating/orders/delivery" class="btn-init white normal"><p class="meals-span"
+						id="next_text">다음단계</p></a>
 			</div>
 		</form>
 
