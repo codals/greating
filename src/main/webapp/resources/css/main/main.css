@@ -33,7 +33,7 @@ img {
 .main-healthy {
 	height: 400px;
 	text-align:center;
-	background-image: url(${pageContext.request.contextPath}/resources/images/main/img_healthy_back.jpeg);
+	background-image: url(/greating/resources/images/main/img_healthy_back.jpeg);
 	background-repeat: no-repeat;
 	background-position: center top;
 	background-size: cover;
@@ -145,7 +145,7 @@ img {
 
 .care-comm{
 	
-	background-image: url(${pageContext.request.contextPath}/resources/images/main/img_care_back.jpeg);
+	background-image: url(/greating/resources/images/main/img_care_back.jpeg);
     height: 400px;
     background-repeat: no-repeat;
     background-position: center top;
@@ -193,7 +193,7 @@ img {
     background-position: center top;
     background-size: cover;
 	text-align:center;
-	background-image: url(${pageContext.request.contextPath}/resources/images/main/img_challenge_back.jpeg);
+	background-image: url(/greating/resources/images/main/img_challenge_back.jpeg);
 }
 
 .event{

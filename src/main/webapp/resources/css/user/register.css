@@ -26,7 +26,7 @@
 	margin: 35px auto 20px;
 	width: 350px;
 	height: 59px;
-	background: url(${pageContext.request.contextPath}/resources/images/user/hpoint_greating.png)
+	background: url(/greating/resources/images/user/hpoint_greating.png)
 		no-repeat;
 }
 
@@ -70,7 +70,7 @@
 	margin-right: 20px;
 	width: 80px;
 	height: 80px;
-	background: url(${pageContext.request.contextPath}/resources/images/user/hp_box_icon.png)
+	background: url(/greating/resources/images/user/hp_box_icon.png)
 		no-repeat;
 	content: '';
 }

@@ -32,8 +32,8 @@
 			<span class="banner-title">나만의 DIY 식단 </span> <span
 				class="banner-description"> 원하는 밥/메인반찬/사이드 반찬 등을 담아<br>
 				나만의 새로운 식단을 제안해보세요
-			</span> <span class="banner-inner-icon"> <a href="${pageContext.request.contextPath}/mealdiy/new"> <img
-					src="${pageContext.request.contextPath}/resources/images/diy/img_healthy_icon_go.png">
+			</span> <span class="banner-inner-icon"> <a href="${pageContext.request.contextPath}/mealdiy/new">
+			<img src="${pageContext.request.contextPath}/resources/images/diy/img_healthy_icon_go.png">
 			</a>
 			</span>
 		</div>

@@ -1105,7 +1105,7 @@ px
 	height: 55px;
 	font-size: 0;
 	background:
-		url("${pageContext.request.contextPath}/resources/images/templates/header-search-button.png")
+		url("/greating/resources/images/templates/header-search-button.png")
 		no-repeat center;
 }
 
@@ -1116,7 +1116,7 @@ px
 	width: 20px;
 	height: 20px;
 	background: #ddd
-		url("${pageContext.request.contextPath}/resources/images/header-search-button.png")
+		url("/greating/resources/images/header-search-button.png")
 		no-repeat center;
 	background-size: 50%;
 	border-radius: 50%;
