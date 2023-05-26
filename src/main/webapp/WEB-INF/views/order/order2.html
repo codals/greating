@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link href="../../../resources/css/order/order-step2.css" rel="stylesheet">
+
+<meta charset="UTF-8">
+<title>order-step1</title>
+</head>
+<body>
+
+	<div class="main-content hd__inner1100">
+		<!-- 카테고리 -->
+        <div>
+			<ul class="menu-category">
+				<li>HOME</li>   >  
+				<li>건강식단</li>   >  
+				<!-- 메뉴명에 따른 3depth 텍스트 수정 -->
+				<li>고단백식단</li>
+			</ul>
+		</div>
+
+		<form action="/" method="post" name="order1-form">
+		
+		<!-- 설계하기및 현재 단계 -->
+		<h2 class="meals__title"><span>설계하기</span></h2>
+		<img src="../../../resources/images/order/order1step.png"/>
+		<ol class="meals-order">
+			
+            <li class="on">기간/끼니수 선택</li>
+            <li style="color: rgb(174, 170, 170);">배송일 선택</li>
+            <li style="color: rgb(174, 170, 170);">메뉴 선택</li>
+        </ol>
+        
+
+        
+
+        
+        <div class="date-wrap">
+            <div class="date-month">
+                <span id="month-this">2023.05</span>
+                <div class="button_wrap">
+                    <button type="button" id="month-prev" class="month-move" data-ym="2023-04-01"> < </button>
+                    <button type="button" id="month-next" class="month-move" data-ym="2023-06-01"> > </button>
+                </div>
+            </div>
+            <table class="date-month">
+                <thead>
+                    <tr>
+                        <th>일</th>
+                        <th>월</th>
+                        <th>화</th>
+                        <th>수</th>
+                        <th>목</th>
+                        <th>금</th>
+                        <th>토</th>
+                    </tr>
+                </thead>
+                <tbody id="tbl-month">
+                    <tr>
+                        <td class="sun"><a>1</a></td>
+                        <td class=""><a href="#">2</a></td>
+                        <td class=""><a>3</a></td>
+                        <td class=""><a>4</a></td>
+                        <td class="today"><a>5</a></td>
+                        <td class=""><a>6</a></td>
+                        <td class="sat"><a>7</a></td>
+                    </tr>
+                    <!-- 행 반복 -->
+                    <tr>
+                        <td class="sun"><a>29</a></td>
+                        <td class=""><a>30</a></td>
+                        <td class=""><a>31</a></td>
+                        <td class=""><a></a></td>
+                        <td class=""><a></a></td>
+                        <td class=""><a></a></td>
+                        <td class="sat"></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+         </form>
+         
+	</div>
+
+</body>
+</html>
