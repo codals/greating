@@ -78,8 +78,8 @@
                     본인은 만 14세 이상으로 개인정보 및 약관 동의 내용을 확인하였으며, 위 내용에 동의 합니다.<br>
                 </p>
                 <div class="button-container">
-                    <button class="left-button">취소</button>
-                    <button class="right-button"><a href="/greating/register-form">다음</a></button>
+                    <button class="left-button" onclick="location.href='${header.referer}'">취소</button>
+                    <button class="right-button" onclick="location.href='/greating/register-form'">다음</button>
                 </div>
 
             </div>

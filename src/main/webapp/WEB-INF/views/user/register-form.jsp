@@ -29,7 +29,7 @@
                     </div>
                     <div class="form-main-content" style="width:750px; margin: 0 auto;">
                         <span class="text register-sub-title">회원 정보 입력 (필수)</span>
-                        <form>
+                        <form action="/greating/register" method="post">
                             <div class="form-group">
                                 <label for="name">이름</label>
                                 <input type="text" class="register-input" id="name" required>
@@ -113,10 +113,9 @@
                                 </button>
                             </div>
                             <div class="button-container">
-                                <button class="left-button"><a href="${header.referer}">취소</a></button>
-                                <button class="right-button"><a href="/greating/register-form">회원가입</a></button>
+                                <input type="button" class="left-button" onclick="location.href='${header.referer}'" value="취소">
+                                <input type="submit" class="right-button" value="회원가입">
                             </div>
-
                         </form>
                     </div>
                 </div>
