@@ -26,7 +26,6 @@
 	<div class="main-content contents hd__inner1100">
 		<jsp:include page="/WEB-INF/views/order/order-header.jsp" />
 
-
 		<div id="mchoice">
 
 			<c:forEach var="i" begin="1" end="5">
@@ -91,7 +90,7 @@
 					<div>
 						<a href="#" class="btn-init green btn-buy">주문하기 ( <span
 							class="total-count">0</span> / 6 )
-						</a> <a href="#" id="cancelBtn" class="btn-init cancel btn-buy">취소 </a>
+						</a> <a href="${header.referer}" id="cancelBtn" class="btn-init cancel btn-buy">취소 </a>
 					</div>
 				</div>
 

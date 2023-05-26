@@ -66,8 +66,8 @@
                 </p>
             </div>
             <div class="meals-btn">
-                <a href="#" class="btn-init white prev" id="btnPrev"><span>이전으로</span></a>
-                <a href="#" class="btn-init orange" id="btnCart"><span>장바구니 담기</span></a>
+                <a href="${header.referer}" class="btn-init white prev" id="btnPrev"><span>이전으로</span></a>
+                <a href="${pageContext.request.contextPath}/diets/mygreating/cart" class="btn-init orange" id="btnCart"><span>장바구니 담기</span></a>
                 <a href="#" class="btn-init green" id="btnOrder"><span>바로주문</span></a>
             </div>
         </div>

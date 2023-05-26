@@ -29,25 +29,40 @@ public class DietController {
 
     @GetMapping("/orders/delivery")
     public String loadOrderDeliveryPage() {
-        /**
-         * order-step2.jsp 예정
-         */
         return "order/order-step2";
     }
 
     @GetMapping("/orders/choice")
     public String loadOrderChoicePage() {
-        /**
-         * order-choice.jsp 예정
-         */
-        return "order/order-choice";
+        return "order/meal-choice";
     }
 
-    @PostMapping("/orders/confirmation")
+    @GetMapping("/orders/result")
     public String loadOrderResultPage() {
-        /**
-         * order-result.jsp 예정 (식단 주문 로직)
-         */
         return "order/order-result";
+    }
+
+    @PostMapping("/orders")
+    public boolean order() {
+        /**
+         * 식단 주문하기 (Ajax)
+         */
+        return true;
+    }
+
+    @GetMapping("/cart")
+    public String loadCartPage() {
+        /**
+         * cart.jsp 예정 (cart 디렉토리 재설정 필요)
+         */
+        return "order/cart";
+    }
+
+    @PostMapping("/cart")
+    public String addToCart() {
+        /**
+         * 장바구니 담기
+         */
+        return "redirect:/diets/mygreating/cart";
     }
 }
