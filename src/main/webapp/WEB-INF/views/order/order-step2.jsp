@@ -42,30 +42,30 @@
 
 			<!-- 배송희망일 선택 -->
 			<div class="section-cover">
-			<section class="meals-area1">
-				<div class="meals-area_div">
-					<h2 class="meals-area_div_title">
-						<span><strong>배송 희망일</strong>선택</span>
-					</h2>
+				<section class="meals-area1">
+					<div class="meals-area_div">
+						<h2 class="meals-area_div_title">
+							<span><strong>배송 희망일</strong>선택</span>
+						</h2>
 
-					<div class="radio-container">
-						<label class="radio-label"> <input class="radio-input"
-							type="radio" name="experience" value="체험팩"> <span
-							class="radio-custom">월수금</span>
-						</label> <label class="radio-label"> <input class="radio-input"
-							type="radio" name="experience" value="1주"> <span
-							class="radio-custom">화목토</span>
-						</label> <label class="radio-label"> <input class="radio-input"
-							type="radio" name="experience" value="2주"> <span
-							class="radio-custom">직접선택 (초기화)</span>
-						</label>
+						<div class="radio-container">
+							<label class="radio-label"> <input class="radio-input"
+								type="radio" name="experience" value="체험팩"> <span
+								class="radio-custom">월수금</span>
+							</label> <label class="radio-label"> <input class="radio-input"
+								type="radio" name="experience" value="1주"> <span
+								class="radio-custom">화목토</span>
+							</label> <label class="radio-label"> <input class="radio-input"
+								type="radio" name="experience" value="2주"> <span
+								class="radio-custom">직접선택 (초기화)</span>
+							</label>
+						</div>
 					</div>
-				</div>
-			</section>
+				</section>
 				<!-- 달력 -->
 				<div class="calendar"></div>
 			</div>
-			
+
 
 			<div class="meals-final">
 				<span class="meals-final__head">최대 <strong><span
@@ -77,7 +77,7 @@
 					<p class="meals-final__cont">
 						<em><span class="meals-final__cont__num" data-total-count="3">3</span>회</em>
 					</p>
-	
+
 					<!-- 200225 식단 배송비 부과 로직 관련 추가 -->
 					<p class="meals-final__delivery">
 						<!-- <span class="meals-final__delivery__tit">배송비</span> -->
@@ -98,7 +98,7 @@
 
 	</div>
 
-	<script src="/greating/resources/js/order/order-step2.js" ></script>
+	<script src="/greating/resources/js/order/order-step2.js"></script>
 
 
 	<!--  footer	 -->

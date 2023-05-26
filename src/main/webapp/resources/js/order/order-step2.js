@@ -19,15 +19,15 @@ function createCalendar() {
 			}) + '</th>';
 	calendarHTML += '</tr></thead>';
 
-//	 달력 본문 생성
+	// 달력 본문 생성
 	calendarHTML += '<tbody><tr>';
-//	calendarHTML += '<th>Sun</th>';
-//	calendarHTML += '<th>Mon</th>';
-//	calendarHTML += '<th>Tue</th>';
-//	calendarHTML += '<th>Wed</th>';
-//	calendarHTML += '<th>Thu</th>';
-//	calendarHTML += '<th>Fri</th>';
-//	calendarHTML += '<th>Sat</th>';
+	 calendarHTML += '<th>Sun</th>';
+	 calendarHTML += '<th>Mon</th>';
+	 calendarHTML += '<th>Tue</th>';
+	 calendarHTML += '<th>Wed</th>';
+	 calendarHTML += '<th>Thu</th>';
+	 calendarHTML += '<th>Fri</th>';
+	 calendarHTML += '<th>Sat</th>';
 	calendarHTML += '</tr>';
 
 	// 달력 날짜 채우기
@@ -50,7 +50,10 @@ function createCalendar() {
 		if (date >= currentDate
 				&& date <= new Date(currentDate.getFullYear(), currentMonth,
 						currentDate.getDate() + selectableDays - 1)
-				&& selectedDates.length < selectableDays) { // 수정된 부분: selectableDays에서 1을 빼고 선택 가능한 날짜 수를 체크함
+				&& selectedDates.length < selectableDays) { // 수정된 부분:
+															// selectableDays에서
+															// 1을 빼고 선택 가능한 날짜
+															// 수를 체크함
 			calendarHTML += '<td onclick="selectDate(this)">' + day + '</td>';
 		} else {
 			calendarHTML += '<td class="disabled">' + day + '</td>';
@@ -72,7 +75,7 @@ function selectDate(element) {
 	// 선택된 날짜 스타일 변경
 	var selectedElements = document.querySelectorAll('.calendar td.selected');
 	selectedElements.forEach(function(el) {
-		//	     el.classList.remove('selected');
+		// el.classList.remove('selected');
 		// 세 개의 날짜가 선택되면 선택 취소
 		if (selectedElements.length > 2) {
 			selectedElements.forEach(function(el) {
