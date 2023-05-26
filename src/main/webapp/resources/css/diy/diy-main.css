@@ -3,7 +3,7 @@
 /* 상위 배너 */
 .banner-img {
 	height: auto;
-	background: url(/greating/images/diy/img_healthy.png);
+	background: url("/greating/resources/images/diy/img_healthy.png");
 	position: relative;
 	height: 400px;
 	overflow: hidden;
