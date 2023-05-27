@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequiredArgsConstructor
 @RequestMapping("/mealdiy")
 public class DiyController {
 
@@ -46,9 +45,6 @@ public class DiyController {
 
 	@GetMapping("/{postId}")
 	public String loadPostDetailPage(@PathVariable String postId) {
-		/**
-		 * diy/diy-detail 예정
-		 */
 		return "diy/diy-detail";
 	}
 }
