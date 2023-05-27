@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/greating/resources/css/templates/footer.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/templates/footer.css" rel="stylesheet">
 
 </head>
 <body>
@@ -28,9 +28,9 @@
 					</p>
 				</div>
 				<ul class="gr_sns">
-					<li><img src="/greating/resources/images/templates/kakao.png"></li>
-					<li><img src="/greating/resources/images/templates/naver.png"></li>
-					<li><img src="/greating/resources/images/templates/google.png"></li>
+					<li><img src="${pageContext.request.contextPath}/resources/images/templates/kakao.png"></li>
+					<li><img src="${pageContext.request.contextPath}/resources/images/templates/naver.png"></li>
+					<li><img src="${pageContext.request.contextPath}/resources/images/templates/google.png"></li>
 				</ul>
 			</div>
 			<div class="gr_footer_inner_right">

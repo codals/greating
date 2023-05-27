@@ -15,7 +15,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/login")
-    public String redirectLogin() {
+    public String loadLoginPage() {
         return "user/login";
     }
 
@@ -27,5 +27,28 @@ public class UserController {
             return "error"; // 에러 페이지
         }
         return "home";
+    }
+
+    @GetMapping("/register")
+    public String loadRegisterPage() {
+        return "user/register";
+    }
+
+    @GetMapping("/register-agreement")
+    public String loadRegisterAgreementPage() {
+        return "user/register-agreement";
+    }
+
+    @GetMapping("/register-form")
+    public String loadRegisterFormPage() {
+        return "user/register-form";
+    }
+
+    @PostMapping("/register")
+    public String register() {
+        /**
+         * 회원가입
+         */
+        return "redirect:/";
     }
 }

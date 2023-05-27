@@ -9,17 +9,20 @@
             integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
             integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
-    <link href="/greating/resources/css/reset.css" rel="stylesheet">
-    <link href="/greating/resources/css/user/login.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/reset.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/user/register.css" rel="stylesheet">
 </head>
 <body>
-<header> 헤더</header>
+<jsp:include page="/WEB-INF/views/templates/header.jsp"/>
 <div class="main-content hd__inner1100">
+    <ul class="content-info">
+        <li>HOME</li>
+        <li>로그인</li>
+    </ul>
     <div class="container">
-        HOME > 로그인
         <div class="row justify-content-center">
             <div class="col-md-4">
-                <h1 class="text-center login-title">로그인</h1>
+                <h1 class="text-center title">로그인</h1>
                 <p class="text-center small login-message">로그인을 하시면 다양한 혜택을 누리실 수 있습니다.</p>
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
@@ -29,7 +32,7 @@
                         <a class="nav-link active" href="#">greeting 회원</a>
                     </li>
                 </ul>
-                <form action="/greating/login" method="post">
+                <form action="${pageContext.request.contextPath}/login" method="post">
                     <div class="form-group">
                         <input type="text" class="form-username" id="username" name="username" placeholder="아이디">
                     </div>
@@ -51,12 +54,13 @@
                 </div>
                 <hr>
                 <div class="row justify-content-center social-login-img">
-                    <img src="/greating/resources/images/user/social-login.png" alt="social-login.png" width="300px">
+                    <img src="${pageContext.request.contextPath}/resources/images/user/social-login.png" alt="social-login.png" width="300px">
                 </div>
                 <button type="button" class="btn btn-primary btn-non-member">비회원 주문조회</button>
             </div>
         </div>
     </div>
 </div>
+<jsp:include page="/WEB-INF/views/templates/footer.jsp"/>
 </body>
 </html>
