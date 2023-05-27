@@ -15,7 +15,11 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Optional<User> selectByUsernameAndPassword(LoginRequestDto loginRequestDto) {
-        User user = sqlSession.selectOne("user.selectByUsernameAndPassword", loginRequestDto);
-        return Optional.ofNullable(user);
+        return Optional.ofNullable(sqlSession.selectOne("user.selectByUsernameAndPassword", loginRequestDto));
+    }
+
+    @Override
+    public Optional<User> selectByUsername(String username) {
+        return Optional.ofNullable(sqlSession.selectOne("user.selectByUsername", username));
     }
 }
