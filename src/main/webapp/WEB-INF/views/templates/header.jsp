@@ -28,7 +28,7 @@
 		<div class="banner">
 			<!-- 로그인된 사용자인 경우 -->
 			<c:if test="${not empty sessionScope.loginUser}">
-				<span class="welcome-message">${sessionScope.loginUser}님</span>
+				<span class="welcome-message">${sessionScope.loginUser.name}님</span>
 				<span class="divider"></span>
 				<span class="link">쿠폰등록</span>
 				<span class="divider"></span>
