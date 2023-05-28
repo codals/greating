@@ -16,7 +16,6 @@ $(document).ready(function () {
       async: false,
       data: JSON.stringify(data),
       success: function (response) {
-        console.log(response);
         if (response) {
           location.href = 'http://localhost:8080/greating';
         } else {
