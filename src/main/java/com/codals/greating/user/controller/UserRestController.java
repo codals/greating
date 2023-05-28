@@ -1,5 +1,7 @@
 package com.codals.greating.user.controller;
 
+import static com.codals.greating.constant.SessionKey.LOGIN_USER;
+
 import com.codals.greating.user.dto.LoginRequestDto;
 import com.codals.greating.user.entity.User;
 import com.codals.greating.user.service.UserService;
@@ -23,7 +25,7 @@ public class UserRestController {
         boolean isAuthenticated = userService.authenticate(loginRequestDto);
         if (isAuthenticated) {
             User user = userService.getUserByUsername(loginRequestDto.getUsername());
-            httpSession.setAttribute("loginUser", user);
+            httpSession.setAttribute(LOGIN_USER.getKey(), user);
         }
         return ResponseEntity.ok(isAuthenticated);
     }
