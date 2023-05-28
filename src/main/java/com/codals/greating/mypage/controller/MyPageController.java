@@ -18,10 +18,7 @@ public class MyPageController {
 
     @GetMapping("/diets")
     public String loadMyDietPage() {
-        /**
-         * my-diet.jsp 예정
-         */
-        return "mypage/my-diet";
+        return "user/mypage-mydiy";
     }
 
     @GetMapping("/scrap")

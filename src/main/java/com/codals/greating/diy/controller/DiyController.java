@@ -15,14 +15,6 @@ public class DiyController {
 		return "diy/diy-main";
 	}
 
-	@PostMapping
-	public String search() {
-		/**
-		 * diy 메인 > 돋보기, 선택완료 버튼 (Ajax)
-		 */
-		return "diy/diy-main";
-	}
-
 	@GetMapping("/popular")
 	public String loadTop10Page() {
 		return "diy/diy-top10";
@@ -33,13 +25,6 @@ public class DiyController {
 		return "diy/diy-create";
 	}
 
-	@PostMapping("/new")
-	public String create() {
-		/**
-		 * DIY 식단 저장, 상세보기 리다이렉트 (Ajax)
-		 */
-		return "redirect:/mealdiy/" + "1";
-	}
 
 	@GetMapping("/{postId}")
 	public String loadPostDetailPage(@PathVariable String postId) {

@@ -28,12 +28,4 @@ public class UserController {
     public String loadRegisterFormPage() {
         return "user/register-form";
     }
-
-    @PostMapping("/register")
-    public String register() {
-        /**
-         * 회원가입
-         */
-        return "redirect:/";
-    }
 }

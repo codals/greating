@@ -29,4 +29,12 @@ public class UserRestController {
         }
         return ResponseEntity.ok(isAuthenticated);
     }
+
+    @PostMapping("/register")
+    public String register() {
+        /**
+         * 회원가입
+         */
+        return "redirect:/";
+    }
 }
