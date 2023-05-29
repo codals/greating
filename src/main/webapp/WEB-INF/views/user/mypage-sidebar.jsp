@@ -34,6 +34,8 @@
 					<ul class="snb-box-inner">
 						<li class="snb-box-inner-list"><h4>회원정보</h4></li>
 						<li class="snb-box-inner-list"><a href="${pageContext.request.contextPath}/mypage/profile"> 회원정보 수정  </a></li>
+						<li class="snb-box-inner-list"><a href="#"> 회원탈퇴  </a></li>
+					
 					</ul>
 				</li>
 
