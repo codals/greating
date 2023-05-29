@@ -14,17 +14,17 @@
 <body>
 	<!-- header -->
 	<jsp:include page="/WEB-INF/views/templates/header.jsp" />
+	<div class="hr"></div>
 
 	<div class="main-content hd__inner1100">
 		<!-- 카테고리 -->
-		<div>
-			<ul class="menu-category">
-				<li>HOME</li> >
-				<li>건강식단</li> >
-				<!-- 메뉴명에 따른 3depth 텍스트 수정 -->
-				<li>고단백식단</li>
-			</ul>
-		</div>
+		<ul class="page-category">
+			<li>Home</li>
+			<li>></li>
+			<li>마이그리팅</li>
+			<li>></li>
+			<li class="highlight">건강식단 </li>
+		</ul>
 
 		<form action="/" method="post" name="order1-form">
 

@@ -14,11 +14,14 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/templates/header.jsp"/>
+<div class="hr"></div>
+
 <div class="main-content hd__inner1100">
-    <ul class="content-info">
-        <li>HOME</li>
-        <li>회원가입</li>
-    </ul>
+    <ul class="page-category">
+			<li>Home</li>
+			<li>></li>
+			<li class="highlight">회원가입</li>
+		</ul>
     <div class="form-main">
         <div class="row justify-content-center">
             <div class="col">

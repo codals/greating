@@ -19,7 +19,13 @@
 	<jsp:include page="../templates/header.jsp" />
 	<div class="hr"></div>
 	<main class="contents hd__inner1100">
-		<span> HOME > 건강식단 > 메뉴 미리보기 </span>
+		<ul class="page-category">
+			<li>Home</li>
+			<li>></li>
+			<li>마이그리팅</li>
+			<li>></li>
+			<li class="highlight">메뉴 미리보기 </li>
+		</ul>
 
 		<section class="mealsChoice_sec">
 			<h2 class="meals_title">[ 메뉴 미리보기 ]</h2>
