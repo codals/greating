@@ -147,7 +147,8 @@ img {
 }
 
 .slick-prev:before, .slick-next:before {
-	color: #444444;
+    color: #918c01;
+    font-size: 40px;
 }
 
 .main-care-img {
@@ -256,4 +257,7 @@ img {
 	-webkit-transform: rotate(45deg);
 	transform: rotate(45deg);
 	content: '';
+}
+.event-slider > .slick-list{
+	margin :  0px 10px 0px 20px;
 }
