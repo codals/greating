@@ -7,4 +7,6 @@ import java.util.Optional;
 public interface UserDao {
 
     Optional<User> selectByUsernameAndPassword(LoginRequestDto loginRequestDto);
+
+    Optional<User> selectByUsername(String username);
 }

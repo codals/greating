@@ -65,7 +65,7 @@ public class GlobalExceptionHandler {
 	 * 500 서버 오류 발생
 	 */
 	@ExceptionHandler(Exception.class)
-	public ModelAndView handleInteralServerException(Exception e) {
+	public ModelAndView handleInternalServerException(Exception e) {
 		e.printStackTrace();
 
 		ModelAndView modelAndView = new ModelAndView("error");

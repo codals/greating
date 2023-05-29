@@ -25,8 +25,8 @@
 
 
 
-<link href="/greating/resources/css/diy/diy-top10.css" rel="stylesheet">
-<script src="/greating/resources/js/diy/diy-top10.js"></script>
+<link href="${pageContext.request.contextPath}/resources/css/diy/diy-top10.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/resources/js/diy/diy-top10.js"></script>
 </head>
 <body>
 	<jsp:include page="../templates/header.jsp" />

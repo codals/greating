@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    <link href="/greating/resources/css/user/mypage-sidebar.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/user/mypage-sidebar.css" rel="stylesheet">
     
 
 		<aside class="snb">
@@ -22,9 +22,9 @@
 				<li class="snb-box-list">
 					<ul class="snb-box-inner">
 						<li class="snb-box-inner-list"><h4>나의 식단</h4></li>
-						<li class="snb-box-inner-list"><a href="#"> 내가 등록한 식단 </a></li>
-						<li class="snb-box-inner-list"><a href="#"> 나의 스크랩 식단 </a></li>
-						<li class="snb-box-inner-list"><a href="#"> 내가 투표한 식단 </a></li>
+						<li class="snb-box-inner-list"><a href="${pageContext.request.contextPath}/mypage/diets"> 내가 등록한 식단 </a></li>
+						<li class="snb-box-inner-list"><a href="${pageContext.request.contextPath}/mypage/scrap"> 나의 스크랩 식단 </a></li>
+						<li class="snb-box-inner-list"><a href="${pageContext.request.contextPath}/mypage/voted"> 내가 투표한 식단 </a></li>
 					</ul>
 
 
@@ -33,11 +33,10 @@
 				<li class="snb-box-list">
 					<ul class="snb-box-inner">
 						<li class="snb-box-inner-list"><h4>회원정보</h4></li>
-						<li class="snb-box-inner-list"><a href="#"> 회원정보 수정  </a></li>
+						<li class="snb-box-inner-list"><a href="${pageContext.request.contextPath}/mypage/profile"> 회원정보 수정  </a></li>
 					</ul>
 				</li>
 
 			</ul>
 
 		</aside>
-    

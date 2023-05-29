@@ -11,14 +11,14 @@
 <title>Insert title here</title>
 
 
-<link href="/greating/resources/css/user/mypage-mydiy.css"
+<link href="${pageContext.request.contextPath}/resources/css/user/mypage-mydiy.css"
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 </head>
 <body>
 
-	<jsp:include page="../templates/header.jsp" />
+	<jsp:include page="/WEB-INF/views/templates/header.jsp" />
 	<div class="hr"></div>
 
 	<main class="contents hd__inner1100">
@@ -43,7 +43,7 @@
 
 						<li class="myDiy-card">
 							<div class="myDiy-card-img">
-								<img src="/greating/resources/images/user/mypage-main.jpg">
+								<img src="${pageContext.request.contextPath}/resources/images/user/mypage-main.jpg">
 							</div>
 							<div class="myDiy-card-info">
 								<span class="mb-2">[ 현대 그린푸드 ] 국산 대패 삼겹살 </span>
@@ -58,7 +58,7 @@
 								<div class="myDiy-vote">
 									<span style="font-size: 17px;"> 투표 현황 </span>
 									<div class="myDiy-vote-num">
-										<img src="/greating/resources/images/user/vote.png"> 
+										<img src="${pageContext.request.contextPath}/resources/images/user/vote.png">
 										<span> 400 Greating </span>
 									</div>
 								</div>

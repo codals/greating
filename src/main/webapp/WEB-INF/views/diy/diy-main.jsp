@@ -8,8 +8,8 @@
 <title>DIY 식단</title>
 
 <!-- css로 가져오기 -->
-<link href="/greating/resources/css/reset.css" rel="stylesheet">
-<link href="/greating/resources/css/diy/diy-main.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/reset.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/diy/diy-main.css" rel="stylesheet">
 
 <!-- font 가져오기 -->
 <link
@@ -32,8 +32,8 @@
 			<span class="banner-title">나만의 DIY 식단 </span> <span
 				class="banner-description"> 원하는 밥/메인반찬/사이드 반찬 등을 담아<br>
 				나만의 새로운 식단을 제안해보세요
-			</span> <span class="banner-inner-icon"> <a href="#"> <img
-					src="/greating/resources/images/diy/img_healthy_icon_go.png">
+			</span> <span class="banner-inner-icon"> <a href="${pageContext.request.contextPath}/mealdiy/new">
+			<img src="${pageContext.request.contextPath}/resources/images/diy/img_healthy_icon_go.png">
 			</a>
 			</span>
 		</div>
@@ -52,8 +52,8 @@
 						<button class="icon" type="button" onclick=""></button>
 					</div>
 
-					<div class="sub-title greating-category-sec">
-						카테고리
+					<div class="greating-category-sec">
+						<div class="sub-title">카테고리</div>
 						<div class="greating-category-btns">
 							<input id="healthy-diet" type="checkbox" name="category"
 								value="건강식단"> <label for="healthy-diet">건강식단</label> <input
@@ -64,8 +64,8 @@
 						</div>
 					</div>
 
-					<div class="sub-title greating-country-sec">
-						분류
+					<div class="greating-country-sec">
+						<div class="sub-title">분류</div>
 						<div class="greating-country-btns">
 							<input id="korean-diet" type="checkbox" name="country" value="한식">
 							<label for="korean-diet">한식</label> <input id="chinese-diet"
@@ -80,8 +80,8 @@
 						</div>
 					</div>
 
-					<div class="sub-title greating-rice-sec">
-						밥
+					<div class="greating-rice-sec">
+						<div class="sub-title">밥</div>
 						<div class="greating-rice-btns">
 							<input id="rice-true" type="radio" name="rice-tf" value="포함">
 							<label for="rice-true">포함</label> <input id="rice-false"
@@ -90,8 +90,8 @@
 						</div>
 					</div>
 
-					<div class="sub-title greating-soup-sec">
-						국
+					<div class="greating-soup-sec">
+						<div class="sub-title">국</div>
 						<div class="greating-soup-btns">
 							<input id="soup-true" type="radio" name="soup-tf" value="포함">
 							<label for="soup-true">포함</label> <input id="soup-false"
@@ -125,7 +125,7 @@
 						<c:forEach var="i" begin="1" end="3">
 							<div class="col-4 today-post-card">
 								<div class="today-post-img">
-									<img src="/greating/resources/images/diet/우삼겹덮밥1.jpg">
+									<img src="${pageContext.request.contextPath}/resources/images/diet/우삼겹덮밥1.jpg">
 								</div>
 								<div class="today-post-info">
 									<span> 연자육 소불고기 & 두부 도시락 세트 </span>
@@ -162,7 +162,7 @@
 						<c:forEach var="i" begin="1" end="3">
 							<div class="col-4 weekly-post-card">
 								<div class="weekly-post-img">
-									<img src="/greating/resources/images/diet/갈릭포크후무스샐러드1.jpg">
+									<img src="${pageContext.request.contextPath}/resources/images/diet/갈릭포크후무스샐러드1.jpg">
 								</div>
 								<div class="weekly-post-info">
 									<span> 갈릭포크후무스샐러드 </span>
@@ -198,7 +198,7 @@
 						<c:forEach var="i" begin="1" end="3">
 							<div class="col-4 today-post-card">
 								<div class="today-post-img">
-									<img src="/greating/resources/images/diet/우삼겹덮밥1.jpg">
+									<img src="${pageContext.request.contextPath}/resources/images/diet/우삼겹덮밥1.jpg">
 								</div>
 								<div class="today-post-info">
 									<span> 연자육 소불고기 & 두부 도시락 세트 </span>
@@ -217,13 +217,7 @@
 						</c:forEach>
 					</div>
 				</div>
-
-
-
-
 			</div>
-
-
 		</div>
 
 	</main>

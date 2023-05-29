@@ -9,8 +9,8 @@
             integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
             integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
-    <link href="/greating/resources/css/reset.css" rel="stylesheet">
-    <link href="/greating/resources/css/user/register-agreement.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/reset.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/user/register-agreement.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/templates/header.jsp"/>
@@ -24,7 +24,7 @@
             <div class="col">
                 <h1 class="text-center title">약관동의</h1>
                 <div class="row justify-content-center social-login-img">
-                    <img src="/greating/resources/images/user/register-step.png" alt="social-login.png" style="width:450px">
+                    <img src="${pageContext.request.contextPath}/resources/images/user/register-step.png" alt="social-login.png" style="width:450px">
                 </div>
                 <p class="text small register-comment">
                     - 필수 약관에 동의하셔야 그리팅몰 회원가입이 가능합니다.<br>
@@ -41,14 +41,14 @@
                     <input type="checkbox">
                     <span class="checkmark"></span>
                     <span class="text">회원 서비스 이용약관 (필수)</span>
-                    <img src="/greating/resources/images/user/register-plus.png" class="flex-right" alt="register-plus.png">
+                    <img src="${pageContext.request.contextPath}/resources/images/user/register-plus.png" class="flex-right" alt="register-plus.png">
                 </label>
                 <hr>
                 <label class="checkbox-container d-flex align-items-center justify-content-between">
                     <input type="checkbox">
                     <span class="checkmark"></span>
                     <span class="text">개인정보 수집 및 이용동의 (필수)</span>
-                    <img src="/greating/resources/images/user/register-plus.png" class="flex-right" alt="register-plus.png">
+                    <img src="${pageContext.request.contextPath}/resources/images/user/register-plus.png" class="flex-right" alt="register-plus.png">
                 </label>
                 <hr>
                 <label class="checkbox-container d-flex align-items-center justify-content-between">
@@ -56,7 +56,7 @@
                     <span class="checkmark"></span>
                     <span class="text">마케팅 수신 동의 (선택)</span>
                     <span class="point" id="marketing_spoon">+1,000스푼 적립!</span>
-                    <img src="/greating/resources/images/user/register-plus.png" class="flex-right" alt="register-plus.png">
+                    <img src="${pageContext.request.contextPath}/resources/images/user/register-plus.png" class="flex-right" alt="register-plus.png">
                 </label>
                 <hr>
                 <label class="checkbox-container d-flex align-items-center justify-content-between">
@@ -64,7 +64,7 @@
                     <span class="checkmark"></span>
                     <span class="text">평생회원 신청 동의 (선택)</span>
                     <span class="point" id="marketing_spoon">+1,000스푼 적립!</span>
-                    <img src="/greating/resources/images/user/register-plus.png" class="flex-right" alt="register-plus.png">
+                    <img src="${pageContext.request.contextPath}/resources/images/user/register-plus.png" class="flex-right" alt="register-plus.png">
                 </label>
                 <hr>
                 <p class="text small register-comment">
@@ -78,8 +78,8 @@
                     본인은 만 14세 이상으로 개인정보 및 약관 동의 내용을 확인하였으며, 위 내용에 동의 합니다.<br>
                 </p>
                 <div class="button-container">
-                    <button class="left-button">취소</button>
-                    <button class="right-button"><a href="/greating/register-form">다음</a></button>
+                    <button class="left-button" onclick="location.href='${header.referer}'">취소</button>
+                    <button class="right-button" onclick="location.href='${pageContext.request.contextPath}/register-form'">다음</button>
                 </div>
 
             </div>
