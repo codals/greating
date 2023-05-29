@@ -12,5 +12,12 @@
 
   <typeAliases>
     <typeAlias alias="User" type="com.codals.greating.user.entity.User"/>
+    <typeAlias alias="Post" type="com.codals.greating.diy.entity.Post"/>
+    
+    <typeAlias alias="PostResponseDto" type="com.codals.greating.diy.dto.PostResponseDto"/>
+    <typeAlias alias="Food" type="com.codals.greating.diet.entity.Food"/>
+    <typeAlias alias="MainCategory" type="com.codals.greating.diet.entity.MainCategory"/>
+    <typeAlias alias="SubCategory" type="com.codals.greating.diet.entity.SubCategory"/>
+    
   </typeAliases>
 </configuration>
