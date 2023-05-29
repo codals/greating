@@ -3,28 +3,27 @@
 .main {
 	min-height: calc(100vh - 136px);
 }
-.main_slide_sec{
+
+.main_slide_sec {
 	width: 960px;
 	margin: 0 auto;
 	text-align: center;
 }
+
 img {
 	max-width: 100%;
 	height: auto;
 }
 
-.hPara.fadeInUp{
-	animation: fadeInUp 1s both 0.2s
-	
+.carousel.slide {
+	text-align: center;
 }
 
-.carousel.slide{
-	text-align:center;
+.carousel-inner {
+	display: inline-block;
+	width: 1100px;
 }
-.carousel-inner{
-	display:inline-block;
-	width:1100px;
-}
+
 .carousel-item img {
 	width: 100% !important;
 	padding-left: 5%;
@@ -32,45 +31,48 @@ img {
 	max-height: 600px;
 }
 
-
-
-.main-healthy {
+.main-healthy-img {
 	height: 400px;
-	text-align:center;
-	background-image: url(/greating/resources/images/main/img_healthy_back.jpeg);
+	text-align: center;
+	background-image:
+		url(/greating/resources/images/main/img_healthy_back.jpeg);
 	background-repeat: no-repeat;
 	background-position: center top;
 	background-size: cover;
-	margin-top:30px;
+	margin-top: 30px;
 }
 
 @keyframes fadeInUp { 
 	0% {
 	opacity: 0;
-	transform: translateY(20px);
-	}
+	transform: translateY(20px);}
 	100%{
 	opacity:1;
-	transform: translateY(0);
+
+	transform:translateY(0);
+
 	}
 }
-
-.main-diet.fadeInUp {
+.main-healthy, .main-care {
 	display: flex;
 	flex-wrap: wrap;
 	margin-top: -40px;
 	justify-content: center;
 }
 
-.main-diet.fadeInUp>ul {
+.main-healthy>ul, .main-care>ul {
 	width: 1100px;
 	justify-content: center;
-	cubic-bezier: (0.22, 0.61, 0.87, 1.27);
-	animation: fadeInUp 2s both 0.25s
+
+	/* cubic-bezier: (0.22, 0.61, 0.87, 1.27);
+	animation: fadeInUp 3s both; */
 }
 
+.fadeInUp {
+	animation: fadeInUp 3s both 1s;
+}
 
-.fadeInUp>ul>li {
+.main-healthy>ul>li, .main-care>ul>li {
 	margin-top: 20px;
 	width: 500px;
 	border-radius: 20px;
@@ -116,25 +118,27 @@ img {
 	background: none;
 }
 
-.main-healthy-h3.fadeInUp > img{
-		animation: fadeInUp 2s both 0.25s;
-		animation-delay:1.5s;
-}
-.main-healthy-select.fadeInUp, .main-meals.fadeInUp{
-		animation: fadeInUp 3s both 0.3s;
-		animation-delay:2s;
+.main-healthy-h3.fadeInUp>img {
+	animation: fadeInUp 2s both 0.25s;
+	animation-delay: 1.5s;
 }
 
-.main-meals{
-	margin-bottom:60px;
+.main-healthy-select.fadeInUp, .main-meals.fadeInUp {
+	animation: fadeInUp 3s both 0.3s;
+	animation-delay: 2s;
 }
-.main-meals > .slider {
+
+.main-meals {
+	margin-bottom: 60px;
+}
+
+.main-meals>.slider {
 	width: 1800px;
 	margin: 0px auto;
 }
 
-.meals-card.slider-card.slick-slide{
-	height:350px;
+.meals-card.slider-card.slick-slide {
+	height: 350px;
 	width: 350px !important;
 }
 
@@ -146,107 +150,110 @@ img {
 	color: #444444;
 }
 
-
-.care-comm{
-	
+.main-care-img {
 	background-image: url(/greating/resources/images/main/img_care_back.jpeg);
-    height: 400px;
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: cover;
-    display:flex;
-    justify-content: center;
-  
-	
+	height: 400px;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-size: cover;
+	margin-top: 30px;
 }
-.care-card{
-	 width: 1100px;
-    justify-content: center;
-    margin-top : -40px;
+
+.care-card {
+	width: 1100px;
+	justify-content: center;
+	margin-top: -40px;
 }
-.care-list{
-	margin-top:80px;
-	text-align:center;
+
+.care-list {
+	margin-top: 80px;
+	text-align: center;
 }
-.care-list-desc{
-	
+
+.care-list-desc {
 	margin-top: 20px;
-    font-size: 24px;
-}
-.care-list > ul {
-	    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-}
-.care-list > ul >li {
-    margin: 0 10px;
-    width: 300px;
-  }
-
-.care-review{
-	position:relative;
-	margin-top:90px;
+	font-size: 24px;
 }
 
-.main_challenge_sec{
-	margin-top:100px;
-}
-.main_challenge_sec > div{
-	    height: 400px;
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: cover;
-	text-align:center;
-	background-image: url(/greating/resources/images/main/img_challenge_back.jpeg);
+.care-list>ul {
+	display: flex;
+	justify-content: center;
+	margin-top: 30px;
 }
 
-.event{
-	margin-top:100px !important;
-	margin-bottom:100px !important;
-}
-.event-card{
-    float: left;
-    min-height: 1px;
-    margin-left:10px;
-    display: none;
-    height:auto !important;
+.care-list>ul>li {
+	margin: 0 10px;
+	width: 300px;
 }
 
-.event-card >  img{
-	border-radius:30px;
-}
-.event > .main__h3{
+.care-review {
 	position: relative;
-    margin-bottom: 30px;
-    font-size: 32px;
-    font-weight: 600;
-        text-align: center;
-    
+	margin-top: 90px;
 }
-.event > .main__h3 >.main__h3-more{
+
+.main_challenge_sec {
+	margin-top: 100px;
+}
+
+.main_challenge_sec>div {
+	height: 400px;
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-size: cover;
+	text-align: center;
+	background-image:
+		url(/greating/resources/images/main/img_challenge_back.jpeg);
+}
+
+.event {
+	margin-top: 100px !important;
+	margin-bottom: 100px !important;
+}
+
+.event-card {
+	float: left;
+	min-height: 1px;
+	margin-left: 10px;
+	display: none;
+	height: auto !important;
+}
+
+.event-card>img {
+	border-radius: 30px;
+}
+
+.event>.main__h3 {
+	position: relative;
+	margin-bottom: 30px;
+	font-size: 32px;
+	font-weight: 600;
+	text-align: center;
+}
+
+.event>.main__h3>.main__h3-more {
 	display: inline-block;
-    margin: 0 0 0 5px;
-    width: 25px;
-    height: 25px;
-    line-height: 23px;
-    font-size: 0;
-    text-indent: -999em;
-    text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 50%;
-    vertical-align: top;
+	margin: 0 0 0 5px;
+	width: 25px;
+	height: 25px;
+	line-height: 23px;
+	font-size: 0;
+	text-indent: -999em;
+	text-align: center;
+	border: 1px solid #ccc;
+	border-radius: 50%;
+	vertical-align: top;
 }
 
-.event > .main__h3 > .main__h3-more:before {
-    display: inline-block;
-    margin: 2px 0 0 -2px;
-    width: 6px;
-    height: 6px;
-    vertical-align: middle;
-    border: solid #1c1c1c;
-    border-width: 2px 2px 0 0;
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-    content: '';
+.event>.main__h3>.main__h3-more:before {
+	display: inline-block;
+	margin: 2px 0 0 -2px;
+	width: 6px;
+	height: 6px;
+	vertical-align: middle;
+	border: solid #1c1c1c;
+	border-width: 2px 2px 0 0;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+	content: '';
 }
-
