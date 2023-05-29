@@ -22,4 +22,9 @@
     WHERE username = #{username}
       AND password = #{password}
   </select>
+  <select id="selectByUsername" parameterType="com.codals.greating.user.dto.LoginRequestDto" resultMap="userResult">
+    SELECT *
+    FROM "user"
+    WHERE username = #{username}
+  </select>
 </mapper>

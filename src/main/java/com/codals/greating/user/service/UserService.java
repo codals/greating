@@ -1,8 +1,11 @@
 package com.codals.greating.user.service;
 
 import com.codals.greating.user.dto.LoginRequestDto;
+import com.codals.greating.user.entity.User;
 
 public interface UserService {
 
-    void login(LoginRequestDto loginRequestDto);
+    boolean authenticate(LoginRequestDto loginRequestDto);
+
+    User getUserByUsername(String username);
 }

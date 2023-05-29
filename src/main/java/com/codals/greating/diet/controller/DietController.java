@@ -42,27 +42,11 @@ public class DietController {
         return "order/order-result";
     }
 
-    @PostMapping("/orders")
-    public boolean order() {
-        /**
-         * 식단 주문하기 (Ajax)
-         */
-        return true;
-    }
-
     @GetMapping("/cart")
     public String loadCartPage() {
         /**
          * cart.jsp 예정 (cart 디렉토리 재설정 필요)
          */
         return "order/cart";
-    }
-
-    @PostMapping("/cart")
-    public String addToCart() {
-        /**
-         * 장바구니 담기
-         */
-        return "redirect:/diets/mygreating/cart";
     }
 }
