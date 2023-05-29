@@ -3,7 +3,11 @@
 .main {
 	min-height: calc(100vh - 136px);
 }
-
+.main_slide_sec{
+	width: 960px;
+	margin: 0 auto;
+	text-align: center;
+}
 img {
 	max-width: 100%;
 	height: auto;
