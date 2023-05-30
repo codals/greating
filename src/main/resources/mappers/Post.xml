@@ -6,7 +6,7 @@
 <mapper namespace="post">
 	<!-- PostResponseDto를 위한 resultMap 설정 -->
 
-	<resultMap id="soupResultMap" type="Food">
+	<resultMap id="foodResultMap" type="Food">
 		<id property="id" column="id" />
 		<result property="name" column="name" />
 		<result property="price" column="price" />
@@ -92,7 +92,7 @@
 	</select>
 
 	<select id="selectFoodById" parameterType="int"
-		resultMap="soupResultMap">
+		resultMap="foodResultMap">
 		SELECT id, name, price, description, img_url
 		FROM food
 		WHERE
