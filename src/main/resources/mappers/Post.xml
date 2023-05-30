@@ -27,7 +27,7 @@
 			<result property="maxCalorie" column="max_calorie" />
 			<result property="maxPrice" column="max_price" />
 			<result property="minPrice" column="min_price" />
-			<result property="likeCnt" column="like_cnt" />
+			<result property="voteCnt" column="vote_cnt" />
 
 			<result property="createdAt" column="created_at" />
 			<result property="modifiedAt" column="modified_at" />

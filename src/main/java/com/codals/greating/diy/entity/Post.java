@@ -35,7 +35,7 @@ public class Post extends BaseEntity{
 	private int maxCalorie;
 	private int minPrice;
 	private int maxPrice;
-	private int likeCnt;
+	private int voteCnt;
 	private int status;
 	private Timestamp createdAt;
 	private Timestamp modifiedAt;
