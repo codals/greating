@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.codals.greating.diy.dto.PostResponseDto;
+import com.codals.greating.diy.service.DiyService;
+
+import lombok.RequiredArgsConstructor;
+
+
 import com.codals.greating.diy.dto.FoodSimpleDto;
 import com.codals.greating.diy.service.DiyService;
 import com.codals.greating.food.FoodType;
@@ -23,6 +29,9 @@ import lombok.RequiredArgsConstructor;
 public class DiyController {
 	
 	Logger log = LogManager.getLogger("case3");
+
+
+	private final DiyService diyService;
 	
 	private final FoodService foodService;
 
@@ -65,7 +74,12 @@ public class DiyController {
 	}
 
 	@GetMapping("/{postId}")
-	public String loadPostDetailPage(@PathVariable String postId) {
+	public String loadPostDetailPage(@PathVariable int postId, Model model) {
+		log.debug("start post detail ");
+		
+		PostResponseDto postDetail = diyService.getPostDetail(postId);
+		model.addAttribute("postDetail", postDetail);
+		
 		return "diy/diy-detail";
 	}
 }

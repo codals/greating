@@ -1,21 +1,3 @@
-.content-info>li {
-	display: inline-block;
-	height: 50px;
-	line-height: 50px;
-	font-size: 14px;
-	color: #888;
-}
-
-.content-info li:last-child {
-	color: #1c1c1c;
-	font-weight: bold;
-}
-
-.content-info li:last-child:before {
-	content: '>';
-	color: #888;
-	margin: 0 10px;
-}
 
 .memberJoin__hp {
 	margin: 0 auto;

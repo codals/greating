@@ -1,9 +1,9 @@
 package com.codals.greating.diy.service;
 
-import java.util.List;
-
-import com.codals.greating.diy.dto.FoodSimpleDto;
+import com.codals.greating.diy.dto.PostResponseDto;
 
 public interface DiyService {
 
+	PostResponseDto getPostDetail(int postId);
+	
 }

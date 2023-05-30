@@ -109,7 +109,7 @@
 				</div>
 			</div>
 			<div class="post-containers">
-				<div class="today-post-container">
+				<div class="today-post-container mb-5">
 					<div class="today-title-sec">
 						<div class="today-title-left">
 							<span class="sub-title">오늘 업로드된 식단</span> <span class="sub-more">
@@ -146,7 +146,7 @@
 				</div>
 
 
-				<div class="weekly-post-container">
+				<div class="weekly-post-container mb-5">
 					<div class="weekly-title-sec">
 						<div class="weekly-title-left">
 							<span class="sub-title"> 이번주 인기식단 </span> <span class="sub-more">

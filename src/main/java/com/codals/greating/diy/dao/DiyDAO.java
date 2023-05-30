@@ -1,9 +1,9 @@
 package com.codals.greating.diy.dao;
 
-import java.util.List;
+import com.codals.greating.diy.dto.PostResponseDto;
 
-import com.codals.greating.diy.entity.Food;
+public interface DiyDao {
 
-public interface DiyDAO {
 
+	<Optional> PostResponseDto selectPostByPostId(int postId);
 }
