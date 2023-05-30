@@ -6,18 +6,18 @@
 <configuration>
   <settings>
     <setting name="jdbcTypeForNull" value="NULL"/>
-
     <setting name="logImpl" value="LOG4J2"/>
+    <setting name="mapUnderscoreToCamelCase" value="true" />
   </settings>
 
   <typeAliases>
     <typeAlias alias="User" type="com.codals.greating.user.entity.User"/>
     <typeAlias alias="Post" type="com.codals.greating.diy.entity.Post"/>
-    
     <typeAlias alias="PostResponseDto" type="com.codals.greating.diy.dto.PostResponseDto"/>
     <typeAlias alias="Food" type="com.codals.greating.diet.entity.Food"/>
     <typeAlias alias="MainCategory" type="com.codals.greating.diet.entity.MainCategory"/>
     <typeAlias alias="SubCategory" type="com.codals.greating.diet.entity.SubCategory"/>
-    
+    <typeAlias alias="DailyDiet" type="com.codals.greating.diet.entity.DailyDiet"/>
+    <typeAlias alias="Diet" type="com.codals.greating.diet.entity.Diet"/>
   </typeAliases>
 </configuration>

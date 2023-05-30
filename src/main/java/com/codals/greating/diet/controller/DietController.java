@@ -1,13 +1,18 @@
 package com.codals.greating.diet.controller;
 
+import com.codals.greating.diet.service.DietService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/diets/mygreating")
+@RequiredArgsConstructor
 public class DietController {
+
+    private final DietService dietService;
 
     @GetMapping
     public String loadOrderMainPage() {
@@ -18,7 +23,8 @@ public class DietController {
     }
 
     @GetMapping("/preview")
-    public String loadDietPreviewPage() {
+    public String loadDietPreviewPage(Model model) {
+        model.addAttribute("weeklyDailyDiets", dietService.getWeeklyDailyDiets());
         return "order/order-menu-info";
     }
 
