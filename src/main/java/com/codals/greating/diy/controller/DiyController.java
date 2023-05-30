@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.codals.greating.config.FoodTypeCode;
 import com.codals.greating.diy.dto.PostResponseDto;
 import com.codals.greating.diy.service.DiyService;
 
 import lombok.RequiredArgsConstructor;
 
 import com.codals.greating.diy.service.DiyService;
-import com.codals.greating.food.FoodType;
 import com.codals.greating.food.dto.FoodSimpleDto;
 import com.codals.greating.food.service.FoodService;
 
@@ -52,16 +52,16 @@ public class DiyController {
 	@GetMapping("/new")
 	public String loadCreatePage(Model model) {
 		
-		List<FoodSimpleDto> rices = foodService.loadFoodsByFoodType(FoodType.RICE.getId());
+		List<FoodSimpleDto> rices = foodService.loadFoodsByFoodType(FoodTypeCode.RICE.getId());
 		model.addAttribute("rices", rices);
 		
-		List<FoodSimpleDto> soups = foodService.loadFoodsByFoodType(FoodType.SOUP.getId());
+		List<FoodSimpleDto> soups = foodService.loadFoodsByFoodType(FoodTypeCode.SOUP.getId());
 		model.addAttribute("soups", soups);
 		
-		List<FoodSimpleDto> mains = foodService.loadFoodsByFoodType(FoodType.MAIN.getId());
+		List<FoodSimpleDto> mains = foodService.loadFoodsByFoodType(FoodTypeCode.MAIN.getId());
 		model.addAttribute("mains", mains);
 		
-		List<FoodSimpleDto> sides = foodService.loadFoodsByFoodType(FoodType.SIDE.getId());
+		List<FoodSimpleDto> sides = foodService.loadFoodsByFoodType(FoodTypeCode.SIDE.getId());
 		model.addAttribute("sides", sides);
 		
 		log.info(rices);
@@ -78,6 +78,8 @@ public class DiyController {
 		
 		PostResponseDto postDetail = diyService.getPostDetail(postId);
 		model.addAttribute("postDetail", postDetail);
+		
+		log.info(postDetail.getPost());
 		
 		return "diy/diy-detail";
 	}

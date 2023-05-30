@@ -36,17 +36,17 @@ public class DiyRestController {
     }
 
 	@PostMapping("/new")
-	public String createPost(@SessionAttribute("loginUser") User loginUser,
-								@ModelAttribute DiyRequestDto newPost,
-								HttpSession session) {
+	public String savePost(@SessionAttribute("loginUser") User loginUser,
+							@ModelAttribute DiyRequestDto postRequest,
+							HttpSession session) {
 
 		/* log.info(loginUser); */
-		log.info(newPost);
+		log.info(postRequest);
 
 		// 톰캣 아래 바로 이미지 넣는 경로
-		String path = session.getServletContext().getRealPath("/") + "resources/images";
+		String tomcatPath = session.getServletContext().getRealPath("/") + "resources/images";
 
-		diyService.createPost(newPost, path);
+		diyService.savePost(loginUser, postRequest, tomcatPath);
 
 		return "/greating/mealdiy/" + "1";
 	}

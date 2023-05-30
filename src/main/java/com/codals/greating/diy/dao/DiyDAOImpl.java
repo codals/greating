@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import com.codals.greating.diy.dto.PostResponseDto;
+import com.codals.greating.diy.entity.Post;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,9 +22,13 @@ public class DiyDAOImpl implements DiyDAO {
 	@Override
 	public <Optional>PostResponseDto selectPostByPostId(int postId) {;
 		String statement = "post.selectPostByPostId";
-
 		return sqlSession.selectOne(statement, postId);
-	
+	}
+
+	@Override
+	public int savePost(Post post) {
+		String statement = "post.insertPost";
+		return sqlSession.insert(statement, post);
 	}
 
 }

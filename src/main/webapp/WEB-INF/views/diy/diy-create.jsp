@@ -53,9 +53,9 @@
 						</div>
 						
 						<div class="div-form-img-btn">
-						    <input type="file" id="imgUpload" name="imgUpload" accept="image/*">
-<!--  						    <input type="file" id="imgUpload" name="imgUpload" accept="image/*" onchange="previewImage(event)"> -->
-						    <label for="imgUpload">파일 선택</label>
+						    <input type="file" id="imgFile" name="imgFile" accept="image/*">
+<!--  						    <input type="file" id="imgFile" name="imgFile" accept="image/*" onchange="previewImage(event)"> -->
+						    <label for="imgFile">파일 선택</label>
 						</div>
 						
 					</div>
@@ -63,25 +63,42 @@
 						<div class="greating-type-sec">
 							<span>GREATING TYPE</span>
 							<div class="greating-type-btns">
-								<input id="diet" type="radio" name="dietType" value="도시락" onchange="handleCheckboxChange(this)">
-								<label for="diet">도시락 </label>
-								<input id="salad" type="radio" name="dietType" value="샐러드" onchange="handleCheckboxChange(this)">
-								<label for="salad">샐러드</label>
+							  <input id="diet" type="radio" name="dietType" value="도시락" checked>
+							  <label for="diet">도시락</label>
+							  <input id="salad" type="radio" name="dietType" value="샐러드" onchange="blockSalad()">
+							  <label for="salad">샐러드</label>
 							</div>
 						</div>
+						<div class="greating-country-sec">
+							<span>STYLE</span>
+							<div class="greating-country-btns">
+								<input id="korean" type="radio" name="foodCountryId" value="1" onchange="handleCheckboxChange(this)">
+								<label for="korean">한식 </label>
+								<input id="chinese" type="radio" name="foodCountryId" value="2" onchange="handleCheckboxChange(this)">
+								<label for="chinese">중식 </label>
+								<input id="western" type="radio" name="foodCountryId" value="3" onchange="handleCheckboxChange(this)">
+								<label for="western">일식 </label>
+								<input id="japanese" type="radio" name="foodCountryId" value="4" onchange="handleCheckboxChange(this)">
+								<label for="japanese">양식 </label>
+								<input id="etc" type="radio" name="foodCountryId" value="5" onchange="handleCheckboxChange(this)">
+								<label for="etc">기타 </label>
+							</div>
+						</div>
+						
 						<div class="greating-category-sec">
 							<span>CATEGORY</span>
 							<div class="greating-category-btns">
-								<input id="healthy-diet" type="radio" name="category" value="건강식단" onchange="handleCheckboxChange(this)">
+								<input id="healthy-diet" type="radio" name="mainCategoryId" value="1" onchange="handleCheckboxChange(this)">
 								<label for="healthy-diet">건강식단 </label>
-								<input id="care-diet" type="radio" name="category" value="건강식단" onchange="handleCheckboxChange(this)">
+								<input id="care-diet" type="radio" name="mainCategoryId" value="2" onchange="handleCheckboxChange(this)">
 								<label for="care-diet">질병맞춤식단</label>
-								<input id="challenge-diet" type="radio" name="category" value="챌린지식단" onchange="handleCheckboxChange(this)">
+								<input id="challenge-diet" type="radio" name="mainCategoryId" value="3" onchange="handleCheckboxChange(this)">
 								<label for="challenge-diet">챌린지식단 </label>
 							</div>
-
 						</div>
+						
 						<div class="greating-sub-sec"></div>
+		
 					</div>
 
 				</div>
@@ -206,7 +223,7 @@
 							<div class="image-wrapper">
 								<c:forEach var="side" items="${sides}">
 									<div class="food-card">
-										<input type="checkbox" id="food-side-${side.id}" name="sideFoodId" value="${side.id}" onchange="handleSideCheckboxButtonChange(this)">
+										<input type="checkbox" id="food-side-${side.id}" name="sideFoodIds" value="${side.id}" onchange="handleSideCheckboxButtonChange(this)">
 										<label for="food-side-${side.id}">
 											<img src="${side.imgUrl}" alt="Image-${side.id}">
 										</label>
@@ -410,13 +427,12 @@
 							</div>
 							<div class="modal-body">
 								<span class="d-flex modalTitle"> 추가 구성 </span> <span
-									class="d-flex modalTitleDesc"> 원하는 추가 구성품을 선택하세요. ( 0 -
-									2개 )</span>
+									class="d-flex modalTitleDesc"> 원하는 추가 구성품을 선택하세요. ( 0 - 2개 )</span>
 								<div class="modal-food-content">
 									<c:forEach var="i" begin="1" end="5">
 
 										<input class="modal-food-card" type="checkbox"
-											id="modalFood-etc-${i}" name="soupModalCheckBox"
+											id="modalFood-etc-${i}" name="extraFoodId"
 											onchange="handleCheckboxChange(this)">
 										<label for="modalFood-etc-${i}"> <img
 											class="modalFoodImg"

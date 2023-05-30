@@ -32,7 +32,7 @@ public class UserServiceImplTest {
 
     @Before
     public void setup() {
-        user = new User(1L, "user1", "홍길동", "password123",
+        user = new User(1, "user1", "홍길동", "password123",
             "john.doe@example.com", "1990-01-01", "Male", "1234567890", "user");
     }
 

@@ -52,13 +52,15 @@
 }
 
 .diy-form-sec1-right {
-	width: 60%;
 	height: 100%;
 	display: inline-block;
 	margin-left: 10px;
 }
 
-.greating-type-sec>span, .greating-category-sec>span, .greating-type-sec>span,
+.greating-type-sec>span, 
+.greating-country-sec>span,
+.greating-category-sec>span, 
+.greating-type-sec>span,
 	.greating-sub-sec>span {
 	font-size: 23px;
 	font-weight: Bold;
@@ -67,8 +69,10 @@
 	display: block;
 }
 
-.greating-type-btns label, .greating-category-btns label,
-	.greating-subcategory-btns label {
+.greating-type-btns label, 
+.greating-country-btns label,
+.greating-category-btns label,
+.greating-subcategory-btns label {
 	background: white;
 	border: 1px solid #999999;
 	border-radius: 20px;
@@ -81,12 +85,14 @@
 }
 
 .greating-type-btns>input[type="radio"], 
+.greating-country-btns>input[type="radio"],
 .greating-category-btns>input[type="radio"],
 .greating-subcategory-btns>input[type="radio"] {
 	display: none;
 }
 
 .greating-type-btns>input[type="radio"]:checked+label,
+.greating-country-btns>input[type="radio"]:checked+label,
 .greating-category-btns>input[type="radio"]:checked+label,
 .greating-subcategory-btns>input[type="radio"]:checked+label {
 	border: 2px solid #918c01;
