@@ -26,12 +26,18 @@ function getHmCtgryList(){
 	});
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener('DOMContentLoaded', function() {
+	  // 스크립트 코드 작성
+	});
+
+document.addEventListener('DOMContentLoaded', function() {
     var categoryLink = document.querySelector("#careHeadCategory .L-Affiliate-Tagged");
     var categoryMenu = document.querySelector("#careHeadCategory .all-menu");
 
-    categoryLink.addEventListener("click", function(event) {
-        event.preventDefault();
-        categoryMenu.style.display = categoryMenu.style.display === "none" ? "block" : "none";
-    });
+    if (categoryLink && categoryMenu) {
+        categoryLink.addEventListener("click", function(event) {
+            event.preventDefault();
+            categoryMenu.style.display = categoryMenu.style.display === "none" ? "block" : "none";
+        });
+    }
 });
