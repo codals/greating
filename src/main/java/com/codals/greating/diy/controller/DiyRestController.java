@@ -34,9 +34,10 @@ public class DiyRestController {
     @PostMapping("/new")
     public String createNewPost(/* @SessionAttribute("loginUser") User loginUser, */
                                 @ModelAttribute DiyRequestDto newPost) {
+    	
         /* log.info(loginUser); */
         log.info(newPost);
         
-        return "redirect:/mealdiy/" + "1";
+        return "/greating/mealdiy/" + "1";
     }
 }

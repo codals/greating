@@ -12,5 +12,6 @@
 
   <typeAliases>
     <typeAlias alias="User" type="com.codals.greating.user.entity.User"/>
+    <typeAlias alias="Food" type="com.codals.greating.diy.entity.Food"/>
   </typeAliases>
 </configuration>

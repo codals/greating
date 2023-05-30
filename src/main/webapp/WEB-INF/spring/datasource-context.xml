@@ -24,6 +24,7 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:mappers/User.xml</value>
+				<value>classpath:mappers/Food.xml</value>
 			</list>
 		</property>
 	</bean>
