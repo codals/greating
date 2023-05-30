@@ -9,7 +9,7 @@
 
 <section class="sub-cont-sec welcome">
 	<h3 class="welcome-info">
-		<span class="welcome-info-name"> <em>김승주 </em> 님 반갑습니다. <span
+		<span class="welcome-info-name"> <em>${loginUser.name} </em> 님 반갑습니다. <span
 			class="welcome-info-member">Friends회원</span>
 		</span> <span class="welcome-info-group"> <a>멤버십 혜택 안내 </a> <a>다음달
 				예상등급 </a> <a><span>스푼지급 ! </span> 친구추천코드 </a>

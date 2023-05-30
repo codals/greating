@@ -18,6 +18,7 @@
     <typeAlias alias="PostResponseDto" type="com.codals.greating.diy.dto.PostResponseDto"/>
     <typeAlias alias="MainCategory" type="com.codals.greating.diet.entity.MainCategory"/>
     <typeAlias alias="SubCategory" type="com.codals.greating.diet.entity.SubCategory"/>
+    <typeAlias alias="Mypage" type="com.codals.greating.mypage.dto.MyPageDto"/>
   </typeAliases>
   
 </configuration>
