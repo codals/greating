@@ -32,7 +32,6 @@
 	text-align: center;
 	font-size: 24px;
 	font-weight: 600;
-	Ï
 }
 
 .meals-choice {
@@ -50,7 +49,7 @@
 	display: inline-block;
 	vertical-align: top;
 	width: 320px;
-	margin: 40px 0 0 25px;
+	margin: 40px 0 0 20px;
 	position: relative;
 }
 
@@ -190,7 +189,7 @@
 
 .meal-count {
 	display: inline-block;
-	width: 220px;
+	width: 218px;
 	height: 45px;
 	vertical-align: bottom;
 	text-align: center;
