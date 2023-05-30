@@ -8,6 +8,7 @@ import com.codals.greating.diet.entity.DailyDiet;
 import com.codals.greating.diet.entity.Diet;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -36,6 +37,7 @@ public class DietServiceImpl implements DietService {
                     .collect(Collectors.toList());
                 return new PreviewResponseDto(startDate, diets);
             })
+            .sorted(Comparator.comparing(PreviewResponseDto::getStartDate))
             .collect(Collectors.toList());
     }
 

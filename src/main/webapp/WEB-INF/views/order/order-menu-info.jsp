@@ -34,7 +34,7 @@
             <c:forEach var="dailyDiet" items="${weeklyDailyDiets}">
                 <section class="meals-area">
                     <div class="meals-area-cont">
-                        <h3 class="meals-area-cont-title">${dailyDiet.startDate} ${dailyDiet.endDate}</h3>
+                        <h3 class="meals-area-cont-title">${dailyDiet.startDate} / ${dailyDiet.endDate}</h3>
                         <div class="meals-choice">
                             <ul class="box">
                                 <c:forEach var="diet" items="${dailyDiet.diets}">
