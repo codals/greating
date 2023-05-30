@@ -48,8 +48,9 @@
 
 .welcome-info-group a {
 	position: relative;
-	margin-left: 15px;
-	font-size: 14px;
+	margin-left: 5px;
+	font-size: 13px;
+	float:right;
 }
 
 .welcome-info-group a:after {

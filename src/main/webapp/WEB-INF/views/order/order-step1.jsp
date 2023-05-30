@@ -4,7 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="${pageContext.request.contextPath}/resources/css/order/order-step1.css"
+<link
+	href="${pageContext.request.contextPath}/resources/css/order/order-step1.css"
 	rel="stylesheet">
 <style type="text/css">
 </style>
@@ -14,25 +15,25 @@
 <body>
 	<!-- header -->
 	<jsp:include page="/WEB-INF/views/templates/header.jsp" />
+	<div class="hr"></div>
 
 	<div class="main-content hd__inner1100">
 		<!-- 카테고리 -->
-		<div>
-			<ul class="menu-category">
-				<li>HOME</li> >
-				<li>건강식단</li> >
-				<!-- 메뉴명에 따른 3depth 텍스트 수정 -->
-				<li>고단백식단</li>
-			</ul>
-		</div>
-
+		<ul class="page-category">
+			<li>Home</li>
+			<li>></li>
+			<li>마이그리팅</li>
+			<li>></li>
+			<li class="highlight">건강식단</li>
+		</ul>
 		<form action="/" method="post" name="order1-form">
 
 			<!-- 설계하기및 현재 단계 -->
 			<h2 class="meals__title">
 				<span>설계하기</span>
 			</h2>
-			<img src="${pageContext.request.contextPath}/resources/images/order/order1step.png" />
+			<img
+				src="${pageContext.request.contextPath}/resources/images/order/order1step.png" />
 			<ol class="meals-order">
 
 				<li class="on">기간/끼니수 선택</li>
@@ -111,7 +112,9 @@
 			<div class="meals-btn">
 				<a href="order2" class="btn-init">
 					<p class="meals-span">빠른주문</p>
-				</a> <a href="${pageContext.request.contextPath}/diets/mygreating/orders/delivery" class="btn-init white normal"><p class="meals-span"
+				</a> <a
+					href="${pageContext.request.contextPath}/diets/mygreating/orders/delivery"
+					class="btn-init white normal"><p class="meals-span"
 						id="next_text">다음단계</p></a>
 			</div>
 		</form>

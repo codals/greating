@@ -24,9 +24,13 @@
 
 	<main class="contents hd__inner1100">
 
-		<span class="page-category"> Home > 마이페이지 </span>
+		<ul class="page-category">
+			<li>Home</li>
+			<li>></li>
+			<li class="highlight">마이페이지</li>
+		</ul>
 
-		<div class="mypage-main">
+		<div class="mypage-main d-flex">
 			<jsp:include page="./mypage-sidebar.jsp" />
 
 			<div class="sub-cont">
@@ -43,8 +47,9 @@
 					<c:forEach var="i" begin="1" end="6">
 						<li class="myScrap-card">
 							<div class="myScrap-card-img">
-								<i class="fas fa-solid fa-bookmark fa-lg" style="color: #918c01;"></i>
-								<img src="/greating/resources/images/user/mypage-scrap.jpg">
+								<i class="fas fa-solid fa-bookmark fa-lg"
+									style="color: #918c01;"></i> <img
+									src="/greating/resources/images/user/mypage-scrap.jpg">
 							</div>
 							<div class="myScrap-card-info">
 								<h3>제목</h3>
@@ -59,10 +64,6 @@
 							</div>
 						</li>
 					</c:forEach>
-				</ul>
-
-
-
 				</ul>
 			</div>
 		</div>

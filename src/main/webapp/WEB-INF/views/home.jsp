@@ -25,6 +25,7 @@
 
 <!-- js -->
 <script src="${pageContext.request.contextPath}/resources/js/main/slick.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/main/main.js"></script>
 
 <!--  css  -->
 <link href="${pageContext.request.contextPath}/resources/css/templates/reset.css" rel="stylesheet">
@@ -71,13 +72,13 @@
 
 			<!--  Healthy 파트  -->
 			<section class="main_healthy_sec">
-				<div class="main-healthy">
+				<div class="main-healthy-img">
 					<img src="${pageContext.request.contextPath}/resources/images/main/img_main_healthy.png">
 
 				</div>
 
-				<div class="main-diet fadeInUp">
-					<ul class="row row-cols-2 row-cols-sm-2 row-cols-md-2">
+				<div class="main-healthy">
+					<ul class="row row-cols-2 row-cols-sm-2 row-cols-md-2" id="main-healthy-fadeList">
 
 						<li><img
 							src="https://image.greating.co.kr/DP/banner/202303/5CFC57707AC0423A9B597056DEF317F7.jpg"
@@ -154,13 +155,13 @@
 			</section>
 
 			<section class="main_care_sec">
-				<div class="care-comm hPara fadeInUp">
+				<div class="main-care-img">
 					<img src="${pageContext.request.contextPath}/resources/images/main/img_main_care.png" alt="#">
 				</div>
-				<div class="row justify-content-center hPara fadeInUp "
-					style="flex-wrap: wrap;">
+				<div class="main-care">
 					<ul
-						class="row row-cols-2 row-cols-sm-2 row-cols-md-2 hPara fadeInUp care-card">
+						class="row row-cols-2 row-cols-sm-2 row-cols-md-2 care-card"  id="main-care-fadeList">
+						
 						<li><img
 							src="https://image.greating.co.kr/DP/banner/202303/48D048BCB3D94070897135512ED477E6.jpg"
 							alt=""></li>
@@ -191,7 +192,7 @@
 			</section>
 
 			<section class="main_challenge_sec">
-				<div class="hPara fadeInUp">
+				<div class="main-challenge-img">
 					<img src="${pageContext.request.contextPath}/resources/images/main/img_main_challenge.png"
 						usemap="#main_challenge" alt="#">
 				</div>
