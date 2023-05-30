@@ -12,7 +12,7 @@
             integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
             integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
-    <link href="${pageContext.request.contextPath}/resources/css/user/register.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/user/login.css" rel="stylesheet">
 
     <script src="${pageContext.request.contextPath}/resources/js/user/login.js"></script>
 </head>
@@ -26,10 +26,10 @@
 			<li class="highlight">로그인</li>
 	</ul>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-4">
+        <div class="login-content">
+            <div class="login-form">
                 <h1 class="text-center title">로그인</h1>
-                <p class="text-center small login-message">로그인을 하시면 다양한 혜택을 누리실 수 있습니다.</p>
+                <p class="text-center login-message">로그인을 하시면 다양한 혜택을 누리실 수 있습니다.</p>
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
                         <a class="nav-link" href="#">H.Point 회원</a>
@@ -39,16 +39,17 @@
                     </li>
                 </ul>
                 <div class="form-group">
-                    <input type="text" class="form-username" id="username" name="username" placeholder="아이디">
+                    <input type="text" id="username" name="username" placeholder="아이디">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호">
+                    <input type="password" id="password" name="password" placeholder="비밀번호">
                 </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="rememberMe">
-                    <label class="form-check-label" for="rememberMe">아이디 저장</label>
+         
+                <div class="login-form-checkbox">
+               		 <input type="checkbox" id="chk-id" class="chk-id hidden" data-check="y" data-checked="n">
+                	<label for="chk-id" class="login-checkbox-label">아이디 저장</label>
                 </div>
-                <button class="btn btn-primary btn-block login-button">로그인</button>
+                <button class="login-btn mt-4 mb-4">로그인</button>
                 <div class="col justify-content-center login-links">
                     <span><a href="#">아이디 찾기</a></span>
                     <div class="divider"></div>
@@ -60,7 +61,7 @@
                 <div class="row justify-content-center social-login-img">
                     <img src="${pageContext.request.contextPath}/resources/images/user/social-login.png" alt="social-login.png" width="300px">
                 </div>
-                <button type="button" class="btn btn-primary btn-non-member">비회원 주문조회</button>
+                <button type="button" class="nonMember-login-btn">비회원 주문조회</button>
             </div>
         </div>
     </div>
