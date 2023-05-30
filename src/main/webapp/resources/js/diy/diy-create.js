@@ -87,28 +87,20 @@ function handleCheckboxChange(checkbox) {
 	});
 }
 
-/* 이미지 전송 로직 */
-/*
- * let selectedImage = null;
- * 
- * function previewImage(event) { const reader = new FileReader(); const file =
- * event.target.files[0];
- * 
- * reader.onload = function () { const preview =
- * document.getElementById('preview'); preview.src = reader.result;
- * preview.style.display = 'block';
- *  // 이미지를 페이지에서 저장해둠 selectedImage = file; }
- * 
- * reader.readAsDataURL(file); }
- * 
- * function sendRequestWithImage() { if (selectedImage) { const formData = new
- * FormData(); formData.append('image', selectedImage);
- *  // 다른 API 요청에 이미지 첨부 fetch('/greating/api/mealdiy/new', { method: 'POST',
- * body: formData, }) .then(response => { // 요청 완료 시 처리할 작업 수행 console.log('다른
- * API 요청 완료'); }) .catch(error => { // 에러 처리 console.error('다른 API 요청 에러:',
- * error); }); } else { // 이미지가 선택되지 않은 경우 예외 처리 console.error('이미지가 선택되지
- * 않았습니다.'); } }
- */
+function previewImage(event) {
+    var input = event.target;
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            var preview = document.getElementById('preview');
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
 
 /* 밥 이미지 container 숨기기 */

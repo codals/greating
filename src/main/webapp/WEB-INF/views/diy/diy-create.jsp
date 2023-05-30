@@ -43,17 +43,17 @@
 					<div class="diy-form-sec1-left">
 
 						<div class="diy-form-img">
-							<div class="image-preview">
-								<img id="preview" src="#" alt="Preview" style="display: none;">
-							</div>
+						    <div class="image-preview">
+						        <img id="preview" src="#" alt="Preview" style="display: none;">
+						    </div>
 						</div>
-						
+
 						<div class="diy-form-img-desc">
 							<span> * 도시락 화면에 등록할 메인 이미지를 선택해주세요.* </span>
 						</div>
 						
 						<div class="div-form-img-btn">
-						    <input type="file" id="imgFile" name="imgFile" accept="image/*">
+						    <input type="file" id="imgFile" name="imgFile" accept="image/*" onchange="previewImage(event)">
 <!--  						    <input type="file" id="imgFile" name="imgFile" accept="image/*" onchange="previewImage(event)"> -->
 						    <label for="imgFile">파일 선택</label>
 						</div>
