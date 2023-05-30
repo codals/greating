@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    <link href="${pageContext.request.contextPath}/resources/css/user/mypage-sidebar.css" rel="stylesheet">
     
-
-		<aside class="snb">
+<link href="${pageContext.request.contextPath}/resources/css/user/mypage-sidebar.css" rel="stylesheet">
+	
+		<section class="snb">
 			<h2 class="page-title">마이페이지</h2>
 			<ul class="snb-box myPageBox">
 				<li class="snb-box-list">
@@ -34,9 +34,11 @@
 					<ul class="snb-box-inner">
 						<li class="snb-box-inner-list"><h4>회원정보</h4></li>
 						<li class="snb-box-inner-list"><a href="${pageContext.request.contextPath}/mypage/profile"> 회원정보 수정  </a></li>
+						<li class="snb-box-inner-list"><a href="#"> 회원탈퇴  </a></li>
+					
 					</ul>
 				</li>
 
 			</ul>
 
-		</aside>
+		</section>

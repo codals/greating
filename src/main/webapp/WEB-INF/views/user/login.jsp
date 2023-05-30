@@ -12,17 +12,19 @@
             integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
             integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
-    <link href="${pageContext.request.contextPath}/resources/css/templates/reset.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/resources/css/user/login.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/user/register.css" rel="stylesheet">
+
     <script src="${pageContext.request.contextPath}/resources/js/user/login.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/templates/header.jsp"/>
+<div class="hr"></div>
 <div class="main-content hd__inner1100">
-    <ul class="content-info">
-        <li>HOME</li>
-        <li>로그인</li>
-    </ul>
+   <ul class="page-category">
+			<li>Home</li>
+			<li>></li>
+			<li class="highlight">로그인</li>
+	</ul>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4">

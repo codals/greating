@@ -25,15 +25,22 @@
 
 
 
-<link href="${pageContext.request.contextPath}/resources/css/diy/diy-top10.css" rel="stylesheet">
-<script src="${pageContext.request.contextPath}/resources/js/diy/diy-top10.js"></script>
+<link
+	href="${pageContext.request.contextPath}/resources/css/diy/diy-top10.css"
+	rel="stylesheet">
+<script
+	src="${pageContext.request.contextPath}/resources/js/diy/diy-top10.js"></script>
 </head>
 <body>
 	<jsp:include page="../templates/header.jsp" />
 	<div class="hr"></div>
 
 	<main class="contents hd__inner1100">
-		<span class="top-category"> DIY 식단  > DIY 식단 TOP 10</span>
+		<ul class="page-category">
+			<li>DIY 식단 </li>
+			<li>></li>
+			<li class="highlight">DIY 식단 TOP 10</li>
+		</ul>
 		<div class="main-content hd__inner960">
 			<div class="main-content-title">DIY 식단 TOP 10</div>
 
@@ -163,10 +170,10 @@
 		</div>
 
 	</main>
-	
-	
+
+
 	<!--  footer	 -->
 	<jsp:include page="../templates/footer.jsp" />
-	
+
 </body>
 </html>
