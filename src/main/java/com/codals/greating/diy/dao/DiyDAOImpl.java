@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @Repository
 @RequiredArgsConstructor
-public class DiyDaoImpl implements DiyDao{
+public class DiyDAOImpl implements DiyDAO {
 	
 	private final SqlSession sqlSession;
 	

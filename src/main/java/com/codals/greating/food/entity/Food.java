@@ -1,4 +1,4 @@
-package com.codals.greating.diet.entity;
+package com.codals.greating.food.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,12 +12,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Food {
-
-	private Long id;
-	private Long foodTypeId;
+	private Integer id;
+	private Integer foodTypeId;
 	private String name;
-	private int price;
+	private Integer price;
 	private String description;
 	private String imgUrl;
-	private int inMarket;
+	private Integer inMarket;
 }
