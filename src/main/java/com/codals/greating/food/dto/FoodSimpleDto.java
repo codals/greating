@@ -1,4 +1,4 @@
-package com.codals.greating.diy.dto;
+package com.codals.greating.food.dto;
 
 import lombok.AllArgsConstructor;
 

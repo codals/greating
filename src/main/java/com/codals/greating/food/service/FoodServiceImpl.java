@@ -7,12 +7,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import com.codals.greating.diy.dao.DiyDAO;
-import com.codals.greating.diy.dto.FoodSimpleDto;
-import com.codals.greating.diy.entity.Food;
 import com.codals.greating.exception.BusinessException;
 import com.codals.greating.exception.ErrorCode;
 import com.codals.greating.food.dao.FoodDAO;
+import com.codals.greating.food.dto.FoodSimpleDto;
+import com.codals.greating.food.entity.Food;
 
 import lombok.RequiredArgsConstructor;
 
@@ -30,6 +29,8 @@ public class FoodServiceImpl implements FoodService {
 		if (foods == null) {
 			throw new BusinessException(ErrorCode.FOOD_NOT_FOUND);
 		}
+		
+		log.info(foods);
 				
 		List<FoodSimpleDto> result = new ArrayList<>();
 		for (Food food : foods) {

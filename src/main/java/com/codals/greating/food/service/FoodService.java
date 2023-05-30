@@ -2,7 +2,7 @@ package com.codals.greating.food.service;
 
 import java.util.List;
 
-import com.codals.greating.diy.dto.FoodSimpleDto;
+import com.codals.greating.food.dto.FoodSimpleDto;
 
 public interface FoodService {
 

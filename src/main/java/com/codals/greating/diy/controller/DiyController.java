@@ -15,10 +15,9 @@ import com.codals.greating.diy.service.DiyService;
 
 import lombok.RequiredArgsConstructor;
 
-
-import com.codals.greating.diy.dto.FoodSimpleDto;
 import com.codals.greating.diy.service.DiyService;
 import com.codals.greating.food.FoodType;
+import com.codals.greating.food.dto.FoodSimpleDto;
 import com.codals.greating.food.service.FoodService;
 
 import lombok.RequiredArgsConstructor;

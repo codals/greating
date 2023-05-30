@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.codals.greating.diy.entity.Food;
+import com.codals.greating.food.entity.Food;
 
 import lombok.RequiredArgsConstructor;
 

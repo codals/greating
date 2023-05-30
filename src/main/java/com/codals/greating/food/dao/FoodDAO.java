@@ -2,7 +2,7 @@ package com.codals.greating.food.dao;
 
 import java.util.List;
 
-import com.codals.greating.diy.entity.Food;
+import com.codals.greating.food.entity.Food;
 
 public interface FoodDAO {
 
