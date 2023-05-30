@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mypage">
+
+	<select id="diyList" resultType="Mypage">
+		SELECT
+		p.id,
+		p.main_category_id,
+		p.sub_category_id,
+		p.food_country_id,
+		p.user_id,
+		p.title,
+		p.content,
+		p.img_url,
+		f1.name AS rice_food_name,
+		f2.name AS soup_food_name,
+		f3.name AS main_food_name,
+		f4.name AS side1_food_name,
+		f5.name AS side2_food_name,
+		f6.name AS extra_food_name,
+		p.min_calorie,
+		p.max_calorie,
+		p.min_price,
+		p.max_price,
+		p.vote_cnt,
+		p.status,
+		p.created_at,
+		p.modified_at
+		FROM
+		post p
+		LEFT JOIN
+		food f1 ON p.rice_food_id = f1.id
+		LEFT JOIN
+		food f2 ON p.soup_food_id = f2.id
+		LEFT JOIN
+		food f3 ON p.main_food_id = f3.id
+		LEFT JOIN
+		food f4 ON p.side1_food_id = f4.id
+		LEFT JOIN
+		food f5 ON p.side2_food_id = f5.id
+		LEFT JOIN
+		food f6 ON p.extra_food_id = f6.id
+		WHERE
+		p.user_id = #{userId}
+
+	</select>
+
+</mapper>

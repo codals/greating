@@ -34,4 +34,38 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/order1", method = RequestMethod.GET)
+	public String home1() {
+		
+		
+		return "order/order-step1";
+	}
+
+	@RequestMapping(value = "/order2", method = RequestMethod.GET)
+	public String home2() {
+		
+		
+		return "order/order-step2";
+	}
+	
+	@RequestMapping(value = "/mypage1", method = RequestMethod.GET)
+	public String mypage1() {
+		
+		
+		return "user/mypage-mydiy";
+	}
+	
+	@RequestMapping(value = "/mypage2", method = RequestMethod.GET)
+	public String mypage2() {
+		
+		
+		return "user/mypage-myscrap";
+	}
+	
+	@RequestMapping(value = "/mypage3", method = RequestMethod.GET)
+	public String mypage3() {
+		
+		
+		return "user/mypage-myvote";
+	}
 }
