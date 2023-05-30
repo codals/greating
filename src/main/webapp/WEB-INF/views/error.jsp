@@ -41,7 +41,7 @@
         }
     </style>
 
-    <c:choose>
+   <%--  <c:choose>
 	    <c:when test="${showAlert && empty sessionScope.loginMember}">
 	        <script>
 	            alert("${errorCode} \n${errorMessage}");
@@ -54,7 +54,7 @@
 	            location.href = "/springboard/board"; // board 페이지로 리다이렉트
 	        </script>
 	    </c:otherwise>
-	</c:choose>
+	</c:choose> --%>
 
 </head>
 <body>
