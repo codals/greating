@@ -112,15 +112,15 @@
 					<div class="diy-diet-cal-price">
 						<div class="diy-diet-cal">
 							<span>희망 칼로리 </span>
-							<input type="number" name="minCalorie" min="200" max="800" step="50" placeholder="최소 200" required>
+							<input type="number" name="minCalorie" min="300" max="800" step="50" placeholder="최소 200" value="300" required>
 							 ~ 
-							<input type="number" name="maxCalorie" min="200"  max="800" step="50" placeholder="최대 800" required> kcal
+							<input type="number" name="maxCalorie" min="400"  max="800" step="50" placeholder="최대 800" value="800" required> kcal
 						</div>
 						<div class="diy-diet-price">
 							<span> 희망 가격대 </span>
-							<input type="number" name="minPrice" min="7000" max="15000" step="1000" placeholder="최소 7000" required>
+							<input type="number" name="minPrice" min="8000" max="15000" step="1000" value="8000" placeholder="최소 7000" required>
 							~
-							<input type="number" name="maxPrice" min="7000" max="15000" step="1000" placeholder="최대 15000" required> 원
+							<input type="number" name="maxPrice" min="9000" max="15000" step="1000" value="15000" placeholder="최대 15000" required> 원
 						</div>
 					</div>
 				</div>

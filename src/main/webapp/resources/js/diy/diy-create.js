@@ -253,5 +253,15 @@ function handleSideCheckboxButtonChange(checkbox) {
 	}
 }
 
-
-
+///*마우스 안 올려도 증감표시 보이게 설정*/
+//const numberInputs = document.querySelectorAll('input[type="number"]');
+//numberInputs.forEach(input => {
+//  input.addEventListener('mouseover', () => {
+//    input.style.setProperty('-webkit-appearance', 'textfield');
+//  });
+//
+//  input.addEventListener('mouseout', () => {
+//    input.style.setProperty('-webkit-appearance', 'none');
+//  });
+//});
+//
