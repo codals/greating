@@ -119,13 +119,13 @@
 				    </div>
 				    <div class="image-container" id="rice-container">
 				        <div class="image-wrapper">
-				            <c:forEach var="i" begin="1" end="15">
+				            <c:forEach var="rice" items="${rices}">
 				                <div class="food-card">
-				                    <input type="radio" id="food-rice-${i}" name="riceOption" value="쌀밥" onchange="handleRiceRadioButtonChange(this)">
-				                    <label for="food-rice-${i}">
-				                        <img src="${pageContext.request.contextPath}/resources/images/food/쌀밥.png" alt="Image 1">
+				                    <input type="radio" id="food-rice-${rice.id}" name="riceFoodId" value="${rice.id}" onchange="handleRiceRadioButtonChange(this)">
+				                    <label for="food-rice-${rice.id}">
+				                        <img src="${rice.imgUrl}" alt="Image-${rice.id}">
 				                    </label>
-				                    <span>쌀밥</span>
+				                    <span>${rice.name}</span>
 				                </div>
 				            </c:forEach>
 				        </div>
@@ -145,13 +145,13 @@
 					    <span class="d-flex mb-2 food-option-title">옵션1. 그리팅 인기 메뉴에서 선택하기</span>
 					    <div class="image-container" id="soup-container">
 					        <div class="image-wrapper">
-					            <c:forEach var="i" begin="1" end="5">
+					            <c:forEach var="soup" items="${soups}">
 					                <div class="food-card">
-					                    <input type="radio" id="food-soup-${i}" name="soupOption" value="돼지고기 콩비지찌개" onchange="handleSoupRadioButtonChange(this)">
-					                    <label for="food-soup-${i}">
-					                        <img src="${pageContext.request.contextPath}/resources/images/food/돼지고기콩비지찌개.png" alt="Image 1">
+					                    <input type="radio" id="food-soup-${soup.id}" name="soupFoodId" value="${soup.id}" onchange="handleSoupRadioButtonChange(this)">
+					                    <label for="food-soup-${soup.id}">
+					                        <img src="${soup.imgUrl}" alt="Image-${soup.id}">
 					                    </label>
-					                    <span>돼지고기 콩비지찌개</span>
+					                    <span>${soup.name}</span>
 					                </div>
 					            </c:forEach>
 					        </div>
@@ -177,12 +177,12 @@
 						<span class="d-flex mb-2 food-option-title">옵션1. 그리팅 인기 메뉴에서 선택하기 </span>
 						<div class="image-container" id="main-container">
 							<div class="image-wrapper">
-								<c:forEach var="i" begin="1" end="5">
+								<c:forEach var="main" items="${mains}">
 									<div class="food-card">
-										<input type="radio" id="food-main-${i}" name="mainOption" value="미강돼지고기배추볶음" onchange="handleMainRadioButtonChange(this)">
-											<label for="food-main-${i}">
-											<img src="${pageContext.request.contextPath}/resources/images/food/미강돼지고기배추볶음.png" alt="Image 1">
-										</label> <span>미강돼지고기배추볶음 </span>
+										<input type="radio" id="food-main-${main.id}" name="mainFoodId" value="${main.id}" onchange="handleMainRadioButtonChange(this)">
+											<label for="food-main-${main.id}">
+											<img src="${main.imgUrl}" alt="Image 1">
+										</label> <span>${main.name} </span>
 									</div>
 								</c:forEach>
 							</div>
@@ -204,13 +204,13 @@
 						<span class="d-flex mb-2 food-option-title">옵션1. 그리팅 인기 메뉴에서 선택하기 </span>
 						<div class="image-container" id="side-container">
 							<div class="image-wrapper">
-								<c:forEach var="i" begin="1" end="15">
+								<c:forEach var="side" items="${sides}">
 									<div class="food-card">
-										<input type="checkbox" id="food-side-${i}" name="sideOptions" value="스크램블에그" onchange="handleSideCheckboxButtonChange(this)">
-										<label for="food-side-${i}">
-											<img src="${pageContext.request.contextPath}/resources/images/food/스크램블에그.png" alt="Image 1">
+										<input type="checkbox" id="food-side-${side.id}" name="sideFoodId" value="${side.id}" onchange="handleSideCheckboxButtonChange(this)">
+										<label for="food-side-${side.id}">
+											<img src="${side.imgUrl}" alt="Image-${side.id}">
 										</label>
-										<span>스크램블에그 </span>
+										<span>${side.name}</span>
 									</div>
 								</c:forEach>
 	
@@ -257,7 +257,7 @@
 					</div> -->
 					
 					<div class="diy-diet-content mt-4">
-					  <textarea name="comments" rows="3"></textarea>
+					  <textarea name="content" rows="3"></textarea>
 					</div>
 
 
