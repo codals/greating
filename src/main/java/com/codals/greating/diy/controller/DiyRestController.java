@@ -2,6 +2,8 @@ package com.codals.greating.diy.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.service.DiyService;
+import com.codals.greating.global.ResponseDTO;
 import com.codals.greating.user.entity.User;
 
 import lombok.RequiredArgsConstructor;
@@ -34,9 +37,9 @@ public class DiyRestController {
          */
         return "diy/diy-main";
     }
-
-	@PostMapping("/new")
-	public String savePost(@SessionAttribute("loginUser") User loginUser,
+    
+    @PostMapping("/new")
+	public ResponseEntity<?> savePost(@SessionAttribute("loginUser") User loginUser,
 							@ModelAttribute DiyRequestDto postRequest,
 							HttpSession session) {
 
@@ -46,8 +49,8 @@ public class DiyRestController {
 		// 톰캣 아래 바로 이미지 넣는 경로
 		String tomcatPath = session.getServletContext().getRealPath("/") + "resources/images";
 
-		diyService.savePost(loginUser, postRequest, tomcatPath);
-
-		return "/greating/mealdiy/" + "1";
+		int postId = diyService.savePost(loginUser, postRequest, tomcatPath);
+		
+	    return new ResponseEntity<>(postId, HttpStatus.OK);
 	}
 }

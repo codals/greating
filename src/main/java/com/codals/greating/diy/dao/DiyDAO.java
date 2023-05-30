@@ -6,5 +6,5 @@ import com.codals.greating.diy.entity.Post;
 public interface DiyDAO {
 	<Optional> PostResponseDto selectPostByPostId(int postId);
 
-	int savePost(Post post);
+	Integer savePost(Post post);
 }

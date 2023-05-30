@@ -2,15 +2,21 @@ package com.codals.greating.diy.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.codals.greating.config.FoodTypeCode;
+import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.PostResponseDto;
 import com.codals.greating.diy.service.DiyService;
 
@@ -19,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 import com.codals.greating.diy.service.DiyService;
 import com.codals.greating.food.dto.FoodSimpleDto;
 import com.codals.greating.food.service.FoodService;
+import com.codals.greating.user.entity.User;
 
 import lombok.RequiredArgsConstructor;
 
@@ -83,4 +90,5 @@ public class DiyController {
 		
 		return "diy/diy-detail";
 	}
+	
 }

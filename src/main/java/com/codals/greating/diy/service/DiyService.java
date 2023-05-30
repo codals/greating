@@ -8,6 +8,6 @@ public interface DiyService {
 
 	PostResponseDto getPostDetail(int postId);
 
-	void savePost(User loginUser, DiyRequestDto newPost, String path);
+	Integer savePost(User loginUser, DiyRequestDto newPost, String path);
 	
 }

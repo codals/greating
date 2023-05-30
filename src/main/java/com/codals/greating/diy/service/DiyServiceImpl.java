@@ -37,7 +37,7 @@ public class DiyServiceImpl implements DiyService{
 
 	@Override
 	@Transactional
-	public void savePost(User loginUser, DiyRequestDto postRequest, String path) {
+	public Integer savePost(User loginUser, DiyRequestDto postRequest, String path) {
 		
 		// 1. 파일명 생성해서 받아오기 (tomcat서버에 저장된 경로 + UUID로 만든 파일명 + 확장자)
 		String imgUrl;
@@ -52,10 +52,7 @@ public class DiyServiceImpl implements DiyService{
 		Post post = createPost(loginUser, postRequest, imgUrl);
 		
 		// 3. post DB에 저장하기
-		int result = diyDAO.savePost(post);
-		if (result == 0) {
-			throw new BusinessException(ErrorCode.INTERNAL_SERVER_ERROR);
-		}
+		return diyDAO.savePost(post);
 	}
 	
 	private String uploadImage(MultipartFile file, String tomcatPath) throws IllegalStateException, IOException {

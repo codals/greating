@@ -2,8 +2,6 @@ package com.codals.greating.diy.entity;
 
 import java.sql.Timestamp;
 
-import com.codals.greating.date.BaseEntity;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,9 +15,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Builder
-public class Post extends BaseEntity {
-
+public class Post {
 	private Integer id;
+	
 	private Integer mainCategoryId;
 	private Integer subCategoryId;
 	private Integer foodCountryId;
@@ -39,7 +37,7 @@ public class Post extends BaseEntity {
 	private Integer maxPrice;
 	private Integer voteCnt;
 	private Integer status;
-//	private Timestamp createdAt;
-//	private Timestamp modifiedAt;
+	private Timestamp createdAt;
+	private Timestamp modifiedAt;
 
 }

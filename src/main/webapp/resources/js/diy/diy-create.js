@@ -2,6 +2,38 @@
  * 
  */
 
+/* AJAX로 form 보내기 */
+$(document).ready(function() {
+  // 폼이 제출될 때 실행되는 이벤트 핸들러
+  $('#diy-form').submit(function(event) {
+    event.preventDefault(); // 폼 제출을 막습니다.
+
+    // 폼 데이터를 FormData 객체로 가져옵니다.
+    var formData = new FormData(this);
+
+    // AJAX POST 요청을 보냅니다.
+    $.ajax({
+      url: '/greating/api/mealdiy/new',
+      type: 'POST',
+      data: formData,
+      processData: false, // 데이터를 처리하지 않도록 설정합니다.
+      contentType: false, // 기본 컨텐츠 유형을 설정하지 않도록 합니다.
+      success: function(response) {
+        console.log(response);
+        location.href = "/greating/mealdiy/" + response;
+      },
+      error: function(xhr, status, error) {
+        // 요청이 실패했을 때 실행되는 콜백 함수
+        console.log(error);
+        // 오류 처리 등을 여기에 작성하세요.
+        alert("실패하였습니다.")
+      }
+    });
+  });
+});
+
+
+/* 메인 카테고리에 따라 서브 카테고리 보여주기*/
   $(document).ready(function() {
     $('input[name="mainCategoryId"]').on('change', function() {
         $('input[name="mainCategoryId"]').not(this).prop('checked', false);
