@@ -34,9 +34,16 @@
 
 	<!-- header 가져오기 -->
 	<jsp:include page="../templates/header.jsp" />
+	<div class="hr"></div>
+
 
 	<!-- 본 페이지 내용 -->
 	<div class="main-content hd__inner1100">
+		<ul class="page-category">
+			<li>DIY 식단</li>
+			<li>></li>
+			<li class="highlight">DIY 도시락 상세</li>
+		</ul>
 		<div class="main-info-container">
 
 			<div class="main-img">
@@ -62,12 +69,14 @@
 						-->
 					<span class="info-title">분류</span> <span class="info-text">
 						<span>${postDetail.mainCategory.name} > ${postDetail.subCategory.name}</span> , <span>한식</span>
+
 					</span>
 
 				</div>
 
 				<div class="main-info-line">
 					<span class="info-title">영양사</span> <span class="info-text">${postDetail.user.name}</span>
+
 				</div>
 
 				<div class="main-info-line">
@@ -152,6 +161,7 @@
 								<div class="sub-info-line">
 									<span class="info-title">분류</span> <span class="info-text">
 										<span>${postDetail.mainCategory.name} > ${postDetail.subCategory.name} </span> , <span>한식</span>
+
 									</span>
 								</div>
 
@@ -229,7 +239,6 @@
 								<img src="${postDetail.side1.imgUrl}">
 								<img src="${postDetail.side2.imgUrl}">
 								<img src="${postDetail.extra.imgUrl}">
-
 							</div>
 						</div>
 					</div>

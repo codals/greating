@@ -10,20 +10,27 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
 <link href="/greating/resources/css/order/meal-choice.css"
 	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <script src="/greating/resources/js/order/meal-choice.js"></script>
 
 </head>
 <body>
 
 	<jsp:include page="/WEB-INF/views/templates/header.jsp" />
+	<div class="hr"></div>
 
 	<!-- 설계하기및 현재 단계 -->
 	<div class="main-content contents hd__inner1100">
+		<ul class="page-category">
+			<li>Home</li>
+			<li>></li>
+			<li>마이그리팅 </li>
+			<li>></li>
+			<li class="highlight">주문하기</li>
+		</ul>
 		<jsp:include page="/WEB-INF/views/order/order-header.jsp" />
 
 		<div id="mchoice">
@@ -90,7 +97,8 @@
 					<div>
 						<a href="#" class="btn-init green btn-buy">주문하기 ( <span
 							class="total-count">0</span> / 6 )
-						</a> <a href="${header.referer}" id="cancelBtn" class="btn-init cancel btn-buy">취소 </a>
+						</a> <a href="${header.referer}" id="cancelBtn"
+							class="btn-init cancel btn-buy">취소 </a>
 					</div>
 				</div>
 

@@ -12,19 +12,24 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<link href="${pageContext.request.contextPath}/resources/css/reset.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/css/user/register.css" rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/css/user/register.css"
+	rel="stylesheet">
 
 <title>Sign Up</title>
 </head>
 
 <body>
 	<jsp:include page="/WEB-INF/views/templates/header.jsp" />
+	<div class="hr"></div>
+
 	<div class="main-content hd__inner1100">
-		<ul class="content-info">
-			<li>HOME</li>
-			<li>회원가입</li>
+		<ul class="page-category">
+			<li>Home</li>
+			<li>></li>
+			<li class="highlight">회원가입</li>
 		</ul>
+
 
 		<div class="memberJoin">
 			<div class="memberJoin__hp">
@@ -83,28 +88,32 @@
 					<h3 class="green-box__title">
 						<span>통합회원 가입</span>
 					</h3>
-					<img src="${pageContext.request.contextPath}/resources/images/user/h_point.png"
+					<img
+						src="${pageContext.request.contextPath}/resources/images/user/h_point.png"
 						alt="hpoint">
 					<p class="green-box__desc">
 						본인인증 절차없이 사용중인 이메일 또는<br> SNS계정 정보로 간편하게 가입하실 수 있습니다.
 					</p>
 					<div class="btn">
-                            <a href="#" class="btn-init green" id="hpointJoin">H.Point 통합회원 가입하기</a>
-                        </div>
+						<a href="#" class="btn-init green" id="hpointJoin">H.Point
+							통합회원 가입하기</a>
+					</div>
 
 				</div>
 				<div class="green-box">
 					<h3 class="green-box__title">
 						<span>그리팅 일반회원 가입</span>
 					</h3>
-					<img src="${pageContext.request.contextPath}/resources/images/user${pageContext.request.contextPath}.png"
+					<img
+						src="${pageContext.request.contextPath}/resources/images/user${pageContext.request.contextPath}.png"
 						alt="hpoint">
 					<p class="green-box__desc">
 						본인인증 절차없이 사용중인 이메일 또는<br> SNS계정 정보로 간편하게 가입하실 수 있습니다.
 					</p>
 					<div class="btn">
-                            <a href="${pageContext.request.contextPath}/register-agreement" class="btn-init green" id="hpointJoin"> 일반회원 가입하기</a>
-                        </div>
+						<a href="${pageContext.request.contextPath}/register-agreement"
+							class="btn-init green" id="hpointJoin"> 일반회원 가입하기</a>
+					</div>
 
 				</div>
 			</section>

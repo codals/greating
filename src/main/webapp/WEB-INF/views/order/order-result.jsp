@@ -18,11 +18,16 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/templates/header.jsp"/>
+<div class="hr"></div>
+
 <div class="main-content hd__inner1100">
-    <ul class="content-info">
-        <li>HOME > 건강식단</li>
-        <li>저당식단</li>
-    </ul>
+   <ul class="page-category">
+			<li>Home</li>
+			<li>></li>
+			<li>마이그리팅 </li>
+			<li>></li>
+			<li class="highlight">주문완료</li>
+		</ul>
     <div class="order">
         <div class="order-result-hp">
             <h2 class="meals__title"><span>설계완료</span></h2>
