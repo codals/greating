@@ -74,17 +74,41 @@ public class DiyServiceImpl implements DiyService{
 //	        directory.mkdirs(); // 경로가 없으면 생성
 //	    }
 
-	    String savedPath = saveImage(file, tomcatPath, fileName);
+//	    String savedPath = saveImage(file, tomcatPath, fileName);
+	    
+	    String savedPath = saveImage(file, fileName);
 	    log.info(savedPath);
 	    
-	    String uploadedPath = tomcatPath + "/" + fileName;
-	    return uploadedPath;
+	    String uploadedPath = "/greating/resources/images/uploaded/" + fileName;
+//	    return uploadedPath;
+	    
+	    return savedPath;
 	}
 	
-	private String saveImage(MultipartFile file, String path, String fileName) throws IllegalStateException, IOException {
-	    File newFile = new File(path, fileName);
-	    file.transferTo(newFile);
+	// 톰캣에 저장된 경로 확인 용
+//	private String saveImage(MultipartFile file, String path, String fileName) throws IllegalStateException, IOException {
+//	    File newFile = new File(path, fileName);
+//	    file.transferTo(newFile);
+//	    
+//	    String savedPath = newFile.getAbsolutePath(); // 저장된 경로를 가져옵니다.
+//	    return savedPath;
+//	}
+	
+	
+	// 리소스에 저장하기
+	private String saveImage(MultipartFile file, String fileName) throws IllegalStateException, IOException {
+	    String webappPath = System.getProperty("catalina.base") + "/wtpwebapps/greating"; // 프로젝트명은 실제 프로젝트 이름으로 바꿔주세요.
+	    String imagePath = webappPath + "/resources/images/uploaded/";
+	    File directory = new File(imagePath);
+
+	    // 디렉토리 생성
+	    if (!directory.exists()) {
+	        directory.mkdirs();
+	    }
 	    
+	    File newFile = new File(imagePath + fileName);
+	    file.transferTo(newFile);
+
 	    String savedPath = newFile.getAbsolutePath(); // 저장된 경로를 가져옵니다.
 	    return savedPath;
 	}
