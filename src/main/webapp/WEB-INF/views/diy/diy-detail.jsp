@@ -58,7 +58,7 @@
 				</div>
 
 				<div class="main-title">
-					<span class="title-text">돼지고기콩비지찌개 & 파채돼지불고기</span> <span
+					<span class="title-text">${postDetail.post.title}</span> <span
 						class="new-badge">New</span>
 				</div>
 
@@ -68,32 +68,35 @@
 						<span class="diy-category-info">한식</span>
 						-->
 					<span class="info-title">분류</span> <span class="info-text">
-						<span>건강식단 > 칼로리식단</span> , <span>한식</span>
+						<span>${postDetail.mainCategory.name} > ${postDetail.subCategory.name}</span> , <span>한식</span>
+
 					</span>
 
 				</div>
 
 				<div class="main-info-line">
-					<span class="info-title">영양사</span> <span class="info-text">주먹왕진우</span>
+					<span class="info-title">영양사</span> <span class="info-text">${postDetail.user.name}</span>
+
 				</div>
 
 				<div class="main-info-line">
 					<span class="info-title">메인 구성</span> <span class="info-text">
-						<span class="diy-dish-info">귀리밥</span> <span class="diy-dish-info">파채돼지불고기</span>
-						<span class="diy-dish-info">돼지고기콩비지찌개</span>
+						<span class="diy-dish-info">${postDetail.rice.name}</span> 
+						<span class="diy-dish-info">${postDetail.soup.name}</span>
+						<span class="diy-dish-info">${postDetail.main.name}</span>
 					</span>
 				</div>
 
 				<div class="main-info-line">
-					<span class="info-title">희망 칼로리</span> <span class="info-text">400
-						~ 500kcal</span>
+					<span class="info-title">희망 칼로리</span> <span class="info-text">
+						${postDetail.post.minCalorie} ~ ${postDetail.post.maxCalorie}kcal</span>
 				</div>
 
 				<div class="main-info-line">
 					<span class="info-title">투표 현황</span>
 					<div class="diy-vote-info">
 						<img src="/greating/resources/images/diy/img_greating_vote.png"
-							style="width: 30px; heigh: 30px;"> <span class="vote-count">481</span>
+							style="width: 30px; heigh: 30px;"> <span class="vote-count">${postDetail.post.likeCnt}</span>
 						votes
 					</div>
 				</div>
@@ -157,26 +160,27 @@
 							<div class="info-text-section">
 								<div class="sub-info-line">
 									<span class="info-title">분류</span> <span class="info-text">
-										<span>건강식단 > 칼로리식단</span> , <span>한식</span>
+										<span>${postDetail.mainCategory.name} > ${postDetail.subCategory.name} </span> , <span>한식</span>
+
 									</span>
 								</div>
 
 								<div class="sub-info-line">
-									<span class="info-title">희망 칼로리</span> <span class="info-text">400
-										~ 500kcal</span>
+									<span class="info-title">희망 칼로리</span> <span class="info-text">${postDetail.post.minCalorie}
+										~ ${postDetail.post.maxCalorie}</span>
 								</div>
 
 								<div class="sub-info-line">
-									<span class="info-title">희망 가격대</span> <span class="info-text">8000
-										~ 9000원</span>
+									<span class="info-title">희망 가격대</span> <span class="info-text">${postDetail.post.minPrice}
+										~ ${postDetail.post.maxPrice} 원</span>
 								</div>
 
 								<div class="sub-info-line">
-									<span class="info-title">영양사</span> <span class="info-text">주먹왕진우</span>
+									<span class="info-title">영양사</span> <span class="info-text">${postDetail.user.name}</span>
 								</div>
 
 								<div class="sub-info-line last-line">
-									<span class="info-title">작성일</span> <span class="info-text">2023.05.26</span>
+									<span class="info-title">작성일</span> <span class="info-text">${postDetail.post.createdAt}</span>
 								</div>
 							</div>
 
@@ -197,22 +201,22 @@
 
 						<div class="info-text-section">
 							<div class="sub-info-line">
-								<span class="info-title">Rice</span> <span class="info-text">귀리밥</span>
+								<span class="info-title">Rice</span> <span class="info-text">${postDetail.rice.name}</span>
 							</div>
 							<div class="sub-info-line">
-								<span class="info-title">Soup</span> <span class="info-text">돼지고기콩비지찌개</span>
+								<span class="info-title">Soup</span> <span class="info-text">${postDetail.soup.name}</span>
 							</div>
 							<div class="sub-info-line">
 								<span class="info-title">Main Dish</span> <span
-									class="info-text">파채돼지불고기</span>
+									class="info-text">${postDetail.main.name}</span>
 							</div>
 							<div class="sub-info-line">
 								<span class="info-title">Side Dish 1</span> <span
-									class="info-text">깻잎 장아찌</span>
+									class="info-text">${postDetail.side1.name}</span>
 							</div>
 							<div class="sub-info-line last-line">
 								<span class="info-title">Side Dish 2</span> <span
-									class="info-text">오징어젓갈</span>
+									class="info-text">${postDetail.side2.name}</span>
 							</div>
 						</div>
 
@@ -229,9 +233,12 @@
 
 						<div class="info-text-section">
 							<div class="img-section">
-								<img src="/greating/resources/images/food/귀리현미밥.png"> <img
-									src="/greating/resources/images/food/돼지고기콩비지찌개.png"> <img
-									src="/greating/resources/images/food/파채돼지불고기.png">
+								<img src="${postDetail.rice.imgUrl}"> 
+								<img src="${postDetail.soup.imgUrl}"> 
+								<img src="${postDetail.main.imgUrl}"> 
+								<img src="${postDetail.side1.imgUrl}">
+								<img src="${postDetail.side2.imgUrl}">
+								<img src="${postDetail.extra.imgUrl}">
 							</div>
 						</div>
 					</div>

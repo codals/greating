@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="post">
+	<!-- PostResponseDto를 위한 resultMap 설정 -->
+
+	<resultMap id="soupResultMap" type="Food">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="price" column="price" />
+		<result property="imgUrl" column="img_url" />
+	</resultMap>
+
+	<resultMap id="postResponseDtoResultMap"
+		type="PostResponseDto">
+		<association property="post" javaType="Post">
+			<id property="id" column="id" />
+			<result property="mainCategoryId" column="main_category_id" />
+			<result property="subCategoryId" column="sub_category_id" />
+			<result property="foodCountryId" column="food_country_id" />
+			<result property="userId" column="user_id" />
+			<result property="title" column="title" />
+			<result property="content" column="content" />
+			<result property="minCalorie" column="min_calorie" />
+			<result property="maxCalorie" column="max_calorie" />
+			<result property="maxPrice" column="max_price" />
+			<result property="minPrice" column="min_price" />
+			<result property="likeCnt" column="like_cnt" />
+
+			<result property="createdAt" column="created_at" />
+			<result property="modifiedAt" column="modified_at" />
+		</association>
+
+
+		<association property="user" javaType="User">
+			<id property="id" column="user_id" />
+			<result property="username" column="username" />
+			<result property="name" column="name" />
+		</association>
+		
+		<association property="mainCategory" javaType="MainCategory">
+			<id property="id" column="main_cate_id" />
+			<result property="name" column="main_cate_name" />
+		</association>
+		
+		<association property="subCategory" javaType="SubCategory">
+			<id property="id" column="sub_cate_id" />
+			<result property="name" column="sub_cate_name" />
+		</association>
+
+		<association property="rice" javaType="Food"
+			column="rice_food_id" select="selectFoodById">
+		</association>
+
+
+		<association property="soup" javaType="Food"
+			column="soup_food_id" select="selectFoodById">
+		</association>
+
+		<association property="main" javaType="Food"
+			column="main_food_id" select="selectFoodById">
+		</association>
+
+		<association property="side1" javaType="Food"
+			column="side1_food_id" select="selectFoodById">
+		</association>
+		<association property="side2" javaType="Food"
+			column="side2_food_id" select="selectFoodById">
+		</association>
+		<association property="extra" javaType="Food"
+			column="extra_food_id" select="selectFoodById">
+		</association>
+
+	</resultMap>
+
+	<!-- SELECT 쿼리 실행 -->
+	<select id="selectPostByPostId" parameterType="int"
+		resultMap="postResponseDtoResultMap">
+		SELECT p.*, u.id as user_id , u.username as username, u.name as name, 
+				main_cate.id as main_cate_id, main_cate.name as main_cate_name, 
+				sub_cate.id as sub_cate_id, sub_cate.name as sub_cate_name
+		FROM post p
+		JOIN "user" u on p.user_id = u.id
+		LEFT JOIN
+		main_category main_cate on
+		p.main_category_id = main_cate.id
+		LEFT JOIN
+		sub_category sub_cate on p.sub_category_id = sub_cate.id
+		WHERE p.id = #{postId}
+	</select>
+
+	<select id="selectFoodById" parameterType="int"
+		resultMap="soupResultMap">
+		SELECT id, name, price, description, img_url
+		FROM food
+		WHERE
+		id = #{id}
+	</select>
+</mapper>
