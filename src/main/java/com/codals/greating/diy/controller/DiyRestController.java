@@ -2,16 +2,11 @@ package com.codals.greating.diy.controller;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.codals.greating.diy.dto.DiyRequestDto;
-import com.codals.greating.user.dto.LoginRequestDto;
-import com.codals.greating.user.entity.User;
 
 import lombok.extern.log4j.Log4j2;
 

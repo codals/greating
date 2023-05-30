@@ -89,21 +89,21 @@
 					<div class="diy-diet-title">
 						<span> TITLE </span>
 						<span> 도시락을 등록할 이름을 입력해주세요 </span>
-						<input type="text" name="dietName">
+						<input type="text" name="dietName" required>
 					</div>
 
 					<div class="diy-diet-cal-price">
 						<div class="diy-diet-cal">
 							<span>희망 칼로리 </span>
-							<input type="number" name="minCalorie" min="200" max="800" step="50" placeholder="최소 200">
+							<input type="number" name="minCalorie" min="200" max="800" step="50" placeholder="최소 200" required>
 							 ~ 
-							<input type="number" name="maxCalorie" min="200"  max="800" step="50" placeholder="최대 800"> kcal
+							<input type="number" name="maxCalorie" min="200"  max="800" step="50" placeholder="최대 800" required> kcal
 						</div>
 						<div class="diy-diet-price">
 							<span> 희망 가격대 </span>
-							<input type="number" name="minPrice" min="7000" max="15000" step="1000" placeholder="최소 7000">
+							<input type="number" name="minPrice" min="7000" max="15000" step="1000" placeholder="최소 7000" required>
 							~
-							<input type="number" name="maxPrice" min="7000" max="15000" step="1000" placeholder="최대 15000"> 원
+							<input type="number" name="maxPrice" min="7000" max="15000" step="1000" placeholder="최대 15000" required> 원
 						</div>
 					</div>
 				</div>
