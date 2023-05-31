@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.codals.greating.diy.dto.DiyRequestDto;
+import com.codals.greating.diy.dto.SrcapRequestDto;
 import com.codals.greating.diy.service.DiyService;
 import com.codals.greating.global.ResponseDTO;
 import com.codals.greating.user.entity.User;
@@ -53,4 +54,13 @@ public class DiyRestController {
 		
 	    return new ResponseEntity<>(postId, HttpStatus.OK);
 	}
+    
+    @PostMapping("/scrap")
+    public ResponseEntity<Boolean> scrap(SrcapRequestDto requestDto){
+    	log.info(requestDto);
+    	if(diyService.scrap(requestDto)) {
+			return ResponseEntity.ok().build();   
+		}
+    	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+    }
 }

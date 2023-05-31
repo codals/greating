@@ -115,6 +115,14 @@
 	<select id="selectLastInsertedId" resultType="java.lang.Integer">
 	  SELECT POST_ID_SEQ.CURRVAL AS id FROM DUAL
 	</select>
+	
+	<!-- scrap 관련   -->
+	<insert id="insertScrap" parameterType="ScrapRequestDto">
+		INSERT INTO scrap(user_id, post_id)
+		values(#{userId},#{postId})
+	</insert>
+
+
 
 	
 </mapper>
