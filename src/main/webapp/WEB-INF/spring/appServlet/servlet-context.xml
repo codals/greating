@@ -20,15 +20,15 @@
 
   <interceptors>
     <interceptor>
+      <mapping path="/**"/>
+      <beans:bean class="com.codals.greating.interceptor.TemporaryUserInterceptor"/>
+    </interceptor>
+    <interceptor>
       <mapping path="/mypage/**"/>
       <mapping path="/diets/**"/>
       <exclude-mapping path="/diets/mygreating"/>
       <exclude-mapping path="/diets/mygreating/preview"/>
       <beans:bean class="com.codals.greating.interceptor.LoginInterceptor"/>
-    </interceptor>
-    <interceptor>
-      <mapping path="/**"/>
-      <beans:bean class="com.codals.greating.interceptor.TemporaryUserInterceptor"/>
     </interceptor>
   </interceptors>
 
