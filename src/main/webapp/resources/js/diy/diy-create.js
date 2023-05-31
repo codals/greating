@@ -221,6 +221,29 @@ function handleSoupRadioButtonChange(radio) {
 	}
 }
 
+function handleModalSoupRadioButtonChange(button) {
+	  var selectedMarketSoup = document.querySelector('input[name="soupFoodId"]:checked');
+
+//	  if (selectedMarketSoup) {
+//	    var name = selectedMarketSoup.parentNode.querySelector('.modal-food-card-name').innerText;
+//	    var imgUrl = selectedMarketSoup.parentNode.querySelector('.modalFoodImg').getAttribute('src');
+//
+//	    var selectedSoupNameElement = document.querySelector('#selectedMarketSoupName .text-border');
+//	    selectedSoupNameElement.innerText = name;
+//	  }
+
+	  var soupFoodCards = document.querySelectorAll('#soup-container .food-card');
+	  soupFoodCards.forEach(function(card) {
+	    card.classList.remove('selected');
+	  });
+
+	  button.parentNode.classList.add('selected');
+	  
+	  // 모달창을 띄우는 버튼의 스타일 변경
+	  var modalOpenButton = button.parentNode.querySelector('.modal-open-button');
+	  modalOpenButton.style.backgroundColor = '#918c01';
+}
+
 function handleMainRadioButtonChange(radio) {
 	var mainFoodCards = document.querySelectorAll('#main-container .food-card');
 	mainFoodCards.forEach(function(card) {
@@ -232,28 +255,90 @@ function handleMainRadioButtonChange(radio) {
 	}
 }
 
-function handleSideCheckboxButtonChange(checkbox) {
-	var sideFoodCards = document.querySelectorAll('#side-container .food-card');
-	var selectedCount = 0;
-	
-	sideFoodCards.forEach(function(card) {
-		var cardCheckbox = card.querySelector('input[type="checkbox"]');
-		if (cardCheckbox.checked) {
-			selectedCount++;
-			card.classList.add('selected');
-		} else {
-			card.classList.remove('selected');
-		}
-	});
-	
-	if (selectedCount > 2) {
-		checkbox.checked = false;
-		checkbox.parentNode.classList.remove('selected');
-		selectedCount--;
-	}
+function handleModalMainRadioButtonChange(button) {
+	  var selectedMarketMain = document.querySelector('input[name="mainFoodId"]:checked');
+
+//	  if (selectedMarketMain) {
+//	    var name = selectedMarketMain.parentNode.querySelector('.modal-food-card-name').innerText;
+//	    var imgUrl = selectedMarketMain.parentNode.querySelector('.modalFoodImg').getAttribute('src');
+//
+//	    var selectedMainNameElement = document.querySelector('#selectedMarketMainName .text-border');
+//	    selectedMainNameElement.innerText = name;
+//	  }
+
+	  var mainFoodCards = document.querySelectorAll('#main-container .food-card');
+	  mainFoodCards.forEach(function(card) {
+	    card.classList.remove('selected');
+	  });
+
+	  button.parentNode.classList.add('selected');
+	  
+	  // 모달창을 띄우는 버튼의 스타일 변경
+	  var modalOpenButton = button.parentNode.querySelector('.modal-open-button');
+	  modalOpenButton.style.backgroundColor = '#918c01';
 }
 
-///*마우스 안 올려도 증감표시 보이게 설정*/
+function handleSideCheckboxButtonChange(checkbox) {
+	  var checkboxes = document.querySelectorAll('#side-container input[name="sideFoodIds"]:checked');
+	  var selectedCount = checkboxes.length;
+
+	  if (selectedCount > 2) {
+	    checkbox.checked = false;
+	    checkbox.parentNode.classList.remove('selected');
+	    selectedCount--;
+	  } else {
+	    checkbox.parentNode.classList.add('selected');
+	  }
+
+	  var sideFoodCards = document.querySelectorAll('#side-container .food-card');
+	  sideFoodCards.forEach(function (card) {
+	    var cardCheckbox = card.querySelector('input[name="sideFoodIds"]');
+	    if (cardCheckbox.checked) {
+	      card.classList.add('selected');
+	    } else {
+	      card.classList.remove('selected');
+	    }
+	  });
+	}
+
+//function handleModalSideCheckboxButtonChange(button) {
+//	  // 선택된 체크박스 해제
+//	  var greatingCheckboxes = document.querySelectorAll('#side-container input[name="sideFoodIds"]');
+//	  greatingCheckboxes.forEach(function (checkbox) {
+//	    checkbox.checked = false;
+//	  });
+//	  
+//	  var checkboxes = document.querySelectorAll('#sideDishModal input[name="sideFoodIds"]');
+//	  var selectedCount = 0;
+//
+//	  checkboxes.forEach(function(checkbox) {
+//	    checkbox.checked = false;
+//	  });
+//
+//	  checkboxes.forEach(function(checkbox) {
+//	    if (checkbox.checked) {
+//	      selectedCount++;
+//	    }
+//	  });
+//
+//	  if (selectedCount > 2) {
+//	    button.checked = false;
+//	  } else {
+//	    button.checked = true;
+//	  }
+//
+//	  // 체크박스 선택 개수 제한
+//	  checkboxes.forEach(function(checkbox) {
+//	    checkbox.disabled = selectedCount >= 2 && !checkbox.checked;
+//	  });
+//
+//	  // 모달창을 띄우는 버튼의 스타일 변경
+//	  var modalOpenButton = document.querySelector('#sideDishModal .modal-open-button');
+//	  modalOpenButton.style.backgroundColor = selectedCount > 2 ? '#ccc' : '#918c01';
+//	}
+
+
+// /*마우스 안 올려도 증감표시 보이게 설정*/
 //const numberInputs = document.querySelectorAll('input[type="number"]');
 //numberInputs.forEach(input => {
 //  input.addEventListener('mouseover', () => {
@@ -265,3 +350,26 @@ function handleSideCheckboxButtonChange(checkbox) {
 //  });
 //});
 //
+
+
+//모달이 열릴 때 이벤트 리스너 등록
+document.getElementById('cart').addEventListener('click', function() {
+  // 모달 내 체크박스 요소 선택
+  var modalCheckboxes = document.querySelectorAll('#sideDishModal input[name="sideFoodIds"]');
+  var selectedCount = 0;
+
+  // side-container의 체크박스 해제
+  var sideCheckboxes = document.querySelectorAll('#side-container input[name="sideFoodIds"]');
+  sideCheckboxes.forEach(function(checkbox) {
+    checkbox.checked = false;
+    handleCheckboxChange(checkbox)
+  });
+
+  // 모달 내 체크박스 선택 개수 계산
+  modalCheckboxes.forEach(function(checkbox) {
+    if (checkbox.checked) {
+      selectedCount++;
+    }
+  });
+
+});

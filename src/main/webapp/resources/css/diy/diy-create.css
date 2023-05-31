@@ -271,7 +271,7 @@
 
 .diy-diet-rice-btns>input:checked+label, 
 .diy-diet-soup-btns>input:checked+label,
-	.diy-diet-main-btns>input:checked+label {
+.diy-diet-main-btns>input:checked+label {
 	border: 2px solid #918c01;
 	border-radius: 20px;
 	padding: 10px;
@@ -424,19 +424,33 @@
 	text-align: center;
 }
 
+.modal-food-card[type="radio"],
 .modal-food-card[type="checkbox"] {
 	display: none;
 }
 
-.modal-food-card[type="checkbox"]:checked+label>img {
+.modal-food-card[type="radio"]:checked+label {
+	border: 5px solid #918c01;
+	border-radius: 10px;
+	padding:10px;
+}
+
+.modal-food-card[type="checkbox"]:checked+label {
+	border: 5px solid #918c01;
+	border-radius: 10px;
+	padding:5px;
+}
+
+.modal-food-card[type="radio"]:checked+label>img
+ {
 	display: inline-block;
 	margin: 10px 5px 10px 5px;
 	text-align: center;
-	border: 3px solid #918c01;
+	/* border: 5px solid #918c01; */
 }
 
-.modal-food-card[type="checkbox"]:checked+label>span {
-	padding-left: 10px;
+.modal-food-card[type="radio"]:checked+label>span {
+/* 	padding-left: 5px; */
 }
 
 .modalFoodImg {
@@ -539,4 +553,18 @@
 	font-size: 20px;
 	padding: 12px;
 	width: 150px;
+}
+
+#selectedMarketSoupName {
+	margin-left: 10px; 
+	margin-top: 10px;
+}
+
+.text-border {
+  border: 2px solid #918c01; 
+  border-radius: 10px;
+  padding: 10px; 
+  font-weight: bold;
+  color:white;
+  background:#918c01; 
 }

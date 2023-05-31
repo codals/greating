@@ -174,10 +174,14 @@
 					        </div>
 					    </div>
 					    <span class="d-flex mt-5 mb-1 food-option-title">옵션2.건강 마켓에서 선택하기 </span>
+					    
 					    <!-- Button trigger modal -->
-					    <button id="cart" type="button" data-toggle="modal" data-target="#soupModal">
+					    <button id="cart" type="button" class="modal-open-button" data-toggle="modal" data-target="#soupModal">
 					        <i class="fas fa-shopping-cart"></i>선택하러 가기
 					    </button>
+					    <!-- <span id="selectedMarketSoupName" class="d-flex">
+						  <span class="text-border"></span>
+						</span> -->
 				    </div>
 				</div>
 
@@ -205,8 +209,7 @@
 							</div>
 						</div>
 						<span class="d-flex mt-5 mb-1 food-option-title"> 옵션2.건강 마켓에서 선택하기 </span>
-						<button id="cart" type="button" data-toggle="modal"
-							data-target="#mainDishModal">
+						<button id="cart" type="button" class="modal-open-button" data-toggle="modal" data-target="#mainDishModal">
 							<i class="fas fa-shopping-cart"></i>선택하러 가기
 						</button>
 					</div>
@@ -234,23 +237,20 @@
 							</div>
 						</div>
 						<span class="d-flex mt-5 mb-1 food-option-title"> 옵션2.건강 마켓에서 선택하기 </span>
-						<button id="cart" type="button" data-toggle="modal"
-							data-target="#sideDishModal">
+						<button id="cart" type="button" data-toggle="modal" class="modal-open-button" data-target="#sideDishModal">
 							<i class="fas fa-shopping-cart"></i>선택하러 가기
 						</button>
 					</div>
 				</div>
 
 				<div class="diy-form-section-7">
-
 					<span> + 추가 상품 </span>
 					<div class="hr"></div>
 					<span class="d-flex mt-2 mb-1"> 건강마켓에서 추가 구성을 선택해보세요. </span>
-					<button id="cart" type="button" data-toggle="modal"
+					<button id="cart" type="button" data-toggle="modal" class="modal-open-button"
 						data-target="#etcFoodModal">
 						<i class="fas fa-shopping-cart"></i>선택하러 가기
 					</button>
-
 				</div>
 
 				<div class="diy-form-section-8">
@@ -287,45 +287,42 @@
 				</div>
 
 				<!-- Modal -->
-				<div class="modal fade" id="soupModal" tabindex="-1" role="dialog"
-					aria-labelledby="soupModalLabel" aria-hidden="true">
+				<div class="modal fade" id="soupModal" tabindex="-1" role="dialog" aria-labelledby="soupModalLabel" aria-hidden="true">
 					<div class="modal-dialog  modal-lg" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
 								<h5 class="modal-title" id="soupModalLabel">건강마켓에서 선택하기</h5>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
 							<div class="modal-body">
-								<span class="d-flex modalTitle"> Soup </span> <span
-									class="d-flex modalTitleDesc"> 원하는 국/찌개 종류를 선택하세요. </span>
+								<span class="d-flex modalTitle"> Soup </span>
+								<span class="d-flex modalTitleDesc"> 원하는 국/찌개 종류를 선택하세요. </span>
+								
 								<div class="modal-food-content">
-									<c:forEach var="i" begin="1" end="5">
-
-										<input class="modal-food-card" type="checkbox"
-											id="modalFood-soup-${i}" name="soupModalCheckBox"
-											onchange="handleCheckboxChange(this)">
-										<label for="modalFood-soup-${i}"> <img
-											class="modalFoodImg"
-											src="${pageContext.request.contextPath}/resources/images/market/가자미미역국.png">
-											<span class="d-flex">달콤한 겨울 무 </span> <span
-											class="d-flex modal-food-card-name">쇠고기 무국 </span> <span
-											class="d-flex modal-food-card-price">5800원 </span>
-										</label>
+									<c:forEach var="marketSoup" items="${marketSoups}">
+									    <input class="modal-food-card" type="radio" id="modalFood-soup-${marketSoup.id}" name="soupFoodId" value="${marketSoup.id}" onchange="handleSoupRadioButtonChange(this)">
+									    <label for="modalFood-soup-${marketSoup.id}">
+									        <img class="modalFoodImg" src="${marketSoup.imgUrl}">
+									        <span class="d-flex">${marketSoup.description}</span> 
+									        <span class="d-flex modal-food-card-name">${marketSoup.name}</span>
+									        <span class="d-flex modal-food-card-price">
+									            <fmt:formatNumber type="number" value="${marketSoup.price}" pattern="#,##0원"/>
+									        </span>
+									    </label>
 									</c:forEach>
-
 								</div>
 
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="modalCloseBtn" data-dismiss="modal">Close</button>
-								<button type="button" class="modalSaveBtn">Save</button>
+								<button type="button" class="modalCloseBtn" data-dismiss="modal">취소</button>
+								<button type="button" class="modalSaveBtn" data-dismiss="modal" onclick="handleModalSoupRadioButtonChange(this)">선택 완료</button>
 							</div>
 						</div>
 					</div>
 				</div>
+				
 				<!-- Modal -->
 				<div class="modal fade" id="mainDishModal" tabindex="-1"
 					role="dialog" aria-labelledby="mainDishModalLabel"
@@ -334,45 +331,38 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<h5 class="modal-title" id="mainDishModalLabel">건강마켓에서 선택하기</h5>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
 							<div class="modal-body">
-								<span class="d-flex modalTitle"> Main Dish </span> <span
-									class="d-flex modalTitleDesc"> 원하는 Main Dish를 선택하세요. (
-									1개 )</span>
+								<span class="d-flex modalTitle"> Main Dish </span>
+								<span class="d-flex modalTitleDesc"> 원하는 Main Dish를 선택하세요. (1개)</span>
 								<div class="modal-food-content">
-									<c:forEach var="i" begin="1" end="5">
-
-										<input class="modal-food-card" type="checkbox"
-											id="modalFood-main-${i}" name="soupModalCheckBox"
-											onchange="handleCheckboxChange(this)">
-										<label for="modalFood-main-${i}"> <img
-											class="modalFoodImg"
-											src="${pageContext.request.contextPath}/resources/images/market/LA갈비.png">
-											<span class="d-flex">LA갈비 맛있음 </span> <span
-											class="d-flex modal-food-card-name">LA갈비 </span> <span
-											class="d-flex modal-food-card-price">5800원 </span>
-										</label>
+									<c:forEach var="marketMain" items="${marketMains}">
+										<input class="modal-food-card" type="radio" id="modalFood-main-${marketMain.id}" name="mainFoodId" value="${marketMain.id}" onchange="handleCheckboxChange(this)">
+										<label for="modalFood-main-${marketMain.id}">
+											<img class="modalFoodImg" src="${marketMain.imgUrl}">
+											<span class="d-flex">${marketMain.description}</span> 
+											<span class="d-flex modal-food-card-name">${marketMain.name} </span> 
+											<span class="d-flex modal-food-card-price">
+									            <fmt:formatNumber type="number" value="${marketMain.price}" pattern="#,##0원"/>
+									        </span>										
+								        </label>
 									</c:forEach>
-
 								</div>
 
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="modalCloseBtn" data-dismiss="modal">Close</button>
-								<button type="button" class="modalSaveBtn">Save</button>
+								<button type="button" class="modalCloseBtn" data-dismiss="modal">취소</button>
+								<button type="button" class="modalSaveBtn" data-dismiss="modal" onclick="handleModalMainRadioButtonChange(this)">선택 완료</button>
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<!-- Modal -->
-				<div class="modal fade" id="sideDishModal" tabindex="-1"
-					role="dialog" aria-labelledby="sideDishModalLabel"
-					aria-hidden="true">
+				<div class="modal fade" id="sideDishModal" tabindex="-1" role="dialog" aria-labelledby="sideDishModalLabel" aria-hidden="true">
 					<div class="modal-dialog  modal-lg" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -384,28 +374,24 @@
 							</div>
 							<div class="modal-body">
 								<span class="d-flex modalTitle"> Side Dish </span> <span
-									class="d-flex modalTitleDesc"> 원하는 Side Dish를 선택하세요. ( 0
-									- 2개 )</span>
+									class="d-flex modalTitleDesc"> 원하는 Side Dish를 선택하세요. ( 0 - 2개 )</span>
 								<div class="modal-food-content">
-									<c:forEach var="i" begin="1" end="5">
-
-										<input class="modal-food-card" type="checkbox"
-											id="modalFood-side-${i}" name="soupModalCheckBox">
-										<label for="modalFood-side-${i}"> <img
-											class="modalFoodImg"
-											src="${pageContext.request.contextPath}/resources/images/market/깻잎지.png">
-											<span class="d-flex">깻잎지 맛있음 </span> <span
-											class="d-flex modal-food-card-name">깻잎지 </span> <span
-											class="d-flex modal-food-card-price">3000원 </span>
-										</label>
+									<c:forEach var="marketSide" items="${marketSides}">
+										<input class="modal-food-card" type="checkbox" id="modalFood-side-${marketSide.id}" value="${marketSide.id}" name="sideFoodIds">
+										<label for="modalFood-side-${marketSide.id}">
+											<img class="modalFoodImg" src="${marketSide.imgUrl}">
+											<span class="d-flex">${marketSide.description} </span>
+											<span class="d-flex modal-food-card-name">${marketSide.name}</span>
+											<span class="d-flex modal-food-card-price">
+									            <fmt:formatNumber type="number" value="${marketSide.price}" pattern="#,##0원"/>
+									        </span>											
+								        </label>
 									</c:forEach>
-
 								</div>
-
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="modalCloseBtn" data-dismiss="modal">Close</button>
-								<button type="button" class="modalSaveBtn">Save</button>
+								<button type="button" class="modalCloseBtn" data-dismiss="modal">취소</button>
+								<button type="button" class="modalSaveBtn" data-dismiss="modal" onclick="handleModalSideCheckboxButtonChange(this)">선택 완료</button>
 							</div>
 						</div>
 					</div>

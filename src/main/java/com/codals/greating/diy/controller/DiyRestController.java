@@ -45,6 +45,7 @@ public class DiyRestController {
 
 		/* log.info(loginUser); */
 		log.info(postRequest);
+		log.info("soupId=" + postRequest.getSoupFoodId());
 
 		// 톰캣 아래 바로 이미지 넣는 경로
 		String tomcatPath = session.getServletContext().getRealPath("/") + "resources/images";
