@@ -9,6 +9,7 @@
     <setting name="jdbcTypeForNull" value="NULL"/>
     <setting name="logImpl" value="LOG4J2"/>
     <setting name="mapUnderscoreToCamelCase" value="true" />
+    <setting name="useGeneratedKeys" value="true"/>
   </settings>
 
   <typeAliases>

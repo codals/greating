@@ -13,9 +13,11 @@ import lombok.ToString;
 @Setter
 @ToString
 public class DiyRequestDto {
-    private MultipartFile imgUpload;
+    private MultipartFile imgFile;
     private String dietType;
-    private String category;
+    private Integer foodCountryId;
+    private Integer mainCategoryId;
+    private Integer subCategoryId;
     private String dietName;
     private Integer minCalorie;
     private Integer maxCalorie;
@@ -25,8 +27,20 @@ public class DiyRequestDto {
     private Integer soupFoodId;
     private Integer mainFoodId;
     private List<Integer> sideFoodIds;
-    private List<String> additionalItems;
+    private Integer extraFoodId;
     private String content;   
+    
+    public void setFoodCountryId(String foodCountryId) {
+    	this.foodCountryId = Integer.valueOf(foodCountryId);
+    }
+    
+    public void setMainCategoryId(String mainCategoryId) {
+    	this.mainCategoryId = Integer.valueOf(mainCategoryId);
+    }
+    
+    public void setSubCategoryId(String subCategoryId) {
+    	this.subCategoryId = Integer.valueOf(subCategoryId);
+    }
     
     public void setMinCalorie(String minCalorie) {
 		this.minCalorie = Integer.valueOf(minCalorie);
@@ -61,5 +75,9 @@ public class DiyRequestDto {
 									  .map(Integer::valueOf)
 									  .collect(Collectors.toList());
 	}
+	
+    public void setExtraFoodId(String extraFoodId) {
+        this.extraFoodId = Integer.valueOf(extraFoodId);
+    }
 
 }

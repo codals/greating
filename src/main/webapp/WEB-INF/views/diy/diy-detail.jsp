@@ -47,7 +47,7 @@
 		<div class="main-info-container">
 
 			<div class="main-img">
-				<img src="/greating/resources/images/diy/img_diy_sample.png"
+				<img src="${postDetail.post.imgUrl}"
 					alt="Main Image">
 			</div>
 
@@ -96,7 +96,7 @@
 					<span class="info-title">투표 현황</span>
 					<div class="diy-vote-info">
 						<img src="/greating/resources/images/diy/img_greating_vote.png"
-							style="width: 30px; heigh: 30px;"> <span class="vote-count">${postDetail.post.likeCnt}</span>
+							style="width: 30px; heigh: 30px;"> <span class="vote-count">${postDetail.post.voteCnt}</span>
 						votes
 					</div>
 				</div>
