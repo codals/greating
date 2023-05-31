@@ -49,7 +49,7 @@
 	</select>
 
 	<select id="scrapList" resultType="MypageScrap">
-		SELECT p.title, u.username, p.min_calorie, p.max_calorie
+		SELECT p.title, u.username, p.min_calorie, p.max_calorie, p.img_url
 		FROM post_scrap ps
 		JOIN post p ON ps.post_id = p.id
 		JOIN "user" u ON p.user_id = u.id
@@ -57,7 +57,7 @@
 	</select>
 	
 	<select id="voteList" resultType="MypageScrap">
-		SELECT p.title, u.username, p.min_calorie, p.max_calorie
+		SELECT p.title, u.username, p.min_calorie, p.max_calorie, p.img_url
 		FROM vote ps
 		JOIN post p ON ps.post_id = p.id
 		JOIN "user" u ON p.user_id = u.id

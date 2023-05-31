@@ -44,7 +44,7 @@
 						<li class="myScrap-card">
 							<div class="myScrap-card-img">
 								<i class="fas fa-solid fa-thumbs-up fa-lg" style="color: #918c01;"></i>
-								<img src="/greating/resources/images/user/mypage-scrap.jpg">
+								<img src="${pageContext.request.contextPath}/${list.imgUrl }">
 							</div>
 							<div class="myScrap-card-info">
 								<h3>${list.postTitle }</h3>

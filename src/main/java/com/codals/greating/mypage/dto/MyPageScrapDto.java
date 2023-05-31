@@ -17,4 +17,5 @@ public class MyPageScrapDto {
 	private long minCalorie;
 	private long maxCalorie;
 	private long maxPrice;
+	private String imgUrl;
 }
