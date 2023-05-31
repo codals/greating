@@ -10,4 +10,6 @@ public interface DiyDAO {
 	Integer savePost(Post post);
 
 	int insertScrap(ScrapRequestDto requestDto);
+
+	int deleteScrap(ScrapRequestDto requestDto);
 }

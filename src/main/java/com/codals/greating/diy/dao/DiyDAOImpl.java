@@ -61,5 +61,11 @@ public class DiyDAOImpl implements DiyDAO {
 		return sqlSession.insert(statement, requestDto);
 	}
 
+	@Override
+	public int deleteScrap(ScrapRequestDto requestDto) {
+		String statement = "post.deleteScrap";
+		return sqlSession.delete(statement, requestDto);
+	}
+
 
 }

@@ -146,4 +146,18 @@ public class DiyServiceImpl implements DiyService{
 			return false;
 		}
 	}
+
+	@Override
+	public boolean cancelScrap(ScrapRequestDto requestDto) {
+		try {
+			if(diyDAO.deleteScrap(requestDto)==1) {
+				return true;
+			}
+			log.warn("해당 scrap 데이터가 없습니다.");
+			return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

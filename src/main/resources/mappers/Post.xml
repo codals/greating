@@ -121,6 +121,11 @@
 		INSERT INTO scrap(user_id, post_id)
 		values(#{userId},#{postId})
 	</insert>
+	
+	<delete id="deleteScrap" parameterType="ScrapRequestDto">
+		delete from scrap
+		where user_id=#{userId} and post_id=#{postId}
+	</delete>
 
 
 
