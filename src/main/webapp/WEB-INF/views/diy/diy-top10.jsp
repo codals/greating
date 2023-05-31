@@ -37,7 +37,7 @@
 
 	<main class="contents hd__inner1100">
 		<ul class="page-category">
-			<li>DIY 식단 </li>
+			<li>DIY 식단</li>
 			<li>></li>
 			<li class="highlight">DIY 식단 TOP 10</li>
 		</ul>
@@ -50,24 +50,11 @@
 				<hr>
 				<div class="healthy-top-slide fadeInUp">
 					<div class="slider healthy-slide">
-						<c:forEach var="i" begin="1" end="5">
+						<c:forEach items="${healthyPostTop10}" var="post">
 							<div class="slider-card healthy-card">
 								<img
-									src="https://image.greating.co.kr/IL/item/202305/04/M_F0B45E9D4C2D4E6A9A1B8F6278BE453D.jpg"
-									alt=""> <span> 건강도시락${i}</span>
-							</div>
-							<div class="slider-card healthy-card">
-								<img
-									src="https://image.greating.co.kr/IL/item/202206/22/M_73739E08C1E94719B3566C12F5D4273D.jpg"
-									alt=""> <span> 건강도시락${i}</span>
-
-
-							</div>
-							<div class="slider-card healthy-card">
-								<img
-									src="https://image.greating.co.kr/IL/item/202105/12/M_0F0F4859EBC54DEBB8A291659222E515.jpg"
-									alt=""> <span> 건강도시락${i}</span>
-
+									src="${post.imgUrl}"
+									alt=""> <span> ${post.title}</span>
 							</div>
 						</c:forEach>
 						<a class="carousel-control-prev" href="#carousel-controls"
@@ -91,24 +78,11 @@
 				<hr>
 				<div class="care-top-slide fadeInUp">
 					<div class="slider care-slide">
-						<c:forEach var="i" begin="1" end="5">
+						<c:forEach items="${medicalPostTop10}" var="post">
 							<div class="slider-card care-card">
 								<img
-									src="https://image.greating.co.kr/IL/item/202305/04/M_F0B45E9D4C2D4E6A9A1B8F6278BE453D.jpg"
-									alt=""> <span> 질환맞춤도시락${i}</span>
-							</div>
-							<div class="slider-card care-card">
-								<img
-									src="https://image.greating.co.kr/IL/item/202206/22/M_73739E08C1E94719B3566C12F5D4273D.jpg"
-									alt=""> <span> 질환맞춤도시락${i}</span>
-
-
-							</div>
-							<div class="slider-card care-card">
-								<img
-									src="https://image.greating.co.kr/IL/item/202105/12/M_0F0F4859EBC54DEBB8A291659222E515.jpg"
-									alt=""> <span> 질환맞춤도시락${i}</span>
-
+									src="${post.imgUrl}"
+									alt=""> <span> ${post.title}</span>
 							</div>
 						</c:forEach>
 						<a class="carousel-control-prev" href="#carousel-controls"
@@ -132,25 +106,13 @@
 				<hr>
 				<div class="challenge-top-slide fadeInUp">
 					<div class="slider challenge-slide">
-						<c:forEach var="i" begin="1" end="5">
+						<c:forEach items="${callengePostTop10}" var="post">
 							<div class="slider-card challenge-card">
 								<img
-									src="https://image.greating.co.kr/IL/item/202305/04/M_F0B45E9D4C2D4E6A9A1B8F6278BE453D.jpg"
-									alt=""> <span> 챌린지도시락${i}</span>
+									src="${post.imgUrl}"
+									alt=""> <span> ${post.title}</span>
 							</div>
-							<div class="slider-card challenge-card">
-								<img
-									src="https://image.greating.co.kr/IL/item/202206/22/M_73739E08C1E94719B3566C12F5D4273D.jpg"
-									alt=""> <span> 챌린지도시락${i}</span>
-
-
-							</div>
-							<div class="slider-card challenge-card">
-								<img
-									src="https://image.greating.co.kr/IL/item/202105/12/M_0F0F4859EBC54DEBB8A291659222E515.jpg"
-									alt=""> <span> 챌린지도시락${i}</span>
-
-							</div>
+							
 						</c:forEach>
 						<a class="carousel-control-prev" href="#carousel-controls"
 							role="button" data-slide="prev"> <span

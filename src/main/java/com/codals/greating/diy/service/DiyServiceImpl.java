@@ -2,6 +2,7 @@ package com.codals.greating.diy.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -191,6 +192,11 @@ public class DiyServiceImpl implements DiyService{
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	@Override
+	public List<Post> loadPostsByCategoryType(int mainCategoryId) {
+		return diyDAO.selectPostsByMainCategory(mainCategoryId);
 	}
       
 }

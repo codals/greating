@@ -1,5 +1,7 @@
 package com.codals.greating.diy.dao;
 
+import java.util.List;
+
 import com.codals.greating.diy.dto.PostResponseDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.dto.VoteRequestDto;
@@ -15,4 +17,6 @@ public interface DiyDAO {
   
 	int insertVote(VoteRequestDto requestDto) throws Exception;
 	int deleteVote(VoteRequestDto requestDto) throws Exception;
+
+	List<Post> selectPostsByMainCategory(int id);
 }
