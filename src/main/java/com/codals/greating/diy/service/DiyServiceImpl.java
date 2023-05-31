@@ -150,9 +150,17 @@ public class DiyServiceImpl implements DiyService{
 	}
 
 	@Override
+	@Transactional
 	public boolean cancelVote(VoteRequestDto requestDto) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			if(diyDAO.cancelVote(requestDto)==1) {
+				return true;
+			}
+			return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 

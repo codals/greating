@@ -98,7 +98,7 @@
 				</div>
 
 				<div class="button-group">
-					<button class="vote-button" onclick="votePost(${postDetail.post.id}, ${loginUser.id})">
+					<button class="vote-button" onclick="voteCancel(${postDetail.post.id})">
 						<span>♡ 투표하기</span>
 					</button>
 					<button class="green-button">

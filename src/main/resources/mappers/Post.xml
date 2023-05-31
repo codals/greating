@@ -126,9 +126,14 @@
 	<!-- vote 관련 -->
 	<insert id="insertVote" parameterType="VoteRequestDto">
 		INSERT INTO vote (user_id, post_id)
-		VALUES (#{userId}, 200)
+		VALUES (#{userId}, #{postId})
 	</insert>
 
+	<delete id="deleteVote" parameterType="VoteRequestDto">
+		delete from vote 
+		where user_id=#{userId} and post_id=#{postId}
+	</delete>
+	
 
 
 </mapper>

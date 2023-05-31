@@ -67,4 +67,10 @@ public class DiyDAOImpl implements DiyDAO {
 
 
 
+	@Override
+	public int cancelVote(VoteRequestDto requestDto) throws Exception {
+		String statement = "post.deleteVote";
+		return sqlSession.delete(statement, requestDto);
+	}
+
 }

@@ -13,7 +13,7 @@ import lombok.ToString;
 @AllArgsConstructor
 public class VoteRequestDto {
 
-	private int postId;
-	private int userId;
+	private Integer postId;
+	private Integer userId;
 
 }
