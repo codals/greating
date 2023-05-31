@@ -405,8 +405,7 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<h5 class="modal-title" id="etcFoodModalLabel">건강마켓에서 선택하기</h5>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
@@ -414,17 +413,15 @@
 								<span class="d-flex modalTitle"> 추가 구성 </span> <span
 									class="d-flex modalTitleDesc"> 원하는 추가 구성품을 선택하세요. ( 0 - 2개 )</span>
 								<div class="modal-food-content">
-									<c:forEach var="i" begin="1" end="5">
-
-										<input class="modal-food-card" type="checkbox"
-											id="modalFood-etc-${i}" name="extraFoodId"
-											onchange="handleCheckboxChange(this)">
-										<label for="modalFood-etc-${i}"> <img
-											class="modalFoodImg"
-											src="${pageContext.request.contextPath}/resources/images/market/탕수육.png">
-											<span class="d-flex">탕수육 겁나 맛있음 </span> <span
-											class="d-flex modal-food-card-name">탕수육 </span> <span
-											class="d-flex modal-food-card-price">3000원 </span>
+									<c:forEach var="marketExtra" items="${marketExtras}">
+										<input class="modal-food-card" type="radio" id="modalFood-etc-${marketExtra.id}" name="extraFoodId" value="${marketExtra.id}" onchange="handleCheckboxChange(this)">
+										<label for="modalFood-etc-${marketExtra.id}">
+											<img class="modalFoodImg" src="${marketExtra.imgUrl}">
+											<span class="d-flex">${marketExtra.description} </span>
+											<span class="d-flex modal-food-card-name">${marketExtra.name}</span>
+											<span class="d-flex modal-food-card-price">
+									            <fmt:formatNumber type="number" value="${marketExtra.price}" pattern="#,##0원"/>
+									        </span>
 										</label>
 									</c:forEach>
 

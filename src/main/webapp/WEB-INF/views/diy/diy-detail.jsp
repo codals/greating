@@ -1,11 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>DIY 식단 상세보기</title>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
 
 <!-- css로 가져오기 -->
 <link href="/greating/resources/css/reset.css" rel="stylesheet">
@@ -15,27 +17,21 @@
 <script src="/greating/resources/js/diy/diy-detail.js"></script>
 
 <!-- font 가져오기 -->
-<link
-	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"
-	rel="stylesheet" />
-<link
-	href="https://fonts.googleapis.com/css?family=NanumMyeongjo&display=swap"
-	rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=NanumMyeongjo&display=swap" rel="stylesheet" />
 
 <!-- bootstrap -->
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
 </head>
+
 
 <body>
 
 	<!-- header 가져오기 -->
 	<jsp:include page="../templates/header.jsp" />
 	<div class="hr"></div>
-
 
 	<!-- 본 페이지 내용 -->
 	<div class="main-content hd__inner1100">
@@ -47,8 +43,7 @@
 		<div class="main-info-container">
 
 			<div class="main-img">
-				<img src="${postDetail.post.imgUrl}"
-					alt="Main Image">
+				<img src="${postDetail.post.imgUrl}" alt="Main Image">
 			</div>
 
 			<div class="main-info-text-container">

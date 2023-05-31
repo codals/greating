@@ -13,7 +13,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class DiyRequestDto {
-    private MultipartFile imgFile;
+//    private MultipartFile imgFile;
     private String fileName;
     private String dietType;
     private Integer foodCountryId;
@@ -29,7 +29,11 @@ public class DiyRequestDto {
     private Integer mainFoodId;
     private List<Integer> sideFoodIds;
     private Integer extraFoodId;
-    private String content;   
+    private String content;
+    
+    public void setFileName(String fileName) {
+    	this.fileName = "http://119.209.77.170:48000/download/codals/" + fileName + "?token=wecangohdite";
+    }
     
     public void setFoodCountryId(String foodCountryId) {
     	this.foodCountryId = Integer.valueOf(foodCountryId);

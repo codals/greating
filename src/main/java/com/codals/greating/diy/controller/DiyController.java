@@ -31,11 +31,6 @@ public class DiyController {
 	private final DiyService diyService;
 	
 	private final FoodService foodService;
-
-//	@ModelAttribute("rices")
-//	public List<FoodSimpleDto> loadAllRices() {
-//		return diyService.loadAllRices();
-//	}
 	
 	@GetMapping
 	public String loadMainPage() {

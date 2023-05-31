@@ -8,10 +8,6 @@ public interface DiyService {
 
 	PostResponseDto getPostDetail(int postId);
 
-	Integer savePost(User loginUser, DiyRequestDto newPost, String path);
-
-	int savePostAndImage(User loginUser, DiyRequestDto postRequest);
-
 	int savePost(User loginUser, DiyRequestDto postRequest);
 	
 }
