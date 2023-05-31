@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.codals.greating.mypage.dto.MyPageDto;
@@ -48,18 +49,19 @@ public class MyPageController {
     }
     
     @GetMapping("/diets")
-    public String loadMyDietPage(@SessionAttribute("loginUser") User loginUser, MyPageDto dto, Model model) {
+    public String loadMyDietPage(@SessionAttribute("loginUser") User loginUser, MyPageDto dto,
+    		@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
 
     	// 사용자 ID를 가져와서 dto에 설정
         dto.setUserId(loginUser.getId());
         
         // dto를 기반으로 사용자의 글 목록을 조회
-        List<MyPageDto> dietList = service.diyList(dto);
+        List<MyPageDto> dietList = service.diyList(dto, page);
         
         model.addAttribute("dto", dto);
         model.addAttribute("list", dietList);
-        
-        
+        System.out.println(dietList);
+        System.out.println(page);
         return "user/mypage-mydiy";
     }
 

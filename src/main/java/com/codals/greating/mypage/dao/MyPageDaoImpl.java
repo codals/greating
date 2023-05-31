@@ -1,6 +1,8 @@
 package com.codals.greating.mypage.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,11 @@ public class MyPageDaoImpl implements MyPageDao {
 	public List<MyPageDto> voteList(MyPageScrapDto dto) {
 		// TODO Auto-generated method stub
 		return sqlsession.selectList("mypage.voteList", dto);
+	}
+
+	@Override
+	public int getTotalPageCount(long userId) {
+		return sqlsession.selectOne("mypage.getTotalPageCount", userId);
 	}
 
 
