@@ -44,7 +44,7 @@
 				</div>
 
 				<ul>
-					<c:forEach var="i" begin="1" end="6">
+					<c:forEach items="${list }" var="list" >
 						<li class="myScrap-card">
 							<div class="myScrap-card-img">
 								<i class="fas fa-solid fa-bookmark fa-lg"
@@ -52,14 +52,14 @@
 									src="/greating/resources/images/user/mypage-scrap.jpg">
 							</div>
 							<div class="myScrap-card-info">
-								<h3>제목</h3>
+								<h3>${list.postTitle }</h3>
 								<div class="author-info">
 									<p>영양사</p>
-									<p>작성자정보</p>
+									<p>${list.userName }</p>
 								</div>
 								<div class="calorie-info">
 									<p>희망칼로리</p>
-									<p>000Kcal</p>
+									<p>${list.minCalorie}~${list.maxCalorie}Kcal</p>
 								</div>
 							</div>
 						</li>

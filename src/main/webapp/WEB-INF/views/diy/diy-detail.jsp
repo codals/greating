@@ -43,7 +43,7 @@
 		<div class="main-info-container">
 
 			<div class="main-img">
-				<img src="/greating/resources/images/diy/img_diy_sample.png"
+				<img src="${postDetail.post.imgUrl}"
 					alt="Main Image">
 			</div>
 

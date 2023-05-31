@@ -11,7 +11,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class User extends BaseEntity {
 
-    private Long id;
+    private Integer id;
     private String username;
     private String name;
     private String password;
@@ -21,7 +21,7 @@ public class User extends BaseEntity {
     private String phone;
     private String role;
 
-    public User(Long id,
+    public User(Integer id,
                 String username,
                 String name,
                 String password,

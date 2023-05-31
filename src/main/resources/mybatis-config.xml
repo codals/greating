@@ -9,6 +9,7 @@
     <setting name="jdbcTypeForNull" value="NULL"/>
     <setting name="logImpl" value="LOG4J2"/>
     <setting name="mapUnderscoreToCamelCase" value="true" />
+    <setting name="useGeneratedKeys" value="true"/>
   </settings>
 
   <typeAliases>
@@ -18,6 +19,8 @@
     <typeAlias alias="PostResponseDto" type="com.codals.greating.diy.dto.PostResponseDto"/>
     <typeAlias alias="MainCategory" type="com.codals.greating.diet.entity.MainCategory"/>
     <typeAlias alias="SubCategory" type="com.codals.greating.diet.entity.SubCategory"/>
+    <typeAlias alias="MypageDiy" type="com.codals.greating.mypage.dto.MyPageDto"/>
+    <typeAlias alias="MypageScrap" type="com.codals.greating.mypage.dto.MyPageScrapDto"/>
     <typeAlias alias="VoteRequestDto" type="com.codals.greating.diy.dto.VoteRequestDto"/>
     
   </typeAliases>

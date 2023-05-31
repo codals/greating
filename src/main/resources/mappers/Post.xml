@@ -23,6 +23,7 @@
 			<result property="userId" column="user_id" />
 			<result property="title" column="title" />
 			<result property="content" column="content" />
+			<result property="imgUrl" column="img_url" />
 			<result property="minCalorie" column="min_calorie" />
 			<result property="maxCalorie" column="max_calorie" />
 			<result property="maxPrice" column="max_price" />
@@ -102,6 +103,24 @@
 		WHERE
 		id = #{id}
 	</select>
+	
+	<insert id="insertPost" parameterType="Post">
+	    <![CDATA[
+	    INSERT INTO post (main_category_id, sub_category_id, food_country_id, user_id, title, "CONTENT", img_url, rice_food_id, soup_food_id, main_food_id, side1_food_id, side2_food_id, extra_food_id, min_calorie, max_calorie, min_price, max_price)
+	    VALUES (#{mainCategoryId}, #{subCategoryId}, #{foodCountryId}, #{userId}, #{title}, #{content}, #{imgUrl}, #{riceFoodId}, #{soupFoodId}, #{mainFoodId}, #{side1FoodId}, #{side2FoodId}, #{extraFoodId}, #{minCalorie}, #{maxCalorie}, #{minPrice}, #{maxPrice})
+	    ]]>
+	</insert>
+	
+	<!-- 현재 세션에 대한 마지막 삽입 ID를 반환하기 때문에 다른 스레드가 동시에 삽입을 수행하는 경우에도 올바른 ID 값을 반환할 수 있음 -->
+    <select id="nextPostId" resultType="java.lang.Integer">
+	  SELECT POST_ID_SEQ.NEXTVAL FROM DUAL
+	</select>
+	
+	<select id="selectLastInsertedId" resultType="java.lang.Integer">
+	  SELECT POST_ID_SEQ.CURRVAL AS id FROM DUAL
+	</select>
+
+	
 
 
 	<!-- vote 관련 -->
