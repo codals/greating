@@ -60,10 +60,6 @@ public class DiyController {
 		List<Post> medicalPostTop10 = diyService.loadPostsByCategoryType(MainCategoryCode.MEDICAL_DIET.getId());
 		List<Post> callengePostTop10 = diyService.loadPostsByCategoryType(MainCategoryCode.CHALLENGE_DIET.getId());
 		
-		log.info(healthyPostTop10);
-		log.info(medicalPostTop10);
-		log.info(callengePostTop10);
-		
 		model.addAttribute("healthyPostTop10", healthyPostTop10);
 		model.addAttribute("medicalPostTop10", medicalPostTop10);
 		model.addAttribute("callengePostTop10", callengePostTop10);
