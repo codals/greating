@@ -43,6 +43,7 @@
 							<ul class="box">
 								<c:forEach var="diet" items="${dailyDiet.diets}" varStatus="status2">
 									<li class="meal-card">
+										<input value="${diet.dietId}" class="meal-diet meal-diet-${status.index + 1}-${status2.index + 1}" type="hidden">
 										<div class="meal-card-img">
 											<img src="${diet.thumbnailImgUrl}" alt="thumbnailImgUrl">
 										</div>

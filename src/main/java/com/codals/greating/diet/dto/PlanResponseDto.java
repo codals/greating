@@ -1,8 +1,5 @@
 package com.codals.greating.diet.dto;
 
-import com.codals.greating.diet.entity.Diet;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import lombok.Data;
 
