@@ -1,4 +1,4 @@
-package com.codals.greating.config;
+package com.codals.greating.constant;
 
 import lombok.Getter;
 
