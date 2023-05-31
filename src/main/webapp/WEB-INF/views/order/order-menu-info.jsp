@@ -40,7 +40,7 @@
                                 <c:forEach var="diet" items="${dailyDiet.diets}">
                                     <li class="meal-card">
                                         <div class="meal-card-img">
-                                            <img src="${diet.thumbnailImgUrl}">
+                                            <img src="${diet.thumbnailImgUrl}" alt="thumbnailImgUrl">
                                         </div>
                                         <div class="meal-card-title">${diet.name}</div>
                                         <div class="meal-card-price-sec">

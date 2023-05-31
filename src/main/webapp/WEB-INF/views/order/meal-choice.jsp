@@ -34,25 +34,25 @@
 
 		<div id="mchoice">
 
-			<c:forEach var="dailyDiet" items="${dailyDiets}">
+			<c:forEach var="dailyDiet" items="${dailyDiets}" varStatus="status">
 
 				<section class="meals-area">
 					<div class="meals-area-cont">
 						<h3 class="meals-area-cont-title">${dailyDiet.startDate} / ${dailyDiet.endDate}</h3>
 						<div class="meals-choice">
 							<ul class="box">
-								<c:forEach var="diet" items="${dailyDiet.diets}">
+								<c:forEach var="diet" items="${dailyDiet.diets}" varStatus="status2">
 									<li class="meal-card">
 										<div class="meal-card-img">
-											<img src="${diet.thumbnailImgUrl}">
+											<img src="${diet.thumbnailImgUrl}" alt="thumbnailImgUrl">
 										</div>
 										<div class="meal-card-count">
-											<button type="button" class="minus-btn minus-btn-${dailyDiet}-${j}"
+											<button type="button" class="minus-btn minus-btn-${status.index + 1}-${status2.index + 1}"
 												value="9500">
 												<i class="fas fa-minus fa-lg" style="color: #ffffff;"></i>
 											</button>
-											<div class="meal-count meal-count-${i}-${j}">0</div>
-											<button type="button" class="plus-btn plus-btn-${i}-${j}"
+											<div class="meal-count meal-count-${status.index + 1}-${status2.index + 1}">0</div>
+											<button type="button" class="plus-btn plus-btn-${status.index + 1}-${status2.index + 1}"
 												value="9500">
 												<i class="fas fa-plus fa-lg" style="color: #ffffff;"></i>
 											</button>
