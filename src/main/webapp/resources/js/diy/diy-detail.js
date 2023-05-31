@@ -15,9 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-function votePost(postId, userId){
-	console.log("postId", postId, "userId", userId);
-	
+function vote(postId){
 	 $.ajax({
 	        url: "/greating/api/mealdiy/vote",
 	        type: "POST",
@@ -26,27 +24,22 @@ function votePost(postId, userId){
 	            userId: userId
 	        },
 	        success: function(response) {
-	            console.log("Vote successful!");
 	            alert('투표 완료되었습니다. 마이페이지를 확인해주세요.');
 	        },
 	        error: function(xhr, status, error) {
-	            console.log("Vote failed:", error);
 	            alert('투표에 실패하였습니다! 관리자에게 문의해주세요');
-
 	        }
 	    });
 }
 
-function voteCancel(postId){
+function cancelVote(postId){
 	 $.ajax({
 	        url: "/greating/api/mealdiy/"+postId+"/vote" ,
 	        type: "DELETE",
 	        success: function(response) {
-	            console.log("Vote successful!");
 	            alert('투표취소 되었습니다.');
 	        },
 	        error: function(xhr, status, error) {
-	            console.log("Vote failed:", error);
 	            alert('투표 취소에 실패하였습니다! 관리자에게 문의해주세요');
 	        }
 	    });
