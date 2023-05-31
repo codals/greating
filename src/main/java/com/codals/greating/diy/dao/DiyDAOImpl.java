@@ -10,9 +10,12 @@ import com.codals.greating.diy.dto.PostResponseDto;
 import com.codals.greating.diy.entity.Post;
 import com.codals.greating.exception.BusinessException;
 import com.codals.greating.exception.ErrorCode;
+import com.codals.greating.diy.dto.VoteRequestDto;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Repository
 @RequiredArgsConstructor
 public class DiyDAOImpl implements DiyDAO {
@@ -54,5 +57,20 @@ public class DiyDAOImpl implements DiyDAO {
 	    return nextVal-1;
 	}
 
+
+
+	@Override
+	public int insertVote(VoteRequestDto requestDto) throws Exception{
+		String statement = "post.insertVote";
+		return sqlSession.insert(statement,requestDto);
+	}
+
+
+
+	@Override
+	public int deleteVote(VoteRequestDto requestDto) throws Exception {
+		String statement = "post.deleteVote";
+		return sqlSession.delete(statement, requestDto);
+	}
 
 }

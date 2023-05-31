@@ -21,6 +21,8 @@
     <typeAlias alias="SubCategory" type="com.codals.greating.diet.entity.SubCategory"/>
     <typeAlias alias="MypageDiy" type="com.codals.greating.mypage.dto.MyPageDto"/>
     <typeAlias alias="MypageScrap" type="com.codals.greating.mypage.dto.MyPageScrapDto"/>
+    <typeAlias alias="VoteRequestDto" type="com.codals.greating.diy.dto.VoteRequestDto"/>
+    
   </typeAliases>
   
 </configuration>
