@@ -74,10 +74,22 @@
 				<!-- 페이징 버튼 -->
 				<div class="pagination">
 					<c:if test="${dto.page > 1}">
+						<a href="/greating/mypage/diets?page=1">처음</a>
 						<a href="/greating/mypage/diets?page=${dto.page - 1}">이전</a>
 					</c:if>
 
-					<c:forEach var="pageNum" begin="1" end="${dto.totalPage }">
+					<c:set var="startPage" value="${dto.page - 2}" />
+					<c:set var="endPage" value="${dto.page + 2}" />
+					<c:if test="${startPage < 1}">
+						<c:set var="startPage" value="1" />
+						<c:set var="endPage" value="5" />
+					</c:if>
+					<c:if test="${endPage > dto.totalPage}">
+						<c:set var="startPage" value="${dto.totalPage - 4}" />
+						<c:set var="endPage" value="${dto.totalPage}" />
+					</c:if>
+
+					<c:forEach var="pageNum" begin="${startPage}" end="${endPage}">
 						<c:choose>
 							<c:when test="${pageNum eq dto.page}">
 								<strong>${pageNum}</strong>
@@ -90,8 +102,10 @@
 
 					<c:if test="${dto.page < dto.totalPage}">
 						<a href="/greating/mypage/diets?page=${dto.page + 1}">다음</a>
+						<a href="/greating/mypage/diets?page=${dto.totalPage}">끝</a>
 					</c:if>
 				</div>
+
 
 			</div>
 		</div>

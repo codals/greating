@@ -83,3 +83,37 @@
 	color: #918c01;
 	vertical-align: bottom;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination a {
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: 1px solid #ececec;
+  border-radius: 3px;
+  background-color: #ececec
+}
+
+.pagination a:hover,
+.pagination a:active {
+  background-color: olive;
+  text-decoration: none;
+  color: white;
+  border: 1px solid #c0c0c0;
+  border-radius: 3px;
+}
+
+.pagination strong {
+  background-color: #918c01;
+  color: white;
+  padding: 5px 10px;
+  border: 1px solid #c0c0c0;
+  border-radius: 3px;
+}

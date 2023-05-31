@@ -29,6 +29,5 @@ public class MyPageDto {
     private int endRow;
 	private int page;
 	private int totalPage;
-	private int totalPageCount;
 }
 
