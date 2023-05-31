@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/diets/mygreating")
 public class DietRestController {
 
+    public static final int MAX_INACTIVE_INTERVAL = 300;
+    public static final int DELIVERY_MAX_INACTIVE_INTERVAL = 300;
+
     @PostMapping("/orders")
     public boolean order() {
         /**
@@ -25,7 +28,7 @@ public class DietRestController {
     @PostMapping("/orders/delivery")
     public ResponseEntity<Boolean> saveDelivery(@RequestBody DietDeliveryRequestDto dietDeliveryRequestDto, HttpSession session) {
         session.setAttribute(DELIVERY_DATES, dietDeliveryRequestDto.getDates());
-        session.setMaxInactiveInterval(300);
+        session.setMaxInactiveInterval(DELIVERY_MAX_INACTIVE_INTERVAL);
         return ResponseEntity.ok(true);
     }
 

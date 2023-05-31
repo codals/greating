@@ -5,7 +5,8 @@ import com.codals.greating.diet.dto.PlanResponseDto;
 import com.codals.greating.diet.dto.PreviewDietResponseDto;
 import com.codals.greating.diet.dto.PreviewResponseDto;
 import com.codals.greating.diet.entity.DailyDiet;
-import java.text.SimpleDateFormat;
+import com.codals.greating.user.entity.User;
+import com.codals.greating.util.DateUtil;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.Date;
@@ -23,7 +24,7 @@ public class DietServiceImpl implements DietService {
 
     @Override
     public List<PreviewResponseDto> getWeeklyDailyDiets() {
-        List<DailyDiet> dailyDiets = dailyDietDao.selectDailyDietsByStartDate(getDeliveryDateFormat(new Date()))
+        List<DailyDiet> dailyDiets = dailyDietDao.selectDailyDietsByStartDate(DateUtil.dateToString(new Date()))
             .orElseGet(null);
         return getPreviewResponseDto(dailyDiets);
     }
@@ -32,7 +33,7 @@ public class DietServiceImpl implements DietService {
     public List<PlanResponseDto> getDailyDietsByDeliveryDates(List<Date> deliveryDates) {
         return deliveryDates.stream()
             .map(deliveryDate -> {
-                String deliveryDateFormat = getDeliveryDateFormat(deliveryDate);
+                String deliveryDateFormat = DateUtil.dateToString(deliveryDate);
                 List<DailyDiet> dailyDiets = dailyDietDao.selectAllByStartDateOrEndDate(deliveryDateFormat).orElse(null);
                 List<PreviewDietResponseDto> dietsResponse = dailyDiets.stream()
                     .map(dailyDiet -> new PreviewDietResponseDto(dailyDiet.getDiet()))
@@ -56,9 +57,5 @@ public class DietServiceImpl implements DietService {
 
     private PreviewDietResponseDto getPreviewDietResponseDto(DailyDiet dailyDiet) {
         return new PreviewDietResponseDto(dailyDiet.getDiet());
-    }
-
-    private String getDeliveryDateFormat(Date date) {
-        return new SimpleDateFormat("yyyy-MM-dd").format(date);
     }
 }
