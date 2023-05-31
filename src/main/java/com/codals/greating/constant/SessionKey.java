@@ -3,13 +3,7 @@ package com.codals.greating.constant;
 import lombok.Getter;
 
 @Getter
-public enum SessionKey {
+public class SessionKey {
 
-    LOGIN_USER("loginUser");
-
-    private final String key;
-
-    SessionKey(String key) {
-        this.key = key;
-    }
+    public static final String LOGIN_USER = "loginUser";
 }
