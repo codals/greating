@@ -14,4 +14,6 @@ public interface MyPageService {
 
 	public List<MyPageDto> scrapList(MyPageScrapDto dto);
 
+	public List<MyPageDto> voteList(MyPageScrapDto dto);
+
 }

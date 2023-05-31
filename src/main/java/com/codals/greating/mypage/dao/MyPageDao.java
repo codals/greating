@@ -12,4 +12,6 @@ public interface MyPageDao {
 
 	List<MyPageDto> scrapList(MyPageScrapDto dto);
 
+	List<MyPageDto> voteList(MyPageScrapDto dto);
+
 }

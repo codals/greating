@@ -29,5 +29,11 @@ public class MyPageDaoImpl implements MyPageDao {
 		return sqlsession.selectList("mypage.scrapList", dto);
 	}
 
+	@Override
+	public List<MyPageDto> voteList(MyPageScrapDto dto) {
+		// TODO Auto-generated method stub
+		return sqlsession.selectList("mypage.voteList", dto);
+	}
+
 
 }
