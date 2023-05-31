@@ -9,7 +9,7 @@ public interface DiyDAO {
 
 	Integer savePost(Post post);
 
-	int vote(VoteRequestDto requestDto) throws Exception;
+	int insertVote(VoteRequestDto requestDto) throws Exception;
 
-	int cancelVote(VoteRequestDto requestDto) throws Exception;
+	int deleteVote(VoteRequestDto requestDto) throws Exception;
 }

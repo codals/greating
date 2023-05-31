@@ -139,7 +139,7 @@ public class DiyServiceImpl implements DiyService{
 	@Transactional
 	public boolean vote(VoteRequestDto requestDto) {
 		try {
-			if(diyDAO.vote(requestDto)==1) {
+			if(diyDAO.insertVote(requestDto)==1) {
 				return true;
 			}
 			return false;
@@ -153,7 +153,7 @@ public class DiyServiceImpl implements DiyService{
 	@Transactional
 	public boolean cancelVote(VoteRequestDto requestDto) {
 		try {
-			if(diyDAO.cancelVote(requestDto)==1) {
+			if(diyDAO.deleteVote(requestDto)==1) {
 				return true;
 			}
 			return false;

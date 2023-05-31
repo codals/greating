@@ -60,7 +60,7 @@ public class DiyDAOImpl implements DiyDAO {
 
 
 	@Override
-	public int vote(VoteRequestDto requestDto) throws Exception{
+	public int insertVote(VoteRequestDto requestDto) throws Exception{
 		String statement = "post.insertVote";
 		return sqlSession.insert(statement,requestDto);
 	}
@@ -68,7 +68,7 @@ public class DiyDAOImpl implements DiyDAO {
 
 
 	@Override
-	public int cancelVote(VoteRequestDto requestDto) throws Exception {
+	public int deleteVote(VoteRequestDto requestDto) throws Exception {
 		String statement = "post.deleteVote";
 		return sqlSession.delete(statement, requestDto);
 	}
