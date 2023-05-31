@@ -39,12 +39,13 @@
 			<result property="username" column="username" />
 			<result property="name" column="name" />
 		</association>
-		
-		<association property="mainCategory" javaType="MainCategory">
+
+		<association property="mainCategory"
+			javaType="MainCategory">
 			<id property="id" column="main_cate_id" />
 			<result property="name" column="main_cate_name" />
 		</association>
-		
+
 		<association property="subCategory" javaType="SubCategory">
 			<id property="id" column="sub_cate_id" />
 			<result property="name" column="sub_cate_name" />
@@ -78,16 +79,19 @@
 	<!-- SELECT 쿼리 실행 -->
 	<select id="selectPostByPostId" parameterType="int"
 		resultMap="postResponseDtoResultMap">
-		SELECT p.*, u.id as user_id , u.username as username, u.name as name, 
-				main_cate.id as main_cate_id, main_cate.name as main_cate_name, 
-				sub_cate.id as sub_cate_id, sub_cate.name as sub_cate_name
+		SELECT p.*, u.id as user_id , u.username as username, u.name
+		as name,
+		main_cate.id as main_cate_id, main_cate.name as main_cate_name,
+		sub_cate.id as sub_cate_id, sub_cate.name as sub_cate_name
 		FROM post p
-		JOIN "user" u on p.user_id = u.id
+		JOIN "user"
+		u on p.user_id = u.id
 		LEFT JOIN
 		main_category main_cate on
 		p.main_category_id = main_cate.id
 		LEFT JOIN
-		sub_category sub_cate on p.sub_category_id = sub_cate.id
+		sub_category sub_cate on
+		p.sub_category_id = sub_cate.id
 		WHERE p.id = #{postId}
 	</select>
 
@@ -98,4 +102,14 @@
 		WHERE
 		id = #{id}
 	</select>
+
+
+	<!-- vote 관련 -->
+	<insert id="insertVote" parameterType="VoteRequestDTO">
+		INSERT INTO vote (user_id, post_id)
+		VALUES (#{userId}, 200)
+	</insert>
+
+
+
 </mapper>

@@ -2,6 +2,8 @@ package com.codals.greating.diy.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.codals.greating.diy.dto.DiyRequestDto;
+import com.codals.greating.diy.dto.VoteRequestDTO;
 import com.codals.greating.diy.service.DiyService;
 import com.codals.greating.user.entity.User;
 
@@ -40,6 +43,7 @@ public class DiyRestController {
 								@ModelAttribute DiyRequestDto newPost,
 								HttpSession session) {
 
+		
 		/* log.info(loginUser); */
 		log.info(newPost);
 
@@ -50,4 +54,16 @@ public class DiyRestController {
 
 		return "/greating/mealdiy/" + "1";
 	}
+	
+
+
+	@PostMapping("/vote")
+	public ResponseEntity<Boolean>  votePost(VoteRequestDTO requestDTO) {
+		if(diyService.votePost(requestDTO)==1) {
+			return ResponseEntity.ok().build();
+
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+	}
+	
 }

@@ -13,3 +13,25 @@ document.addEventListener("DOMContentLoaded", function() {
 		});
 	});
 });
+
+
+function votePost(postId, userId){
+	console.log("postId", postId, "userId", userId);
+	
+	 $.ajax({
+	        url: "/greating/api/mealdiy/vote",
+	        type: "POST",
+	        data: {
+	            postId: postId,
+	            userId: userId
+	        },
+	        success: function(response) {
+	            console.log("Vote successful!");
+	            // Handle success response
+	        },
+	        error: function(xhr, status, error) {
+	            console.log("Vote failed:", error);
+	            // Handle error response
+	        }
+	    });
+}

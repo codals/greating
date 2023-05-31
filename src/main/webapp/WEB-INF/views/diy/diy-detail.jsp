@@ -7,8 +7,9 @@
 <meta charset="UTF-8">
 <title>DIY 식단 상세보기</title>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <!-- css로 가져오기 -->
-<link href="/greating/resources/css/reset.css" rel="stylesheet">
 <link href="/greating/resources/css/diy/diy-detail.css" rel="stylesheet">
 
 <!-- js 가져오기 -->
@@ -22,11 +23,6 @@
 	href="https://fonts.googleapis.com/css?family=NanumMyeongjo&display=swap"
 	rel="stylesheet" />
 
-<!-- bootstrap -->
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 
 </head>
 
@@ -102,8 +98,7 @@
 				</div>
 
 				<div class="button-group">
-					<button class="white-button">
-						<!-- <img src="/greating/resources/images/diy/img_" alt="이미지_설명"> -->
+					<button class="vote-button" onclick="votePost(${postDetail.post.id}, ${loginUser.id})">
 						<span>♡ 투표하기</span>
 					</button>
 					<button class="green-button">
