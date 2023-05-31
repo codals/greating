@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.codals.greating.mypage.dto.MyPageDto;
+import com.codals.greating.mypage.dto.MyPageScrapDto;
 import com.codals.greating.mypage.service.MyPageService;
 import com.codals.greating.user.entity.User;
 
@@ -64,8 +65,18 @@ public class MyPageController {
 
 
     @GetMapping("/scrap")
-    public String loadMyScrapPage() {
-        return "user/mypage-myscrap"; // mypage/my-scrap
+    public String loadMyScrapPage(@SessionAttribute("loginUser") User loginUser, MyPageScrapDto dto, Model model) {
+        
+    	// 사용자 ID를 가져와서 dto에 설정
+        dto.setUserId(loginUser.getId());
+        
+        // dto를 기반으로 사용자의 글 목록을 조회
+        List<MyPageDto> scrapList = service.scrapList(dto);
+        
+        model.addAttribute("dto", dto);
+        model.addAttribute("list", scrapList);
+    	
+    	return "user/mypage-myscrap"; 
     }
 
     @GetMapping("/voted")
@@ -73,7 +84,7 @@ public class MyPageController {
         /**
          * my-voted.jsp 예정
          */
-        return "mypage/my-voted";
+        return "mypage/mypage-vote";
     }
 
     @GetMapping("/profile")

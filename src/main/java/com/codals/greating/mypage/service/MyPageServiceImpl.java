@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.codals.greating.mypage.dao.MyPageDao;
 import com.codals.greating.mypage.dto.MyPageDto;
+import com.codals.greating.mypage.dto.MyPageScrapDto;
 
 @Service
 public class MyPageServiceImpl implements MyPageService{
@@ -19,6 +20,13 @@ public class MyPageServiceImpl implements MyPageService{
 	public List<MyPageDto> diyList(MyPageDto dto) {
 		// TODO Auto-generated method stub
 		return dao.diyList(dto);
+	}
+
+
+	@Override
+	public List<MyPageDto> scrapList(MyPageScrapDto dto) {
+		// TODO Auto-generated method stub
+		return dao.scrapList(dto);
 	}
 
 }

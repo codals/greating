@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.codals.greating.mypage.dto.MyPageDto;
+import com.codals.greating.mypage.dto.MyPageScrapDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,6 +21,12 @@ public class MyPageDaoImpl implements MyPageDao {
 	@Override
 	public List<MyPageDto> diyList(MyPageDto dto) {
 	    return sqlsession.selectList("mypage.diyList", dto);
+	}
+
+	@Override
+	public List<MyPageDto> scrapList(MyPageScrapDto dto) {
+		// TODO Auto-generated method stub
+		return sqlsession.selectList("mypage.scrapList", dto);
 	}
 
 

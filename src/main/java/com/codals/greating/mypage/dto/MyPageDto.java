@@ -24,5 +24,7 @@ public class MyPageDto {
     private String side1FoodName;
     private String side2FoodName;
     private String extraFoodName;
-	private String name;
+	
+	
 }
+
