@@ -12,9 +12,8 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
-<link href="/greating/resources/css/order/meal-choice.css"
-	rel="stylesheet">
-<script src="/greating/resources/js/order/meal-choice.js"></script>
+<link href="${pageContext.request.contextPath}/resources/css/order/meal-choice.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/resources/js/order/meal-choice.js"></script>
 
 </head>
 <body>

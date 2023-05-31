@@ -1,7 +1,12 @@
 package com.codals.greating.diet.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import static com.codals.greating.constant.SessionKey.DELIVERY_DATES;
+
+import com.codals.greating.diet.dto.DietDeliveryRequestDto;
+import javax.servlet.http.HttpSession;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +20,13 @@ public class DietRestController {
          * 식단 주문하기 (Ajax)
          */
         return true;
+    }
+
+    @PostMapping("/orders/delivery")
+    public ResponseEntity<Boolean> saveDelivery(@RequestBody DietDeliveryRequestDto dietDeliveryRequestDto, HttpSession session) {
+        session.setAttribute(DELIVERY_DATES, dietDeliveryRequestDto.getDates());
+        session.setMaxInactiveInterval(300);
+        return ResponseEntity.ok(true);
     }
 
     @PostMapping("/cart")
