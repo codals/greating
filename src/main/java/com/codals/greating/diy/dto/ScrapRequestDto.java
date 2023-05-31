@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class SrcapRequestDto {
+public class ScrapRequestDto {
 	private Integer postId;
 	private Integer userId;
 }

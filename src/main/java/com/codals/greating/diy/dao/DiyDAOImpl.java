@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.codals.greating.diy.dto.PostResponseDto;
-import com.codals.greating.diy.dto.SrcapRequestDto;
+import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.entity.Post;
 import com.codals.greating.exception.BusinessException;
 import com.codals.greating.exception.ErrorCode;
@@ -56,7 +56,7 @@ public class DiyDAOImpl implements DiyDAO {
 	}
 
 	@Override
-	public int insertScrap(SrcapRequestDto requestDto) {
+	public int insertScrap(ScrapRequestDto requestDto) {
 		String statement = "post.insertScrap";
 		return sqlSession.insert(statement, requestDto);
 	}

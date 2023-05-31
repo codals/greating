@@ -1,7 +1,7 @@
 package com.codals.greating.diy.dao;
 
 import com.codals.greating.diy.dto.PostResponseDto;
-import com.codals.greating.diy.dto.SrcapRequestDto;
+import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.entity.Post;
 
 public interface DiyDAO {
@@ -9,5 +9,5 @@ public interface DiyDAO {
 
 	Integer savePost(Post post);
 
-	int insertScrap(SrcapRequestDto requestDto);
+	int insertScrap(ScrapRequestDto requestDto);
 }

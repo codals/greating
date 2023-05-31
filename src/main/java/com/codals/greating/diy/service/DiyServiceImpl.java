@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.codals.greating.diy.dao.DiyDAO;
 import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.PostResponseDto;
-import com.codals.greating.diy.dto.SrcapRequestDto;
+import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.entity.Post;
 import com.codals.greating.exception.BusinessException;
 import com.codals.greating.exception.ErrorCode;
@@ -135,7 +135,7 @@ public class DiyServiceImpl implements DiyService{
 
 	@Override
 	@Transactional
-	public boolean scrap(SrcapRequestDto requestDto) {
+	public boolean scrap(ScrapRequestDto requestDto) {
 		try {
 			if(diyDAO.insertScrap(requestDto)==1) {
 				return true;

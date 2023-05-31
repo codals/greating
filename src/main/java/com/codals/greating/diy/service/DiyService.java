@@ -2,7 +2,7 @@ package com.codals.greating.diy.service;
 
 import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.PostResponseDto;
-import com.codals.greating.diy.dto.SrcapRequestDto;
+import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.user.entity.User;
 
 public interface DiyService {
@@ -11,6 +11,6 @@ public interface DiyService {
 
 	Integer savePost(User loginUser, DiyRequestDto newPost, String path);
 
-	boolean scrap(SrcapRequestDto requestDto);
+	boolean scrap(ScrapRequestDto requestDto);
 	
 }
