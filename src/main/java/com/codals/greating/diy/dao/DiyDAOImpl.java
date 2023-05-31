@@ -12,7 +12,9 @@ import com.codals.greating.exception.BusinessException;
 import com.codals.greating.exception.ErrorCode;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Repository
 @RequiredArgsConstructor
 public class DiyDAOImpl implements DiyDAO {
@@ -33,6 +35,8 @@ public class DiyDAOImpl implements DiyDAO {
 	    String insertStatement = "post.insertPost";
 	    String selectStatement = "post.selectLastInsertedId";
 	    String sequenceStatement = "post.nextPostId";
+	    
+		log.info("post 저장 전=" + post);
 
 	    // 게시글을 삽입합니다.
 	    int rowsAffected = sqlSession.insert(insertStatement, post);
@@ -50,6 +54,7 @@ public class DiyDAOImpl implements DiyDAO {
 	    // 생성된 게시글의 ID 값을 조회합니다.
 //	    Integer postId = sqlSession.selectOne(selectStatement);
 	    Integer postId = post.getId();
+		log.info("post 저장 직후=" + post);
 	    log.info("postId=" + postId);
 	    return nextVal-1;
 	}

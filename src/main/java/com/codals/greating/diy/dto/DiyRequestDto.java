@@ -14,6 +14,7 @@ import lombok.ToString;
 @ToString
 public class DiyRequestDto {
     private MultipartFile imgFile;
+    private String fileName;
     private String dietType;
     private Integer foodCountryId;
     private Integer mainCategoryId;

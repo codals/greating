@@ -31,7 +31,6 @@
 
 		<div class="form-content">
 			<form id="diy-form" class="hd__inner900" action="/greating/api/mealdiy/new" method="post" enctype="multipart/form-data">
-				
 				<div class="diy-form-title">
 					<span class="main-title"> MAKE MY OWN GREATING </span> <span
 						class="main-title-desc"> 나만의 도시락 만들기 </span>
@@ -247,8 +246,7 @@
 					<span> + 추가 상품 </span>
 					<div class="hr"></div>
 					<span class="d-flex mt-2 mb-1"> 건강마켓에서 추가 구성을 선택해보세요. </span>
-					<button id="cart" type="button" data-toggle="modal" class="modal-open-button"
-						data-target="#etcFoodModal">
+					<button id="cart" type="button" data-toggle="modal" class="modal-open-button" data-target="#etcFoodModal">
 						<i class="fas fa-shopping-cart"></i>선택하러 가기
 					</button>
 				</div>
@@ -282,7 +280,8 @@
 				<div class="submut-btn mt-5">
 					<input id="diy-diet-form-cancelbtn" type="button" value="등록 취소" onclick=" location.href='${header.referer}'">
 <!--  					<input id="diy-diet-form-subbtn" type="submit" value="등록 완료" onclick="sendRequestWithImage()"> -->
- 					<input id="diy-diet-form-subbtn" type="submit" value="등록 완료">
+<!--  					<input id="diy-diet-form-subbtn" type="button" value="등록 완료"> -->
+ 					<input id="diy-diet-form-subbtn" type="submit" value="등록 완료" onclick="sendFile(event)">
 
 				</div>
 
@@ -434,7 +433,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="modalCloseBtn" data-dismiss="modal">Close</button>
-								<button type="button" class="modalSaveBtn">Save</button>
+								<button type="button" class="modalSaveBtn" onclick="sendFile()">Save</button>
 							</div>
 						</div>
 					</div>
