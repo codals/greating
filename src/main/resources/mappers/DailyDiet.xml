@@ -3,10 +3,31 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dailyDiet">
-  <select id="selectAllByStartDate" parameterType="String" resultType="DailyDiet">
+  <resultMap id="dietMap" type="Diet">
+    <result column="id" property="id"/>
+    <result column="main_category_id" property="mainCategoryId"/>
+    <result column="sub_category_id" property="subCategoryId"/>
+    <result column="name" property="name"/>
+    <result column="amount" property="amount"/>
+    <result column="storage_type" property="storageType"/>
+    <result column="thumbnail_img_url" property="thumbnailImgUrl"/>
+    <result column="content_img_url" property="contentImgUrl"/>
+    <result column="calorie" property="calorie"/>
+    <result column="price" property="price"/>
+  </resultMap>
+  <resultMap id="dailyDietMap" type="DailyDiet">
+    <result column="id" property="id"/>
+    <result column="diet_id" property="dietId"/>
+    <result column="start_date" property="startDate"/>
+    <result column="end_date" property="endDate"/>
+    <collection property="diet" resultMap="dietMap"/>
+  </resultMap>
+  <select id="selectAllByStartDate" parameterType="String" resultMap="dailyDietMap">
     SELECT *
-    FROM daily_diet
-    WHERE start_date BETWEEN TO_DATE(#{startDateFormat}, 'YYYY-MM-DD')
+    FROM daily_diet A
+           JOIN diet B
+                ON A.diet_id = B.id
+    WHERE A.start_date BETWEEN TO_DATE(#{startDateFormat}, 'YYYY-MM-DD')
             AND (TO_DATE(#{startDateFormat}, 'YYYY-MM-DD') + INTERVAL '13' DAY)
   </select>
 </mapper>

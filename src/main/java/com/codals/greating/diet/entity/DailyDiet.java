@@ -13,4 +13,5 @@ public class DailyDiet extends BaseEntity {
     private Integer dietId;
     private LocalDate startDate;
     private LocalDate endDate;
+    private Diet diet;
 }

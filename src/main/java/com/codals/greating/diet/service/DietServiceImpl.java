@@ -1,11 +1,9 @@
 package com.codals.greating.diet.service;
 
 import com.codals.greating.diet.dao.DailyDietDao;
-import com.codals.greating.diet.dao.DietDao;
 import com.codals.greating.diet.dto.PreviewDietResponseDto;
 import com.codals.greating.diet.dto.PreviewResponseDto;
 import com.codals.greating.diet.entity.DailyDiet;
-import com.codals.greating.diet.entity.Diet;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
@@ -20,7 +18,6 @@ import org.springframework.stereotype.Service;
 public class DietServiceImpl implements DietService {
 
     private final DailyDietDao dailyDietDao;
-    private final DietDao dietDao;
 
     @Override
     public List<PreviewResponseDto> getWeeklyDailyDiets() {
@@ -29,14 +26,9 @@ public class DietServiceImpl implements DietService {
             .collect(Collectors.groupingBy(DailyDiet::getStartDate));
 
         return dailyDietsByStartDate.entrySet().stream()
-            .map(entry -> {
-                LocalDate startDate = entry.getKey();
-                List<DailyDiet> dailyDietList = entry.getValue();
-                List<PreviewDietResponseDto> diets = dailyDietList.stream()
-                    .map(dailyDiet -> new PreviewDietResponseDto(getDietByDailyDiet(dailyDiet)))
-                    .collect(Collectors.toList());
-                return new PreviewResponseDto(startDate, diets);
-            })
+            .map(entry -> new PreviewResponseDto(entry.getKey(), entry.getValue().stream()
+                .map(this::getPreviewDietResponseDto)
+                .collect(Collectors.toList())))
             .sorted(Comparator.comparing(PreviewResponseDto::getStartDate))
             .collect(Collectors.toList());
     }
@@ -46,7 +38,7 @@ public class DietServiceImpl implements DietService {
         return today.format(DateTimeFormatter.ofPattern("YYYY-MM-dd"));
     }
 
-    private Diet getDietByDailyDiet(DailyDiet dailyDiet) {
-        return dietDao.findById(dailyDiet.getDietId()).orElseGet(Diet::new);
+    private PreviewDietResponseDto getPreviewDietResponseDto(DailyDiet dailyDiet) {
+        return new PreviewDietResponseDto(dailyDiet.getDiet());
     }
 }
