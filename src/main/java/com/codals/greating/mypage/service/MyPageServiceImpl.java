@@ -11,22 +11,20 @@ import com.codals.greating.mypage.dto.MyPageScrapDto;
 
 @Service
 public class MyPageServiceImpl implements MyPageService{
-
+	
 	@Autowired
 	private MyPageDao dao;
 
 
 	@Override
-	public List<MyPageDto> diyList(MyPageDto dto) {
-		// TODO Auto-generated method stub
-		return dao.diyList(dto);
-	}
+	public List<MyPageDto> diyList(MyPageDto dto) {return dao.diyList(dto);}
 
 
 	@Override
-	public List<MyPageDto> scrapList(MyPageScrapDto dto) {
-		// TODO Auto-generated method stub
-		return dao.scrapList(dto);
-	}
+	public List<MyPageDto> scrapList(MyPageScrapDto dto) {return dao.scrapList(dto);}
+
+
+	@Override
+	public List<MyPageDto> voteList(MyPageScrapDto dto) {return dao.voteList(dto);}
 
 }
