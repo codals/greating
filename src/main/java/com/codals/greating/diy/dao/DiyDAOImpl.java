@@ -1,5 +1,7 @@
 package com.codals.greating.diy.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -84,6 +86,12 @@ public class DiyDAOImpl implements DiyDAO {
 	public int deleteVote(VoteRequestDto requestDto) throws Exception {
 		String statement = "post.deleteVote";
 		return sqlSession.delete(statement, requestDto);
+	}
+
+	@Override
+	public List<Post> selectPostsByMainCategory(int id) {
+		String statement = "post.selectPostsByMainCategory";
+		return sqlSession.selectList(statement,id);
 	}
 
 }

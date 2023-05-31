@@ -1,9 +1,12 @@
 package com.codals.greating.diy.service;
 
+import java.util.List;
+
 import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.PostResponseDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.dto.VoteRequestDto;
+import com.codals.greating.diy.entity.Post;
 import com.codals.greating.user.entity.User;
 
 public interface DiyService {
@@ -15,7 +18,9 @@ public interface DiyService {
 	boolean scrap(ScrapRequestDto requestDto);
 	boolean cancelScrap(ScrapRequestDto requestDto);
 
-  boolean vote(VoteRequestDto requestDTO);
+	boolean vote(VoteRequestDto requestDTO);
 	boolean cancelVote(VoteRequestDto requestDto);
+
+	List<Post> loadPostsByCategoryType(int mainCategoryid);
 	
 }
