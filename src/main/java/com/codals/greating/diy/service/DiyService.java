@@ -10,7 +10,6 @@ public interface DiyService {
 	PostResponseDto getPostDetail(int postId);
 
 	Integer savePost(User loginUser, DiyRequestDto newPost, String path);
-	void createPost(DiyRequestDto newPost, String path);
 
 	boolean vote(VoteRequestDto requestDTO);
 

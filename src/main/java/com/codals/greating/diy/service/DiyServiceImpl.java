@@ -149,5 +149,11 @@ public class DiyServiceImpl implements DiyService{
 		}
 	}
 
+	@Override
+	public boolean cancelVote(VoteRequestDto requestDto) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 
 }
