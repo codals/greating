@@ -30,4 +30,18 @@
     WHERE A.start_date BETWEEN TO_DATE(#{startDateFormat}, 'YYYY-MM-DD')
             AND (TO_DATE(#{startDateFormat}, 'YYYY-MM-DD') + INTERVAL '13' DAY)
   </select>
+  <select id="selectAllByStartDateOrEndDate" parameterType="java.util.List" resultMap="dailyDietMap">
+    SELECT *
+    FROM daily_diet A
+    JOIN diet B
+    ON A.diet_id = B.id
+    WHERE start_date IN
+    <foreach item="item" collection="list" open="(" separator="," close=")">
+      TO_DATE(#{item}, 'YYYY-MM-DD')
+    </foreach>
+    OR end_date IN
+    <foreach item="item" collection="list" open="(" separator="," close=")">
+      TO_DATE(#{item}, 'YYYY-MM-DD')
+    </foreach>
+  </select>
 </mapper>

@@ -1,11 +1,16 @@
 package com.codals.greating.diet.controller;
 
+import static com.codals.greating.constant.SessionKey.DELIVERY_DATES;
+
 import com.codals.greating.diet.service.DietService;
+import java.util.Date;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 @RequestMapping("/diets/mygreating")
@@ -39,7 +44,8 @@ public class DietController {
     }
 
     @GetMapping("/orders/choice")
-    public String loadOrderChoicePage() {
+    public String loadOrderChoicePage(@SessionAttribute(DELIVERY_DATES) List<Date> deliveryDates, Model model) {
+        model.addAttribute("dailyDiets", dietService.getDailyDietsByDeliveryDates(deliveryDates));
         return "order/meal-choice";
     }
 

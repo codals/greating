@@ -7,4 +7,6 @@ import java.util.Optional;
 public interface DailyDietDao {
 
     Optional<List<DailyDiet>> selectDailyDietsByStartDate(String startDateFormat);
+
+    Optional<List<DailyDiet>> selectDailyDietsByStartDateOrEndDate(List<String> deliveryDates);
 }
