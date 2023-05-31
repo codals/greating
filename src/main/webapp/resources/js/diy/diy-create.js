@@ -1,38 +1,3 @@
-///**
-// * 
-// */
-//
-///* AJAX로 form 보내기 */
-//$(document).ready(function() {
-//  // 폼이 제출될 때 실행되는 이벤트 핸들러
-//  $('#diy-form').submit(function(event) {
-//    event.preventDefault(); // 폼 제출을 막습니다.
-//
-//    // 폼 데이터를 FormData 객체로 가져옵니다.
-//    var formData = new FormData(this);
-//
-//    // AJAX POST 요청을 보냅니다.
-//    $.ajax({
-//      url: '/greating/api/mealdiy/new',
-//      type: 'POST',
-//      data: formData,
-//      processData: false, // 데이터를 처리하지 않도록 설정합니다.
-//      contentType: false, // 기본 컨텐츠 유형을 설정하지 않도록 합니다.
-//      success: function(response) {
-//        console.log(response);
-//        location.href = "/greating/mealdiy/" + response;
-//      },
-//      error: function(xhr, status, error) {
-//        // 요청이 실패했을 때 실행되는 콜백 함수
-//        console.log(error);
-//        // 오류 처리 등을 여기에 작성하세요.
-//        alert("실패하였습니다.")
-//      }
-//    });
-//  });
-//});
-
-
 /* 메인 카테고리에 따라 서브 카테고리 보여주기*/
   $(document).ready(function() {
     $('input[name="mainCategoryId"]').on('change', function() {
@@ -219,14 +184,6 @@ function handleSoupRadioButtonChange(radio) {
 function handleModalSoupRadioButtonChange(button) {
 	  var selectedMarketSoup = document.querySelector('input[name="soupFoodId"]:checked');
 
-//	  if (selectedMarketSoup) {
-//	    var name = selectedMarketSoup.parentNode.querySelector('.modal-food-card-name').innerText;
-//	    var imgUrl = selectedMarketSoup.parentNode.querySelector('.modalFoodImg').getAttribute('src');
-//
-//	    var selectedSoupNameElement = document.querySelector('#selectedMarketSoupName .text-border');
-//	    selectedSoupNameElement.innerText = name;
-//	  }
-
 	  var soupFoodCards = document.querySelectorAll('#soup-container .food-card');
 	  soupFoodCards.forEach(function(card) {
 	    card.classList.remove('selected');
@@ -252,14 +209,6 @@ function handleMainRadioButtonChange(radio) {
 
 function handleModalMainRadioButtonChange(button) {
 	  var selectedMarketMain = document.querySelector('input[name="mainFoodId"]:checked');
-
-//	  if (selectedMarketMain) {
-//	    var name = selectedMarketMain.parentNode.querySelector('.modal-food-card-name').innerText;
-//	    var imgUrl = selectedMarketMain.parentNode.querySelector('.modalFoodImg').getAttribute('src');
-//
-//	    var selectedMainNameElement = document.querySelector('#selectedMarketMainName .text-border');
-//	    selectedMainNameElement.innerText = name;
-//	  }
 
 	  var mainFoodCards = document.querySelectorAll('#main-container .food-card');
 	  mainFoodCards.forEach(function(card) {
@@ -296,56 +245,6 @@ function handleSideCheckboxButtonChange(checkbox) {
 	  });
 	}
 
-//function handleModalSideCheckboxButtonChange(button) {
-//	  // 선택된 체크박스 해제
-//	  var greatingCheckboxes = document.querySelectorAll('#side-container input[name="sideFoodIds"]');
-//	  greatingCheckboxes.forEach(function (checkbox) {
-//	    checkbox.checked = false;
-//	  });
-//	  
-//	  var checkboxes = document.querySelectorAll('#sideDishModal input[name="sideFoodIds"]');
-//	  var selectedCount = 0;
-//
-//	  checkboxes.forEach(function(checkbox) {
-//	    checkbox.checked = false;
-//	  });
-//
-//	  checkboxes.forEach(function(checkbox) {
-//	    if (checkbox.checked) {
-//	      selectedCount++;
-//	    }
-//	  });
-//
-//	  if (selectedCount > 2) {
-//	    button.checked = false;
-//	  } else {
-//	    button.checked = true;
-//	  }
-//
-//	  // 체크박스 선택 개수 제한
-//	  checkboxes.forEach(function(checkbox) {
-//	    checkbox.disabled = selectedCount >= 2 && !checkbox.checked;
-//	  });
-//
-//	  // 모달창을 띄우는 버튼의 스타일 변경
-//	  var modalOpenButton = document.querySelector('#sideDishModal .modal-open-button');
-//	  modalOpenButton.style.backgroundColor = selectedCount > 2 ? '#ccc' : '#918c01';
-//	}
-
-
-// /*마우스 안 올려도 증감표시 보이게 설정*/
-//const numberInputs = document.querySelectorAll('input[type="number"]');
-//numberInputs.forEach(input => {
-//  input.addEventListener('mouseover', () => {
-//    input.style.setProperty('-webkit-appearance', 'textfield');
-//  });
-//
-//  input.addEventListener('mouseout', () => {
-//    input.style.setProperty('-webkit-appearance', 'none');
-//  });
-//});
-//
-
 
 //모달이 열릴 때 이벤트 리스너 등록
 document.getElementById('cart').addEventListener('click', function() {
@@ -369,80 +268,6 @@ document.getElementById('cart').addEventListener('click', function() {
 
 });
 
-/* 파일 전송 API 요청*/
-//const form = document.getElementById('diy-form');
-//const submitButton = document.getElementById('diy-diet-form-subbtn');
-//
-//submitButton.addEventListener('click', (event) => {
-//  event.preventDefault();
-//
-//  const fileInput = document.getElementById('imgFile');
-//  const file = fileInput.files[0];
-//
-//  const url = 'http://119.209.77.170:48000/upload/codals?token=wecangohdite';
-//
-//  const formData = new FormData();
-//  formData.append('file', file);
-//
-//  fetch(url, {
-//    method: 'POST',
-//    body: formData,
-////    headers: {
-////      'team': team,
-////      'token': token
-////    }
-//  })
-//  .then(response => {
-//    const filename = file.name;
-//    return response.json().then(data => ({ filename, data }));
-//  })
-//  .then(({ filename, data }) => {
-//    console.log('Filename:', filename);
-//    console.log('Response data:', data);
-//    alert("수행완료");
-//  })
-//  .catch(error => {
-//    console.error(error);
-//    alert("실패");
-//  });
-//});
-
-//function sendFile() {
-//    var fileInput = document.getElementById('imgFile');
-//    var file = fileInput.files[0]; // Get the first selected file
-//
-////    if (!file) {
-////      alert('파일을 선택해주세요.');
-////      return;
-////    }
-//
-//    var formData = new FormData();
-//    formData.append('file',file);
-//    console.log(formData)
-//    console.log(file)
-//    console.log(fileInput.files)
-//
-//    $.ajax({
-//      type: 'POST',
-//      url: 'http://119.209.77.170:48000/upload/codals?token=wecangohdite', 
-//      data: formData,
-//      processData: false,
-//      contentType: false,
-//      success: function(response) {
-//        // Handle success response
-//        console.log(response);
-//        alert("실행 완료");
-//
-//      },
-//      error: function(error) {
-//        // Handle error response
-//        console.error(error);
-//      }
-//    });
-//  }
-
-//$(document).ready(function() {
-//	$('#diy-form').submit(function(event) {
 function sendFile(event) {
 	  event.preventDefault(); // 폼 제출을 막습니다.
 
@@ -454,9 +279,6 @@ function sendFile(event) {
       var prevFormData = new FormData();
       const fileInput = document.getElementById('imgFile');
       const file = fileInput.files[0];
-//      prevFormData.append('file',file);    
-//      console.log(file.name);
-//      console.log(fileInput.files);
       
       /* 고유한 파일명 생성 */
       var newFilename = generateUniqueFilename();
@@ -488,8 +310,6 @@ function sendFile(event) {
             alert("사진 업로드 실패")
           } else if (response.result === 'successful') {
         	  console.log(response)
-            // 다른 정보와 함께 AJAX 요청
-//            submitFormWithFilename(response.filename);
         	  submitFormWithFilename(formData);
           }
         }

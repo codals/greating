@@ -444,7 +444,7 @@
 .modal-food-card[type="radio"]:checked+label>img
  {
 	display: inline-block;
-	margin: 10px 5px 10px 5px;
+	margin: 5px 3px 5px 3px;
 	text-align: center;
 	/* border: 5px solid #918c01; */
 }
@@ -472,6 +472,11 @@
 	line-height: 18px;
 }
 
+.modal-title {
+	font-weight: bold;
+	color: white;
+}
+
 .modalTitle {
 	font-size: 30px;
 	font-weight: bold;
@@ -481,6 +486,7 @@
 .modalTitleDesc {
 	margin: 5px 0px 15px 0px;
 	font-size: 18px;
+	color: #999999
 }
 
 .modalCloseBtn {

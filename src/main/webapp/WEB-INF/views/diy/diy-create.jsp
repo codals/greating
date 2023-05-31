@@ -429,8 +429,8 @@
 
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="modalCloseBtn" data-dismiss="modal">Close</button>
-								<button type="button" class="modalSaveBtn" onclick="sendFile()">Save</button>
+								<button type="button" class="modalCloseBtn" data-dismiss="modal">취소</button>
+								<button type="button" class="modalSaveBtn" onclick="sendFile()">선택 완료</button>
 							</div>
 						</div>
 					</div>
