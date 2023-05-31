@@ -44,29 +44,27 @@
 				</div>
 
 				<ul>
-					<c:forEach var="i" begin="1" end="3">
+					<c:forEach items="${list}" var="list">
 
 						<li class="myDiy-card">
 							<div class="myDiy-card-img">
-								<img
-									src="${pageContext.request.contextPath}/resources/images/user/mypage-main.jpg">
+								<img src="${pageContext.request.contextPath}/${list.imgUrl}">
 							</div>
 							<div class="myDiy-card-info">
-								<span class="mb-2">[ 현대 그린푸드 ] 국산 대패 삼겹살 </span>
+								<span class="mb-2">${list.title }</span>
 								<div class="hr"></div>
 								<div class="myDiy-card-tags">
 									<span style="font-size: 17px;"> 메인 구성 </span> <span
-										class="myDiy-card-tag"> 귀리밥 </span> <span
-										class="myDiy-card-tag"> 귀리밥 </span> <span
-										class="myDiy-card-tag"> 귀리밥 </span>
+										class="myDiy-card-tag"> ${list.riceFoodName} </span> <span
+										class="myDiy-card-tag"> ${list.soupFoodName } </span> <span
+										class="myDiy-card-tag"> ${list.mainFoodName } </span>
 
 								</div>
 								<div class="myDiy-vote">
 									<span style="font-size: 17px;"> 투표 현황 </span>
 									<div class="myDiy-vote-num">
-										<img
-											src="${pageContext.request.contextPath}/resources/images/user/vote.png">
-										<span> 400 Greating </span>
+										<img src="${pageContext.request.contextPath}/resources/images/user/vote.png">
+										<span> ${list.voteCnt } Greating </span>
 									</div>
 								</div>
 							</div>

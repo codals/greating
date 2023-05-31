@@ -45,13 +45,13 @@
 	    <c:when test="${showAlert && empty sessionScope.loginMember}">
 	        <script>
 	            alert("${errorCode} \n${errorMessage}");
-	            location.href = "/springboard/login"; // login 페이지로 리다이렉트
+	            location.href = "/greating/login"; // login 페이지로 리다이렉트
 	        </script>
 	    </c:when>
 	    <c:otherwise>
 	        <script>
 	            alert("${errorCode} \n${errorMessage}");
-	            location.href = "/springboard/board"; // board 페이지로 리다이렉트
+	            location.href = "/greating/"; // board 페이지로 리다이렉트
 	        </script>
 	    </c:otherwise>
 	</c:choose> --%>
