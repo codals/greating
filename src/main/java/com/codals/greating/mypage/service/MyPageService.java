@@ -10,7 +10,7 @@ import com.codals.greating.mypage.dto.MyPageScrapDto;
 
 public interface MyPageService {
 
-	public List<MyPageDto> diyList(MyPageDto dto);
+	public List<MyPageDto> diyList(MyPageDto dto, int page);
 
 	public List<MyPageDto> scrapList(MyPageScrapDto dto);
 

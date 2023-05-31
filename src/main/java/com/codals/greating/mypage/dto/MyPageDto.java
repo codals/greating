@@ -6,8 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class MyPageDto {
@@ -24,7 +23,11 @@ public class MyPageDto {
     private String side1FoodName;
     private String side2FoodName;
     private String extraFoodName;
-	
-	
+    
+	// Paging
+    private int startRow;
+    private int endRow;
+	private int page;
+	private int totalPage;
 }
 
