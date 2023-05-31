@@ -22,6 +22,7 @@
     <typeAlias alias="MypageDiy" type="com.codals.greating.mypage.dto.MyPageDto"/>
     <typeAlias alias="MypageScrap" type="com.codals.greating.mypage.dto.MyPageScrapDto"/>
     <typeAlias alias="ScrapRequestDto" type="com.codals.greating.diy.dto.ScrapRequestDto"/>
+    <typeAlias alias="VoteRequestDto" type="com.codals.greating.diy.dto.VoteRequestDto"/>
   </typeAliases>
   
 </configuration>

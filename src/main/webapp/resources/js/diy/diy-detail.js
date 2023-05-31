@@ -34,3 +34,21 @@ function scrap(postId, userId){
 	    });
 	 
 }
+
+function cancelVote(postId){
+	 $.ajax({
+	        url: "/greating/api/mealdiy/"+postId+"/vote" ,
+	        type: "DELETE",
+	        success: function(response) {
+	            alert('투표취소 되었습니다.');
+	        },
+	        error: function(xhr, status, error) {
+	            alert('투표 취소에 실패하였습니다! 관리자에게 문의해주세요');
+	        }
+	    });
+}
+
+
+
+
+

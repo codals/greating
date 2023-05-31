@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
+import com.codals.greating.diy.dto.VoteRequestDto;
 import com.codals.greating.diy.service.DiyService;
 import com.codals.greating.global.ResponseDTO;
 import com.codals.greating.user.entity.User;
@@ -46,6 +47,7 @@ public class DiyRestController {
 							@ModelAttribute DiyRequestDto postRequest,
 							HttpSession session) {
 
+		
 		/* log.info(loginUser); */
 		log.info(postRequest);
 
@@ -74,4 +76,25 @@ public class DiyRestController {
     	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
     }
     
+	
+
+
+	@PostMapping("/vote")
+	public ResponseEntity<Boolean>  votePost(VoteRequestDto requestDto) {
+		if(diyService.vote(requestDto)) {
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+	}
+	
+	
+	@DeleteMapping("/{postId}/vote")
+	public ResponseEntity<Boolean> voteCancel(@PathVariable("postId") int postId, @SessionAttribute("loginUser") User loginUser ){
+		
+		if(diyService.cancelVote(new VoteRequestDto(postId, loginUser.getId()))) {
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+	}
+	
 }

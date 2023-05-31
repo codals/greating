@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,9 +19,12 @@ import com.codals.greating.exception.BusinessException;
 import com.codals.greating.exception.ErrorCode;
 import com.codals.greating.user.entity.User;
 import com.codals.greating.util.ImageUrlGenerator;
+import com.codals.greating.diy.dto.VoteRequestDto;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Service
 @RequiredArgsConstructor
 public class DiyServiceImpl implements DiyService{
@@ -133,7 +137,35 @@ public class DiyServiceImpl implements DiyService{
 		return newPost;
 	}
 
-	@Override
+  @Override
+	@Transactional
+	public boolean vote(VoteRequestDto requestDto) {
+		try {
+			if(diyDAO.insertVote(requestDto)==1) {
+				return true;
+			}
+			return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+  @Override
+  @Transactional
+  public boolean cancelVote(VoteRequestDto requestDto) {
+    try {
+      if(diyDAO.deleteVote(requestDto)==1) {
+        return true;
+      }
+      return false;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+  
+  @Override
 	@Transactional
 	public boolean scrap(ScrapRequestDto requestDto) {
 		try {
@@ -160,4 +192,5 @@ public class DiyServiceImpl implements DiyService{
 			return false;
 		}
 	}
+      
 }
