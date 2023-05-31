@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.codals.greating.diy.dto.PostResponseDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
+import com.codals.greating.diy.dto.SearchRequestDto;
+import com.codals.greating.diy.dto.SimplePostDto;
 import com.codals.greating.diy.entity.Post;
 import com.codals.greating.exception.BusinessException;
 import com.codals.greating.exception.ErrorCode;
@@ -92,6 +94,12 @@ public class DiyDAOImpl implements DiyDAO {
 	public List<Post> selectPostsByMainCategory(int id) {
 		String statement = "post.selectPostsByMainCategory";
 		return sqlSession.selectList(statement,id);
+	}
+
+	@Override
+	public List<SimplePostDto> selectPostBySearchConditions(SearchRequestDto requestDto) {
+		String statement = "post.selectPostBySearchConditions";
+		return sqlSession.selectList(statement,requestDto);
 	}
 
 }
