@@ -38,7 +38,7 @@
 
 				<section class="meals-area">
 					<div class="meals-area-cont">
-						<h3 class="meals-area-cont-title">${dailyDiet.startDate} / ${dailyDiet.endDate}</h3>
+						<h3 class="meals-area-cont-title">${dailyDiet.deliveryDate}</h3>
 						<div class="meals-choice">
 							<ul class="box">
 								<c:forEach var="diet" items="${dailyDiet.diets}" varStatus="status2">
@@ -86,10 +86,8 @@
 
 				<div class="btn">
 					<div>
-						<a href="#" class="btn-init green btn-buy">주문하기 ( <span
-							class="total-count">0</span> / 6 )
-						</a> <a href="${header.referer}" id="cancelBtn"
-							class="btn-init cancel btn-buy">취소 </a>
+						<a href="#" class="btn-init green btn-buy">주문하기 ( <span class="total-count">0</span> / 6 )
+						</a> <a href="${header.referer}" id="cancelBtn" class="btn-init cancel btn-buy">취소 </a>
 					</div>
 				</div>
 			</div>

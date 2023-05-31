@@ -8,5 +8,5 @@ public interface DailyDietDao {
 
     Optional<List<DailyDiet>> selectDailyDietsByStartDate(String startDateFormat);
 
-    Optional<List<DailyDiet>> selectDailyDietsByStartDateOrEndDate(List<String> deliveryDates);
+    Optional<List<DailyDiet>> selectAllByStartDateOrEndDate(String deliveryDateFormat);
 }

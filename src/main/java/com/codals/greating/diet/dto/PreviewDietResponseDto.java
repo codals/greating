@@ -1,7 +1,6 @@
 package com.codals.greating.diet.dto;
 
 import com.codals.greating.diet.entity.Diet;
-import java.text.DecimalFormat;
 import lombok.Data;
 
 @Data

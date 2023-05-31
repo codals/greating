@@ -1,6 +1,7 @@
 package com.codals.greating.diet.service;
 
 import com.codals.greating.diet.dao.DailyDietDao;
+import com.codals.greating.diet.dto.PlanResponseDto;
 import com.codals.greating.diet.dto.PreviewDietResponseDto;
 import com.codals.greating.diet.dto.PreviewResponseDto;
 import com.codals.greating.diet.entity.DailyDiet;
@@ -28,12 +29,17 @@ public class DietServiceImpl implements DietService {
     }
 
     @Override
-    public List<PreviewResponseDto> getDailyDietsByDeliveryDates(List<Date> deliveryDates) {
-        List<String> deliveryDatesFormat = deliveryDates.stream().map(this::getDeliveryDateFormat)
+    public List<PlanResponseDto> getDailyDietsByDeliveryDates(List<Date> deliveryDates) {
+        return deliveryDates.stream()
+            .map(deliveryDate -> {
+                String deliveryDateFormat = getDeliveryDateFormat(deliveryDate);
+                List<DailyDiet> dailyDiets = dailyDietDao.selectAllByStartDateOrEndDate(deliveryDateFormat).orElse(null);
+                List<PreviewDietResponseDto> dietsResponse = dailyDiets.stream()
+                    .map(dailyDiet -> new PreviewDietResponseDto(dailyDiet.getDiet()))
+                    .collect(Collectors.toList());
+                return new PlanResponseDto(deliveryDateFormat, dietsResponse);
+            })
             .collect(Collectors.toList());
-        List<DailyDiet> dailyDiets = dailyDietDao.selectDailyDietsByStartDateOrEndDate(deliveryDatesFormat)
-            .orElseGet(null);
-        return getPreviewResponseDto(dailyDiets);
     }
 
     private List<PreviewResponseDto> getPreviewResponseDto(List<DailyDiet> dailyDiets) {

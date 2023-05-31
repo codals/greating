@@ -19,7 +19,8 @@ public class DailyDietDaoImpl implements DailyDietDao {
     }
 
     @Override
-    public Optional<List<DailyDiet>> selectDailyDietsByStartDateOrEndDate(List<String> deliveryDates) {
-        return Optional.ofNullable(sqlSession.selectList("dailyDiet.selectAllByStartDateOrEndDate", deliveryDates));
+    public Optional<List<DailyDiet>> selectAllByStartDateOrEndDate(String deliveryDateFormat) {
+        return Optional.ofNullable(
+            sqlSession.selectList("dailyDiet.selectAllByStartDateOrEndDate", deliveryDateFormat));
     }
 }
