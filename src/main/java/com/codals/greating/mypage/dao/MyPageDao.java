@@ -9,4 +9,8 @@ public interface MyPageDao {
 
 	List<MyPageDto> diyList(MyPageDto dto);
 
+	List<MyPageDto> scrapList(MyPageScrapDto dto);
+
+	List<MyPageDto> voteLlist(MyPageScrapDto dto);
+
 }

@@ -69,11 +69,18 @@ public class MyPageController {
     }
 
     @GetMapping("/voted")
-    public String loadMyVotedPage() {
-        /**
-         * my-voted.jsp 예정
-         */
-        return "mypage/my-voted";
+    public String loadMyVotedPage(@SessionAttribute("loginUser") User loginUser, MyPageScrapDto dto, Model model) {
+
+    	// 사용자 ID를 가져와서 dto에 설정
+        dto.setUserId(loginUser.getId());
+        
+        // dto를 기반으로 사용자의 글 목록을 조회
+        List<MyPageDto> scrapList = service.voteList(dto);
+        
+        model.addAttribute("dto", dto);
+        model.addAttribute("list", scrapList);
+    	
+        return "user/mypage-myvote";
     }
 
     @GetMapping("/profile")

@@ -86,12 +86,12 @@ function selectDate(element) {
 			selectedElements.forEach(function(el) {
 				el.classList.remove('selected');
 			});
-			selectedDates = [];
+//			selectedDates = [];
 		}
-
+		
 	});
+	let selectedDates = [];
 	element.classList.add('selected');
-
 	// 선택된 날짜 가져오기
 	var selectedDate = new Date(currentDate.getFullYear(), currentDate
 			.getMonth(), parseInt(element.innerHTML));

@@ -21,4 +21,18 @@ public class MyPageServiceImpl implements MyPageService{
 		return dao.diyList(dto);
 	}
 
+
+	@Override
+	public List<MyPageDto> scrapList(MyPageScrapDto dto) {
+		// TODO Auto-generated method stub
+		return dao.scrapList(dto);
+	}
+
+
+	@Override
+	public List<MyPageDto> voteList(MyPageScrapDto dto) {
+		// TODO Auto-generated method stub
+		return dao.voteLlist(dto);
+	}
+
 }
