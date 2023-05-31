@@ -105,7 +105,7 @@
 
 
 	<!-- vote 관련 -->
-	<insert id="insertVote" parameterType="VoteRequestDTO">
+	<insert id="insertVote" parameterType="VoteRequestDto">
 		INSERT INTO vote (user_id, post_id)
 		VALUES (#{userId}, 200)
 	</insert>

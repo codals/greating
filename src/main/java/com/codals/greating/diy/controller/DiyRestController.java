@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.codals.greating.diy.dto.DiyRequestDto;
-import com.codals.greating.diy.dto.VoteRequestDTO;
+import com.codals.greating.diy.dto.VoteRequestDto;
 import com.codals.greating.diy.service.DiyService;
 import com.codals.greating.user.entity.User;
 
@@ -58,10 +59,18 @@ public class DiyRestController {
 
 
 	@PostMapping("/vote")
-	public ResponseEntity<Boolean>  votePost(VoteRequestDTO requestDTO) {
-		if(diyService.votePost(requestDTO)==1) {
+	public ResponseEntity<Boolean>  votePost(VoteRequestDto requestDto) {
+		if(diyService.vote(requestDto)) {
 			return ResponseEntity.ok().build();
-
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+	}
+	
+	
+	@DeleteMapping("/vote")
+	public ResponseEntity<Boolean> voteCancel(VoteRequestDto requestDto){
+		if(diyService.cancelVote(requestDto)) {
+			return ResponseEntity.ok().build();
 		}
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
 	}

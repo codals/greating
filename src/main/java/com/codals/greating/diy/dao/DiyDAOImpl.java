@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import com.codals.greating.diy.dto.PostResponseDto;
-import com.codals.greating.diy.dto.VoteRequestDTO;
+import com.codals.greating.diy.dto.VoteRequestDto;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -31,12 +31,11 @@ public class DiyDAOImpl implements DiyDAO {
 
 
 	@Override
-	public int processVote(VoteRequestDTO requestDTO) throws Exception{
+	public int vote(VoteRequestDto requestDto) throws Exception{
 		String statement = "post.insertVote";
-		log.info("dao test ");
-		int result = sqlSession.insert(statement,requestDTO);
-		log.info("result");
-		return result;
+		return sqlSession.insert(statement,requestDto);
 	}
+
+
 
 }

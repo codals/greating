@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.codals.greating.diy.dao.DiyDAO;
 import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.PostResponseDto;
-import com.codals.greating.diy.dto.VoteRequestDTO;
+import com.codals.greating.diy.dto.VoteRequestDto;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -36,13 +36,17 @@ public class DiyServiceImpl implements DiyService{
 
 	@Override
 	@Transactional
-	public int votePost(VoteRequestDTO requestDTO) {
+	public boolean vote(VoteRequestDto requestDto) {
 		try {
-			return  diyDAO.processVote(requestDTO);
+			if(diyDAO.vote(requestDto)==1) {
+				return true;
+			}
+			return false;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return 0;
+			return false;
 		}
 	}
+
 
 }

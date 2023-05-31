@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class VoteRequestDTO {
+public class VoteRequestDto {
 
 	private int postId;
 	private int userId;
