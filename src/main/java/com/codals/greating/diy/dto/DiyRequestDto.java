@@ -3,6 +3,7 @@ package com.codals.greating.diy.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
@@ -31,8 +32,14 @@ public class DiyRequestDto {
     private Integer extraFoodId;
     private String content;
     
+    @Value("${img.storage.path}")
+    private String imgStoragePath;
+    
+    @Value("${img.storage.token}")
+    private String imgStorageToken;
+    
     public void setFileName(String fileName) {
-    	this.fileName = "http://119.209.77.170:48000/download/codals/" + fileName + "?token=wecangohdite";
+    	this.fileName = imgStoragePath + fileName + imgStorageToken;
     }
     
     public void setFoodCountryId(String foodCountryId) {
