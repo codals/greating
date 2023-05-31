@@ -119,6 +119,19 @@
 	<select id="selectLastInsertedId" resultType="java.lang.Integer">
 	  SELECT POST_ID_SEQ.CURRVAL AS id FROM DUAL
 	</select>
+	
+	<!-- scrap 관련   -->
+	<insert id="insertScrap" parameterType="ScrapRequestDto">
+		INSERT INTO scrap(user_id, post_id)
+		values(#{userId},#{postId})
+	</insert>
+	
+	<delete id="deleteScrap" parameterType="ScrapRequestDto">
+		delete from scrap
+		where user_id=#{userId} and post_id=#{postId}
+	</delete>
+
+
 
 	
 

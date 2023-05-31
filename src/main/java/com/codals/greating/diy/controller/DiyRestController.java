@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.codals.greating.diy.dto.DiyRequestDto;
+import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.dto.VoteRequestDto;
 import com.codals.greating.diy.service.DiyService;
 import com.codals.greating.global.ResponseDTO;
@@ -57,6 +58,24 @@ public class DiyRestController {
 		
 	    return new ResponseEntity<>(postId, HttpStatus.OK);
 	}
+    
+    @PostMapping("/scrap")
+    public ResponseEntity<Boolean> scrap(ScrapRequestDto requestDto){
+    	log.info(requestDto);
+    	if(diyService.scrap(requestDto)) {
+			return ResponseEntity.ok().build();   
+		}
+    	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+    }
+    
+    @DeleteMapping("/{postId}/scrap")
+    public ResponseEntity<Boolean> cancelScrap(@PathVariable("postId") int postId, @SessionAttribute("loginUser") User loginUser){
+    	if(diyService.cancelScrap(new ScrapRequestDto(postId, loginUser.getId()))) {
+			return ResponseEntity.ok().build();   
+    	}
+    	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+    }
+    
 	
 
 

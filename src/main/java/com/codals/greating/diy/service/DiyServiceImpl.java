@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.codals.greating.diy.dao.DiyDAO;
 import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.PostResponseDto;
+import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.entity.Post;
 import com.codals.greating.exception.BusinessException;
 import com.codals.greating.exception.ErrorCode;
@@ -135,7 +136,8 @@ public class DiyServiceImpl implements DiyService{
 							.build();
 		return newPost;
 	}
-	@Override
+
+  @Override
 	@Transactional
 	public boolean vote(VoteRequestDto requestDto) {
 		try {
@@ -149,11 +151,25 @@ public class DiyServiceImpl implements DiyService{
 		}
 	}
 
-	@Override
+  @Override
+  @Transactional
+  public boolean cancelVote(VoteRequestDto requestDto) {
+    try {
+      if(diyDAO.deleteVote(requestDto)==1) {
+        return true;
+      }
+      return false;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+  
+  @Override
 	@Transactional
-	public boolean cancelVote(VoteRequestDto requestDto) {
+	public boolean scrap(ScrapRequestDto requestDto) {
 		try {
-			if(diyDAO.deleteVote(requestDto)==1) {
+			if(diyDAO.insertScrap(requestDto)==1) {
 				return true;
 			}
 			return false;
@@ -163,5 +179,18 @@ public class DiyServiceImpl implements DiyService{
 		}
 	}
 
-
+	@Override
+	public boolean cancelScrap(ScrapRequestDto requestDto) {
+		try {
+			if(diyDAO.deleteScrap(requestDto)==1) {
+				return true;
+			}
+			log.warn("해당 scrap 데이터가 없습니다.");
+			return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+      
 }
