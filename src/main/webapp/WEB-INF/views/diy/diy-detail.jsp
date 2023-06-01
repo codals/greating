@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -7,35 +6,43 @@
 <meta charset="UTF-8">
 <title>DIY 식단 상세보기</title>
 
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
+
 <!-- css로 가져오기 -->
-<link href="/greating/resources/css/reset.css" rel="stylesheet">
+
+
 <link href="/greating/resources/css/diy/diy-detail.css" rel="stylesheet">
 
 <!-- js 가져오기 -->
 <script src="/greating/resources/js/diy/diy-detail.js"></script>
 
 <!-- font 가져오기 -->
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=NanumMyeongjo&display=swap" rel="stylesheet" />
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet" />
-<link
-	href="https://fonts.googleapis.com/css?family=NanumMyeongjo&display=swap"
-	rel="stylesheet" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
 <!-- bootstrap -->
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+<!-- alert 창 커스텀  -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<link href="/greating/resources/css/templates/alert.css" rel="stylesheet">
 
 </head>
+
 
 <body>
 
 	<!-- header 가져오기 -->
 	<jsp:include page="../templates/header.jsp" />
 	<div class="hr"></div>
-
 
 	<!-- 본 페이지 내용 -->
 	<div class="main-content hd__inner1100">
@@ -47,8 +54,7 @@
 		<div class="main-info-container">
 
 			<div class="main-img">
-				<img src="/greating/resources/images/diy/img_diy_sample.png"
-					alt="Main Image">
+				<img src="${postDetail.post.imgUrl}" alt="Main Image">
 			</div>
 
 			<div class="main-info-text-container">
@@ -63,12 +69,10 @@
 				</div>
 
 				<div class="main-info-line">
-					<!-- 
-						<span class="diy-category-info">건강식단 > 칼로리식단</span>
-						<span class="diy-category-info">한식</span>
-						-->
+
 					<span class="info-title">분류</span> <span class="info-text">
-						<span>${postDetail.mainCategory.name} > ${postDetail.subCategory.name}</span> , <span>한식</span>
+						<span>${postDetail.mainCategory.name} >
+							${postDetail.subCategory.name}</span> , <span>한식</span>
 
 					</span>
 
@@ -81,9 +85,9 @@
 
 				<div class="main-info-line">
 					<span class="info-title">메인 구성</span> <span class="info-text">
-						<span class="diy-dish-info">${postDetail.rice.name}</span> 
-						<span class="diy-dish-info">${postDetail.soup.name}</span>
-						<span class="diy-dish-info">${postDetail.main.name}</span>
+						<span class="diy-dish-info">${postDetail.rice.name}</span> <span
+						class="diy-dish-info">${postDetail.soup.name}</span> <span
+						class="diy-dish-info">${postDetail.main.name}</span>
 					</span>
 				</div>
 
@@ -96,20 +100,35 @@
 					<span class="info-title">투표 현황</span>
 					<div class="diy-vote-info">
 						<img src="/greating/resources/images/diy/img_greating_vote.png"
-							style="width: 30px; heigh: 30px;"> <span class="vote-count">${postDetail.post.likeCnt}</span>
+							style="width: 30px; heigh: 30px;"> <span class="vote-count">${postDetail.post.voteCnt}</span>
 						votes
 					</div>
 				</div>
 
 				<div class="button-group">
-					<button class="white-button">
-						<!-- <img src="/greating/resources/images/diy/img_" alt="이미지_설명"> -->
-						<span>♡ 투표하기</span>
-					</button>
-					<button class="green-button">
-						<img src="/greating/resources/images/diy/img_scrap_icon.png"
-							style="width: 22px; heigh: 22px;"scrapicon"> <span>스크랩</span>
-					</button>
+					<c:if test="${isVoted eq true}">
+						<button class="vote-button" onclick="checkVoteCancel(${postDetail.post.id})">
+							<i class="fas fa-thumbs-up"></i><span> 투표완료</span>
+						</button>
+
+					</c:if>
+					<c:if test="${isVoted ne true}">
+						<button class="vote-button" onclick="checkVote(${postDetail.post.id})">
+							<i class="far fa-thumbs-up"></i><span> 투표하기</span>
+						</button>
+					</c:if>
+					<c:if test="${isScrapped eq true}">
+						<button class="scrap-button" onclick="checkScrapCancel(${postDetail.post.id})">
+							 <i class="fas fa-bookmark"></i>
+							 <span>스크랩</span>
+						</button>
+					</c:if>
+					<c:if test="${isScrapped ne true}">
+						<button class="scrap-button" onclick="checkScrap(${postDetail.post.id})">
+							 <i class="far fa-bookmark"></i>
+							 <span>스크랩</span>
+						</button>
+					</c:if>
 				</div>
 
 			</div>
@@ -160,7 +179,8 @@
 							<div class="info-text-section">
 								<div class="sub-info-line">
 									<span class="info-title">분류</span> <span class="info-text">
-										<span>${postDetail.mainCategory.name} > ${postDetail.subCategory.name} </span> , <span>한식</span>
+										<span>${postDetail.mainCategory.name} >
+											${postDetail.subCategory.name} </span> , <span>한식</span>
 
 									</span>
 								</div>
@@ -233,12 +253,12 @@
 
 						<div class="info-text-section">
 							<div class="img-section">
-								<img src="${postDetail.rice.imgUrl}"> 
-								<img src="${postDetail.soup.imgUrl}"> 
-								<img src="${postDetail.main.imgUrl}"> 
-								<img src="${postDetail.side1.imgUrl}">
-								<img src="${postDetail.side2.imgUrl}">
-								<img src="${postDetail.extra.imgUrl}">
+								<img src="${postDetail.rice.imgUrl}"> <img
+									src="${postDetail.soup.imgUrl}"> <img
+									src="${postDetail.main.imgUrl}"> <img
+									src="${postDetail.side1.imgUrl}"> <img
+									src="${postDetail.side2.imgUrl}"> <img
+									src="${postDetail.extra.imgUrl}">
 							</div>
 						</div>
 					</div>

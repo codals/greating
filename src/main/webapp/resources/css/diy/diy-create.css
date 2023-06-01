@@ -16,9 +16,9 @@
 .diy-form-title>.main-title {
 	color: #918C01;
 	font-size: 35px;
-	font-weight: 600;
+	font-weight: 700;
 	display: block;
-	padding: 10px 0px 10px 0px;
+	padding: 10px 0px 0px 0px;
 }
 
 .diy-form-title>.main-title-desc {
@@ -44,72 +44,106 @@
 .diy-form-sec1-left {
 	width: 35%;
 	height: 100%;
-	display: inline-block;
+	display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+	
 }
 
 .diy-form-sec1-right {
-	width: 60%;
 	height: 100%;
 	display: inline-block;
+	margin-left: 10px;
 }
 
-.greating-type-sec>span, .greating-category-sec>span, .greating-type-sec>span,
+.greating-type-sec>span, 
+.greating-country-sec>span,
+.greating-category-sec>span, 
+.greating-type-sec>span,
 	.greating-sub-sec>span {
-	font-size: 25px;
-	font-weight: bold;
+	font-size: 23px;
+	font-weight: Bold;
 	margin: 10px 0px 10px 0px;
 	color: #918C01;
 	display: block;
 }
 
-.greating-type-btns label, .greating-category-btns label,
-	.greating-subcategory-btns label {
+.greating-type-btns label, 
+.greating-country-btns label,
+.greating-category-btns label,
+.greating-subcategory-btns label {
 	background: white;
-	border: 2px solid #C3C3C3;
+	border: 1px solid #999999;
 	border-radius: 20px;
-	padding: 10px;
+	padding: 10 20px;
 	margin-right: 10px;
 	cursor: pointer;
 	text-align: center;
-	width: 110px;
+	width: auto;
+	color: #999999;
 }
 
-.greating-type-btns>input[type="checkbox"], .greating-category-btns>input[type="checkbox"],
-	.greating-subcategory-btns>input[type="checkbox"] {
+.greating-type-btns>input[type="radio"], 
+.greating-country-btns>input[type="radio"],
+.greating-category-btns>input[type="radio"],
+.greating-subcategory-btns>input[type="radio"] {
 	display: none;
 }
 
-.greating-type-btns>input[type="checkbox"]:checked+label,
-	.greating-category-btns>input[type="checkbox"]:checked+label,
-	.greating-subcategory-btns>input[type="checkbox"]:checked+label {
+.greating-type-btns>input[type="radio"]:checked+label,
+.greating-country-btns>input[type="radio"]:checked+label,
+.greating-category-btns>input[type="radio"]:checked+label,
+.greating-subcategory-btns>input[type="radio"]:checked+label {
 	border: 2px solid #918c01;
 	border-radius: 20px;
-	padding: 10px;
+	padding: 10 20px;
 	margin-right: 10px;
 	cursor: pointer;
 	text-align: center;
 	background-color: white;
+	color: #918c01;
+	font-weight: bold;
 }
 
 .greating-sub-sec p {
 	font-size: 11px;
 	color: #868686;
-	padding: 10px;
 }
 
 .diy-form-img {
-	width: 80%;
-	height: 300px;
+	width: 90%;
+	min-height: 280px;
 	background: #D9D9D9;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	margin-top: 20px;
+	/* 이미지 미리보기 영역 설정 */
+    justify-content: center;
+    align-items: center;
+}
+
+.image-preview {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-preview img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
 }
 
 .diy-form-img-desc {
-	width: 90%;
-	padding: 5px;
+	display: flex;
+    justify-content: center;
 }
 
 .diy-form-img-desc>span {
@@ -118,21 +152,29 @@
 }
 
 .div-form-img-btn {
-	width: 50px;
-	height: 50px;
-	background: #ffffff;
-	border: none;
-	border-radius: 50px;
+    display: flex;
+    align-items: center;
 }
 
-.div-form-img-btn>span {
-	color: #8f8f8f;
-	font-size: 25px;
-	font-weight: bold;
-	display: flex;
-	justify-content: center;
-	align-itmes: cetner;
-	margin-top: 5px;
+.div-form-img-btn input[type="file"] {
+    display: none;
+}
+
+.div-form-img-btn label {
+	width: 120px;
+    display: inline-block;
+    padding:10px 20px;
+    background-color: #918c01;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 15px;
+    margin-top: 5px;
+    text-align: center;
+
+}
+
+.div-form-img-btn label:hover {
+    background-color: #7f7801;
 }
 
 .diy-form-img input[type="file"] {
@@ -165,7 +207,9 @@
 	color: #8f8f8f;
 }
 
-.diy-diet-title>input, .diy-diet-cal>input, .diy-diet-price>input {
+.diy-diet-title>input, 
+.diy-diet-cal>input, 
+.diy-diet-price>input {
 	width: 100%;
 	margin-top: 10px;
 	margin-bottom: 30px;
@@ -174,8 +218,13 @@
 	border-radius: 6px;
 }
 
-.diy-diet-title>input[type="text"]:focus, .diy-diet-cal>input:focus,
-	.diy-diet-price>input:focus {
+::placeholder {
+  color: rgba(153, 153, 153, 0.7); 
+}
+
+.diy-diet-title>input[type="text"]:focus, 
+.diy-diet-cal>input:focus,
+.diy-diet-price>input:focus {
 	outline: none; /* 기본 포커스 스타일 제거 */
 	border: 2px solid #918c01;
 	box-shadow: none;
@@ -205,13 +254,14 @@
 .diy-diet-rice-btns>label, .diy-diet-soup-btns>label,
 	.diy-diet-main-btns>label {
 	background: white;
-	border: 2px solid #C3C3C3;
+	border: 1px solid #A1A1A1;
 	border-radius: 20px;
 	padding: 10px;
 	margin-right: 10px;
 	cursor: pointer;
 	text-align: center;
 	width: 110px;
+	color: #A1A1A1;
 }
 
 .diy-diet-rice-btns>input, .diy-diet-soup-btns>input,
@@ -219,8 +269,9 @@
 	display: none;
 }
 
-.diy-diet-rice-btns>input:checked+label, .diy-diet-soup-btns>input:checked+label,
-	.diy-diet-main-btns>input:checked+label {
+.diy-diet-rice-btns>input:checked+label, 
+.diy-diet-soup-btns>input:checked+label,
+.diy-diet-main-btns>input:checked+label {
 	border: 2px solid #918c01;
 	border-radius: 20px;
 	padding: 10px;
@@ -228,7 +279,27 @@
 	cursor: pointer;
 	text-align: center;
 	background-color: white;
+	font-weight: bold;
+	color: #918C01
 }
+
+.diy-diet-content>textarea {
+  width: 100%;
+  height: 120px;
+  border: 1px solid #C3C3C3;
+  border-radius: 6px;
+}
+
+.diy-diet-content>textarea::placeholder {
+  color: rgba(153, 153, 153, 0.7); 
+}
+
+.diy-diet-content>textarea:focus {
+  outline: none;
+  border: 2px solid #918c01;
+  box-shadow: none;
+}
+
 
 /*section 3*/
 .diy-form-section-3>span:first-child, .diy-form-section-4>span:first-child,
@@ -254,20 +325,45 @@
 	display: flex;
 }
 
+#rice-container {
+	margin-left: 20px;
+}
+
+.soup-option-sec,
+.main-option-sec,
+.side-option-sec {
+	margin-left: 20px;
+}
+
+.food-option-title {
+	font-size: 15px;
+	font-weight: bold;
+	color: #918c01;
+}
+
 .food-card {
 	text-align: center;
-	margin-right: 20px;
-	width: 80px;
+	margin-right: 10px;
+	width: 100px;
+	padding:12px;
+}
+
+.food-card.selected {
+    border: 4px solid #918c01;
+    border-radius: 20px;
 }
 
 .food-card>label {
 	display: flex;
 	flex-direction: column;
+	align-items: center; /* 이미지를 가운데 정렬하기 위해 추가 */
+    justify-content: center; /* 이미지를 가운데 정렬하기 위해 추가 */
 	text-align: center;
 	width: 70px;
 	height: 70px;
 	word-break: break-all;
 	font-size: 12px;
+	cursor: pointer;
 }
 
 .food-card>input {
@@ -278,11 +374,6 @@
 	font-size: 12px;
 	white-space: break-spaces;
 	line-height: 15px;
-}
-
-.food-card>input:checked+label {
-	border: 2px solid #918c01;
-	border-radius: 50px;
 }
 
 .food-card>label>img {
@@ -333,19 +424,33 @@
 	text-align: center;
 }
 
+.modal-food-card[type="radio"],
 .modal-food-card[type="checkbox"] {
 	display: none;
 }
 
-.modal-food-card[type="checkbox"]:checked+label>img {
-	display: inline-block;
-	margin: 10px 5px 10px 5px;
-	text-align: center;
-	border: 3px solid #918c01;
+.modal-food-card[type="radio"]:checked+label {
+	border: 5px solid #918c01;
+	border-radius: 10px;
+	padding:10px;
 }
 
-.modal-food-card[type="checkbox"]:checked+label>span {
-	padding-left: 10px;
+.modal-food-card[type="checkbox"]:checked+label {
+	border: 5px solid #918c01;
+	border-radius: 10px;
+	padding:5px;
+}
+
+.modal-food-card[type="radio"]:checked+label>img
+ {
+	display: inline-block;
+	margin: 5px 3px 5px 3px;
+	text-align: center;
+	/* border: 5px solid #918c01; */
+}
+
+.modal-food-card[type="radio"]:checked+label>span {
+/* 	padding-left: 5px; */
 }
 
 .modalFoodImg {
@@ -367,6 +472,11 @@
 	line-height: 18px;
 }
 
+.modal-title {
+	font-weight: bold;
+	color: white;
+}
+
 .modalTitle {
 	font-size: 30px;
 	font-weight: bold;
@@ -376,6 +486,7 @@
 .modalTitleDesc {
 	margin: 5px 0px 15px 0px;
 	font-size: 18px;
+	color: #999999
 }
 
 .modalCloseBtn {
@@ -448,4 +559,18 @@
 	font-size: 20px;
 	padding: 12px;
 	width: 150px;
+}
+
+#selectedMarketSoupName {
+	margin-left: 10px; 
+	margin-top: 10px;
+}
+
+.text-border {
+  border: 2px solid #918c01; 
+  border-radius: 10px;
+  padding: 10px; 
+  font-weight: bold;
+  color:white;
+  background:#918c01; 
 }

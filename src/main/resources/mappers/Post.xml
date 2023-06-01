@@ -23,11 +23,12 @@
 			<result property="userId" column="user_id" />
 			<result property="title" column="title" />
 			<result property="content" column="content" />
+			<result property="imgUrl" column="img_url" />
 			<result property="minCalorie" column="min_calorie" />
 			<result property="maxCalorie" column="max_calorie" />
 			<result property="maxPrice" column="max_price" />
 			<result property="minPrice" column="min_price" />
-			<result property="likeCnt" column="like_cnt" />
+			<result property="voteCnt" column="vote_cnt" />
 
 			<result property="createdAt" column="created_at" />
 			<result property="modifiedAt" column="modified_at" />
@@ -39,12 +40,13 @@
 			<result property="username" column="username" />
 			<result property="name" column="name" />
 		</association>
-		
-		<association property="mainCategory" javaType="MainCategory">
+
+		<association property="mainCategory"
+			javaType="MainCategory">
 			<id property="id" column="main_cate_id" />
 			<result property="name" column="main_cate_name" />
 		</association>
-		
+
 		<association property="subCategory" javaType="SubCategory">
 			<id property="id" column="sub_cate_id" />
 			<result property="name" column="sub_cate_name" />
@@ -78,17 +80,23 @@
 	<!-- SELECT 쿼리 실행 -->
 	<select id="selectPostByPostId" parameterType="int"
 		resultMap="postResponseDtoResultMap">
-		SELECT p.*, u.id as user_id , u.username as username, u.name as name, 
-				main_cate.id as main_cate_id, main_cate.name as main_cate_name, 
-				sub_cate.id as sub_cate_id, sub_cate.name as sub_cate_name
+		SELECT p.*, u.id as user_id , u.username as username, u.name
+		as name,
+		main_cate.id as main_cate_id, main_cate.name as
+		main_cate_name,
+		sub_cate.id as sub_cate_id, sub_cate.name as
+		sub_cate_name
 		FROM post p
-		JOIN "user" u on p.user_id = u.id
+		JOIN "user"
+		u on p.user_id = u.id
 		LEFT JOIN
 		main_category main_cate on
 		p.main_category_id = main_cate.id
 		LEFT JOIN
-		sub_category sub_cate on p.sub_category_id = sub_cate.id
-		WHERE p.id = #{postId}
+		sub_category sub_cate on
+		p.sub_category_id = sub_cate.id
+		WHERE p.id =
+		#{postId}
 	</select>
 
 	<select id="selectFoodById" parameterType="int"
@@ -98,4 +106,112 @@
 		WHERE
 		id = #{id}
 	</select>
+
+	<insert id="insertPost" parameterType="Post">
+	    <![CDATA[
+	    INSERT INTO post (main_category_id, sub_category_id, food_country_id, user_id, title, "CONTENT", img_url, rice_food_id, soup_food_id, main_food_id, side1_food_id, side2_food_id, extra_food_id, min_calorie, max_calorie, min_price, max_price)
+	    VALUES (#{mainCategoryId}, #{subCategoryId}, #{foodCountryId}, #{userId}, #{title}, #{content}, #{imgUrl}, #{riceFoodId}, #{soupFoodId}, #{mainFoodId}, #{side1FoodId}, #{side2FoodId}, #{extraFoodId}, #{minCalorie}, #{maxCalorie}, #{minPrice}, #{maxPrice})
+	    ]]>
+	</insert>
+
+	<!-- 현재 세션에 대한 마지막 삽입 ID를 반환하기 때문에 다른 스레드가 동시에 삽입을 수행하는 경우에도 올바른 ID 값을 반환할 
+		수 있음 -->
+	<select id="nextPostId" resultType="java.lang.Integer">
+		SELECT POST_ID_SEQ.NEXTVAL
+		FROM DUAL
+	</select>
+
+	<select id="selectLastInsertedId" resultType="java.lang.Integer">
+		SELECT
+		POST_ID_SEQ.CURRVAL AS id FROM DUAL
+	</select>
+	
+	
+	
+	
+	<select id="selectPostsByMainCategory" parameterType="int"
+		resultType="Post">
+		SELECT *
+		from post
+		where main_category_id = #{mainCategoryId}
+		and status=1
+		order by vote_cnt desc
+		OFFSET 0 ROWS FETCH FIRST 10 ROWS
+		ONLY
+	</select>
+
+	<select id="selectPostBySearchConditions"
+		parameterType="SearchRequestDto" resultType="SimplePostDto">
+		SELECT *
+		FROM post
+		<where>
+				<if test="hasRice != null">
+					AND nvl2(rice_food_id, 1, 0)= #{hasRice}
+				</if>
+				<if test="hasSoup != null">
+					AND nvl2(soup_food_id, 1, 0)= #{hasSoup}
+				</if>
+				<if test="mainCategories != null and mainCategories.size() > 0">
+					AND main_category_id IN
+					<foreach item="category" collection="mainCategories"
+						separator="," open="(" close=")">
+						#{category.id}
+					</foreach>
+				</if>
+				<if test="foodCountries != null and foodCountries.size() > 0">
+					AND food_country_id IN
+					<foreach item="country" collection="foodCountries"
+						separator="," open="(" close=")">
+						#{country.id}
+					</foreach>
+				</if> 
+		</where>
+	<!-- 	OFFSET 0 ROWS FETCH FIRST 10 ROWS
+		ONLY -->
+		
+	</select>
+	
+	
+	
+
+	<!-- scrap 관련 -->
+	<insert id="insertScrap" parameterType="ScrapRequestDto">
+		INSERT INTO
+		scrap(user_id, post_id)
+		values(#{userId},#{postId})
+	</insert>
+
+	<delete id="deleteScrap" parameterType="ScrapRequestDto">
+		delete from scrap
+		where
+		user_id=#{userId} and post_id=#{postId}
+	</delete>
+	<select id="selectScrapByPostIdAndUserId" parameterType="ScrapRequestDto" resultType="Scrap">
+		select * from scrap
+		where post_id=#{postId} and user_id=#{userId}
+	</select>
+	
+
+
+	<!-- vote 관련 -->
+	<insert id="insertVote" parameterType="VoteRequestDto">
+		INSERT INTO vote (user_id,
+		post_id)
+		VALUES (#{userId}, #{postId})
+	</insert>
+
+	<delete id="deleteVote" parameterType="VoteRequestDto">
+		delete from vote
+		where
+		user_id=#{userId} and post_id=#{postId}
+	</delete>
+	
+	<select id="selectVoteByPostIdAndUserId" parameterType="VoteRequestDto" resultType="Vote">
+		select * from vote
+		where post_id=#{postId} and user_id=#{userId}
+	
+	</select>
+	
+
+
 </mapper>

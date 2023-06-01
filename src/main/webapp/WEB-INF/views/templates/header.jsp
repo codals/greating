@@ -5,20 +5,14 @@
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
 
 <!-- 헤더에 사용될 CSS 파일 -->
-<link href="${pageContext.request.contextPath}/resources/css/templates/header.css" rel="stylesheet" />
-<script src="${pageContext.request.contextPath}/resources/js/header.js"></script>
+<link href="/greating/resources/css/templates/header.css" rel="stylesheet" />
+<link href="/greating/resources/css/templates/reset.css" rel="stylesheet" />
 
-<link href="${pageContext.request.contextPath}/resources/css/templates/reset.css" rel="stylesheet">
+<script src="/greating/resources/js/header.js"></script>
 
 <!--  bootstrap  -->
-<link
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-
-
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<script	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -28,7 +22,10 @@
 		<div class="banner">
 			<!-- 로그인된 사용자인 경우 -->
 			<c:if test="${not empty sessionScope.loginUser}">
-				<span class="welcome-message">${sessionScope.loginUser.name}님</span>
+				<span class="welcome-message">
+				<a href="${pageContext.request.contextPath}/mypage/diets"
+				style="color: inherit; text-decoration: none;">
+				${sessionScope.loginUser.name}님</a></span>
 				<span class="divider"></span>
 				<span class="link">쿠폰등록</span>
 				<span class="divider"></span>

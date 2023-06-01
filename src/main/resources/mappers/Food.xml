@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="food">
+  
+  <select id="findAllGreatingFoodByFoodTypeId" resultType="Food" parameterType="Integer">
+    select * from food where food_type_id = #{foodTypeId} and in_market = 0
+  </select>
+  
+  <select id="findAllMarketFoodByFoodTypeId" resultType="Food" parameterType="Integer">
+    select * from food where food_type_id = #{foodTypeId} and in_market = 1
+  </select>
+  
+</mapper>

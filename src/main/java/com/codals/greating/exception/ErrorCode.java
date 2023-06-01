@@ -16,7 +16,9 @@ public enum ErrorCode {
 	INVALID_LOGIN("INVALID_LOGIN", "로그인이 필요합니다.", 401),
 
 	// NOT_FOUND (404)
-	USER_NOT_FOUND("USER_NOT_FOUND", "등록되지 않은 사용자입니다.", 404), URL_NOT_FOUND("URL_NOT_FOUND", "찾을 수 없는 URL입니다.", 404),
+	USER_NOT_FOUND("USER_NOT_FOUND", "등록되지 않은 사용자입니다.", 404), 
+	URL_NOT_FOUND("URL_NOT_FOUND", "찾을 수 없는 URL입니다.", 404),
+	FOOD_NOT_FOUND("FOOD_NOT_FOUND", "음식을 찾을 수 없습니다.", 404),
 
 	// Internal Server Error (500)
 	INTERNAL_SERVER_ERROR("INTERNAL_SERVER_ERROR", "서버 오류가 발생했습니다.", 500);

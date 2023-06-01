@@ -33,7 +33,7 @@ public class UserRestController {
     @PostMapping("/register")
     public String register() {
         /**
-         * 회원가입
+         * 회원가입;
          */
         return "redirect:/";
     }
