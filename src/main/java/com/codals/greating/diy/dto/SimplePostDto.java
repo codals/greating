@@ -28,6 +28,9 @@ public class SimplePostDto {
 	private Integer voteCnt;
 	private Timestamp createdAt;
 	private Timestamp modifiedAt;
+	
+	private String username;
+	private String name;
 
 	
 }
