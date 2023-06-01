@@ -15,8 +15,15 @@ public class FoodDAOImpl implements FoodDAO {
 	private final SqlSession session;
 
 	@Override
-	public List<Food> findByFoodTypeId(int foodTypeId) {
-		String statement = "food.findAllByFoodTypeId";
+	public List<Food> findGreatingFoodsByFoodTypeId(int foodTypeId) {
+		String statement = "food.findAllGreatingFoodByFoodTypeId";
+		List<Food> result = session.selectList(statement, foodTypeId);
+		return result;
+	}
+
+	@Override
+	public List<Food> findMarketFoodsByFoodTypeId(int foodTypeId) {
+		String statement = "food.findAllMarketFoodByFoodTypeId";
 		List<Food> result = session.selectList(statement, foodTypeId);
 		return result;
 	}

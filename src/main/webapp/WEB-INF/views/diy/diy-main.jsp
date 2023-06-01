@@ -7,8 +7,9 @@
 <meta charset="UTF-8">
 <title>DIY 식단</title>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <!-- css로 가져오기 -->
-<link href="${pageContext.request.contextPath}/resources/css/reset.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/diy/diy-main.css" rel="stylesheet">
 
 <!-- font 가져오기 -->
@@ -18,6 +19,8 @@
 <link
 	href="https://fonts.googleapis.com/css?family=NanumMyeongjo&display=swap"
 	rel="stylesheet" />
+	
+<script src="/greating/resources/js/diy/diy-main.js"></script>
 
 </head>
 
@@ -55,27 +58,27 @@
 					<div class="greating-category-sec">
 						<div class="sub-title">카테고리</div>
 						<div class="greating-category-btns">
-							<input id="healthy-diet" type="checkbox" name="category"
-								value="건강식단"> <label for="healthy-diet">건강식단</label> <input
-								id="care-diet" type="checkbox" name="category" value="건강식단">
-							<label for="care-diet">질병맞춤식단</label> <input id="challenge-diet"
-								type="checkbox" name="category" value="챌린지식단"> <label
-								for="challenge-diet">챌린지식단</label>
+							<input id="healthy-diet" type="checkbox" name="category" value="HEALTHY_DIET"> 
+							<label for="healthy-diet">건강식단</label> 
+							<input id="care-diet" type="checkbox" name="category" value="MEDICAL_DIET">
+							<label for="care-diet">질병맞춤식단</label> 
+							<input id="challenge-diet" type="checkbox" name="category" value="CHALLENGE_DIET"> 
+							<label for="challenge-diet">챌린지식단</label>
 						</div>
 					</div>
 
 					<div class="greating-country-sec">
 						<div class="sub-title">분류</div>
 						<div class="greating-country-btns">
-							<input id="korean-diet" type="checkbox" name="country" value="한식">
+							<input id="korean-diet" type="checkbox" name="country" value="KOREAN">
 							<label for="korean-diet">한식</label> <input id="chinese-diet"
-								type="checkbox" name="country" value="중식"> <label
+								type="checkbox" name="country" value="CHINESE"> <label
 								for="chinese-diet">중식</label> <input id="japanese-diet"
-								type="checkbox" name="country" value="일식"> <label
+								type="checkbox" name="country" value="JAPANESE"> <label
 								for="japanese-diet">일식</label> <input id="western-diet"
-								type="checkbox" name="country" value="양식"> <label
+								type="checkbox" name="country" value="WESTERN"> <label
 								for="western-diet">양식</label> <input id="etc-diet"
-								type="checkbox" name="country" value="기타"> <label
+								type="checkbox" name="country" value="ETC"> <label
 								for="etc-diet">기타</label>
 						</div>
 					</div>
@@ -83,9 +86,9 @@
 					<div class="greating-rice-sec">
 						<div class="sub-title">밥</div>
 						<div class="greating-rice-btns">
-							<input id="rice-true" type="radio" name="rice-tf" value="포함">
+							<input id="rice-true" type="radio" name="rice-tf" value="y">
 							<label for="rice-true">포함</label> <input id="rice-false"
-								type="radio" name="rice-tf" value="미포함"> <label
+								type="radio" name="rice-tf" value="n"> <label
 								for="rice-false">미포함</label>
 						</div>
 					</div>
@@ -93,16 +96,16 @@
 					<div class="greating-soup-sec">
 						<div class="sub-title">국</div>
 						<div class="greating-soup-btns">
-							<input id="soup-true" type="radio" name="soup-tf" value="포함">
+							<input id="soup-true" type="radio" name="soup-tf" value="y">
 							<label for="soup-true">포함</label> <input id="soup-false"
-								type="radio" name="soup-tf" value="미포함"> <label
+								type="radio" name="soup-tf" value="n"> <label
 								for="soup-false">미포함</label>
 						</div>
 					</div>
 
 					<div class="button-group">
 						<button class="rectangle-gray-button" value="초기화" onclick="">초기화</button>
-						<button class="rectangle-green-button" value="선택완료" onclick="">선택완료</button>
+						<button class="rectangle-green-button" value="선택완료" onclick="search()">선택완료</button>
 					</div>
 
 

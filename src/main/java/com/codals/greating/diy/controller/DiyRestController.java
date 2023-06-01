@@ -1,10 +1,13 @@
 package com.codals.greating.diy.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.codals.greating.constant.MainCategoryCode;
 import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
+import com.codals.greating.diy.dto.SearchRequestDto;
+import com.codals.greating.diy.dto.SimplePostDto;
 import com.codals.greating.diy.dto.VoteRequestDto;
 import com.codals.greating.diy.service.DiyService;
-import com.codals.greating.global.ResponseDTO;
 import com.codals.greating.user.entity.User;
 
 import lombok.RequiredArgsConstructor;
@@ -44,25 +49,21 @@ public class DiyRestController {
     
     @PostMapping("/new")
 	public ResponseEntity<?> savePost(@SessionAttribute("loginUser") User loginUser,
-							@ModelAttribute DiyRequestDto postRequest,
-							HttpSession session) {
+									  @ModelAttribute DiyRequestDto postRequest,
+							          HttpSession session) {
 
-		
-		/* log.info(loginUser); */
 		log.info(postRequest);
+		log.info("soupId=" + postRequest.getSoupFoodId());
 
-		// 톰캣 아래 바로 이미지 넣는 경로
-		String tomcatPath = session.getServletContext().getRealPath("/") + "resources/images";
-
-		int postId = diyService.savePost(loginUser, postRequest, tomcatPath);
+		Integer postId = diyService.savePost(loginUser, postRequest);
+				
 		
 	    return new ResponseEntity<>(postId, HttpStatus.OK);
 	}
     
     @PostMapping("/scrap")
-    public ResponseEntity<Boolean> scrap(ScrapRequestDto requestDto){
-    	log.info(requestDto);
-    	if(diyService.scrap(requestDto)) {
+    public ResponseEntity<Boolean> scrap(int postId, @SessionAttribute("loginUser") User loginUser ){
+    	if(diyService.scrap(new ScrapRequestDto(postId, loginUser.getId()))) {
 			return ResponseEntity.ok().build();   
 		}
     	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
@@ -80,8 +81,8 @@ public class DiyRestController {
 
 
 	@PostMapping("/vote")
-	public ResponseEntity<Boolean>  votePost(VoteRequestDto requestDto) {
-		if(diyService.vote(requestDto)) {
+	public ResponseEntity<Boolean>  votePost(int postId, @SessionAttribute("loginUser") User loginUser ){
+		if(diyService.vote(new VoteRequestDto(postId, loginUser.getId()))) {
 			return ResponseEntity.ok().build();
 		}
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
@@ -97,4 +98,10 @@ public class DiyRestController {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
 	}
 	
+	@GetMapping("/search")
+	public ResponseEntity<List<SimplePostDto>> search(SearchRequestDto requestDto) {
+		List<SimplePostDto> searchedPosts = diyService.search(requestDto);	
+	    return new ResponseEntity<>(searchedPosts, HttpStatus.OK);
+	}
+
 }

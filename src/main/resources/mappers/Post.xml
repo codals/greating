@@ -125,6 +125,54 @@
 		SELECT
 		POST_ID_SEQ.CURRVAL AS id FROM DUAL
 	</select>
+	
+	
+	
+	
+	<select id="selectPostsByMainCategory" parameterType="int"
+		resultType="Post">
+		SELECT *
+		from post
+		where main_category_id = #{mainCategoryId}
+		and status=1
+		order by vote_cnt desc
+		OFFSET 0 ROWS FETCH FIRST 10 ROWS
+		ONLY
+	</select>
+
+	<select id="selectPostBySearchConditions"
+		parameterType="SearchRequestDto" resultType="SimplePostDto">
+		SELECT *
+		FROM post
+		<where>
+				<if test="hasRice != null">
+					AND nvl2(rice_food_id, 1, 0)= #{hasRice}
+				</if>
+				<if test="hasSoup != null">
+					AND nvl2(soup_food_id, 1, 0)= #{hasSoup}
+				</if>
+				<if test="mainCategories != null and mainCategories.size() > 0">
+					AND main_category_id IN
+					<foreach item="category" collection="mainCategories"
+						separator="," open="(" close=")">
+						#{category.id}
+					</foreach>
+				</if>
+				<if test="foodCountries != null and foodCountries.size() > 0">
+					AND food_country_id IN
+					<foreach item="country" collection="foodCountries"
+						separator="," open="(" close=")">
+						#{country.id}
+					</foreach>
+				</if> 
+		</where>
+	<!-- 	OFFSET 0 ROWS FETCH FIRST 10 ROWS
+		ONLY -->
+		
+	</select>
+	
+	
+	
 
 	<!-- scrap 관련 -->
 	<insert id="insertScrap" parameterType="ScrapRequestDto">
@@ -138,10 +186,11 @@
 		where
 		user_id=#{userId} and post_id=#{postId}
 	</delete>
-
-
-
-
+	<select id="selectScrapByPostIdAndUserId" parameterType="ScrapRequestDto" resultType="Scrap">
+		select * from scrap
+		where post_id=#{postId} and user_id=#{userId}
+	</select>
+	
 
 
 	<!-- vote 관련 -->
@@ -156,15 +205,13 @@
 		where
 		user_id=#{userId} and post_id=#{postId}
 	</delete>
-
-
-	<select id="selectPostsByMainCategory" parameterType="int" resultType="Post">
-		SELECT *
-		from post
-		where main_category_id = #{mainCategoryId} and status=1
-		order by vote_cnt desc
-		OFFSET 0 ROWS FETCH FIRST 10 ROWS ONLY
+	
+	<select id="selectVoteByPostIdAndUserId" parameterType="VoteRequestDto" resultType="Vote">
+		select * from vote
+		where post_id=#{postId} and user_id=#{userId}
+	
 	</select>
+	
 
 
 </mapper>

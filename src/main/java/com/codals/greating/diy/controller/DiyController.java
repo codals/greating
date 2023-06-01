@@ -2,16 +2,14 @@ package com.codals.greating.diy.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
@@ -19,34 +17,35 @@ import com.codals.greating.constant.FoodTypeCode;
 import com.codals.greating.constant.MainCategoryCode;
 import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.PostResponseDto;
+import com.codals.greating.diy.dto.ScrapRequestDto;
+import com.codals.greating.diy.dto.VoteRequestDto;
 import com.codals.greating.diy.entity.Post;
 import com.codals.greating.diy.service.DiyService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
-import com.codals.greating.diy.service.DiyService;
+import com.codals.greating.food.dto.FoodDetailDto;
 import com.codals.greating.food.dto.FoodSimpleDto;
 import com.codals.greating.food.service.FoodService;
 import com.codals.greating.user.entity.User;
 
-import lombok.RequiredArgsConstructor;
+import static com.codals.greating.constant.FoodTypeCode.*;
 
+@Log4j2
 @Controller
 @RequestMapping("/mealdiy")
 @RequiredArgsConstructor
+@PropertySource("classpath:application.properties")
 public class DiyController {
 	
-	Logger log = LogManager.getLogger("case3");
-
 
 	private final DiyService diyService;
 	
 	private final FoodService foodService;
-
-//	@ModelAttribute("rices")
-//	public List<FoodSimpleDto> loadAllRices() {
-//		return diyService.loadAllRices();
-//	}
+	
+	@Value("${img.upload.url}")
+    private String imgUploadUrl;
 	
 	@GetMapping
 	public String loadMainPage() {
@@ -60,10 +59,6 @@ public class DiyController {
 		List<Post> medicalPostTop10 = diyService.loadPostsByCategoryType(MainCategoryCode.MEDICAL_DIET.getId());
 		List<Post> callengePostTop10 = diyService.loadPostsByCategoryType(MainCategoryCode.CHALLENGE_DIET.getId());
 		
-		log.info(healthyPostTop10);
-		log.info(medicalPostTop10);
-		log.info(callengePostTop10);
-		
 		model.addAttribute("healthyPostTop10", healthyPostTop10);
 		model.addAttribute("medicalPostTop10", medicalPostTop10);
 		model.addAttribute("callengePostTop10", callengePostTop10);
@@ -74,29 +69,49 @@ public class DiyController {
 	@GetMapping("/new")
 	public String loadCreatePage(Model model) {
 		
-		List<FoodSimpleDto> rices = foodService.loadFoodsByFoodType(FoodTypeCode.RICE.getId());
+		model.addAttribute("imgUploadUrl", imgUploadUrl);
+		log.info("imgUploadUrl=" + imgUploadUrl);
+		
+		List<FoodSimpleDto> rices = foodService.loadGreatingFoodsByFoodType(RICE.getId());
 		model.addAttribute("rices", rices);
 		
-		List<FoodSimpleDto> soups = foodService.loadFoodsByFoodType(FoodTypeCode.SOUP.getId());
+		List<FoodSimpleDto> soups = foodService.loadGreatingFoodsByFoodType(SOUP.getId());
 		model.addAttribute("soups", soups);
 		
-		List<FoodSimpleDto> mains = foodService.loadFoodsByFoodType(FoodTypeCode.MAIN.getId());
+		List<FoodSimpleDto> mains = foodService.loadGreatingFoodsByFoodType(MAIN.getId());
 		model.addAttribute("mains", mains);
 		
-		List<FoodSimpleDto> sides = foodService.loadFoodsByFoodType(FoodTypeCode.SIDE.getId());
+		List<FoodSimpleDto> sides = foodService.loadGreatingFoodsByFoodType(SIDE.getId());
 		model.addAttribute("sides", sides);
+
+		List<FoodDetailDto> marketSoups = foodService.loadMarketFoodsByFoodType(SOUP.getId());
+		model.addAttribute("marketSoups", marketSoups);
 		
-		log.info(rices);
-		log.info(soups);
-		log.info(mains);
-		log.info(sides);
+		List<FoodDetailDto> marketMains = foodService.loadMarketFoodsByFoodType(MAIN.getId());
+		model.addAttribute("marketMains", marketMains);
+		
+		List<FoodDetailDto> marketSides = foodService.loadMarketFoodsByFoodType(SIDE.getId());
+		model.addAttribute("marketSides", marketSides);
+		
+		List<FoodDetailDto> marketExtras = foodService.loadMarketFoodsByFoodType(EXTRA.getId());
+		model.addAttribute("marketExtras", marketExtras);
 		
 		return "diy/diy-create";
 	}
 
 	@GetMapping("/{postId}")
-	public String loadPostDetailPage(@PathVariable int postId, Model model) {
+	public String loadPostDetailPage(@PathVariable int postId, @SessionAttribute("loginUser") User loginUser, Model model) {
 		log.debug("start post detail ");
+		
+		// 투표한 이력이 있는 지
+		boolean isVoted = diyService.checkVoted(new VoteRequestDto(postId, loginUser.getId()));
+		model.addAttribute("isVoted", isVoted);
+		log.info("isVoted {}", isVoted);
+		
+		// 스크랩한 이력이 있는 지 
+		boolean isScrapped = diyService.checkScrapped(new ScrapRequestDto(postId, loginUser.getId()));
+		model.addAttribute("isScrapped", isScrapped);
+		log.info("isScrapped {}", isScrapped);
 		
 		PostResponseDto postDetail = diyService.getPostDetail(postId);
 		model.addAttribute("postDetail", postDetail);
