@@ -69,6 +69,7 @@
 	overflow: hidden;
 	margin-top:-15px;
 	border-top: 8px solid #918C01;
+	z-index:999;
 
 }
 
@@ -227,5 +228,40 @@
 }
 .main-content{
 	min-height: 700px !important;
+	margin-top: 40px;
 }
 
+.diet-card-list{
+	margin-top: 50px;
+	display: flex;
+	flex-wrap: wrap;
+}
+.diet-card{
+	width: 250px;
+	height: 330px;
+	padding: 0px 50px 0px 50px;
+	display: inline-block;
+	margin-bottom: 50px;
+}
+.diet-card-img >img{
+	width: 100%;
+	height: 230px;
+}
+
+
+.diet-card-info >span {
+	font-size: 17px;
+	font-weight: bold;
+	margin-top: 10px;
+	display: block;
+}
+.diet-card-sub-info>*,
+.diet-card-sub-info2>*{
+	display: inline-block;
+}
+.diet-card-sub-info,
+.diet-card-sub-info2{
+	display: flex;
+	margin-top: 4px;
+	justify-content: space-between;
+}
