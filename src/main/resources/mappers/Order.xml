@@ -7,7 +7,12 @@
     <selectKey keyColumn="orderId" keyProperty="orderId" resultType="int" order="AFTER">
       select order_id_seq.CURRVAL  from dual
     </selectKey>
-    INSERT INTO "order" (SUB_CATEGORY_ID, WEEK, MEAL_CNT, DELIVER_CNT, CNT, USER_ID)
+    INSERT INTO "order" (SUB_CATEGORY_ID, WEEK, MEAL_CNT, DELIVERY_CNT, CNT, USER_ID)
     VALUES (#{subCategoryId}, ${week}, ${mealCnt}, #{deliveryCnt}, ${cnt}, #{userId})
   </insert>
+  <select id="selectById" parameterType="Integer" resultType="Order">
+    SELECT *
+    FROM "order"
+    WHERE id = #{orderId}
+  </select>
 </mapper>

@@ -3,8 +3,34 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="orderDiet">
+  <resultMap id="dietMap" type="Diet">
+    <result column="id" property="id"/>
+    <result column="main_category_id" property="mainCategoryId"/>
+    <result column="sub_category_id" property="subCategoryId"/>
+    <result column="name" property="name"/>
+    <result column="amount" property="amount"/>
+    <result column="storage_type" property="storageType"/>
+    <result column="thumbnail_img_url" property="thumbnailImgUrl"/>
+    <result column="content_img_url" property="contentImgUrl"/>
+    <result column="calorie" property="calorie"/>
+    <result column="price" property="price"/>
+  </resultMap>
+  <resultMap id="orderDietMap" type="OrderDiet">
+    <result column="id" property="id"/>
+    <result column="diet_id" property="dietId"/>
+    <result column="order_id" property="orderId"/>
+    <result column="delivery_date" property="deliveryDate"/>
+    <result column="cnt" property="cnt"/>
+    <collection property="diet" resultMap="dietMap"/>
+  </resultMap>
   <insert id="insertOrderDiet" parameterType="com.codals.greating.diet.dto.OrderDietRequestDto">
     INSERT INTO ORDER_DIET (DIET_ID, ORDER_ID, DELIVERY_DATE, CNT)
     VALUES (#{dietId}, #{orderId}, TO_DATE(#{deliveryDate}, 'YYYY-MM-DD'), #{cnt})
   </insert>
+  <select id="selectAllByOrderId" parameterType="Integer" resultMap="orderDietMap">
+    select *
+    from ORDER_DIET A
+           join DIET B on A.DIET_ID = B.ID
+    where ORDER_ID = #{orderId}
+  </select>
 </mapper>
