@@ -62,9 +62,8 @@ public class DiyRestController {
 	}
     
     @PostMapping("/scrap")
-    public ResponseEntity<Boolean> scrap(ScrapRequestDto requestDto){
-    	log.info(requestDto);
-    	if(diyService.scrap(requestDto)) {
+    public ResponseEntity<Boolean> scrap(int postId, @SessionAttribute("loginUser") User loginUser ){
+    	if(diyService.scrap(new ScrapRequestDto(postId, loginUser.getId()))) {
 			return ResponseEntity.ok().build();   
 		}
     	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);

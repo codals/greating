@@ -14,25 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	});
 });
 
-function scrap(postId, userId){
-	 $.ajax({
-	        url: "/greating/api/mealdiy/scrap",
-	        type: "POST",
-	        data: {
-	            postId: postId,
-	            userId: userId
-	        },
-	        success: function(response) {
-	            alert('스크랩 완료되었습니다. 마이페이지를 확인해주세요.');
-	        },
-	        error: function(xhr, status, error) {
-	            console.log("Vote failed:", error);
-	            alert('스크에 실패하였습니다! 관리자에게 문의해주세요');
-
-	        }
-	    });
-	 
-}
 
 // 투표 관련 js
 function checkVote(postId){
@@ -138,3 +119,126 @@ function updateVoteButton(postId, buttonText, status) {
 	    voteButton.attr('onclick', 'checkVoteCancel(' + postId + ')');
 	}
 }
+
+
+
+// 스크랩 js
+function scrap(postId, userId){
+	 $.ajax({
+	        url: "/greating/api/mealdiy/scrap",
+	        type: "POST",
+	        data: {
+	            postId: postId,
+	            userId: userId
+	        },
+	        success: function(response) {
+	            alert('스크랩 완료되었습니다. 마이페이지를 확인해주세요.');
+	        },
+	        error: function(xhr, status, error) {
+	            console.log("Vote failed:", error);
+	            alert('스크에 실패하였습니다! 관리자에게 문의해주세요');
+
+	        }
+	    });
+	 
+}
+
+
+
+// 투표 관련 js
+function checkScrap(postId){
+	 Swal.fire({
+		    title: '해당 DIY 식단을 스크랩하시겠습니까?',
+		    showCancelButton: true,
+		    confirmButtonText: '스크랩하기',
+		  }).then(function(result) {
+		    if (result.isConfirmed) {
+		      submitScrap(postId)
+		        .then(function(response) {
+		          Swal.fire({
+		        	  title: '스크랩이 완료되었습니다!',
+		        	  text: '스크랩된 식단은 마이페이지를 참고하세요',
+		        	  confirmButtonText: '돌아가기'
+		          });
+		        		  
+		          updateScrapButton(postId, '스크랩','scrap');
+		        })
+		        .catch(function(error) {
+		          Swal.fire('스크랩 실패하였습니다!', 'error');
+		        });
+		    }
+		  });
+}
+
+function submitScrap(postId) {
+	  return new Promise(function(resolve, reject) {
+	    $.ajax({
+    	  url: "/greating/api/mealdiy/scrap",
+          type: "POST",
+          data: {
+            postId: postId
+          },
+	      type: "POST",
+	      success: function(response) {
+	        resolve(response);
+	      },
+	      error: function(xhr, status, error) {
+	        reject(error);
+	      }
+	    });
+	  });
+}
+
+function checkScrapCancel(postId) {
+	  Swal.fire({
+	    title: '스크랩을 취소하시겠습니까?',
+	    showCancelButton: true,
+	    confirmButtonText: '스크랩 취소하기',
+	  }).then(function(result) {
+	    if (result.isConfirmed) {
+	      cancelScrap(postId)
+	        .then(function(response) {
+	    	 Swal.fire({
+	        	  title: '스크랩이 취소되었습니다!',
+	        	  confirmButtonText: '돌아가기'
+	          });
+	          updateScrapButton(postId, '스크랩','cancel');
+	        })
+	        .catch(function(error) {
+	          Swal.fire('취소 실패하였습니다!', 'error');
+	        });
+	    }
+	  });
+}
+function cancelScrap(postId) {
+	  return new Promise(function(resolve, reject) {
+	    $.ajax({
+	      url: "/greating/api/mealdiy/" + postId + "/scrap",
+	      type: "DELETE",
+	      success: function(response) {
+	        resolve(response);
+	      },
+	      error: function(xhr, status, error) {
+	        reject(error);
+	      }
+	    });
+	  });
+	}
+
+
+function updateScrapButton(postId, buttonText, status) {
+	if(status==='cancel'){
+		var voteButton = $('.scrap-button');
+		voteButton.find('i').removeClass('fas fa-bookmark').addClass('far fa-bookmark');
+		voteButton.find('span').text(buttonText);
+		voteButton.attr('onclick', 'checkScrap(' + postId + ')');
+	}else{
+	    var voteButton = $('.scrap-button');
+	    voteButton.find('i').removeClass('far fa-bookmark').addClass('fas fa-bookmark');
+	    voteButton.find('span').text(buttonText);
+	    voteButton.attr('onclick', 'checkScrapCancel(' + postId + ')');
+	}
+}
+
+
+

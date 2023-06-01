@@ -107,24 +107,24 @@
 
 				<div class="button-group">
 					<c:if test="${isVoted eq true}">
-						<button class="vote-button" id="voteCancelBtn" onclick="checkVoteCancel(${postDetail.post.id})">
+						<button class="vote-button" onclick="checkVoteCancel(${postDetail.post.id})">
 							<i class="fas fa-thumbs-up"></i><span> 투표완료</span>
 						</button>
 
 					</c:if>
 					<c:if test="${isVoted ne true}">
-						<button class="vote-button" id="voteBtn" onclick="checkVote(${postDetail.post.id})">
+						<button class="vote-button" onclick="checkVote(${postDetail.post.id})">
 							<i class="far fa-thumbs-up"></i><span> 투표하기</span>
 						</button>
 					</c:if>
 					<c:if test="${isScrapped eq true}">
-						<button class="green-button">
+						<button class="scrap-button" onclick="checkScrapCancel(${postDetail.post.id})">
 							 <i class="fas fa-bookmark"></i>
 							 <span>스크랩</span>
 						</button>
 					</c:if>
 					<c:if test="${isScrapped ne true}">
-						<button class="green-button">
+						<button class="scrap-button" onclick="checkScrap(${postDetail.post.id})">
 							 <i class="far fa-bookmark"></i>
 							 <span>스크랩</span>
 						</button>
