@@ -111,16 +111,66 @@
 					<div class="diy-diet-cal-price">
 						<div class="diy-diet-cal">
 							<span>희망 칼로리 </span>
-							<input type="number" name="minCalorie" min="300" max="800" step="50" placeholder="최소 200" value="300" required>
+						    <span id="calorieError" class="error-span"></span>
+							<input type="number" id="minCalorie" name="minCalorie" min="300" max="800" step="50" placeholder="최소 300" value="400" required>
 							 ~ 
-							<input type="number" name="maxCalorie" min="400"  max="800" step="50" placeholder="최대 800" value="800" required> kcal
+							<input type="number" id="maxCalorie" name="maxCalorie" min="300"  max="800" step="50" placeholder="최대 800" value="800" required> kcal
 						</div>
+						
+						<script>
+						    var minCalorieInput = document.getElementById("minCalorie");
+						    var maxCalorieInput = document.getElementById("maxCalorie");
+						    var calorieError = document.getElementById("calorieError");
+						
+						    // 이벤트 리스너 추가
+						    maxCalorieInput.addEventListener("input", validateCalorie);
+						
+						    function validateCalorie() {
+						        var minCalorie = parseInt(minCalorieInput.value);
+						        var maxCalorie = parseInt(maxCalorieInput.value);
+						
+						        // 최대 가격이 최소 가격보다 작은 경우
+						        if (maxCalorie < minCalorie) {
+						        	calorieError.textContent = "최대 칼로리는 최소 칼로리보다 작을 수 없습니다.";
+						            // submit 막기
+						            document.getElementById("diy-form").addEventListener("submit", function(event) {
+						            	alert("희망 칼로리를 확인하세요.");
+						            });
+						        } 
+						    }
+						</script>
+						
 						<div class="diy-diet-price">
-							<span> 희망 가격대 </span>
-							<input type="number" name="minPrice" min="8000" max="15000" step="1000" value="8000" placeholder="최소 7000" required>
-							~
-							<input type="number" name="maxPrice" min="9000" max="15000" step="1000" value="15000" placeholder="최대 15000" required> 원
+						    <span> 희망 가격대 </span>
+						    <span id="priceError" class="error-span"></span>
+						    <input type="number" id="minPrice" name="minPrice" min="8000" max="15000" step="1000" value="8000" placeholder="최소 7000" required>원
+						    ~
+						    <input type="number" id="maxPrice" name="maxPrice" min="8000" max="15000" step="1000" value="10000" placeholder="최대 15000" required>원
 						</div>
+						
+						<script>
+						    var minPriceInput = document.getElementById("minPrice");
+						    var maxPriceInput = document.getElementById("maxPrice");
+						    var priceError = document.getElementById("priceError");
+						
+						    // 이벤트 리스너 추가
+						    maxPriceInput.addEventListener("input", validatePrice);
+						
+						    function validatePrice() {
+						        var minPrice = parseInt(minPriceInput.value);
+						        var maxPrice = parseInt(maxPriceInput.value);
+						
+						        // 최대 가격이 최소 가격보다 작은 경우
+						        if (maxPrice < minPrice) {
+						            priceError.textContent = "최대 가격은 최소 가격보다 작을 수 없습니다.";
+						            // submit 막기
+						            document.getElementById("diy-form").addEventListener("submit", function(event) {
+						            	alert("희망 가격대를 확인하세요.");
+						            });
+						        } 
+						    }
+						</script>
+
 					</div>
 				</div>
 				

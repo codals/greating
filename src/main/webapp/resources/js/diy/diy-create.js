@@ -278,6 +278,13 @@ function handleModalSideCheckboxButtonChange(checkbox) {
 
 function sendFile(event, imgUploadUrl) {
 	  event.preventDefault();
+	  
+	  var priceErrorMessage = document.getElementById("priceError").textContent;
+	    if (priceErrorMessage === "최대 가격은 최소 가격보다 작을 수 없습니다.") {
+		  alert("최대 가격은 최소 가격보다 작을 수 없습니다.");
+		  return; // 함수 실행 중단
+	  }
+
 
 	  var form = event.srcElement.form;
 	  var formData = new FormData(form);
@@ -348,4 +355,5 @@ function submitFormWithFilename(formData) {
       }
     });
   }
-//  });
+
+/* min값 < max값 보증하는 eventListener */
