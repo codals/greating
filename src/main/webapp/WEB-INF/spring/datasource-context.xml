@@ -27,6 +27,8 @@
 				<value>classpath:mappers/Post.xml</value>
 				<value>classpath:mappers/Diet.xml</value>
 				<value>classpath:mappers/DailyDiet.xml</value>
+				<value>classpath:mappers/Order.xml</value>
+				<value>classpath:mappers/OrderDiet.xml</value>
 			</list>
 		</property>
 	</bean>

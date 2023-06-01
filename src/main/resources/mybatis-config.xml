@@ -19,5 +19,6 @@
     <typeAlias alias="SubCategory" type="com.codals.greating.diet.entity.SubCategory"/>
     <typeAlias alias="DailyDiet" type="com.codals.greating.diet.entity.DailyDiet"/>
     <typeAlias alias="Diet" type="com.codals.greating.diet.entity.Diet"/>
+    <typeAlias alias="Order" type="com.codals.greating.diet.entity.Order"/>
   </typeAliases>
 </configuration>

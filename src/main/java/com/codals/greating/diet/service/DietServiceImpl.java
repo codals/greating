@@ -1,6 +1,10 @@
 package com.codals.greating.diet.service;
 
 import com.codals.greating.diet.dao.DailyDietDao;
+import com.codals.greating.diet.dao.OrderDao;
+import com.codals.greating.diet.dao.OrderDietDao;
+import com.codals.greating.diet.dto.OrderDietRequestDto;
+import com.codals.greating.diet.dto.OrderRequestDto;
 import com.codals.greating.diet.dto.PlanResponseDto;
 import com.codals.greating.diet.dto.PreviewDietResponseDto;
 import com.codals.greating.diet.dto.PreviewResponseDto;
@@ -15,12 +19,15 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class DietServiceImpl implements DietService {
 
     private final DailyDietDao dailyDietDao;
+    private final OrderDao orderDao;
+    private final OrderDietDao orderDietDao;
 
     @Override
     public List<PreviewResponseDto> getWeeklyDailyDiets() {
@@ -41,6 +48,21 @@ public class DietServiceImpl implements DietService {
                 return new PlanResponseDto(deliveryDateFormat, dietsResponse);
             })
             .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    public void order(User user, OrderRequestDto orderRequestDto) {
+        orderRequestDto.updateOrderInfo(user);
+        orderDao.saveOrder(orderRequestDto);
+        for (OrderDietRequestDto orderDiet : orderRequestDto.getOrders()) {
+            if (orderDiet.getCnt() > 0) {
+                orderDiet.updateOrderId(orderRequestDto.getOrderId());
+                orderDietDao.insertOrderDiet(orderDiet);
+            }
+
+        }
+
     }
 
     private List<PreviewResponseDto> getPreviewResponseDto(List<DailyDiet> dailyDiets) {

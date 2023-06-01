@@ -69,10 +69,11 @@ $(document).ready(function () {
 
     for (let i = 0; i < mealCards.length; i++) {
       const mealCard = mealCards[i];
+      const deliveryDate = mealCard.getElementsByClassName("meal-diet-date")[0].value;
       const dietId = +mealCard.getElementsByClassName("meal-diet")[0].value;
-      const count = +mealCard.getElementsByClassName("meal-count")[0].innerText;
-      if (count > 0) {
-        order.push({dietId, count});
+      const cnt = +mealCard.getElementsByClassName("meal-count")[0].innerText;
+      if (cnt > 0) {
+        order.push({dietId, cnt, deliveryDate});
       }
     }
     console.log(order);
@@ -88,13 +89,14 @@ $(document).ready(function () {
       data: JSON.stringify(data),
       success: function (response) {
         if (response) {
-          location.href = 'http://localhost:8080/greating/diets/mygreating/orders/delivery';
+          alert('식단 주문을 성공하였습니다.')
+          location.href = 'http://localhost:8080/greating/diets/mygreating/orders/result';
           return;
         }
           alert("주문 실패");
       },
       error: function () {
-        alert("통신 실패");
+        alert("서버 에러");
       }
     });
   });

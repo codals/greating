@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orderDiet">
+  <insert id="insertOrderDiet" parameterType="com.codals.greating.diet.dto.OrderDietRequestDto">
+    INSERT INTO ORDER_DIET (DIET_ID, ORDER_ID, DELIVERY_DATE, CNT)
+    VALUES (#{dietId}, #{orderId}, TO_DATE(#{deliveryDate}, 'YYYY-MM-DD'), #{cnt})
+  </insert>
+</mapper>
