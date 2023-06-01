@@ -381,7 +381,7 @@
 									class="d-flex modalTitleDesc"> 원하는 Side Dish를 선택하세요. ( 0 - 2개 )</span>
 								<div class="modal-food-content">
 									<c:forEach var="marketSide" items="${marketSides}">
-										<input class="modal-food-card" type="checkbox" id="modalFood-side-${marketSide.id}" value="${marketSide.id}" name="sideFoodIds">
+										<input class="modal-food-card" type="checkbox" id="modalFood-side-${marketSide.id}" value="${marketSide.id}" name="sideFoodIds" onclick="handleModalSideCheckboxButtonChange(this)">
 										<label for="modalFood-side-${marketSide.id}">
 											<img class="modalFoodImg" src="${marketSide.imgUrl}">
 											<span class="d-flex">${marketSide.description} </span>

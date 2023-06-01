@@ -212,7 +212,7 @@ function handleModalMainRadioButtonChange(button) {
 
 	  var mainFoodCards = document.querySelectorAll('#main-container .food-card');
 	  mainFoodCards.forEach(function(card) {
-	    card.classList.remove('selected');
+	  card.classList.remove('selected');
 	  });
 
 	  button.parentNode.classList.add('selected');
@@ -223,53 +223,61 @@ function handleModalMainRadioButtonChange(button) {
 }
 
 function handleSideCheckboxButtonChange(checkbox) {
-	  var checkboxes = document.querySelectorAll('#side-container input[name="sideFoodIds"]:checked');
-	  var selectedCount = checkboxes.length;
-
-	  if (selectedCount > 2) {
-	    checkbox.checked = false;
+    var greatingCheckboxes = document.querySelectorAll('#side-container input[name="sideFoodIds"]:checked');
+    var greatingSelectedCount = greatingCheckboxes.length;
+    
+	var modalCheckboxes = document.querySelectorAll('#sideDishModal input[name="sideFoodIds"]:checked');
+    var modalSelectedCount = modalCheckboxes.length;
+    
+    if (greatingSelectedCount + modalSelectedCount > 2) {
+    	alert("이미 2개가 선택되었습니다. 새로운 옵션을 선택하려면 이미 선택된 옵션을 취소해주세요.");
+    	checkbox.checked = false;
 	    checkbox.parentNode.classList.remove('selected');
 	    selectedCount--;
-	  } else {
+    } else {
 	    checkbox.parentNode.classList.add('selected');
-	  }
-
-	  var sideFoodCards = document.querySelectorAll('#side-container .food-card');
-	  sideFoodCards.forEach(function (card) {
-	    var cardCheckbox = card.querySelector('input[name="sideFoodIds"]');
-	    if (cardCheckbox.checked) {
-	      card.classList.add('selected');
-	    } else {
-	      card.classList.remove('selected');
-	    }
-	  });
-	}
-
-
-//모달이 열릴 때 이벤트 리스너 등록
-document.getElementById('cart').addEventListener('click', function() {
-  // 모달 내 체크박스 요소 선택
-  var modalCheckboxes = document.querySelectorAll('#sideDishModal input[name="sideFoodIds"]');
-  var selectedCount = 0;
-
-  // side-container의 체크박스 해제
-  var sideCheckboxes = document.querySelectorAll('#side-container input[name="sideFoodIds"]');
-  sideCheckboxes.forEach(function(checkbox) {
-    checkbox.checked = false;
-    handleCheckboxChange(checkbox)
-  });
-
-  // 모달 내 체크박스 선택 개수 계산
-  modalCheckboxes.forEach(function(checkbox) {
-    if (checkbox.checked) {
-      selectedCount++;
     }
-  });
 
+	var sideFoodCards = document.querySelectorAll('#side-container .food-card');
+	sideFoodCards.forEach(function(card) {
+		var cardCheckbox = card.querySelector('input[name="sideFoodIds"]');
+		if (cardCheckbox.checked) {
+			card.classList.add('selected');
+		} else {
+			card.classList.remove('selected');
+		}
+	});
+}
+
+// 모달이 열릴 때 이벤트 리스너 등록
+document.getElementById('cart').addEventListener('click', function() {
+    var greatingCheckboxes = document.querySelectorAll('#side-container input[name="sideFoodIds"]:checked');
+    var greatingSelectedCount = greatingCheckboxes.length;
+    if (greatingSelectedCount === 2) {
+        alert("이미 2개가 선택되었습니다. 새로운 옵션을 선택하려면 이미 선택된 옵션을 취소해주세요.");
+    }
 });
 
+function handleModalSideCheckboxButtonChange(checkbox) {
+    var greatingCheckboxes = document.querySelectorAll('#side-container input[name="sideFoodIds"]:checked');
+    var greatingSelectedCount = greatingCheckboxes.length;
+    
+	var modalCheckboxes = document.querySelectorAll('#sideDishModal input[name="sideFoodIds"]:checked');
+    var modalSelectedCount = modalCheckboxes.length;
+    
+    if (greatingSelectedCount + modalSelectedCount > 2) {
+    	alert("이미 2개가 선택되었습니다. 새로운 옵션을 선택하려면 이미 선택된 옵션을 취소해주세요.");
+    	checkbox.checked = false;
+	    checkbox.parentNode.classList.remove('selected');
+	    selectedCount--;
+    } else {
+	    checkbox.parentNode.classList.add('selected');
+    }  
+}
+
+
 function sendFile(event, imgUploadUrl) {
-	  event.preventDefault(); // 폼 제출을 막습니다.
+	  event.preventDefault();
 
 	  var form = event.srcElement.form;
 	  var formData = new FormData(form);
@@ -281,9 +289,9 @@ function sendFile(event, imgUploadUrl) {
       
       /* 고유한 파일명 생성 */
       var newFilename = generateUniqueFilename();
-      const originalFileName = file.name; // 원래 파일 이름
-      const ext = originalFileName.split('.').pop(); // 파일 확장자 추출
-      const newFileName = newFilename + '.' + ext; // 새로운 파일 이름에 확장자 추가
+      const originalFileName = file.name; 				// 원래 파일 이름
+      const ext = originalFileName.split('.').pop(); 	// 파일 확장자 추출
+      const newFileName = newFilename + '.' + ext; 		// 새로운 파일 이름에 확장자 추가
       const modifiedFile = new File([file], newFileName, { type: file.type });
 
       prevFormData.append('file', modifiedFile);
@@ -291,7 +299,6 @@ function sendFile(event, imgUploadUrl) {
       
       console.log("url=", imgUploadUrl);
       
-//      file.name = newFilename;
       console.log(prevFormData)
       
       // 파일 업로드 AJAX 요청
@@ -315,21 +322,14 @@ function sendFile(event, imgUploadUrl) {
 //    });
     
 function generateUniqueFilename() {
-  // 고유한 파일명 생성 로직
-  // 적절한 고유한 파일명을 반환하는 함수를 구현해야 합니다.
-  // 이 예시 코드에서는 현재 시간을 기반으로 파일명을 생성하는 간단한 예시를 사용합니다.
   var timestamp = new Date().getTime();
   return 'file_' + timestamp;
 }
 
 //function submitFormWithFilename(filename) {
 function submitFormWithFilename(formData) {
-  // 파일명과 함께 다른 정보와 함께 AJAX 요청을 보내는 로직
-  // 이 함수를 서버 측 로직으로 변경해야 합니다.
-  console.log('Submitting form with filename:', formData.filename);
+  console.log('업로드하는 파일명:', formData.filename);
   
-//  formData.append('fileName',filename);
-
     // AJAX POST 요청을 보냅니다.
     $.ajax({
       url: '/greating/api/mealdiy/new',
