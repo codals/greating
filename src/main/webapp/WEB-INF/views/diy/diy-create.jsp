@@ -178,9 +178,9 @@
 				    <span> RICE </span>
 				    <div class="hr"></div>
 				    <div class="diy-diet-rice-btns">
-				        <input id="rice-y" type="radio" name="rice" value="밥포함" onchange="toggleContainer(this)">
+				        <input id="rice-y" type="radio" name="rice" value="밥포함">
 				        <label for="rice-y">밥 포함</label>
-				        <input id="rice-n" type="radio" name="rice" value="밥미포함" onchange="toggleContainer(this)">
+				        <input id="rice-n" type="radio" name="rice" value="밥미포함" onchange="toggleRiceContainer()">
 				        <label for="rice-n">밥 미포함</label>
 				    </div>
 				    <div class="image-container" id="rice-container">
@@ -204,7 +204,7 @@
 				    <div class="diy-diet-soup-btns">
 				        <input id="soup-y" type="radio" name="soup" value="국포함">
 				        <label for="soup-y">국 포함</label>
-				        <input id="soup-n" type="radio" name="soup" value="국미포함">
+				        <input id="soup-n" type="radio" name="soup" value="국미포함" onchange="toggleSoupContainer()">
 				        <label for="soup-n">국 미포함</label>
 				    </div>
 				    <div class="soup-option-sec">
@@ -240,7 +240,7 @@
 					<div class="diy-diet-main-btns">
 						<input id="main-y" type="radio" name="mainCheckbox" value="포함">
 						<label for="main-y">메인 포함 </label>
-						<input id="main-n" type="radio" name="mainCheckbox" value="밥미포함">
+						<input id="main-n" type="radio" name="mainCheckbox" value="메인 미포함" onchange="toggleMainContainer()">
 						<label for="main-n">메인 미포함 </label>
 					</div>
 					<div class="main-option-sec">

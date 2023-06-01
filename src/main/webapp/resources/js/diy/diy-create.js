@@ -59,6 +59,62 @@
         
     });
   });
+  
+  function toggleRiceContainer() {
+	  var riceN = document.getElementById('rice-n');
+	  var isChecked = riceN.checked;
+
+	  if (isChecked) {
+	    var radioButtons = document.querySelectorAll('input[type="radio"][name="riceFoodId"]:checked');
+	    const foodCards = document.querySelectorAll('.food-card');
+	    
+	    radioButtons.forEach(function (radio) {
+	      radio.checked = false;
+	    });
+	    
+	    foodCards.forEach(function(card) {
+	    	card.classList.remove('selected');
+	    });
+	  }
+	}
+  
+  function toggleSoupContainer() {
+	  var soupN = document.getElementById('soup-n');
+	  var isChecked = soupN.checked;
+	  
+	  if (isChecked) {
+		  var radioButtons = document.querySelectorAll('input[type="radio"][name="soupFoodId"]:checked');
+		  const foodCards = document.querySelectorAll('.food-card');
+		  
+		  radioButtons.forEach(function (radio) {
+			  radio.checked = false;
+		  });
+		  
+		  foodCards.forEach(function(card) {
+			  card.classList.remove('selected');
+		  });
+	  }
+  }
+  
+  function toggleMainContainer() {
+	  var mainN = document.getElementById('main-n');
+	  var isChecked = mainN.checked;
+	  
+	  if (isChecked) {
+		  var radioButtons = document.querySelectorAll('input[type="radio"][name="mainFoodId"]:checked');
+		  const foodCards = document.querySelectorAll('.food-card');
+		  
+		  radioButtons.forEach(function (radio) {
+			  radio.checked = false;
+		  });
+		  
+		  foodCards.forEach(function(card) {
+			  card.classList.remove('selected');
+		  });
+	  }
+  }
+  
+  
 
 function changeBorderColor(button) {
     button.classList.toggle("clicked");
@@ -357,6 +413,10 @@ function sendFile(event, imgUploadUrl) {
 		  alert("최대 가격은 최소 가격보다 작을 수 없습니다.");
 		  return; // 함수 실행 중단
 	  }
+	    
+	  if (!validateForm()) {
+		  return;
+	  }
 
 
 	  var form = event.srcElement.form;
@@ -429,4 +489,53 @@ function submitFormWithFilename(formData) {
     });
   }
 
-/* min값 < max값 보증하는 eventListener */
+// 필수값 검증
+function validateForm() {
+	var dietName = document.querySelector('input[name="dietName"]');
+	var dietType = document.querySelector('input[name="dietType"]:checked');
+    var foodCountryId = document.querySelector('input[name="foodCountryId"]:checked');
+    var mainCategoryId = document.querySelector('input[name="mainCategoryId"]:checked');
+    var rice = document.querySelector('input[name="rice"]:checked');
+    var soup = document.querySelector('input[name="soup"]:checked');
+    var mainCheckbox = document.querySelector('input[name="mainCheckbox"]:checked');
+    
+    var valid = false;
+    
+    if (!dietType) {
+        alert("GREATING TYPE을 선택해주세요.");
+        return valid;
+    }
+
+    if (!foodCountryId) {
+    	alert("STYLE을 선택해주세요.");
+        return valid;
+    }
+
+    if (!mainCategoryId) {
+    	alert("CATEGORY를 선택해주세요.");
+        return valid;
+    }
+    
+    if (!dietName) {
+    	alert("제목을 입력해주세요.");
+        return valid;
+    }
+    
+    if (!rice) {
+    	alert("밥 포함 여부를 선택해주세요.");
+        return valid;
+    }
+    
+    if (!soup) {
+    	alert("국/찌개 포함 여부를 선택해주세요.");
+        return valid;
+    }
+    
+    if (!mainCheckbox) {
+    	alert("메인요리 포함 여부를 선택해주세요.");
+        return valid;
+    }
+    
+	valid = true;
+    return valid;
+}
