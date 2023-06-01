@@ -339,6 +339,7 @@ function submitFormWithFilename(formData) {
       contentType: false, // 기본 컨텐츠 유형을 설정하지 않도록 합니다.
       success: function(response) {
         console.log(response);
+        alert("게시글 등록이 성공하였습니다.");
         location.href = "/greating/mealdiy/" + response;
       },
       error: function(xhr, status, error) {
