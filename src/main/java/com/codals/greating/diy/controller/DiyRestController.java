@@ -82,8 +82,8 @@ public class DiyRestController {
 
 
 	@PostMapping("/vote")
-	public ResponseEntity<Boolean>  votePost(VoteRequestDto requestDto) {
-		if(diyService.vote(requestDto)) {
+	public ResponseEntity<Boolean>  votePost(int postId, @SessionAttribute("loginUser") User loginUser ){
+		if(diyService.vote(new VoteRequestDto(postId, loginUser.getId()))) {
 			return ResponseEntity.ok().build();
 		}
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);

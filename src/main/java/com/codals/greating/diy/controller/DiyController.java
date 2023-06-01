@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.codals.greating.constant.FoodTypeCode;
 import com.codals.greating.constant.MainCategoryCode;
@@ -27,6 +28,8 @@ import lombok.extern.log4j.Log4j2;
 import com.codals.greating.food.dto.FoodDetailDto;
 import com.codals.greating.food.dto.FoodSimpleDto;
 import com.codals.greating.food.service.FoodService;
+import com.codals.greating.user.entity.User;
+
 import static com.codals.greating.constant.FoodTypeCode.*;
 
 @Log4j2
