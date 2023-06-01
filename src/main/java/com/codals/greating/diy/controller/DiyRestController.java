@@ -23,7 +23,6 @@ import com.codals.greating.diy.dto.SearchRequestDto;
 import com.codals.greating.diy.dto.SimplePostDto;
 import com.codals.greating.diy.dto.VoteRequestDto;
 import com.codals.greating.diy.service.DiyService;
-import com.codals.greating.global.ResponseDTO;
 import com.codals.greating.user.entity.User;
 
 import lombok.RequiredArgsConstructor;
@@ -50,17 +49,14 @@ public class DiyRestController {
     
     @PostMapping("/new")
 	public ResponseEntity<?> savePost(@SessionAttribute("loginUser") User loginUser,
-							@ModelAttribute DiyRequestDto postRequest,
-							HttpSession session) {
+									  @ModelAttribute DiyRequestDto postRequest,
+							          HttpSession session) {
 
-		
-		/* log.info(loginUser); */
 		log.info(postRequest);
+		log.info("soupId=" + postRequest.getSoupFoodId());
 
-		// 톰캣 아래 바로 이미지 넣는 경로
-		String tomcatPath = session.getServletContext().getRealPath("/") + "resources/images";
-
-		int postId = diyService.savePost(loginUser, postRequest, tomcatPath);
+		Integer postId = diyService.savePost(loginUser, postRequest);
+				
 		
 	    return new ResponseEntity<>(postId, HttpStatus.OK);
 	}
