@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.extern.log4j.Log4j2;
 
 @Getter
 @Setter
@@ -31,16 +33,6 @@ public class DiyRequestDto {
     private List<Integer> sideFoodIds;
     private Integer extraFoodId;
     private String content;
-    
-    @Value("${img.storage.path}")
-    private String imgStoragePath;
-    
-    @Value("${img.storage.token}")
-    private String imgStorageToken;
-    
-    public void setFileName(String fileName) {
-    	this.fileName = imgStoragePath + fileName + imgStorageToken;
-    }
     
     public void setFoodCountryId(String foodCountryId) {
     	this.foodCountryId = Integer.valueOf(foodCountryId);

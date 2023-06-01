@@ -268,11 +268,10 @@ document.getElementById('cart').addEventListener('click', function() {
 
 });
 
-function sendFile(event) {
+function sendFile(event, imgUploadUrl) {
 	  event.preventDefault(); // 폼 제출을 막습니다.
 
-	  var form = event.srcElement.form; // 이벤트가 발생한 요소를 참조합니다.
-	  
+	  var form = event.srcElement.form;
 	  var formData = new FormData(form);
 	  console.log(formData)
 	  
@@ -290,16 +289,14 @@ function sendFile(event) {
       prevFormData.append('file', modifiedFile);
       formData.append('fileName', newFileName);
       
+      console.log("url=", imgUploadUrl);
       
 //      file.name = newFilename;
       console.log(prevFormData)
       
-      /* 파일 전송용 API URL */
-      const url = 'http://119.209.77.170:48000/upload/codals?token=wecangohdite';
-      
       // 파일 업로드 AJAX 요청
       $.ajax({
-        url: url,
+        url: imgUploadUrl,
         type: 'POST',
         data: prevFormData,
         processData: false,

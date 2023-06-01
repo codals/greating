@@ -277,12 +277,17 @@
 
 
 				</div>
+
+				<script>
+				  var imgUploadUrl = '<%=request.getAttribute("imgUploadUrl")%>';
+					console.log("imgUploadUrl: ", imgUploadUrl);
+					// imgUploadUrl을 사용하여 필요한 작업을 수행합니다.
+				</script>
+
+
 				<div class="submut-btn mt-5">
 					<input id="diy-diet-form-cancelbtn" type="button" value="등록 취소" onclick=" location.href='${header.referer}'">
-<!--  					<input id="diy-diet-form-subbtn" type="submit" value="등록 완료" onclick="sendRequestWithImage()"> -->
-<!--  					<input id="diy-diet-form-subbtn" type="button" value="등록 완료"> -->
- 					<input id="diy-diet-form-subbtn" type="submit" value="등록 완료" onclick="sendFile(event)">
-
+ 					<input id="diy-diet-form-subbtn" type="submit" value="등록 완료" onclick="sendFile(event, '${imgUploadUrl}')">
 				</div>
 
 				<!-- Modal -->

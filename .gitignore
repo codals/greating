@@ -198,3 +198,4 @@ WebContent/META-INF/MANIFEST.MF
 .classpath
 .project
 src/main/resources/config/security.properties
+src/main/resources/application.properties

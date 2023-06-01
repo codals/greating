@@ -2,6 +2,8 @@ package com.codals.greating.diy.service;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import com.codals.greating.diy.dao.DiyDAO;
@@ -11,14 +13,23 @@ import com.codals.greating.diy.entity.Post;
 import com.codals.greating.user.entity.User;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Service
 @RequiredArgsConstructor
+@PropertySource("classpath:application.properties")
 public class DiyServiceImpl implements DiyService{
 
 	Logger log = LogManager.getLogger("case3");
 	
 	private final DiyDAO diyDAO;
+	
+    @Value("${img.storage.path}")
+    private String imgStoragePath;
+    
+    @Value("${img.storage.token}")
+    private String imgStorageToken;
 	
 	@Override
 	public PostResponseDto getPostDetail(int postId) {
@@ -28,7 +39,9 @@ public class DiyServiceImpl implements DiyService{
 	private Post createPost(User loginUser, DiyRequestDto postRequest) {
 		
 		log.info("request -> post 매핑 전 =" + postRequest);
-		
+		log.info("path=" + imgStoragePath);
+    	log.info("token=" + imgStorageToken);
+    	
 		Post newPost = Post.builder()
 							.mainCategoryId(postRequest.getMainCategoryId())
 							.subCategoryId(postRequest.getSubCategoryId())
@@ -36,7 +49,7 @@ public class DiyServiceImpl implements DiyService{
 							.userId(loginUser.getId())
 							.title(postRequest.getDietName())
 							.content(postRequest.getContent())
-							.imgUrl(postRequest.getFileName())
+							.imgUrl(imgStoragePath + postRequest.getFileName() + "?token=" + imgStorageToken)
 							.riceFoodId(postRequest.getRiceFoodId())
 							.soupFoodId(postRequest.getSoupFoodId())
 							.mainFoodId(postRequest.getMainFoodId())

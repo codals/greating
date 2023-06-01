@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +25,7 @@ import static com.codals.greating.constant.FoodTypeCode.*;
 @Controller
 @RequestMapping("/mealdiy")
 @RequiredArgsConstructor
+@PropertySource("classpath:application.properties")
 public class DiyController {
 	
 	Logger log = LogManager.getLogger("case3");
@@ -31,6 +34,9 @@ public class DiyController {
 	private final DiyService diyService;
 	
 	private final FoodService foodService;
+	
+	@Value("${img.upload.url}")
+    private String imgUploadUrl;
 	
 	@GetMapping
 	public String loadMainPage() {
@@ -44,6 +50,9 @@ public class DiyController {
 
 	@GetMapping("/new")
 	public String loadCreatePage(Model model) {
+		
+		model.addAttribute("imgUploadUrl", imgUploadUrl);
+		log.info("imgUploadUrl=" + imgUploadUrl);
 		
 		List<FoodSimpleDto> rices = foodService.loadGreatingFoodsByFoodType(RICE.getId());
 		model.addAttribute("rices", rices);
