@@ -179,20 +179,31 @@ function handleSoupRadioButtonChange(radio) {
 	if (radio.checked) {
 		radio.parentNode.classList.add('selected');
 	}
+	
+	var selectedNameSec = document.getElementById("selected-soup-name-sec");
+	selectedNameSec.textContent = "";
+	
+	var modalOpenButton = document.getElementById("soup-cart-button");
+	modalOpenButton.style.backgroundColor = '#A6A6A6';
 }
 
-function handleModalSoupRadioButtonChange(button) {
+function handleModalSoupRadioButtonChange(button, soupName) {
+	console.log(soupName)
 	  var selectedMarketSoup = document.querySelector('input[name="soupFoodId"]:checked');
-
+	  
 	  var soupFoodCards = document.querySelectorAll('#soup-container .food-card');
 	  soupFoodCards.forEach(function(card) {
 	    card.classList.remove('selected');
 	  });
 
 	  button.parentNode.classList.add('selected');
-	  
-	  // 모달창을 띄우는 버튼의 스타일 변경
-	  var modalOpenButton = button.parentNode.querySelector('.modal-open-button');
+
+	  var selectedNameSec = document.getElementById("selected-soup-name-sec");
+	  selectedNameSec.textContent = soupName;
+}
+
+function clodeSoupModal() {
+	  var modalOpenButton = document.getElementById("soup-cart-button");
 	  modalOpenButton.style.backgroundColor = '#918c01';
 }
 
@@ -205,9 +216,15 @@ function handleMainRadioButtonChange(radio) {
 	if (radio.checked) {
 		radio.parentNode.classList.add('selected');
 	}
+	
+	  var selectedNameSec = document.getElementById("selected-main-name-sec");
+	  selectedNameSec.textContent = "";
+	
+	  var modalOpenButton = document.getElementById("main-cart-button");
+	  modalOpenButton.style.backgroundColor = '#A6A6A6';
 }
 
-function handleModalMainRadioButtonChange(button) {
+function handleModalMainRadioButtonChange(button, mainName) {
 	  var selectedMarketMain = document.querySelector('input[name="mainFoodId"]:checked');
 
 	  var mainFoodCards = document.querySelectorAll('#main-container .food-card');
@@ -217,8 +234,13 @@ function handleModalMainRadioButtonChange(button) {
 
 	  button.parentNode.classList.add('selected');
 	  
-	  // 모달창을 띄우는 버튼의 스타일 변경
-	  var modalOpenButton = button.parentNode.querySelector('.modal-open-button');
+	  var selectedNameSec = document.getElementById("selected-main-name-sec");
+	  selectedNameSec.textContent = mainName;
+	  console.log(mainName);
+}
+
+function closeMainModal() {
+	  var modalOpenButton = document.getElementById("main-cart-button");
 	  modalOpenButton.style.backgroundColor = '#918c01';
 }
 
@@ -247,6 +269,54 @@ function handleSideCheckboxButtonChange(checkbox) {
 			card.classList.remove('selected');
 		}
 	});
+	
+	if (modalSelectedCount == 0) {
+		var modalOpenButton = document.getElementById("sides-cart-button");
+		modalOpenButton.style.backgroundColor = '#A6A6A6';	
+		var selectedNameSec = document.getElementById("selected-side-name-sec");
+		selectedNameSec.textContent = "";
+	}
+}
+
+function closeSideModal() {
+	var modalOpenButton = document.getElementById("sides-cart-button");
+	modalOpenButton.style.backgroundColor = '#918c01';
+
+	var modalCheckboxes = document
+			.querySelectorAll('#sideDishModal input[name="sideFoodIds"]:checked');
+	var modalSelectedCount = modalCheckboxes.length;
+
+	if (modalSelectedCount == 0) {
+		var modalOpenButton = document.getElementById("sides-cart-button");
+		modalOpenButton.style.backgroundColor = '#A6A6A6';
+		var selectedNameSec = document.getElementById("selected-side-name-sec");
+		selectedNameSec.textContent = "";
+	}
+
+}
+
+function exitSideModal() {	
+	var modalCheckboxes = document.querySelectorAll('#sideDishModal input[name="sideFoodIds"]:checked');
+	var modalSelectedCount = modalCheckboxes.length;
+	
+	if (modalSelectedCount == 0) {
+		var modalOpenButton = document.getElementById("sides-cart-button");
+		modalOpenButton.style.backgroundColor = '#A6A6A6';
+		var selectedNameSec = document.getElementById("selected-side-name-sec");
+		selectedNameSec.textContent = "";
+	}
+	
+}
+
+function handleModalExtraRadioButtonChange(button, extraName) {	  
+	  var selectedNameSec = document.getElementById("selected-extra-name-sec");
+	  selectedNameSec.textContent = extraName;
+	  console.log(extraName);
+}
+
+function closeExtraModal() {
+	var modalOpenButton = document.getElementById("extra-cart-button");
+	modalOpenButton.style.backgroundColor = '#918c01';
 }
 
 // 모달이 열릴 때 이벤트 리스너 등록
@@ -273,6 +343,9 @@ function handleModalSideCheckboxButtonChange(checkbox) {
     } else {
 	    checkbox.parentNode.classList.add('selected');
     }  
+    
+	  var selectedNameSec = document.getElementById("selected-side-name-sec");
+	  selectedNameSec.textContent = "건강마켓에서 선택됨";
 }
 
 
