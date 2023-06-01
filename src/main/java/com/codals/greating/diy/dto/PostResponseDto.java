@@ -23,7 +23,6 @@ public class PostResponseDto {
 	private MainCategory mainCategory;
 	private SubCategory subCategory;
 	
-	
 	private Food rice;
 	private Food soup;
 	private Food main;

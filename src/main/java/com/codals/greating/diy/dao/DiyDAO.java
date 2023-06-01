@@ -13,7 +13,7 @@ import com.codals.greating.diy.entity.Vote;
 
 public interface DiyDAO {
 	<Optional> PostResponseDto selectPostByPostId(int postId);
-
+	
 	Integer savePost(Post post);
 
 	int insertScrap(ScrapRequestDto requestDto);

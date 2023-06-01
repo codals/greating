@@ -15,7 +15,7 @@ public interface DiyService {
 
 	PostResponseDto getPostDetail(int postId);
 
-	Integer savePost(User loginUser, DiyRequestDto newPost, String path);
+	Integer savePost(User loginUser, DiyRequestDto newPost);
 
 	boolean scrap(ScrapRequestDto requestDto);
 	boolean cancelScrap(ScrapRequestDto requestDto);
