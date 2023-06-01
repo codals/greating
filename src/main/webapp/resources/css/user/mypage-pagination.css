@@ -1,0 +1,58 @@
+@charset "UTF-8";
+.noContentDiv {
+  width: 860px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fdfdfd;
+  border-radius : 25px;
+  height: 300px;
+}
+
+.noContentDiv img {
+  margin-right: 10px; /* 이미지와 텍스트 사이의 간격 조정을 위한 마진 설정 */
+}
+
+.noContents {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  text-decoration-line: none;
+  color: #6a6a6a;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination a {
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: 1px solid #ececec;
+  border-radius: 3px;
+  background-color: #ececec
+}
+
+.pagination a:hover,
+.pagination a:active {
+  background-color: olive;
+  text-decoration: none;
+  color: white;
+  border: 1px solid #c0c0c0;
+  border-radius: 3px;
+}
+
+.pagination strong {
+  background-color: #918c01;
+  color: white;
+  padding: 5px 10px;
+  border: 1px solid #c0c0c0;
+  border-radius: 3px;
+}
