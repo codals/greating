@@ -67,13 +67,14 @@ public class MyPageController {
 
 
     @GetMapping("/scrap")
-    public String loadMyScrapPage(@SessionAttribute("loginUser") User loginUser, MyPageScrapDto dto, Model model) {
+    public String loadMyScrapPage(@SessionAttribute("loginUser") User loginUser, MyPageScrapDto dto,
+    		@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
         
     	// 사용자 ID를 가져와서 dto에 설정
         dto.setUserId(loginUser.getId());
         
         // dto를 기반으로 사용자의 글 목록을 조회
-        List<MyPageDto> scrapList = service.scrapList(dto);
+        List<MyPageDto> scrapList = service.scrapList(dto, page);
         
         model.addAttribute("dto", dto);
         model.addAttribute("list", scrapList);
@@ -82,12 +83,13 @@ public class MyPageController {
     }
 
     @GetMapping("/voted")
-    public String loadMyVotedPage(@SessionAttribute("loginUser") User loginUser, MyPageScrapDto dto, Model model) {
+    public String loadMyVotedPage(@SessionAttribute("loginUser") User loginUser, MyPageScrapDto dto, 
+    		@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
     	// 사용자 ID를 가져와서 dto에 설정
         dto.setUserId(loginUser.getId());
         
         // dto를 기반으로 사용자의 글 목록을 조회
-        List<MyPageDto> voteList = service.voteList(dto);
+        List<MyPageDto> voteList = service.voteList(dto, page);
         
         model.addAttribute("dto", dto);
         model.addAttribute("list", voteList);
