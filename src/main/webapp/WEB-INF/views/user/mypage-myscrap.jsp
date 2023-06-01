@@ -71,7 +71,6 @@ rel="stylesheet">
 				<c:if test="${dto.totalCount == 0 }">
 					<div class="noContentDiv">
 					<img class="mark_exclamation" src="/greating/resources/images/user/exclamationMark.png">
-					<br>
 					<p class="noContents">아직 스크랩한 식단이 없습니다.</p>
 					</div>
 				</c:if>
