@@ -23,6 +23,8 @@ public class MyPageServiceImpl implements MyPageService {
 		dto.setStartRow(startRow-1);
         dto.setEndRow(endRow-startRow+1);
         
+        System.out.println("page : " + page + " startRow : "+ startRow + " endRow : " + endRow );
+        
         //total
         int totalCount = dao.getTotalPageCount(dto.getUserId());
         int totalPage = (int) Math.ceil((double) totalCount / rowsPerPage);

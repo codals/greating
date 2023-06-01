@@ -78,7 +78,7 @@
 						<a href="/greating/mypage/diets?page=${dto.page - 1}">이전</a>
 					</c:if>
 
-					<c:set var="startPage" value="${dto.page - 2}" />
+					<%-- <c:set var="startPage" value="${dto.page - 2}" />
 					<c:set var="endPage" value="${dto.page + 2}" />
 					<c:if test="${startPage < 1}">
 						<c:set var="startPage" value="1" />
@@ -87,7 +87,29 @@
 					<c:if test="${endPage > dto.totalPage}">
 						<c:set var="startPage" value="${dto.totalPage - 4}" />
 						<c:set var="endPage" value="${dto.totalPage}" />
+					</c:if> --%>
+
+
+					<c:set var="startPage" value="${dto.page - 2}" />
+					<c:set var="endPage" value="${dto.page + 2}" />
+
+					<c:choose>
+						<c:when test="${startPage < 1}">
+							<c:set var="startPage" value="1" />
+						</c:when>
+						<c:when test="${endPage > dto.totalPage}">
+							<c:set var="startPage" value="${dto.totalPage - 4}" />
+						</c:when>
+					</c:choose>
+
+					<c:if test="${startPage < 1}">
+						<c:set var="startPage" value="1" />
 					</c:if>
+					<c:if test="${endPage > dto.totalPage}">
+						<c:set var="endPage" value="${dto.totalPage}" />
+					</c:if>
+
+
 
 					<c:forEach var="pageNum" begin="${startPage}" end="${endPage}">
 						<c:choose>
