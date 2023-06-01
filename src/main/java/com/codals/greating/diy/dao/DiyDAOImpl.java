@@ -1,5 +1,7 @@
 package com.codals.greating.diy.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,9 +9,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.codals.greating.diy.dto.PostResponseDto;
+import com.codals.greating.diy.dto.ScrapRequestDto;
+import com.codals.greating.diy.dto.SearchRequestDto;
+import com.codals.greating.diy.dto.SimplePostDto;
 import com.codals.greating.diy.entity.Post;
 import com.codals.greating.exception.BusinessException;
 import com.codals.greating.exception.ErrorCode;
+import com.codals.greating.diy.dto.VoteRequestDto;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -59,5 +65,44 @@ public class DiyDAOImpl implements DiyDAO {
 	    return nextVal-1;
 	}
 
+	@Override
+	public int insertScrap(ScrapRequestDto requestDto) {
+		String statement = "post.insertScrap";
+		return sqlSession.insert(statement, requestDto);
+	}
+
+	@Override
+	public int deleteScrap(ScrapRequestDto requestDto) {
+		String statement = "post.deleteScrap";
+		return sqlSession.delete(statement, requestDto);
+	}
+
+
+
+	@Override
+	public int insertVote(VoteRequestDto requestDto) throws Exception{
+		String statement = "post.insertVote";
+		return sqlSession.insert(statement,requestDto);
+	}
+
+
+
+	@Override
+	public int deleteVote(VoteRequestDto requestDto) throws Exception {
+		String statement = "post.deleteVote";
+		return sqlSession.delete(statement, requestDto);
+	}
+
+	@Override
+	public List<Post> selectPostsByMainCategory(int id) {
+		String statement = "post.selectPostsByMainCategory";
+		return sqlSession.selectList(statement,id);
+	}
+
+	@Override
+	public List<SimplePostDto> selectPostBySearchConditions(SearchRequestDto requestDto) {
+		String statement = "post.selectPostBySearchConditions";
+		return sqlSession.selectList(statement,requestDto);
+	}
 
 }

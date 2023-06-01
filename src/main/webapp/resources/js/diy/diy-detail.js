@@ -13,3 +13,42 @@ document.addEventListener("DOMContentLoaded", function() {
 		});
 	});
 });
+
+function scrap(postId, userId){
+
+	 $.ajax({
+	        url: "/greating/api/mealdiy/scrap",
+	        type: "POST",
+	        data: {
+	            postId: postId,
+	            userId: userId
+	        },
+	        success: function(response) {
+	            alert('스크랩 완료되었습니다. 마이페이지를 확인해주세요.');
+	        },
+	        error: function(xhr, status, error) {
+	            console.log("Vote failed:", error);
+	            alert('스크에 실패하였습니다! 관리자에게 문의해주세요');
+
+	        }
+	    });
+	 
+}
+
+function cancelVote(postId){
+	 $.ajax({
+	        url: "/greating/api/mealdiy/"+postId+"/vote" ,
+	        type: "DELETE",
+	        success: function(response) {
+	            alert('투표취소 되었습니다.');
+	        },
+	        error: function(xhr, status, error) {
+	            alert('투표 취소에 실패하였습니다! 관리자에게 문의해주세요');
+	        }
+	    });
+}
+
+
+
+
+

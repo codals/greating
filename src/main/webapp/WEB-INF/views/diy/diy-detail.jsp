@@ -10,7 +10,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
 
 <!-- css로 가져오기 -->
-<link href="/greating/resources/css/reset.css" rel="stylesheet">
 <link href="/greating/resources/css/diy/diy-detail.css" rel="stylesheet">
 
 <!-- js 가져오기 -->
@@ -97,8 +96,7 @@
 				</div>
 
 				<div class="button-group">
-					<button class="white-button">
-						<!-- <img src="/greating/resources/images/diy/img_" alt="이미지_설명"> -->
+					<button class="vote-button" onclick="voteCancel(${postDetail.post.id})">
 						<span>♡ 투표하기</span>
 					</button>
 					<button class="green-button">
