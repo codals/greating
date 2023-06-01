@@ -1,4 +1,14 @@
 
+function openSearchBox() {
+  var searchContainer = $('.search-container');
+  
+  if (searchContainer.css('display') === 'none') {
+    searchContainer.css('display', 'block');
+  } else {
+    searchContainer.css('display', 'none');
+  }
+}
+
 function search(){
 	
 	let mainCategories = [];
@@ -60,7 +70,7 @@ function search(){
 	        	data.forEach(function(item){
 	        		console.log(item.id);
 	        	});
-	            alert('검색이 완료되었습니다. ');
+	        	alert('검색이 완료되었습니다. ');
 	        },
 	        error: function(xhr, status, error) {
 	            alert('검색 실패하였습니다. ');

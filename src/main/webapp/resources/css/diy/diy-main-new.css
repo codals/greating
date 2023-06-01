@@ -1,0 +1,231 @@
+@charset "UTF-8";
+
+
+/* 상위 배너 */
+.banner-img {
+	height: auto;
+	background: url("/greating/resources/images/diy/img_healthy.png");
+	position: relative;
+	height: 300px;
+	overflow: hidden;
+	background-size: cover;
+}
+
+.banner-content {
+	width: 600px;
+	height: 100%;
+	margin: 0 auto;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	aligh-items: center;
+}
+
+.banner-title {
+	font-size: 50px;
+	color: white;
+}
+
+.banner-content .span {
+	color: rgba(255, 255, 255, 1);
+	font-family: Noto Sans KR;
+	font-weight: 400;
+	font-size: 50px;
+	opacity: 1;
+	text-align: center;
+	display: block;
+}
+
+.banner-description {
+	color: rgba(255, 255, 255, 1);
+	top: 170px;
+	left: 50%;
+	font-family: NanumMyeongjo;
+	font-weight: Regular;
+	font-size: 25px;
+	line-height: 1.5;
+	opacity: 1;
+	text-align: center;
+}
+
+.banner-inner-icon {
+	text-align: center;
+}
+
+.banner-inner-icon img {
+	width: 200px;
+}
+
+/* search container*/
+
+.search-container {
+	display: none;
+	position: absolute;
+	width: 960px;
+	padding:10px;
+	background: rgba(255, 255, 255, 1);
+	box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.25);
+	overflow: hidden;
+	margin-top:-15px;
+	border-top: 8px solid #918C01;
+
+}
+
+.search-keyword-box {
+	height: 50px;
+    margin: 10px 15px 10px 11px;
+    border: 2px solid rgba(178, 172, 0, 1);
+	border-radius: 40px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+    justify-content: space-around;
+    background:white;
+    
+}
+
+.search-keyword-box input {
+	width: 85%;
+	color: #666666;
+	border: none;
+	outline: none;
+	padding-left: 15px;
+}
+
+.search-keyword-box input::placeholder {
+	font-family: Noto Sans KR;
+	font-weight: 100;
+	font-size: 17px;
+	color: #ccc;
+}
+
+.search-keyword-box .icon {
+	width: 22px;
+	height: 22px;
+	background: url("/greating/resources/images/diy/img_search_button.png");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	opacity: 1;
+	border: none;
+}
+
+
+.greating-category-sec, 
+.greating-country-sec,
+.greating-sub-sec {
+    padding: 10px 10px 10px 20px;	
+}
+
+.greating-category-sec .sub-title,
+.greating-country-sec .sub-title,
+.greating-sub-sec .sub-title {
+	width: 100%;
+	font-family: Noto Sans KR;
+	font-weight: Bold;
+	font-size: 19px;
+	opacity: 1;
+	text-align: left;
+}
+.greating-sub-sec{
+	display: flex;
+    justify-content: space-between;
+}
+.greating-rice-sec,
+.greating-soup-sec{
+	display:inline-block;
+	width:48%;
+}
+.greating-category-btns{
+	margin-top:10px;
+}
+.greating-category-btns label {
+	width: 120px;
+}
+.greating-country-btns label{
+	width:100px;
+}
+.greating-category-btns>input, 
+.greating-country-btns>input,
+.greating-rice-btns>input, 
+.greating-soup-btns>input {
+	display: none;
+}
+.greating-category-btns>input:checked+label,
+.greating-country-btns>input:checked+label,
+.greating-rice-btns>:checked+label {
+	border: 2px solid rgba(178, 172, 0, 1);
+	border-radius: 20px;
+	padding: 10px;
+	margin-right: 10px;
+	cursor: pointer;
+	text-align: center;
+	background-color: rgba(178, 172, 0, 1);
+	color: white;
+}
+.greating-rice-btns>input:checked+label,
+.greating-soup-btns>input:checked+label {
+	border: 2px solid rgba(178, 172, 0, 1);
+	border-radius: 20px;
+	padding: 10px;
+	margin-right: 10px;
+	cursor: pointer;
+	text-align: center;
+	background-color: rgba(178, 172, 0, 1);
+	color: white;
+}
+.greating-category-btns label, .greating-country-btns label,
+.greating-rice-btns label, .greating-soup-btns label {
+	background: white;
+	border: 1.5px solid #C3C3C3;
+	border-radius: 20px;
+	padding: 10px;
+	margin-right: 5px;
+	cursor: pointer;
+	text-align: center;
+	display: inline-block;
+}
+
+.button-group {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+.rectangle-gray-button {
+	width: 120px;
+	height: 40px;
+	border: none;
+	background-color: #999;
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+	margin-right: 10px;
+}
+
+.rectangle-gray-button:hover {
+	background-color: #777;
+}
+
+.rectangle-green-button {
+	width: 120px;
+	height: 40px;
+	border: none;
+	background-color: #918c00;
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+	margin-right: 10px;
+}
+
+.rectangle-green-button:hover {
+	background-color: #7e7900; /* 마우스를 갖다 대었을 때의 배경색 */
+}
+.main-content{
+	min-height: 700px !important;
+}
+
