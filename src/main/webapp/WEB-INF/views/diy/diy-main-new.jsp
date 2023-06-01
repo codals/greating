@@ -13,6 +13,10 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/diy/diy-main-new.css"
 	rel="stylesheet">
+<!-- alert 창 커스텀  -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<link href="/greating/resources/css/templates/alert.css" rel="stylesheet">
 
 
 </head>
@@ -102,7 +106,7 @@
 			</div>
 
 			<div class="button-group">
-				<button class="rectangle-gray-button" value="초기화" onclick="">초기화</button>
+				<button class="rectangle-gray-button" value="초기화" onclick="resetSelection()">초기화</button>
 				<button class="rectangle-green-button" value="선택완료"
 					onclick="search()">검색하기</button>
 			</div>
@@ -113,9 +117,9 @@
 	<div class="main-content hd__inner1100">
 		<div class="hd__inner960">
 
-			<div class="diet-card-list row row-cols-3">
+			<div class="diet-card-list">
 				<c:forEach var="i" begin="1" end="10">
-					<div class="col-4 diet-card">
+					<div class="diet-card">
 						<div class="diet-card-img">
 							<img src="${pageContext.request.contextPath}/resources/images/diet/우삼겹덮밥1.jpg"> 
 						</div>

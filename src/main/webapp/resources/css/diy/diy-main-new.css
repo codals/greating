@@ -237,10 +237,9 @@
 	flex-wrap: wrap;
 }
 .diet-card{
-	width: 250px;
-	height: 330px;
-	padding: 0px 50px 0px 50px;
-	display: inline-block;
+	width: 300px;
+    padding: 0px 20px 0px 20px;
+    display: inline-block;
 	margin-bottom: 50px;
 }
 .diet-card-img >img{
@@ -248,12 +247,15 @@
 	height: 230px;
 }
 
-
+.diet-card-info{
+	min-height:100px;
+}
 .diet-card-info >span {
-	font-size: 17px;
+	font-size: 18px;
 	font-weight: bold;
 	margin-top: 10px;
 	display: block;
+	min-height: 55px;
 }
 .diet-card-sub-info>*,
 .diet-card-sub-info2>*{
