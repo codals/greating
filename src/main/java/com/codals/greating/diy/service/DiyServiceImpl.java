@@ -206,5 +206,22 @@ public class DiyServiceImpl implements DiyService{
 
 		return diyDAO.selectPostBySearchConditions(requestDto);
 	}
+
+	@Override
+	public boolean checkVoted(VoteRequestDto requestDto) {
+
+		if(diyDAO.selectVoteByPostIdAndUserId(requestDto)!= null) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean checkScrapped(ScrapRequestDto requestDto) {
+		if(diyDAO.selectScrapByPostIdAndUserId(requestDto)!= null) {
+			return true;
+		}
+		return false;
+	}
       
 }

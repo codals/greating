@@ -13,6 +13,8 @@ import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.dto.SearchRequestDto;
 import com.codals.greating.diy.dto.SimplePostDto;
 import com.codals.greating.diy.entity.Post;
+import com.codals.greating.diy.entity.Scrap;
+import com.codals.greating.diy.entity.Vote;
 import com.codals.greating.exception.BusinessException;
 import com.codals.greating.exception.ErrorCode;
 import com.codals.greating.diy.dto.VoteRequestDto;
@@ -100,6 +102,19 @@ public class DiyDAOImpl implements DiyDAO {
 	public List<SimplePostDto> selectPostBySearchConditions(SearchRequestDto requestDto) {
 		String statement = "post.selectPostBySearchConditions";
 		return sqlSession.selectList(statement,requestDto);
+	}
+
+	@Override
+	public Vote selectVoteByPostIdAndUserId(VoteRequestDto requestDto) {
+
+		String statement ="post.selectVoteByPostIdAndUserId";
+		return sqlSession.selectOne(statement,requestDto);
+	}
+
+	@Override
+	public Scrap selectScrapByPostIdAndUserId(ScrapRequestDto requestDto) {
+		String statement ="post.selectScrapByPostIdAndUserId";
+		return sqlSession.selectOne(statement,requestDto);
 	}
 
 }

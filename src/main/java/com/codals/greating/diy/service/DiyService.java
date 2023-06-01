@@ -26,5 +26,9 @@ public interface DiyService {
 	List<Post> loadPostsByCategoryType(int mainCategoryid);
 
 	List<SimplePostDto> search(SearchRequestDto requestDto);
+
+	boolean checkVoted(VoteRequestDto requestDto);
+
+	boolean checkScrapped(ScrapRequestDto requestDto);
 	
 }
