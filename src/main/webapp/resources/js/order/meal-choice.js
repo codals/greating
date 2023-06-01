@@ -69,7 +69,8 @@ $(document).ready(function () {
 
     for (let i = 0; i < mealCards.length; i++) {
       const mealCard = mealCards[i];
-      const deliveryDate = mealCard.getElementsByClassName("meal-diet-date")[0].value;
+      const deliveryDate = mealCard.getElementsByClassName(
+          "meal-diet-date")[0].value;
       const dietId = +mealCard.getElementsByClassName("meal-diet")[0].value;
       const cnt = +mealCard.getElementsByClassName("meal-count")[0].innerText;
       if (cnt > 0) {
@@ -78,7 +79,7 @@ $(document).ready(function () {
     }
     console.log(order);
     data = {
-      orders : order
+      orders: order
     }
     $.ajax({
       url: '/greating/api/diets/mygreating/orders',
@@ -90,13 +91,14 @@ $(document).ready(function () {
       success: function (response) {
         if (response) {
           alert('식단 주문을 성공하였습니다.')
-          location.href = 'http://localhost:8080/greating/diets/mygreating/orders/result';
+          location.href = 'http://localhost:8080/greating/diets/mygreating/orders/'
+              + response.orderId;
           return;
         }
-          alert("주문 실패");
+        alert("식단 주문을 실패하였습니다.");
       },
       error: function () {
-        alert("서버 에러");
+        alert("식단 주문을 실패하였습니다.");
       }
     });
   });

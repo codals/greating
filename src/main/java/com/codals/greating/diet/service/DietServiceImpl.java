@@ -5,6 +5,7 @@ import com.codals.greating.diet.dao.OrderDao;
 import com.codals.greating.diet.dao.OrderDietDao;
 import com.codals.greating.diet.dto.OrderDietRequestDto;
 import com.codals.greating.diet.dto.OrderRequestDto;
+import com.codals.greating.diet.dto.OrderResponseDto;
 import com.codals.greating.diet.dto.PlanResponseDto;
 import com.codals.greating.diet.dto.PreviewDietResponseDto;
 import com.codals.greating.diet.dto.PreviewResponseDto;
@@ -52,7 +53,7 @@ public class DietServiceImpl implements DietService {
 
     @Override
     @Transactional
-    public void order(User user, OrderRequestDto orderRequestDto) {
+    public OrderResponseDto order(User user, OrderRequestDto orderRequestDto) {
         orderRequestDto.updateOrderInfo(user);
         orderDao.saveOrder(orderRequestDto);
         for (OrderDietRequestDto orderDiet : orderRequestDto.getOrders()) {
@@ -60,9 +61,8 @@ public class DietServiceImpl implements DietService {
                 orderDiet.updateOrderId(orderRequestDto.getOrderId());
                 orderDietDao.insertOrderDiet(orderDiet);
             }
-
         }
-
+        return new OrderResponseDto(orderRequestDto.getOrderId());
     }
 
     private List<PreviewResponseDto> getPreviewResponseDto(List<DailyDiet> dailyDiets) {

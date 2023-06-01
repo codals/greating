@@ -1,6 +1,7 @@
 package com.codals.greating.diet.service;
 
 import com.codals.greating.diet.dto.OrderRequestDto;
+import com.codals.greating.diet.dto.OrderResponseDto;
 import com.codals.greating.diet.dto.PlanResponseDto;
 import com.codals.greating.diet.dto.PreviewResponseDto;
 import com.codals.greating.user.entity.User;
@@ -13,5 +14,5 @@ public interface DietService {
 
     List<PlanResponseDto> getDailyDietsByDeliveryDates(List<Date> deliveryDates);
 
-    void order(User user, OrderRequestDto orderRequestDto);
+    OrderResponseDto order(User user, OrderRequestDto orderRequestDto);
 }

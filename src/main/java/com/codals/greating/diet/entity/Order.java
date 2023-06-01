@@ -3,7 +3,6 @@ package com.codals.greating.diet.entity;
 import com.codals.greating.date.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter

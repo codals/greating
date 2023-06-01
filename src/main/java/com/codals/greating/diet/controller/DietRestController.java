@@ -5,6 +5,7 @@ import static com.codals.greating.constant.SessionKey.LOGIN_USER;
 
 import com.codals.greating.diet.dto.DietDeliveryRequestDto;
 import com.codals.greating.diet.dto.OrderRequestDto;
+import com.codals.greating.diet.dto.OrderResponseDto;
 import com.codals.greating.diet.service.DietService;
 import com.codals.greating.user.entity.User;
 import javax.servlet.http.HttpSession;
@@ -26,9 +27,8 @@ public class DietRestController {
     public static final int DELIVERY_MAX_INACTIVE_INTERVAL = 300;
 
     @PostMapping("/orders")
-    public boolean order(@SessionAttribute(LOGIN_USER) User user, @RequestBody OrderRequestDto orderRequestDto) {
-        dietService.order(user, orderRequestDto);
-        return true;
+    public ResponseEntity<OrderResponseDto> order(@SessionAttribute(LOGIN_USER) User user, @RequestBody OrderRequestDto orderRequestDto) {
+        return ResponseEntity.ok(dietService.order(user, orderRequestDto));
     }
 
     @PostMapping("/orders/delivery")
