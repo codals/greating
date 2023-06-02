@@ -1,5 +1,13 @@
 package com.codals.greating.admin.dao;
 
-public class AdminDao {
+import java.util.List;
+
+import com.codals.greating.admin.dto.AdminDto;
+
+public interface AdminDao {
+
+	List<AdminDto> topList();
+
+	boolean approveCheck(long postId);
 
 }
