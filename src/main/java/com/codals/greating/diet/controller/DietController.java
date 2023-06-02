@@ -55,7 +55,7 @@ public class DietController {
     public String loadOrderResultPage(@PathVariable Integer orderId, Model model) {
         OrderResultResponseDto orderDetail = dietService.getOrderDetail(orderId);
         model.addAttribute("orderDetail", orderDetail.getOrderDetail());
-        model.addAttribute("orderDietsGroupByDeliveryDate", orderDetail.getOrderDietsGroupByDeliveryDate());
+        model.addAttribute("orderDietsGroupByDeliveryDate", orderDetail.getOrderDietsByDates());
         return "order/order-result";
     }
 
