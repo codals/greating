@@ -12,4 +12,9 @@ public class AdminController {
 	public String adminMain() {
 		return "admin/admin-popularList";
 	}
+	
+	@GetMapping("/register")
+	public String adminRegister() {
+		return "admin/admin-register";
+	}
 }
