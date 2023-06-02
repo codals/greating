@@ -24,21 +24,8 @@
         <li>></li>
         <li class="highlight">건강식단</li>
     </ul>
-
+    <jsp:include page="/WEB-INF/views/order/order-header.jsp"/>
     <form action="/" method="post" name="order1-form">
-
-        <!-- 설계하기및 현재 단계 -->
-        <h2 class="meals__title">
-            <span>설계하기</span>
-        </h2>
-        <img src="/greating/resources/images/order/order2step.png"/>
-        <ol class="meals-order">
-
-            <li style="color: rgb(174, 170, 170);">기간/끼니수 선택</li>
-            <li class="on">배송일 선택</li>
-            <li style="color: rgb(174, 170, 170);">메뉴 선택</li>
-        </ol>
-
         <!-- 배송희망일 선택 -->
         <div class="section-cover">
             <section class="meals-area1">
@@ -88,11 +75,13 @@
             </div>
         </div>
         <div class="meals-btn">
-            <a href="${header.referer}" class="btn-init-white prev"><span>이전단계</span></a><a
-                href="#" class="btn-init-green next" id="btn_next"><span
-                id="next_text">다음단계</span></a>
+            <a href="order2" class="btn-init">
+                <p class="meals-span">이전단계</p>
+            </a>
+            <a href="javascript:void(0)" class="btn-init green_normal">
+                <p class="meals-span meals-next-step next" id="next_text">다음단계</p>
+            </a>
         </div>
-
     </form>
 
 </div>

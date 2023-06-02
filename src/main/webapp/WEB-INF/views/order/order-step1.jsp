@@ -25,22 +25,8 @@
         <li>></li>
         <li class="highlight">건강식단</li>
     </ul>
+    <jsp:include page="/WEB-INF/views/order/order-header.jsp"/>
     <form action="/" method="post" name="order1-form">
-
-        <!-- 설계하기및 현재 단계 -->
-        <h2 class="meals__title">
-            <span>설계하기</span>
-        </h2>
-        <img
-                src="${pageContext.request.contextPath}/resources/images/order/order1step.png"/>
-        <ol class="meals-order">
-
-            <li class="on">기간/끼니수 선택</li>
-            <li style="color: rgb(174, 170, 170);">배송일 선택</li>
-            <li style="color: rgb(174, 170, 170);">메뉴 선택</li>
-        </ol>
-
-
         <!-- 식단관리 기간을 선택하세요 -->
         <section class="meals-area1">
             <div class="meals-area_div">
@@ -51,7 +37,7 @@
                 <div class="radio-container">
                     <label class="radio-label">
                         <input class="radio-input radio-input-week" type="radio" name="experience" value="0">
-                        <span  class="radio-custom">체험팩</span>
+                        <span class="radio-custom">체험팩</span>
                     </label>
                     <label class="radio-label">
                         <input class="radio-input radio-input-week" type="radio" name="experience" value="1">
@@ -81,7 +67,7 @@
                     <label class="radio-label">
                         <input class="radio-input radio-input-meal" type="radio" name="meals" value="9">
                         <span class="radio-custom">9끼<br>(하루 1~2끼)</span>
-                </label>
+                    </label>
                 </div>
             </div>
         </section>
@@ -90,7 +76,7 @@
             <span class="meals-final__head">총 선택 끼니 수</span>
 
             <p class="meals-final__cont">
-            <h1 class="h1 meals-area_div_title">
+            <h1 class="meals-area_div_title meal_count_title">
                 <span class="meals-final__cont__num" data-total-count="0">0</span>끼
             </h1>
             </p>
@@ -100,8 +86,8 @@
             <a href="order2" class="btn-init">
                 <p class="meals-span">빠른주문</p>
             </a>
-            <a href="${pageContext.request.contextPath}/diets/mygreating/orders/delivery" class="btn-init green_normal">
-                <p class="meals-span white-span" id="next_text">다음단계</p>
+            <a href="javascript:void(0)" class="btn-init green_normal">
+                <p class="meals-span meals-next-step" id="next_text">다음단계</p>
             </a>
         </div>
     </form>

@@ -116,7 +116,10 @@ createCalendar();
 $(document).ready(function () {
   $('.next').click(function () {
     console.log(selectedDates);
-
+    if (selectedDates.length === 0) {
+      alert('선택을 완료해주세요');
+      return;
+    }
     const data = {
       dates: selectedDates
     };

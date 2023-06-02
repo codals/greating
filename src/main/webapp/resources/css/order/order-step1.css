@@ -142,9 +142,10 @@ form {
   font-weight: 600;
   border: 1px solid #ccc;
   text-align: center;
+  text-decoration: none;
 }
 
-.hd .btn-init.white {
+.btn-init.white {
   background: #FFF;
   border: 1px solid #ccc;
   color: #1c1c1c;
@@ -175,6 +176,7 @@ form {
 
 .btn-init {
   text-decoration: none;
+  text-decoration-line: none;
 }
 
 .green_normal {
@@ -182,6 +184,17 @@ form {
   border: 1px solid #918c00;
 }
 
-.white-span {
+.meals-next-step {
   color: #FFF;
+  text-decoration: none;
+  text-decoration-line: none;
+}
+
+.meal_count_title {
+  font-size: 36px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: #F9D983; /* 밑줄 색상 */
+  text-decoration-thickness: 8px;
+  font-weight: bold;
 }

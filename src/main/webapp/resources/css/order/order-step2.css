@@ -134,31 +134,6 @@ form {
 	/* border: 1px solid #ccc; */
 }
 
-.meals-btn .btn-init-white {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 250px;
-	height: 70px;
-	border: 1px solid #ccc;
-	background-color: #fff;
-	text-decoration: none;
-	text-decoration-line: none;
-}
-
-.meals-btn .btn-init-green {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 250px;
-	height: 70px;
-	border: 1px solid #ccc;
-	background-color: #918c00;
-	color: white;
-	text-decoration: none;
-	text-decoration-line: none;
-}
-
 .meals-btn .btn-init span {
 	font-size: 16px;
 }
@@ -206,4 +181,28 @@ form {
 .calendar .selected {
 	background-color: #918c00;
 	color: #fff;
+}
+
+.meals-btn .btn-init {
+	display: inline-block;
+	margin: 0 1px;
+	width: 310px;
+	height: 70px;
+	line-height: 68px;
+	font-size: 24px;
+	font-weight: 600;
+	border: 1px solid #ccc;
+	text-align: center;
+	text-decoration: none;
+}
+
+.green_normal {
+	background: #918c00;
+	border: 1px solid #918c00;
+}
+
+.meals-next-step {
+	color: #FFF;
+	text-decoration: none;
+	text-decoration-line: none;
 }
