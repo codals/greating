@@ -405,68 +405,85 @@ function handleModalSideCheckboxButtonChange(checkbox) {
 }
 
 
-function sendFile(event, imgUploadUrl) {
-	  event.preventDefault();
-	  
-	  var priceErrorMessage = document.getElementById("priceError").textContent;
-	    if (priceErrorMessage === "최대 가격은 최소 가격보다 작을 수 없습니다.") {
-		  alert("최대 가격은 최소 가격보다 작을 수 없습니다.");
-		  return; // 함수 실행 중단
-	  }
-	    
-	  if (!validateForm()) {
-		  return;
-	  }
+function sendFile(event, imgUploadUrl, token) {
+	event.preventDefault();
 
-
-	  var form = event.srcElement.form;
-	  var formData = new FormData(form);
-	  console.log(formData)
-	  
-      var prevFormData = new FormData();
-      const fileInput = document.getElementById('imgFile');
-      const file = fileInput.files[0];
-      
-      /* 고유한 파일명 생성 */
-      var newFilename = generateUniqueFilename();
-      const originalFileName = file.name; 				// 원래 파일 이름
-      const ext = originalFileName.split('.').pop(); 	// 파일 확장자 추출
-      const newFileName = newFilename + '.' + ext; 		// 새로운 파일 이름에 확장자 추가
-      const modifiedFile = new File([file], newFileName, { type: file.type });
-
-      prevFormData.append('file', modifiedFile);
-      formData.append('fileName', newFileName);
-      
-      console.log("url=", imgUploadUrl);
-      
-      console.log(prevFormData)
-      
-      // 파일 업로드 AJAX 요청
-      $.ajax({
-        url: imgUploadUrl,
-        type: 'POST',
-        data: prevFormData,
-        processData: false,
-        contentType: false,
-        success: function(response) {
-          if (response.result === 'failed') {
-        	  console.log(response)
-            alert("사진 업로드 실패")
-          } else if (response.result === 'successful') {
-        	  console.log(response)
-        	  submitFormWithFilename(formData);
-          }
-        }
-      });
+	var calorieErrorMessage = document.getElementById("calorieError").textContent;
+	if (calorieErrorMessage === "최대 칼로리는 최소 칼로리보다 작을 수 없습니다.") {
+		alert(calorieErrorMessage);
+		return; // 함수 실행 중단
 	}
-//    });
+
+	var priceErrorMessage = document.getElementById("priceError").textContent;
+	if (priceErrorMessage === "최대 가격은 최소 가격보다 작을 수 없습니다.") {
+		alert(priceErrorMessage);
+		return; // 함수 실행 중단
+	}
+
+	if (!validateForm()) {
+		return;
+	}
+
+	var form = event.srcElement.form;
+	var formData = new FormData(form);
+	console.log(formData)
+
+	const fileInput = document.getElementById('imgFile');
+
+	console.log(fileInput.files[0]);
+	
+	if (!fileInput.files[0]) {
+		formData.append('fileName', "default-img.png");
+		submitFormWithFilename(formData);
+	} else {
+		const file = fileInput.files[0];
+
+		/* 고유한 파일명 생성 */
+		var newFilename = generateUniqueFilename();
+		const originalFileName = file.name; // 원래 파일 이름
+		const ext = originalFileName.split('.').pop(); // 파일 확장자 추출
+		const newFileName = newFilename + '.' + ext; // 새로운 파일 이름에 확장자 추가
+		const modifiedFile = new File([ file ], newFileName, {
+			type : file.type
+		});
+
+		var prevFormData = new FormData();
+		prevFormData.append('file', modifiedFile);
+		formData.append('fileName', newFileName);
+
+//		console.log("url=", imgUploadUrl);
+//		console.log("token=", token);
+
+		console.log(prevFormData)
+
+		// 파일 업로드 AJAX 요청
+		$.ajax({
+			url : imgUploadUrl,
+			type : 'POST',
+			headers: { 'token': token },
+			data : prevFormData,
+			processData : false,
+			contentType : false,
+			success : function(response) {
+				if (response.result === 'failed') {
+					console.log(response)
+					alert("사진 업로드 실패")
+				} else if (response.result === 'successful') {
+					console.log(response)
+					submitFormWithFilename(formData);
+				}
+			}
+		});
+	}
+
+}
     
 function generateUniqueFilename() {
   var timestamp = new Date().getTime();
   return 'file_' + timestamp;
 }
 
-//function submitFormWithFilename(filename) {
+// function submitFormWithFilename(filename) {
 function submitFormWithFilename(formData) {
   console.log('업로드하는 파일명:', formData.filename);
   

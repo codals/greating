@@ -1,5 +1,6 @@
 package com.codals.greating.diy.controller;
 
+import java.io.InputStream;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -11,10 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.codals.greating.constant.FoodTypeCode;
 import com.codals.greating.constant.MainCategoryCode;
-import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.PostResponseDto;
 import com.codals.greating.diy.entity.Post;
 import com.codals.greating.diy.service.DiyService;
@@ -42,6 +42,9 @@ public class DiyController {
 	@Value("${img.upload.url}")
     private String imgUploadUrl;
 	
+	@Value("${img.api.token}")
+	private String imgApiToken;
+	
 	@GetMapping
 	public String loadMainPage() {
 		return "diy/diy-main";
@@ -65,8 +68,8 @@ public class DiyController {
 	public String loadCreatePage(Model model) {
 		
 		model.addAttribute("imgUploadUrl", imgUploadUrl);
-		log.info("imgUploadUrl=" + imgUploadUrl);
-		
+		model.addAttribute("imgApiToken", imgApiToken);
+				
 		List<FoodSimpleDto> rices = foodService.loadGreatingFoodsByFoodType(RICE.getId());
 		model.addAttribute("rices", rices);
 		

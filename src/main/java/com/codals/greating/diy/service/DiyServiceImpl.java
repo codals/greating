@@ -41,8 +41,8 @@ public class DiyServiceImpl implements DiyService{
     @Value("${img.storage.path}")
     private String imgStoragePath;
     
-    @Value("${img.storage.token}")
-    private String imgStorageToken;
+    @Value("${img.api.token}")
+    private String imgApiToken;
 	
 	@Override
 	public PostResponseDto getPostDetail(int postId) {
@@ -53,7 +53,7 @@ public class DiyServiceImpl implements DiyService{
 		
 		log.info("request -> post 매핑 전 =" + postRequest);
 		log.info("path=" + imgStoragePath);
-    	log.info("token=" + imgStorageToken);
+    	log.info("token=" + imgApiToken);
     	
 		Post newPost = Post.builder()
 							.mainCategoryId(postRequest.getMainCategoryId())
@@ -62,7 +62,7 @@ public class DiyServiceImpl implements DiyService{
 							.userId(loginUser.getId())
 							.title(postRequest.getDietName())
 							.content(postRequest.getContent())
-							.imgUrl(imgStoragePath + postRequest.getFileName() + "?token=" + imgStorageToken)
+							.imgUrl(imgStoragePath + "/" + postRequest.getFileName())
 							.riceFoodId(postRequest.getRiceFoodId())
 							.soupFoodId(postRequest.getSoupFoodId())
 							.mainFoodId(postRequest.getMainFoodId())

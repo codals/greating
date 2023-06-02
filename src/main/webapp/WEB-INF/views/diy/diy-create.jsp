@@ -124,6 +124,7 @@
 						
 						    // 이벤트 리스너 추가
 						    maxCalorieInput.addEventListener("input", validateCalorie);
+						    minCalorieInput.addEventListener("input", validateCalorie);
 						
 						    function validateCalorie() {
 						        var minCalorie = parseInt(minCalorieInput.value);
@@ -132,11 +133,9 @@
 						        // 최대 가격이 최소 가격보다 작은 경우
 						        if (maxCalorie < minCalorie) {
 						        	calorieError.textContent = "최대 칼로리는 최소 칼로리보다 작을 수 없습니다.";
-						            // submit 막기
-						            document.getElementById("diy-form").addEventListener("submit", function(event) {
-						            	alert("희망 칼로리를 확인하세요.");
-						            });
-						        } 
+						        } else {
+						        	calorieError.textContent = "";
+						        }
 						    }
 						</script>
 						
@@ -155,19 +154,19 @@
 						
 						    // 이벤트 리스너 추가
 						    maxPriceInput.addEventListener("input", validatePrice);
+						    minPriceInput.addEventListener("input", validatePrice);
 						
 						    function validatePrice() {
 						        var minPrice = parseInt(minPriceInput.value);
 						        var maxPrice = parseInt(maxPriceInput.value);
 						
 						        // 최대 가격이 최소 가격보다 작은 경우
+						        // 최대 가격이 최소 가격보다 작은 경우
 						        if (maxPrice < minPrice) {
-						            priceError.textContent = "최대 가격은 최소 가격보다 작을 수 없습니다.";
-						            // submit 막기
-						            document.getElementById("diy-form").addEventListener("submit", function(event) {
-						            	alert("희망 가격대를 확인하세요.");
-						            });
-						        } 
+						        	priceError.textContent = "최대 가격은 최소 가격보다 작을 수 없습니다.";
+						        } else {
+						        	priceError.textContent = "";
+						        }
 						    }
 						</script>
 
@@ -324,16 +323,9 @@
 
 				</div>
 
-				<script>
-				  var imgUploadUrl = '<%=request.getAttribute("imgUploadUrl")%>';
-					console.log("imgUploadUrl: ", imgUploadUrl);
-					// imgUploadUrl을 사용하여 필요한 작업을 수행합니다.
-				</script>
-
-
 				<div class="submut-btn mt-5">
 					<input id="diy-diet-form-cancelbtn" type="button" value="등록 취소" onclick=" location.href='${header.referer}'">
- 					<input id="diy-diet-form-subbtn" type="submit" value="등록 완료" onclick="sendFile(event, '${imgUploadUrl}')">
+ 					<input id="diy-diet-form-subbtn" type="submit" value="등록 완료" onclick="sendFile(event, '${imgUploadUrl}', '${imgApiToken}')">
 				</div>
 
 				<!-- Modal -->
