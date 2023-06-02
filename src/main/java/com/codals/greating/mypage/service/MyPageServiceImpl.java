@@ -24,20 +24,43 @@ public class MyPageServiceImpl implements MyPageService {
         dto.setEndRow(endRow-startRow+1);
         
         //total
-        int totalCount = dao.getTotalPageCount(dto.getUserId());
+        int totalCount = dao.getMyPostTotalPageCount(dto.getUserId());
         int totalPage = (int) Math.ceil((double) totalCount / rowsPerPage);
         dto.setTotalPage(totalPage);
-        
+        dto.setTotalCount(totalCount);
 		return dao.diyList(dto);
 	}
 
 	@Override
-	public List<MyPageDto> scrapList(MyPageScrapDto dto) {
+	public List<MyPageDto> scrapList(MyPageScrapDto dto, int page) {
+		int rowsPerPage = 6;
+		int startRow = (page - 1) * rowsPerPage + 1;
+		int endRow = startRow + rowsPerPage - 1;
+		dto.setStartRow(startRow-1);
+        dto.setEndRow(endRow-startRow+1);
+        
+        //total
+        int totalCount = dao.getMyScrapTotalPageCount(dto.getUserId());
+        int totalPage = (int) Math.ceil((double) totalCount / rowsPerPage);
+        dto.setTotalCount(totalCount);
+        dto.setTotalPage(totalPage);
 		return dao.scrapList(dto);
 	}
 
 	@Override
-	public List<MyPageDto> voteList(MyPageScrapDto dto) {
+	public List<MyPageDto> voteList(MyPageScrapDto dto, int page) {
+		int rowsPerPage = 6;
+		int startRow = (page - 1) * rowsPerPage + 1;
+		int endRow = startRow + rowsPerPage - 1;
+		dto.setStartRow(startRow-1);
+        dto.setEndRow(endRow-startRow+1);
+        
+        //total
+        int totalCount = dao.getMyVoteTotalPageCount(dto.getUserId());
+        int totalPage = (int) Math.ceil((double) totalCount / rowsPerPage);
+        
+        dto.setTotalCount(totalCount);
+        dto.setTotalPage(totalPage);
 		return dao.voteList(dto);
 	}
 

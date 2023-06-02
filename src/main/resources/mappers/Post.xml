@@ -125,39 +125,10 @@
 		SELECT
 		POST_ID_SEQ.CURRVAL AS id FROM DUAL
 	</select>
-
-	<!-- scrap 관련 -->
-	<insert id="insertScrap" parameterType="ScrapRequestDto">
-		INSERT INTO
-		scrap(user_id, post_id)
-		values(#{userId},#{postId})
-	</insert>
-
-	<delete id="deleteScrap" parameterType="ScrapRequestDto">
-		delete from scrap
-		where
-		user_id=#{userId} and post_id=#{postId}
-	</delete>
-
-
-
-
-
-
-	<!-- vote 관련 -->
-	<insert id="insertVote" parameterType="VoteRequestDto">
-		INSERT INTO vote (user_id,
-		post_id)
-		VALUES (#{userId}, #{postId})
-	</insert>
-
-	<delete id="deleteVote" parameterType="VoteRequestDto">
-		delete from vote
-		where
-		user_id=#{userId} and post_id=#{postId}
-	</delete>
-
-
+	
+	
+	
+	
 	<select id="selectPostsByMainCategory" parameterType="int"
 		resultType="Post">
 		SELECT *
@@ -199,6 +170,48 @@
 		ONLY -->
 		
 	</select>
+	
+	
+	
+
+	<!-- scrap 관련 -->
+	<insert id="insertScrap" parameterType="ScrapRequestDto">
+		INSERT INTO
+		scrap(user_id, post_id)
+		values(#{userId},#{postId})
+	</insert>
+
+	<delete id="deleteScrap" parameterType="ScrapRequestDto">
+		delete from scrap
+		where
+		user_id=#{userId} and post_id=#{postId}
+	</delete>
+	<select id="selectScrapByPostIdAndUserId" parameterType="ScrapRequestDto" resultType="Scrap">
+		select * from scrap
+		where post_id=#{postId} and user_id=#{userId}
+	</select>
+	
+
+
+	<!-- vote 관련 -->
+	<insert id="insertVote" parameterType="VoteRequestDto">
+		INSERT INTO vote (user_id,
+		post_id)
+		VALUES (#{userId}, #{postId})
+	</insert>
+
+	<delete id="deleteVote" parameterType="VoteRequestDto">
+		delete from vote
+		where
+		user_id=#{userId} and post_id=#{postId}
+	</delete>
+	
+	<select id="selectVoteByPostIdAndUserId" parameterType="VoteRequestDto" resultType="Vote">
+		select * from vote
+		where post_id=#{postId} and user_id=#{userId}
+	
+	</select>
+	
 
 
 </mapper>

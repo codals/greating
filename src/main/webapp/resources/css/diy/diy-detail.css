@@ -134,7 +134,7 @@ body {
 	flex-grow: 1;
 }
 
-.green-button {
+.scrap-button {
 	width: auto;
 	color: white;
 	background-color: rgba(145, 140, 0, 1);
@@ -362,7 +362,6 @@ body {
 }
 
 .main-title {
-  height: 70px;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -381,7 +380,9 @@ body {
   opacity: 1;
   text-align: left;
 }
-
+.share{
+	display:inline-block;
+}
 .main-introduction {
 	margin-bottom: 5px;
 }
@@ -416,4 +417,56 @@ body {
 
 .last-section {
 	margin-bottom: 50px;
+}
+.advertise{
+	position: fixed;
+	top:300px;
+	right:100px;
+	width: 150px;
+	height: 200px;
+	border: 2px solid #918c01;
+	border-radius: 10px;
+}
+.advertise-box-img > img{
+	width: 100%;
+	height: 100px;
+}
+.advertise-box-img{
+	border-bottom: 2px solid #918c01;
+	padding: 5px;
+	
+}
+.advertise-box-info{
+	display:flex;
+	align-items: center;
+	flex-direction: column;
+}
+.advertise-box-info > span{
+	display:block;
+}
+.advertise-box-button{
+	display: flex;
+    justify-content: center;
+    padding: 5px;
+        border-top: 1px solid #918c01;
+    background: #918c01;
+}
+.advertise-box-button > a{
+	color:white;
+
+}
+#floating-button {
+  position: fixed;
+  /* top: 300px;
+   */
+  right: 150px;
+  bottom: 30px;
+  width: 80px;
+  height: 80px;
+  background-color: white;
+  color: #918c01;
+  border: 2px solid #918c01;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
 }

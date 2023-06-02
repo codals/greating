@@ -39,13 +39,25 @@
 		LEFT JOIN food f6 ON p.extra_food_id = f6.id
 		WHERE
 		p.user_id = #{userId}
-		ORDER BY p.id
+		ORDER BY p.id desc
 		OFFSET #{startRow} ROWS FETCH NEXT #{endRow} ROWS ONLY
 	</select>
 	
-	<select id="getTotalPageCount" resultType="int">
+	<select id="getMyPostTotalPageCount" resultType="int">
 	  SELECT CEIL(COUNT(id) / #{rowsPerPage}) AS totalPageCount
 	  FROM post
+	  WHERE user_id = #{userId}
+	</select>
+	
+	<select id="getMyScrapTotalPageCount" resultType="int">
+	  SELECT CEIL(COUNT(id) / #{rowsPerPage}) AS totalPageCount
+	  FROM scrap
+	  WHERE user_id = #{userId}
+	</select>
+
+	<select id="getMyVoteTotalPageCount" resultType="int">
+	  SELECT CEIL(COUNT(id) / #{rowsPerPage}) AS totalPageCount
+	  FROM vote
 	  WHERE user_id = #{userId}
 	</select>
 
@@ -58,6 +70,8 @@
 		JOIN "user" u ON p.user_id = u.id
 		WHERE ps.user_id =
 		#{userId}
+		ORDER BY ps.id
+		OFFSET #{startRow} ROWS FETCH NEXT #{endRow} ROWS ONLY
 	</select>
 
 	<select id="voteList" resultType="MypageScrap">
@@ -69,5 +83,7 @@
 		JOIN "user" u ON p.user_id = u.id
 		WHERE ps.user_id =
 		#{userId}
+		ORDER BY ps.id desc
+		OFFSET #{startRow} ROWS FETCH NEXT #{endRow} ROWS ONLY
 	</select>
 </mapper>

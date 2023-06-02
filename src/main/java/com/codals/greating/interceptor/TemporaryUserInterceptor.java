@@ -23,7 +23,7 @@ public class TemporaryUserInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
         throws Exception {
         HttpSession session = request.getSession();
-        session.setAttribute(LOGIN_USER.getKey(), userService.getUserByUsername("user1"));
+        session.setAttribute(LOGIN_USER, userService.getUserByUsername("user1"));
         return true;
     }
 }
