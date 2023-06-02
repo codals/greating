@@ -457,6 +457,7 @@
 										<label for="modalFood-etc-${marketExtra.id}">
 											<img class="modalFoodImg" src="${marketExtra.imgUrl}">
 											<span class="d-flex">${marketExtra.description} </span>
+											<span class="d-flex modal-food-card-name">${marketExtra.name}</span>											
 											<span class="d-flex modal-food-card-price">
 									            <fmt:formatNumber type="number" value="${marketExtra.price}" pattern="#,##0원"/>
 									        </span>

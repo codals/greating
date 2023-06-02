@@ -512,6 +512,7 @@ function validateForm() {
 	var dietType = document.querySelector('input[name="dietType"]:checked');
     var foodCountryId = document.querySelector('input[name="foodCountryId"]:checked');
     var mainCategoryId = document.querySelector('input[name="mainCategoryId"]:checked');
+    var subCategoryId = document.querySelector('input[name="subCategoryId"]:checked');
     var rice = document.querySelector('input[name="rice"]:checked');
     var soup = document.querySelector('input[name="soup"]:checked');
     var mainCheckbox = document.querySelector('input[name="mainCheckbox"]:checked');
@@ -531,6 +532,11 @@ function validateForm() {
     if (!mainCategoryId) {
     	alert("CATEGORY를 선택해주세요.");
         return valid;
+    }
+    
+    if (!subCategoryId) {
+    	alert("SUB CATEGORY를 선택해주세요.");
+    	return valid;
     }
     
     if (!dietName) {
