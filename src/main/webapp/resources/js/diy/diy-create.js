@@ -451,8 +451,8 @@ function sendFile(event, imgUploadUrl, token) {
 		prevFormData.append('file', modifiedFile);
 		formData.append('fileName', newFileName);
 
-//		console.log("url=", imgUploadUrl);
-//		console.log("token=", token);
+		console.log("url=", imgUploadUrl);
+		console.log("token=", token);
 
 		console.log(prevFormData)
 
