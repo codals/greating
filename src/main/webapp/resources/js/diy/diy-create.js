@@ -553,6 +553,11 @@ function validateForm() {
         return valid;
     }
     
+    if (rice.id === 'rice-n' && soup.id === 'soup-n' && mainCheckbox.id === "main-n") {
+    	alert("밥, 국, 메인 중 최소 1개 이상을 선택해주세요.");
+        return valid;
+    }
+    
 	valid = true;
     return valid;
 }
