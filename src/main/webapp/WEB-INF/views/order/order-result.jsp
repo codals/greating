@@ -51,12 +51,12 @@
                                         <button class="btn-menu-add">+ 메뉴추가</button>
                                     </td>
                                     <td class="order-td-2">
-                                        <c:forEach var="orderDiet" items="${orderDiets.orderDietResultResponse}">
+                                        <c:forEach var="orderDiet" items="${orderDiets.orderDiets}">
                                         <span>${orderDiet.name}</span><br>
                                         </c:forEach>
                                     </td>
                                     <td class="order-td-3">
-                                        <c:forEach var="orderDiet" items="${orderDiets.orderDietResultResponse}">
+                                        <c:forEach var="orderDiet" items="${orderDiets.orderDiets}">
                                             <span>${orderDiet.cnt}</span><br>
                                         </c:forEach>
                                     </td>

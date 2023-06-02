@@ -17,7 +17,7 @@ public class OrderRequestDto {
     private int cnt;
 
     public void updateOrderInfo(User user) {
-        this.userId = user.getId().intValue();
+        this.userId = user.getId();
         this.subCategoryId = 1;
         this.week = 1;
         this.mealCnt = 6;

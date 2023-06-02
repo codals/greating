@@ -10,11 +10,11 @@ public class OrderDietsByDateDto {
 
     private String deliveryDate;
     private String deliveryDay;
-    private List<OrderDietDto> orderDietResultResponse;
+    private List<OrderDietDto> orderDiets;
 
-    public OrderDietsByDateDto(Date deliveryDate, List<OrderDietDto> orderDietResultResponse) {
+    public OrderDietsByDateDto(Date deliveryDate, List<OrderDietDto> orderDiets) {
         this.deliveryDate = DateUtil.dateToString(deliveryDate);
         this.deliveryDay = DateUtil.dateToDay(deliveryDate);
-        this.orderDietResultResponse = orderDietResultResponse;
+        this.orderDiets = orderDiets;
     }
 }
