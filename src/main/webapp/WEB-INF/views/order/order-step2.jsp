@@ -96,7 +96,7 @@
     </form>
 
 </div>
-<script src="/greating/resources/js/order/order-step2.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/order/order-step2.js"></script>
 <!--  footer	 -->
 <jsp:include page="/WEB-INF/views/templates/footer.jsp"/>
 </body>
