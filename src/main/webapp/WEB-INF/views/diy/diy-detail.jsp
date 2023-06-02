@@ -25,37 +25,35 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
 
 	<!-- 페이지 로딩 전 -->
-	<script>
-        $(document).ready(function() {
-            // 페이지 로드되면 AJAX 요청 보내기
-            var token = '${imgApiToken}'; 
-			console.log(token);
-//            var url = ${imgStoragePath};
-//			console.log(url);
-			var imgUrl = '${postDetail.post.imgUrl}';
-			console.log(imgUrl);
-            
-            $.ajax({
-                type: "GET",
-                url: imgUrl,
-                headers: {
-                    token: token
-                },
-                success: function(response) {
-                    var resultUrl = response;
-                    console.log(resultUrl);
-
-                    var imgTag = $("<img>").attr("src", resultUrl).attr("alt", "Main Image"); // <img> 요소 생성 및 속성 설정
-                    $(".main-img").empty().append(imgTag); // 기존 내용을 지우고 새로운 이미지 태그 추가
-
-                },
-                error: function() {
-                    // 에러 처리
-                    alert("이미지를 불러올 수 없습니다.");
-                }
-            });
-        });
-    </script>
+	<!-- <script>
+	    $(document).ready(function() {
+	        // 페이지 로드되면 AJAX 요청 보내기
+	        var token = '${imgApiToken}'; 
+	        console.log(token);
+	        var imgUrl = '${postDetail.post.imgUrl}';
+	        console.log(imgUrl);
+	
+	        $.ajax({
+	            type: "GET",
+	            url: encodedUrl,
+	            headers: {
+	                token: token
+	            },
+	            success: function(response) {
+	                var resultUrl = encodeURIComponent(response);
+	                console.log("resultUrl", resultUrl);
+	
+	                var imgTag = $("<img>").attr("src", resultUrl).attr("alt", "Main Image"); // <img> 요소 생성 및 속성 설정
+	                $(".main-img").empty().append(imgTag); // 기존 내용을 지우고 새로운 이미지 태그 추가
+	
+	            },
+	            error: function() {
+	                // 에러 처리
+	                alert("이미지를 불러올 수 없습니다.");
+	            }
+	        });
+	    });
+	</script> -->
 </head>
 
 
@@ -75,7 +73,7 @@
 		<div class="main-info-container">
 
 			<div class="main-img">
-				<img src="" alt="Main Image">
+				<img src="${postDetail.post.imgUrl}" alt="Main Image">
 			</div>
 
 			<div class="main-info-text-container">
