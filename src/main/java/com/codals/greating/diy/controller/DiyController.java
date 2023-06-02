@@ -44,6 +44,9 @@ public class DiyController {
 	
 	@Value("${img.api.token}")
 	private String imgApiToken;
+
+	@Value("${img.storage.path}")
+    private String imgStoragePath;
 	
 	@GetMapping
 	public String loadMainPage() {
@@ -103,6 +106,7 @@ public class DiyController {
 		
 		PostResponseDto postDetail = diyService.getPostDetail(postId);
 		model.addAttribute("postDetail", postDetail);
+		model.addAttribute("imgApiToken", imgApiToken);
 		
 		log.info(postDetail.getPost());
 		
