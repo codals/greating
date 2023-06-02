@@ -50,7 +50,8 @@
 				<tbody>
 					 <c:forEach items="${list}" var="diet">
 	                    <tr>
-	                        <td>${diet.title}</td>
+	                    	
+	                        <td><a href="/greating/mealdiy/${diet.id}">${diet.title}</a></td>
 	                        <td>${diet.username}</td>
 	                        <td>${diet.mainCategoryName}</td>
 	                        <td>${diet.subCategoryName}</td>
