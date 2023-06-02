@@ -38,25 +38,27 @@
                             <img src="/greating/resources/images/order/order-result-check.png">
                         </div>
                         <em class="mealsConfirm__check">
-                            <span>저당식단</span> / <span>1주</span> / <span>6끼니</span>
+                            <span>${orderDetail.subCategoryName}</span> / <span>${orderDetail.week}주</span> / <span>${orderDetail.mealCnt}끼니</span>
                         </em>
-                        <p class="mealsConfirm__count">배송횟수 <strong>3회</strong></p>
+                        <p class="mealsConfirm__count">배송횟수 <strong>${orderDetail.deliveryCnt}회</strong></p>
                     </div>
                     <div class="mealsConfirm__row">
                         <table class="mealsConfirm__table">
-                            <c:forEach var="i" begin="1" end="3">
+                            <c:forEach var="orderDiets" items="${orderDietsGroupByDeliveryDate}">
                                 <tr>
                                     <td class="order-td-1">
-                                        <strong>05.27<br>토요일<br>도착예정</strong>
+                                        <strong>${orderDiets.deliveryDate}<br>${orderDiets.deliveryDay}요일<br>도착예정</strong>
                                         <button class="btn-menu-add">+ 메뉴추가</button>
                                     </td>
                                     <td class="order-td-2">
-                                        <span>꿍팟퐁커리&모둠버섯 데리야끼볶음 세트</span><br>
-                                        <span>진저포크구이&삼채 우엉조림 세트</span>
+                                        <c:forEach var="orderDiet" items="${orderDiets.orderDietResultResponse}">
+                                        <span>${orderDiet.name}</span><br>
+                                        </c:forEach>
                                     </td>
                                     <td class="order-td-3">
-                                        <span>1개</span><br>
-                                        <span>1개</span>
+                                        <c:forEach var="orderDiet" items="${orderDiets.orderDietResultResponse}">
+                                            <span>${orderDiet.cnt}</span><br>
+                                        </c:forEach>
                                     </td>
                                 </tr>
                             </c:forEach>

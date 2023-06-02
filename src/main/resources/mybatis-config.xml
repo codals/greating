@@ -21,6 +21,10 @@
     <typeAlias alias="PostResponseDto" type="com.codals.greating.diy.dto.PostResponseDto"/>
     <typeAlias alias="MainCategory" type="com.codals.greating.diet.entity.MainCategory"/>
     <typeAlias alias="SubCategory" type="com.codals.greating.diet.entity.SubCategory"/>
+    <typeAlias alias="DailyDiet" type="com.codals.greating.diet.entity.DailyDiet"/>
+    <typeAlias alias="Diet" type="com.codals.greating.diet.entity.Diet"/>
+    <typeAlias alias="Order" type="com.codals.greating.diet.entity.Order"/>
+    <typeAlias alias="OrderDiet" type="com.codals.greating.diet.entity.OrderDiet"/>
     <typeAlias alias="MypageDiy" type="com.codals.greating.mypage.dto.MyPageDto"/>
     <typeAlias alias="MypageScrap" type="com.codals.greating.mypage.dto.MyPageScrapDto"/>
     <typeAlias alias="ScrapRequestDto" type="com.codals.greating.diy.dto.ScrapRequestDto"/>

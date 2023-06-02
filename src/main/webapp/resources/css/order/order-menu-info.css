@@ -42,7 +42,7 @@
 	display: inline-block;
     vertical-align: top;
     width: 320px;
-    margin: 40px 0 0 25px;
+    margin: 40px 0 0 20px;
     position: relative;
 }
 .meal-card:nth-child(3n+1){

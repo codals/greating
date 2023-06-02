@@ -1,8 +1,6 @@
-// 현재 날짜 정보 가져오기
 var currentDate = new Date();
-
-// 선택 가능한 날짜 수
-var selectableDays = 7;
+var selectableDays = 3;
+let selectedDates = [];
 
 // 달력 생성 및 초기화
 function createCalendar() {
@@ -43,14 +41,12 @@ function createCalendar() {
 	var daysInMonth = new Date(currentDate.getFullYear(), currentMonth + 1, 0)
 			.getDate(); // 해당 월의 일수 가져오기
 
-	var selectedDates = [];
-
 	for (var i = 0; i < firstDay; i++) {
 		calendarHTML += '<td class="disabled"></td>';
 	}
 
 	for (var day = 1; day <= daysInMonth; day++) {
-		var date = new Date(currentDate.getFullYear(), currentMonth, day);
+		const date = new Date(currentDate.getFullYear(), currentMonth, day);
 
 		if (date >= currentDate
 				&& date <= new Date(currentDate.getFullYear(), currentMonth,
@@ -78,33 +74,58 @@ function createCalendar() {
 // 날짜 선택 시 호출되는 함수
 function selectDate(element) {
 	// 선택된 날짜 스타일 변경
-	var selectedElements = document.querySelectorAll('.calendar td.selected');
+	const selectedElements = document.querySelectorAll('.calendar td.selected');
 	selectedElements.forEach(function(el) {
 		// el.classList.remove('selected');
 		// 세 개의 날짜가 선택되면 선택 취소
 		if (selectedElements.length > 2) {
-			selectedElements.forEach(function(el) {
+			selectedElements.forEach(function (el) {
 				el.classList.remove('selected');
 			});
-			selectedDates = [];
+
 		}
 
 	});
 	element.classList.add('selected');
 
+	if (selectedDates.length >= selectableDays) {
+		selectedDates = [];
+	}
 	// 선택된 날짜 가져오기
-	var selectedDate = new Date(currentDate.getFullYear(), currentDate
-			.getMonth(), parseInt(element.innerHTML));
+	const selectedDate = new Date(currentDate.getFullYear(), currentDate
+	.getMonth(), parseInt(element.innerHTML));
 	selectedDates.push(selectedDate);
 
-	// 선택 가능한 날짜 수 초과 시 가장 오래된 날짜 제거
-	if (selectedDates.length > selectableDays) {
-		selectedDates.shift();
-	}
-
 	// 선택된 날짜 확인
-	console.log(selectedDates);
-
+	console.log('selectedDates = ' + selectedDates);
 }
 // 달력 생성 및 초기화 함수 호출
 createCalendar();
+
+$(document).ready(function () {
+	$('.next').click(function () {
+		console.log(selectedDates);
+
+		const data = {
+			dates: selectedDates
+		};
+		$.ajax({
+			url: '/greating/api/diets/mygreating/orders/delivery',
+			type: 'POST',
+			dataType: 'json',
+			contentType: 'application/json',
+			async: false,
+			data: JSON.stringify(data),
+			success: function (response) {
+				if (response) {
+					location.href = 'http://localhost:8080/greating/diets/mygreating/orders/choice';
+				} else {
+					alert("날짜별 식단 조회 실패");
+				}
+			},
+			error: function () {
+				alert("통신 실패");
+			}
+		});
+	});
+});
