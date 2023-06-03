@@ -25,7 +25,7 @@ public class UserRestController {
         boolean isAuthenticated = userService.authenticate(loginRequestDto);
         if (isAuthenticated) {
             User user = userService.getUserByUsername(loginRequestDto.getUsername());
-            httpSession.setAttribute(LOGIN_USER.getKey(), user);
+            httpSession.setAttribute(LOGIN_USER, user);
         }
         return ResponseEntity.ok(isAuthenticated);
     }

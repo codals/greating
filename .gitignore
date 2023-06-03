@@ -199,3 +199,4 @@ WebContent/META-INF/MANIFEST.MF
 .project
 src/main/resources/config/security.properties
 src/main/resources/application.properties
+src/main/resources/application.properties

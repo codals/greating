@@ -27,12 +27,12 @@ public class MyPageController {
     
     @GetMapping("/main")
     public String myPage(@SessionAttribute("loginUser") User loginUser, Model model) {
-    	System.out.println("/main");
+
         // 세션에서 로그인된 사용자 정보 가져오기
-        
+    	model.addAttribute("username", loginUser.getUsername());
        
         // 사용자 정보를 모델에 추가하여 화면에 표시
-        model.addAttribute("username", loginUser.getUsername());
+        
         model.addAttribute("email", loginUser.getEmail());
         
         return "user/mypage-welcome";
@@ -60,8 +60,6 @@ public class MyPageController {
         
         model.addAttribute("dto", dto);
         model.addAttribute("list", dietList);
-        System.out.println(dietList);
-        System.out.println(page);
         return "user/mypage-mydiy";
     }
 
