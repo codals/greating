@@ -109,26 +109,21 @@ public class DiyController {
 
 	@GetMapping("/{postId}")
 	public String loadPostDetailPage(@PathVariable int postId, @SessionAttribute("loginUser") User loginUser, Model model) {
-		log.debug("start post detail ");
 		
 		// 투표한 이력이 있는 지
 		boolean isVoted = diyService.checkVoted(new VoteRequestDto(postId, loginUser.getId()));
 		model.addAttribute("isVoted", isVoted);
-		log.info("isVoted {}", isVoted);
 		
 		// 스크랩한 이력이 있는 지 
 		boolean isScrapped = diyService.checkScrapped(new ScrapRequestDto(postId, loginUser.getId()));
 		model.addAttribute("isScrapped", isScrapped);
-		log.info("isScrapped {}", isScrapped);
 		
 		PostResponseDto postDetail = diyService.getPostDetail(postId);
 		model.addAttribute("postDetail", postDetail);
 		model.addAttribute("imgApiToken", imgApiToken);
 		
-		log.info(kakaoShareKey);
 		model.addAttribute("kakaoShareKey", kakaoShareKey);
 		
-		log.info(postDetail.getPost());
 		
 		return "diy/diy-detail";
 	}
