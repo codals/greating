@@ -85,26 +85,28 @@
 	<!-- header 가져오기 -->
 	<jsp:include page="../templates/header.jsp" />
 	<div class="hr"></div>
-	<div class="share">
-		<button id="floating-button" type="button" onclick="share(${postDetail.post.id})">공유하기</button>
-		
-	</div>
-	<!-- 플로팅 배너 -->
-	<!-- <div class="advertise">
-		<div class="advertise-box">
-			<div class="advertise-box-img">
-				<img src="/greating/resources/images/templates/diy-floating-adv.png">
-			</div>
-			<div class="advertise-box-info">
-				<span>코달이와 함께하는 </span> 
-				<span> DIY 식단 만들기 </span>
-			</div>
-			<div class="advertise-box-button">
-				<a href="/greating/mealdiy/new"> 만들러가기</a>
-			</div>
-		</div>
-	</div> -->
 	
+	<!-- 플로팅 공유 버튼 -->
+	<div class="floating-container">
+		<div class="floating-button">
+			<img alt="" src="/greating/resources/images/templates/greating-floating-btn.png" onclick="toggleBox()">
+			<div class="overlay">
+			  <div style="display: flex;">
+			      <div class="floating-overlay-button">
+			        <img src="/greating/resources/images/templates/copy-link-icon.jpg" style="width: 28px; height: 28px; margin-top: 8px; margin-left: 10px;" onclick="copyLink()">>
+			      </div>
+			      <div class="floating-overlay-button">
+			        <img src="/greating/resources/images/templates/kakao.png" onclick="share(${postDetail.post.id})">
+			      </div>
+			      <div class="floating-overlay-button">
+			        <img src="" onclick="">
+			      </div>
+		    	</div>
+		    </div>
+		</div>
+	</div>
+	
+	<!-- 플로팅 배너 -->	
 	<div class="advertise">
 		<div style="font-size: 15px; color: #999;">이것도 확인해보세요!</div>
 		<div class="advertise-box">
