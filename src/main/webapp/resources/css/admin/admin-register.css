@@ -114,6 +114,8 @@
 .content {
 	display: inline-block;
 	position: fixed;
+	height: 1000px;
+	overflow-y:auto;
 }
 
 .main-content {
@@ -122,12 +124,18 @@
 	width: 1300px;
 }
 
-.main-top, .main-bottom {
+.main-top,.main-bottom{
 	padding: 20px;
 	display: flex;
+	width:1000px;
 	margin: 25px 0px 0px 100px;
 }
-
+.main-bottom{
+	padding: 20px;
+	display: flex;
+	width:1000px;
+	margin: 25px 100px 100px 100px;
+}
 .calendar {
 	width: 450px;
 	display: inline-block;
@@ -187,11 +195,12 @@ table td {
 	border: 2px solid #ccc;
 	border-top: 5px solid #918c01;
 	width: 100%;
+	margin-bottom:100px;
 }
 
 .update-diets {
 	padding: 20px;
-	height: 400px;
+	height: 500px;
 }
 
 .update-diets-header {
@@ -216,10 +225,10 @@ table td {
 }
 
 .card-slide {
-	width: 1200px;
+	width: 100%;
 	overflow-x: scroll;
 	display: flex;
-	height: 150px;
+	height: 200px;
 	margin-bottom:20px;
 }
 
@@ -228,22 +237,27 @@ table td {
 }
 
 .card {
-	width: 100px;
-	height: 120px;
+	width: 120px;
+	height: 160px;
 	border: 1px solid black;
 	margin: 5px;
 	display: inline-block;
 	text-align: center;
+	padding:0;
+	background:none;
 }
 
 .card>img {
-	width: 80px;
+	width: 115px;
 	height: 80px;
 }
 
 .update-diets-cate {
 	font-size: 21px;
 	margin-bottom: 20px;
+}
+.choosen-text{
+	width: 170px;
 }
 .choosen-diets{
 	font-size:22px;
@@ -253,13 +267,18 @@ table td {
 .choosen-result{
 	    display: flex;
     flex-wrap: wrap;
+    width:100%;
+    height:100px;
+    overflow-y:auto;
+    margin-bottom:30px;
 }
 .choosen-result > span{
 		margin-bottom:10px;
 		margin-left: 15px;
 		padding:8px;
 		border: 2px solid #918c01;
-		
+		height:fit-content;
+		font-size:18px;
 }
 .registerDietBtn{
 	padding:10px;
@@ -270,4 +289,7 @@ table td {
     font-size: 20px;
     font-weight: bold;
     color: #918c01;
+}
+.hidden{
+	display:none;
 }

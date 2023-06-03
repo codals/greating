@@ -4,9 +4,11 @@ import com.codals.greating.date.BaseEntity;
 import java.time.LocalDate;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class DailyDiet extends BaseEntity {
 
     private Integer id;

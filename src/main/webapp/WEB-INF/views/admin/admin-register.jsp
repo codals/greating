@@ -7,12 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <link rel="stylesheet"
 	href="/greating/resources/css/templates/reset.css">
 
 <link rel="stylesheet"
 	href="/greating/resources/css/admin/admin-register.css">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
 <script
 	src="${pageContext.request.contextPath}/resources/js/admin/admin-register.js"></script>
@@ -60,7 +61,6 @@
 						</tr>
 					</thead>
 					<tbody>
-						<!-- 여기에 등록된 식단 데이터를 동적으로 추가할 수 있습니다. -->
 						<tr>
 							<td>1</td>
 							<td>식단 1</td>
@@ -73,7 +73,6 @@
 							<td>메인 카테고리 2</td>
 							<td>서브 카테고리 2</td>
 						</tr>
-						<!-- 추가적인 식단 데이터를 여기에 추가할 수 있습니다. -->
 					</tbody>
 				</table>
 			</div>
@@ -84,7 +83,7 @@
 				<div class="update-diets">
 					<div class="update-diets-header">
 						<span> 식단 등록 </span>
-						<button class="registerDietBtn" onclick="">등록하기</button>
+						<button class="registerDietBtn" onclick="registerDailyDiet()">등록하기</button>
 
 					</div>
 					<div class="update-diets-date">
@@ -94,30 +93,22 @@
 					</div>
 					<div class="update-diets-cate">
 						<span> 도시락 카테고리 검색 : </span> <input type="radio" id="category1"
-							name="category" value="category1"> <label for="category1">
+							name="category" value="HEALTHY_DIET"> <label for="category1">
 							건강식단 </label> <input type="radio" id="category2" name="category"
-							value="category2"> <label for="category2">질환맞춤식단
+							value="MEDICAL_DIET"> <label for="category2">질환맞춤식단
 						</label> <input type="radio" id="category3" name="category"
-							value="category3"> <label for="category3">챌린지식단 </label>
+							value="CHALLENGE_DIET"> <label for="category3">챌린지식단 </label>
 					</div>
 					<div class="card-slide">
 						<div class="slide-wrapper">
-							<c:forEach var="i" begin="1" end="15">
-								<div class="card">
-									<img src="/greating/resources/images/diy/default.png">
-									<div class="card-info">할수있다 할수있다 할수있다.</div>
-
-								</div>
-							</c:forEach>
+			
 						</div>
 					</div>
 
 					<div class="choosen-diets">
 						<div class="choosen-text">선택된 도시락 :</div>
-						<div class="choosen-result">
-							<span> 1번 도시락 </span> <span> 2번 도시락 </span>
-
-						</div>
+						<div class="choosen-diet-id hidden"></div>
+						<div class="choosen-result"></div>
 
 					</div>
 				</div>
