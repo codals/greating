@@ -52,6 +52,9 @@ public class DiyController {
 	@Value("${img.storage.path}")
     private String imgStoragePath;
 	
+	@Value("${kakao.share.key}")
+	private String kakaoShareKey;
+	
 	@GetMapping
 	public String loadMainPage() {
 		return "diy/diy-main";
@@ -121,6 +124,9 @@ public class DiyController {
 		PostResponseDto postDetail = diyService.getPostDetail(postId);
 		model.addAttribute("postDetail", postDetail);
 		model.addAttribute("imgApiToken", imgApiToken);
+		
+		log.info(kakaoShareKey);
+		model.addAttribute("kakaoShareKey", kakaoShareKey);
 		
 		log.info(postDetail.getPost());
 		

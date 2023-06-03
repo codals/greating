@@ -86,7 +86,7 @@
 	<jsp:include page="../templates/header.jsp" />
 	<div class="hr"></div>
 	<div class="share">
-		<button id="floating-button" type="button" onclick="share(${postDetail.post.id})">공유하기</button>
+		<button id="floating-button" type="button" onclick="share(${postDetail.post.id},'${kakaoShareKey}')">공유하기
 		
 	</div>
 	<div class="advertise">
