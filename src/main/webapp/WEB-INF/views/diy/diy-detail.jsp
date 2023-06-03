@@ -89,10 +89,11 @@
 		<button id="floating-button" type="button" onclick="share(${postDetail.post.id})">공유하기</button>
 		
 	</div>
-	<div class="advertise">
+	<!-- 플로팅 배너 -->
+	<!-- <div class="advertise">
 		<div class="advertise-box">
 			<div class="advertise-box-img">
-				<img src="/greating/resources/images/diy/default.png">
+				<img src="/greating/resources/images/templates/diy-floating-adv.png">
 			</div>
 			<div class="advertise-box-info">
 				<span>코달이와 함께하는 </span> 
@@ -100,11 +101,26 @@
 			</div>
 			<div class="advertise-box-button">
 				<a href="/greating/mealdiy/new"> 만들러가기</a>
-			
 			</div>
-		
+		</div>
+	</div> -->
+	
+	<div class="advertise">
+		<div style="font-size: 15px; color: #999;">이것도 확인해보세요!</div>
+		<div class="advertise-box">
+			<div class="advertise-box-img">
+				<img src="/greating/resources/images/templates/diy-floating-adv-v8.png">
+			</div>	
+		</div>
+		<div class="advertise-box">
+			<div class="advertise-box-btn"><a href="" style="color: black;">DIY 식단 투표하러 가기</a></div>
+		</div>
+		<div class="advertise-box">
+			<div class="advertise-box-btn"><a href="" style="color: black;">DIY 식단 만들러 가기</a></div>
 		</div>
 	</div>
+	
+	
 	<!-- 본 페이지 내용 -->
 	<div class="main-content hd__inner1100">
 		<ul class="page-category">
