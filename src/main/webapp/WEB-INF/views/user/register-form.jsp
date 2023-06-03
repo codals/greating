@@ -10,6 +10,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
             integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
     <link href="${pageContext.request.contextPath}/resources/css/user/register-form.css" rel="stylesheet">
+    
+       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+       <script src="/greating/resources/js/user/register.js"></script>
+       
+    
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/templates/header.jsp"/>
@@ -31,17 +36,19 @@
                     </div>
                     <div class="form-main-content" style="width:750px; margin: 0 auto;">
                         <span class="text register-sub-title">회원 정보 입력 (필수)</span>
+                        
+                        
                         <form action="${pageContext.request.contextPath}/register" method="post">
                             <div class="form-group">
                                 <label for="name">이름</label>
-                                <input type="text" class="register-input" id="name" required>
+                                <input type="text" class="register-input" id="name" name="name" required>
                             </div>
                             <p class="register-comment">
                                 * 한글은 10자, 영문은 20자 이내로 입력해 주세요
                             </p>
                             <div class="form-group">
                                 <label for="username">아이디</label>
-                                <input type="text" class="register-input" id="username" required>
+                                <input type="text" class="register-input" id="username" name="username" required>
                                 <button type="button" class="btn-init" id="overlapCheck">중복확인</button>
                             </div>
                             <p class="register-comment">
@@ -49,7 +56,7 @@
                             </p>
                             <div class="form-group">
                                 <label for="password">비밀번호</label>
-                                <input type="password" class="register-input" id="password" required>
+                                <input type="password" class="register-input" id="password" name="password" required>
                             </div>
                             <p class="register-comment">
                                 * 영문, 대소문자, 숫자, 특수문자 중 3개 이상을 조합하여 8자리 이상 입력해 주세요
@@ -60,7 +67,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="email">이메일</label>
-                                <input type="email" class="btn-input" id="email" placeholder="예: greating@hyundai.com" required>
+                                <input type="email" class="btn-input" id="email" name="email" placeholder="예: greating@hyundai.com" required>
                                 <button type="button" class="btn-init" id="overlapCheck">중복확인</button>
                             </div>
                             <p class="register-comment" style="color: #918c00">
@@ -68,7 +75,7 @@
                             </p>
                             <div class="form-group">
                                 <label for="birth">생년월일</label>
-                                <input type="birth" class="btn-input" id="birth" placeholder="예: 20010415" required>
+                                <input type="birth" class="btn-input" id="birth" name="birth" placeholder="예: 20010415" required>
                             </div>
                             <div class="form-group">
                                 <label>성별</label>
@@ -88,7 +95,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="phone">휴대폰번호</label>
-                                <input type="tel" class="btn-input" id="phone" placeholder="예: 01012345678" required>
+                                <input type="tel" class="btn-input" id="phone" name="phone" placeholder="예: 01012345678" required>
                                 <button type="button" class="btn-init green" id="overlapCheck">인증번호 전송</button>
                             </div>
                             <span class="text register-sub-title">어떤 식사 관리에 관심이 있으신가요? (선택)</span>
@@ -116,7 +123,7 @@
                             </div>
                             <div class="button-container">
                                 <input type="button" class="left-button" onclick="location.href='${header.referer}'" value="취소">
-                                <input type="submit" class="right-button" value="회원가입">
+                                <input type="submit" class="submitBtn" value="회원가입" onclick="submitRegisterForm(event)">
                             </div>
                         </form>
                     </div>

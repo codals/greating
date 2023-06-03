@@ -9,4 +9,6 @@ public interface UserDao {
     Optional<User> selectByUsernameAndPassword(LoginRequestDto loginRequestDto);
 
     Optional<User> selectByUsername(String username);
+
+	int insertUser(User user);
 }

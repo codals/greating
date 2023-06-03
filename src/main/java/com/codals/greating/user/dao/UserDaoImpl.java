@@ -22,4 +22,10 @@ public class UserDaoImpl implements UserDao {
     public Optional<User> selectByUsername(String username) {
         return Optional.ofNullable(sqlSession.selectOne("user.selectByUsername", username));
     }
+
+	@Override
+	public int insertUser(User user) {
+		String statement = "user.insertUser";
+		return sqlSession.insert(statement, user);
+	}
 }

@@ -98,7 +98,7 @@ display: flex;
 justify-content: space-between;
 }
 
-.left-button, .right-button {
+.left-button, .submitBtn {
 flex: 1;
 margin: 0;
 display: block;
@@ -116,7 +116,7 @@ background: #FFF;
 border: 1px solid #ccc;
 }
 
-.right-button {
+.submitBtn {
 color: #fff;
 background: #918C00;
 }

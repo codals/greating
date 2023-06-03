@@ -9,6 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class User extends BaseEntity {
 
     private Integer id;
