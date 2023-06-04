@@ -11,8 +11,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- css로 가져오기 -->
-
-
 <link href="/greating/resources/css/diy/diy-detail.css" rel="stylesheet">
 
 <!-- js 가져오기 -->
@@ -21,27 +19,22 @@
 <script src="/greating/resources/js/diy/diy-detail.js"></script>
 <script src="/greating/resources/js/diy/kakao-share.js"></script>
 
-<link
-	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"
-	rel="stylesheet" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
 <!-- bootstrap -->
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+	
 <!-- alert 창 커스텀  -->
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
-<link href="/greating/resources/css/templates/alert.css"
-	rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<link href="/greating/resources/css/templates/alert.css" rel="stylesheet">
 
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -50,27 +43,12 @@
 
 	<!-- header 가져오기 -->
 	<jsp:include page="../templates/header.jsp" />
-	<div class="hr"></div>
-	<div class="share">
-		<button id="floating-button" type="button" onclick="share(${postDetail.post.id})">공유하기</button>
-		
-	</div>
-	<div class="advertise">
-		<div class="advertise-box">
-			<div class="advertise-box-img">
-				<img src="/greating/resources/images/diy/default.png">
-			</div>
-			<div class="advertise-box-info">
-				<span>코달이와 함께하는 </span> 
-				<span> DIY 식단 만들기 </span>
-			</div>
-			<div class="advertise-box-button">
-				<a href="/greating/mealdiy/new"> 만들러가기</a>
-			
-			</div>
-		
-		</div>
-	</div>
+	<div class="hr"></div>	
+	
+	<!-- floating banner 가져오기 -->
+	<jsp:include page="/WEB-INF/views/templates/floating-adv.jsp" />
+	<jsp:include page="/WEB-INF/views/templates/floating-sharing-btn.jsp" />
+	
 	<!-- 본 페이지 내용 -->
 	<div class="main-content hd__inner1100">
 		<ul class="page-category">
@@ -106,7 +84,7 @@
 				</div>
 
 				<div class="main-info-line">
-					<span class="info-title">영양사</span> <span class="info-text">${postDetail.user.name}</span>
+					<span class="info-title">영양사</span> <span class="info-text">${postDetail.post.username}</span>
 
 				</div>
 
@@ -134,8 +112,7 @@
 
 				<div class="button-group">
 					<c:if test="${isVoted eq true}">
-						<button class="vote-button"
-							onclick="checkVoteCancel(${postDetail.post.id})">
+						<button class="vote-button" onclick="checkVoteCancel(${postDetail.post.id})">
 							<i class="fas fa-thumbs-up"></i><span> 투표완료</span>
 						</button>
 

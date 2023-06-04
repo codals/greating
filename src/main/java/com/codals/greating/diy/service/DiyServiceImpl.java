@@ -41,8 +41,8 @@ public class DiyServiceImpl implements DiyService{
     @Value("${img.storage.path}")
     private String imgStoragePath;
     
-    @Value("${img.storage.token}")
-    private String imgStorageToken;
+    @Value("${img.api.token}")
+    private String imgApiToken;
 	
 	@Override
 	public PostResponseDto getPostDetail(int postId) {
@@ -53,21 +53,22 @@ public class DiyServiceImpl implements DiyService{
 		
 		log.info("request -> post 매핑 전 =" + postRequest);
 		log.info("path=" + imgStoragePath);
-    	log.info("token=" + imgStorageToken);
+    	log.info("token=" + imgApiToken);
     	
 		Post newPost = Post.builder()
 							.mainCategoryId(postRequest.getMainCategoryId())
 							.subCategoryId(postRequest.getSubCategoryId())
 							.foodCountryId(postRequest.getFoodCountryId())
 							.userId(loginUser.getId())
+							.username(loginUser.getUsername())
 							.title(postRequest.getDietName())
 							.content(postRequest.getContent())
-							.imgUrl(imgStoragePath + postRequest.getFileName() + "?token=" + imgStorageToken)
+							.imgUrl(imgStoragePath + "/" + postRequest.getFileName())
 							.riceFoodId(postRequest.getRiceFoodId())
 							.soupFoodId(postRequest.getSoupFoodId())
 							.mainFoodId(postRequest.getMainFoodId())
-							.side1FoodId(postRequest.getSideFoodIds().size() >= 1 ? postRequest.getSideFoodIds().get(0) : null)
-							.side2FoodId(postRequest.getSideFoodIds().size() >= 2 ? postRequest.getSideFoodIds().get(1) : null)
+							.side1FoodId((postRequest.getSideFoodIds() != null && postRequest.getSideFoodIds().size() >= 1) ? postRequest.getSideFoodIds().get(0) : null)
+							.side2FoodId((postRequest.getSideFoodIds() != null && postRequest.getSideFoodIds().size() >= 2) ? postRequest.getSideFoodIds().get(1) : null)
 							.minCalorie(postRequest.getMinCalorie())
 							.maxCalorie(postRequest.getMaxCalorie())
 							.minPrice(postRequest.getMinPrice())

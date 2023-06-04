@@ -101,6 +101,12 @@
 					<c:set var="startPage" value="${dto.page - 2}" />
 					<c:set var="endPage" value="${dto.page + 2}" />
 
+					<!-- 수정된 부분 시작 -->
+					<c:if test="${endPage - startPage + 1 > 5}">
+					  <c:set var="startPage" value="${endPage - 4}" />
+					</c:if>
+					<!-- 수정된 부분 끝 -->
+
 					<c:choose>
 						<c:when test="${startPage < 1}">
 							<c:set var="startPage" value="1" />

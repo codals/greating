@@ -7,14 +7,16 @@
     <meta charset="UTF-8">
 	<title>order-step2</title>
 	<link href="/greating/resources/css/order/order-step2.css" rel="stylesheet">
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"
-            integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 </head>
 <body>
 <!-- header -->
 <jsp:include page="/WEB-INF/views/templates/header.jsp"/>
 <div class="hr"></div>
 
+<!-- floating -->	
+<jsp:include page="/WEB-INF/views/templates/floating-adv.jsp" />
+    
 <div class="main-content hd__inner1100">
     <!-- 카테고리 -->
     <ul class="page-category">
@@ -88,5 +90,6 @@
 <script src="${pageContext.request.contextPath}/resources/js/order/order-step2.js"></script>
 <!--  footer	 -->
 <jsp:include page="/WEB-INF/views/templates/footer.jsp"/>
+
 </body>
 </html>

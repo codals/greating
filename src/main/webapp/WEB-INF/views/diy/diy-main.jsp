@@ -21,6 +21,10 @@
 
 	<!-- header 가져오기 -->
 	<jsp:include page="../templates/header.jsp" />
+	<div class="hr"></div>
+	
+	<!-- floating -->	
+	<jsp:include page="/WEB-INF/views/templates/floating-adv.jsp" />
 
 	<!-- 1. 배너 -->
 	<div class="banner-img">

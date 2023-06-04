@@ -11,10 +11,14 @@
     <link href="${pageContext.request.contextPath}/resources/css/order/order-step1.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/resources/js/order/order-step1.js"></script>
 </head>
+
 <body>
-<!-- header -->
-<jsp:include page="/WEB-INF/views/templates/header.jsp"/>
-<div class="hr"></div>
+	<!-- header -->
+	<jsp:include page="/WEB-INF/views/templates/header.jsp" />
+	<div class="hr"></div>
+	
+	<!-- floating -->	
+	<jsp:include page="/WEB-INF/views/templates/floating-adv.jsp" />
 
 <div class="main-content hd__inner1100">
     <!-- 카테고리 -->

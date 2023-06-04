@@ -4,6 +4,7 @@
 	background: #F9F9F9;
     padding: 40px;
     height:350px;
+    z-index: -1;
 }
 .gr_footer_inner{
 	margin: 0 auto;

@@ -59,13 +59,72 @@
         
     });
   });
+  
+  function toggleRiceContainer() {
+	  var riceN = document.getElementById('rice-n');
+	  var isChecked = riceN.checked;
+
+	  if (isChecked) {
+	    var radioButtons = document.querySelectorAll('input[type="radio"][name="riceFoodId"]:checked');
+	    const foodCards = document.querySelectorAll('.food-card');
+	    
+	    radioButtons.forEach(function (radio) {
+	      radio.checked = false;
+	    });
+	    
+	    foodCards.forEach(function(card) {
+	    	card.classList.remove('selected');
+	    });
+	  }
+	}
+  
+  function toggleSoupContainer() {
+	  var soupN = document.getElementById('soup-n');
+	  var isChecked = soupN.checked;
+	  
+	  if (isChecked) {
+		  var radioButtons = document.querySelectorAll('input[type="radio"][name="soupFoodId"]:checked');
+		  const foodCards = document.querySelectorAll('.food-card');
+		  
+		  radioButtons.forEach(function (radio) {
+			  radio.checked = false;
+		  });
+		  
+		  foodCards.forEach(function(card) {
+			  card.classList.remove('selected');
+		  });
+	  }
+  }
+  
+  function toggleMainContainer() {
+	  var mainN = document.getElementById('main-n');
+	  var isChecked = mainN.checked;
+	  
+	  if (isChecked) {
+		  var radioButtons = document.querySelectorAll('input[type="radio"][name="mainFoodId"]:checked');
+		  const foodCards = document.querySelectorAll('.food-card');
+		  
+		  radioButtons.forEach(function (radio) {
+			  radio.checked = false;
+		  });
+		  
+		  foodCards.forEach(function(card) {
+			  card.classList.remove('selected');
+		  });
+	  }
+  }
+  
+  
 
 function changeBorderColor(button) {
     button.classList.toggle("clicked");
 }
 
 function blockSalad() {
-	  alert("준비중인 기능입니다.");
+	Swal.fire({
+		title : '준비중인 기능입니다.',
+	});  
+//	alert("준비중인 기능입니다.");
 	  // 도시락으로 선택되도록 변경
 	  document.getElementById('diet').checked = true;
 	}
@@ -179,20 +238,31 @@ function handleSoupRadioButtonChange(radio) {
 	if (radio.checked) {
 		radio.parentNode.classList.add('selected');
 	}
+	
+	var selectedNameSec = document.getElementById("selected-soup-name-sec");
+	selectedNameSec.textContent = "";
+	
+	var modalOpenButton = document.getElementById("soup-cart-button");
+	modalOpenButton.style.backgroundColor = '#A6A6A6';
 }
 
-function handleModalSoupRadioButtonChange(button) {
+function handleModalSoupRadioButtonChange(button, soupName) {
+	console.log(soupName)
 	  var selectedMarketSoup = document.querySelector('input[name="soupFoodId"]:checked');
-
+	  
 	  var soupFoodCards = document.querySelectorAll('#soup-container .food-card');
 	  soupFoodCards.forEach(function(card) {
 	    card.classList.remove('selected');
 	  });
 
 	  button.parentNode.classList.add('selected');
-	  
-	  // 모달창을 띄우는 버튼의 스타일 변경
-	  var modalOpenButton = button.parentNode.querySelector('.modal-open-button');
+
+	  var selectedNameSec = document.getElementById("selected-soup-name-sec");
+	  selectedNameSec.textContent = soupName;
+}
+
+function clodeSoupModal() {
+	  var modalOpenButton = document.getElementById("soup-cart-button");
 	  modalOpenButton.style.backgroundColor = '#918c01';
 }
 
@@ -205,131 +275,236 @@ function handleMainRadioButtonChange(radio) {
 	if (radio.checked) {
 		radio.parentNode.classList.add('selected');
 	}
+	
+	  var selectedNameSec = document.getElementById("selected-main-name-sec");
+	  selectedNameSec.textContent = "";
+	
+	  var modalOpenButton = document.getElementById("main-cart-button");
+	  modalOpenButton.style.backgroundColor = '#A6A6A6';
 }
 
-function handleModalMainRadioButtonChange(button) {
+function handleModalMainRadioButtonChange(button, mainName) {
 	  var selectedMarketMain = document.querySelector('input[name="mainFoodId"]:checked');
 
 	  var mainFoodCards = document.querySelectorAll('#main-container .food-card');
 	  mainFoodCards.forEach(function(card) {
-	    card.classList.remove('selected');
+	  card.classList.remove('selected');
 	  });
 
 	  button.parentNode.classList.add('selected');
 	  
-	  // 모달창을 띄우는 버튼의 스타일 변경
-	  var modalOpenButton = button.parentNode.querySelector('.modal-open-button');
+	  var selectedNameSec = document.getElementById("selected-main-name-sec");
+	  selectedNameSec.textContent = mainName;
+	  console.log(mainName);
+}
+
+function closeMainModal() {
+	  var modalOpenButton = document.getElementById("main-cart-button");
 	  modalOpenButton.style.backgroundColor = '#918c01';
 }
 
 function handleSideCheckboxButtonChange(checkbox) {
-	  var checkboxes = document.querySelectorAll('#side-container input[name="sideFoodIds"]:checked');
-	  var selectedCount = checkboxes.length;
-
-	  if (selectedCount > 2) {
-	    checkbox.checked = false;
+    var greatingCheckboxes = document.querySelectorAll('#side-container input[name="sideFoodIds"]:checked');
+    var greatingSelectedCount = greatingCheckboxes.length;
+    
+	var modalCheckboxes = document.querySelectorAll('#sideDishModal input[name="sideFoodIds"]:checked');
+    var modalSelectedCount = modalCheckboxes.length;
+    
+    if (greatingSelectedCount + modalSelectedCount > 2) {
+    	Swal.fire({
+    		title : '이미 2개가 선택되었습니다. <br>새로운 옵션을 선택하려면 이미 선택된 옵션을 취소해주세요.',
+    	});  
+//    	alert("이미 2개가 선택되었습니다. 새로운 옵션을 선택하려면 이미 선택된 옵션을 취소해주세요.");
+    	checkbox.checked = false;
 	    checkbox.parentNode.classList.remove('selected');
 	    selectedCount--;
-	  } else {
+    } else {
 	    checkbox.parentNode.classList.add('selected');
-	  }
+    }
 
-	  var sideFoodCards = document.querySelectorAll('#side-container .food-card');
-	  sideFoodCards.forEach(function (card) {
-	    var cardCheckbox = card.querySelector('input[name="sideFoodIds"]');
-	    if (cardCheckbox.checked) {
-	      card.classList.add('selected');
-	    } else {
-	      card.classList.remove('selected');
-	    }
-	  });
+	var sideFoodCards = document.querySelectorAll('#side-container .food-card');
+	sideFoodCards.forEach(function(card) {
+		var cardCheckbox = card.querySelector('input[name="sideFoodIds"]');
+		if (cardCheckbox.checked) {
+			card.classList.add('selected');
+		} else {
+			card.classList.remove('selected');
+		}
+	});
+	
+	if (modalSelectedCount == 0) {
+		var modalOpenButton = document.getElementById("sides-cart-button");
+		modalOpenButton.style.backgroundColor = '#A6A6A6';	
+		var selectedNameSec = document.getElementById("selected-side-name-sec");
+		selectedNameSec.textContent = "";
+	}
+}
+
+function closeSideModal() {
+	var modalOpenButton = document.getElementById("sides-cart-button");
+	modalOpenButton.style.backgroundColor = '#918c01';
+
+	var modalCheckboxes = document
+			.querySelectorAll('#sideDishModal input[name="sideFoodIds"]:checked');
+	var modalSelectedCount = modalCheckboxes.length;
+
+	if (modalSelectedCount == 0) {
+		var modalOpenButton = document.getElementById("sides-cart-button");
+		modalOpenButton.style.backgroundColor = '#A6A6A6';
+		var selectedNameSec = document.getElementById("selected-side-name-sec");
+		selectedNameSec.textContent = "";
 	}
 
+}
 
-//모달이 열릴 때 이벤트 리스너 등록
+function exitSideModal() {	
+	var modalCheckboxes = document.querySelectorAll('#sideDishModal input[name="sideFoodIds"]:checked');
+	var modalSelectedCount = modalCheckboxes.length;
+	
+	if (modalSelectedCount == 0) {
+		var modalOpenButton = document.getElementById("sides-cart-button");
+		modalOpenButton.style.backgroundColor = '#A6A6A6';
+		var selectedNameSec = document.getElementById("selected-side-name-sec");
+		selectedNameSec.textContent = "";
+	}
+	
+}
+
+function handleModalExtraRadioButtonChange(button, extraName) {	  
+	  var selectedNameSec = document.getElementById("selected-extra-name-sec");
+	  selectedNameSec.textContent = extraName;
+	  console.log(extraName);
+}
+
+function closeExtraModal() {
+	var modalOpenButton = document.getElementById("extra-cart-button");
+	modalOpenButton.style.backgroundColor = '#918c01';
+}
+
+// 모달이 열릴 때 이벤트 리스너 등록
 document.getElementById('cart').addEventListener('click', function() {
-  // 모달 내 체크박스 요소 선택
-  var modalCheckboxes = document.querySelectorAll('#sideDishModal input[name="sideFoodIds"]');
-  var selectedCount = 0;
-
-  // side-container의 체크박스 해제
-  var sideCheckboxes = document.querySelectorAll('#side-container input[name="sideFoodIds"]');
-  sideCheckboxes.forEach(function(checkbox) {
-    checkbox.checked = false;
-    handleCheckboxChange(checkbox)
-  });
-
-  // 모달 내 체크박스 선택 개수 계산
-  modalCheckboxes.forEach(function(checkbox) {
-    if (checkbox.checked) {
-      selectedCount++;
+    var greatingCheckboxes = document.querySelectorAll('#side-container input[name="sideFoodIds"]:checked');
+    var greatingSelectedCount = greatingCheckboxes.length;
+    if (greatingSelectedCount === 2) {
+    	Swal.fire({
+    		title : '이미 2개가 선택되었습니다. <br>새로운 옵션을 선택하려면 이미 선택된 옵션을 취소해주세요.',
+    	});  
+//    	alert("이미 2개가 선택되었습니다. 새로운 옵션을 선택하려면 이미 선택된 옵션을 취소해주세요.");
     }
-  });
-
 });
 
-function sendFile(event, imgUploadUrl) {
-	  event.preventDefault(); // 폼 제출을 막습니다.
+function handleModalSideCheckboxButtonChange(checkbox) {
+    var greatingCheckboxes = document.querySelectorAll('#side-container input[name="sideFoodIds"]:checked');
+    var greatingSelectedCount = greatingCheckboxes.length;
+    
+	var modalCheckboxes = document.querySelectorAll('#sideDishModal input[name="sideFoodIds"]:checked');
+    var modalSelectedCount = modalCheckboxes.length;
+    
+    if (greatingSelectedCount + modalSelectedCount > 2) {
+    	Swal.fire({
+    		title : '이미 2개가 선택되었습니다. <br>새로운 옵션을 선택하려면 이미 선택된 옵션을 취소해주세요.',
+    	});  
+//    	alert("이미 2개가 선택되었습니다. 새로운 옵션을 선택하려면 이미 선택된 옵션을 취소해주세요.");
+    	checkbox.checked = false;
+	    checkbox.parentNode.classList.remove('selected');
+	    selectedCount--;
+    } else {
+	    checkbox.parentNode.classList.add('selected');
+    }  
+    
+	  var selectedNameSec = document.getElementById("selected-side-name-sec");
+	  selectedNameSec.textContent = "건강마켓에서 선택됨";
+}
 
-	  var form = event.srcElement.form;
-	  var formData = new FormData(form);
-	  console.log(formData)
-	  
-      var prevFormData = new FormData();
-      const fileInput = document.getElementById('imgFile');
-      const file = fileInput.files[0];
-      
-      /* 고유한 파일명 생성 */
-      var newFilename = generateUniqueFilename();
-      const originalFileName = file.name; // 원래 파일 이름
-      const ext = originalFileName.split('.').pop(); // 파일 확장자 추출
-      const newFileName = newFilename + '.' + ext; // 새로운 파일 이름에 확장자 추가
-      const modifiedFile = new File([file], newFileName, { type: file.type });
 
-      prevFormData.append('file', modifiedFile);
-      formData.append('fileName', newFileName);
-      
-      console.log("url=", imgUploadUrl);
-      
-//      file.name = newFilename;
-      console.log(prevFormData)
-      
-      // 파일 업로드 AJAX 요청
-      $.ajax({
-        url: imgUploadUrl,
-        type: 'POST',
-        data: prevFormData,
-        processData: false,
-        contentType: false,
-        success: function(response) {
-          if (response.result === 'failed') {
-        	  console.log(response)
-            alert("사진 업로드 실패")
-          } else if (response.result === 'successful') {
-        	  console.log(response)
-        	  submitFormWithFilename(formData);
-          }
-        }
-      });
+function sendFile(event, imgUploadUrl, token) {
+	event.preventDefault();
+
+	var calorieErrorMessage = document.getElementById("calorieError").textContent;
+	if (calorieErrorMessage === "최대 칼로리는 최소 칼로리보다 작을 수 없습니다.") {
+		Swal.fire({
+    		title : calorieErrorMessage,
+    	}); 
+//		alert(calorieErrorMessage);
+		return; // 함수 실행 중단
 	}
-//    });
+
+	var priceErrorMessage = document.getElementById("priceError").textContent;
+	if (priceErrorMessage === "최대 가격은 최소 가격보다 작을 수 없습니다.") {
+		Swal.fire({
+    		title : priceErrorMessage,
+    	}); 
+//		alert(priceErrorMessage);
+		return; // 함수 실행 중단
+	}
+
+	if (!validateForm()) {
+		return;
+	}
+
+	var form = event.srcElement.form;
+	var formData = new FormData(form);
+	console.log(formData)
+
+	const fileInput = document.getElementById('imgFile');
+
+	console.log(fileInput.files[0]);
+	
+	if (!fileInput.files[0]) {
+		formData.append('fileName', "default-img.png");
+		submitFormWithFilename(formData);
+	} else {
+		const file = fileInput.files[0];
+
+		/* 고유한 파일명 생성 */
+		var newFilename = generateUniqueFilename();
+		const originalFileName = file.name; // 원래 파일 이름
+		const ext = originalFileName.split('.').pop(); // 파일 확장자 추출
+		const newFileName = newFilename + '.' + ext; // 새로운 파일 이름에 확장자 추가
+		const modifiedFile = new File([ file ], newFileName, {
+			type : file.type
+		});
+
+		var prevFormData = new FormData();
+		prevFormData.append('file', modifiedFile);
+		formData.append('fileName', newFileName);
+
+		console.log("url=", imgUploadUrl);
+		console.log("token=", token);
+
+		console.log(prevFormData)
+
+		// 파일 업로드 AJAX 요청
+		$.ajax({
+			url : imgUploadUrl,
+			type : 'POST',
+			headers: { 'token': token },
+			data : prevFormData,
+			processData : false,
+			contentType : false,
+			success : function(response) {
+				if (response.result === 'failed') {
+					console.log(response)
+					alert("사진 업로드 실패")
+				} else if (response.result === 'successful') {
+					console.log(response)
+					submitFormWithFilename(formData);
+				}
+			}
+		});
+	}
+
+}
     
 function generateUniqueFilename() {
-  // 고유한 파일명 생성 로직
-  // 적절한 고유한 파일명을 반환하는 함수를 구현해야 합니다.
-  // 이 예시 코드에서는 현재 시간을 기반으로 파일명을 생성하는 간단한 예시를 사용합니다.
   var timestamp = new Date().getTime();
   return 'file_' + timestamp;
 }
 
-//function submitFormWithFilename(filename) {
+// function submitFormWithFilename(filename) {
 function submitFormWithFilename(formData) {
-  // 파일명과 함께 다른 정보와 함께 AJAX 요청을 보내는 로직
-  // 이 함수를 서버 측 로직으로 변경해야 합니다.
-  console.log('Submitting form with filename:', formData.filename);
+  console.log('업로드하는 파일명:', formData.filename);
   
-//  formData.append('fileName',filename);
-
     // AJAX POST 요청을 보냅니다.
     $.ajax({
       url: '/greating/api/mealdiy/new',
@@ -338,7 +513,13 @@ function submitFormWithFilename(formData) {
       processData: false, // 데이터를 처리하지 않도록 설정합니다.
       contentType: false, // 기본 컨텐츠 유형을 설정하지 않도록 합니다.
       success: function(response) {
-        console.log(response);
+//        console.log(response);
+//        alert("게시글 등록이 성공하였습니다.");
+    	  
+    	  Swal.fire({
+        	  title: '게시글 등록이 성공하였습니다.',
+          });
+    	  
         location.href = "/greating/mealdiy/" + response;
       },
       error: function(xhr, status, error) {
@@ -347,4 +528,92 @@ function submitFormWithFilename(formData) {
       }
     });
   }
-//  });
+
+// 필수값 검증
+function validateForm() {
+	var dietName = document.querySelector('input[name="dietName"]').value;
+	var dietType = document.querySelector('input[name="dietType"]:checked');
+    var foodCountryId = document.querySelector('input[name="foodCountryId"]:checked');
+    var mainCategoryId = document.querySelector('input[name="mainCategoryId"]:checked');
+    var subCategoryId = document.querySelector('input[name="subCategoryId"]:checked');
+    var rice = document.querySelector('input[name="rice"]:checked');
+    var soup = document.querySelector('input[name="soup"]:checked');
+    var mainCheckbox = document.querySelector('input[name="mainCheckbox"]:checked');    
+   
+    var valid = false;
+    
+    if (!dietType) {
+    	Swal.fire({
+      	  title: 'GREATING TYPE을 선택해주세요.',
+        });
+//    	alert("GREATING TYPE을 선택해주세요.");
+        return valid;
+    }
+
+    if (!foodCountryId) {
+    	Swal.fire({
+        	  title: 'STYLE을 선택해주세요.',
+          });
+//    	alert("STYLE을 선택해주세요.");
+        return valid;
+    }
+
+    if (!mainCategoryId) {
+    	Swal.fire({
+      	  title: 'CATEGORY를 선택해주세요.',
+        });
+//    	alert("CATEGORY를 선택해주세요.");
+        return valid;
+    }
+    
+    if (!subCategoryId) {
+    	Swal.fire({
+        	  title: 'SUB CATEGORY를 선택해주세요.',
+          });
+//    	alert("SUB CATEGORY를 선택해주세요.");
+    	return valid;
+    }
+    
+    if (dietName.trim() == '') {
+    	Swal.fire({
+      	  title: '제목을 입력해주세요.',
+        });
+//    	alert("제목을 입력해주세요.");
+        return valid;
+    }
+    
+    if (!rice) {
+    	Swal.fire({
+        	  title: '밥 포함 여부를 선택해주세요.',
+          });
+//    	alert("밥 포함 여부를 선택해주세요.");
+        return valid;
+    }
+    
+    if (!soup) {
+    	Swal.fire({
+      	  title: '국/찌개 포함 여부를 선택해주세요.',
+        });
+//    	alert("국/찌개 포함 여부를 선택해주세요.");
+        return valid;
+    }
+    
+    if (!mainCheckbox) {
+    	Swal.fire({
+			title : '메인요리  포함 여부를 선택해주세요.',
+		});
+//		alert("메인요리 포함 여부를 선택해주세요.");
+		return valid;
+    }
+    
+    if (rice.id === 'rice-n' && soup.id === 'soup-n' && mainCheckbox.id === "main-n") {
+    	Swal.fire({
+			title : '밥, 국, 메인 중 최소 1개 이상을 선택해주세요.',
+		});
+//    	alert("밥, 국, 메인 중 최소 1개 이상을 선택해주세요.");
+        return valid;
+    }
+    
+	valid = true;
+    return valid;
+}

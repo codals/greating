@@ -239,6 +239,3 @@ function updateScrapButton(postId, buttonText, status) {
 	    voteButton.attr('onclick', 'checkScrapCancel(' + postId + ')');
 	}
 }
-
-
-

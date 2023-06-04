@@ -5,6 +5,7 @@ import com.codals.greating.user.dto.LoginRequestDto;
 import com.codals.greating.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,4 +22,31 @@ public class UserServiceImpl implements UserService {
     public User getUserByUsername(String username) {
         return userDao.selectByUsername(username).orElseGet(User::new);
     }
+
+    @Transactional
+	@Override
+	public boolean register(User user) {
+
+    	try {
+			if(userDao.insertUser(user) ==1 ) {
+				return true;
+			}else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	public boolean checkUserEmail(String email) {
+        if(userDao.selectUserEmail(email)==null) {
+        	return true;
+        }
+        return false;
+
+	}
+
+
 }

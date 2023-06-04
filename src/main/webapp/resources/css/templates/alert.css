@@ -3,3 +3,7 @@
 .swal2-confirm{
 	background-color:#918c01 !important;
 }
+
+.swal2-title {
+	font-size: 20px;
+}

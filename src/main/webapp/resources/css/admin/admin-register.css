@@ -1,0 +1,297 @@
+@charset "UTF-8";
+
+.sec_cal {
+	width: 400px;
+	margin: 0 auto;
+	font-family: "NotoSansR";
+}
+
+.sec_cal .cal_nav {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 700;
+	font-size: 48px;
+	line-height: 78px;
+}
+
+.sec_cal .cal_nav .year-month {
+	width: 300px;
+	text-align: center;
+	line-height: 1;
+}
+
+.sec_cal .cal_nav .nav {
+	display: flex;
+	border: 1px solid #333333;
+	border-radius: 5px;
+}
+
+.sec_cal .cal_nav .go-prev, .sec_cal .cal_nav .go-next {
+	display: block;
+	width: 50px;
+	height: 78px;
+	font-size: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.sec_cal .cal_nav .go-prev::before, .sec_cal .cal_nav .go-next::before {
+	content: "";
+	display: block;
+	width: 20px;
+	height: 20px;
+	border: 3px solid #000;
+	border-width: 3px 3px 0 0;
+	transition: border 0.1s;
+}
+
+.sec_cal .cal_nav .go-prev:hover::before, .sec_cal .cal_nav .go-next:hover::before
+	{
+	border-color: #ed2a61;
+}
+
+.sec_cal .cal_nav .go-prev::before {
+	transform: rotate(-135deg);
+}
+
+.sec_cal .cal_nav .go-next::before {
+	transform: rotate(45deg);
+}
+
+.sec_cal .cal_wrap {
+	padding-top: 40px;
+	position: relative;
+	margin: 0 auto;
+}
+
+.sec_cal .cal_wrap .days {
+	display: flex;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #ddd;
+}
+
+.sec_cal .cal_wrap::after {
+	top: 368px;
+}
+
+.sec_cal .cal_wrap .day {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: calc(100%/ 7);
+	text-align: left;
+	color: #999;
+	font-size: 12px;
+	text-align: center;
+	border-radius: 5px
+}
+
+.current.today {
+	background: rgb(242, 242, 242);
+}
+
+.sec_cal .cal_wrap .dates {
+	display: flex;
+	flex-flow: wrap;
+	height: 290px;
+}
+
+.sec_cal .cal_wrap .day:nth-child(7n -1) {
+	color: #3c6ffa;
+}
+
+.sec_cal .cal_wrap .day:nth-child(7n) {
+	color: #ed2a61;
+}
+
+.sec_cal .cal_wrap .day.disable {
+	color: #ddd;
+}
+
+.content {
+	height: auto;
+	margin-left:250px;
+	position:absolute;
+}
+
+.main-content {
+	display: inline-block;
+	margin: 0 auto;
+	width: 1300px;
+	position : fixed;
+}
+
+.main-top,.main-bottom{
+	padding: 20px;
+	display: flex;
+	margin: 25px 0px 0px 100px;
+}
+.main-bottom{
+	padding: 20px;
+	display: flex;
+	margin: 25px 100px 100px 100px;
+	min-width:1100px;
+}
+.calendar {
+	width: 450px;
+	display: inline-block;
+	border: 1px solid #ccc;
+    border-top: 6px solid #918c01;
+    padding-top: 10px;
+}
+
+.dates>button {
+	background: none;
+	border: none;
+}
+
+.update-diets>span {
+	display: block;
+}
+
+.registered-diets {
+	min-width: 590px;
+	display: inline-block;
+	margin: 0px 0px 0px 50px;
+	padding:30px 20px 20px 20px;
+	border: 2px solid #ccc;
+    border-top: 5px solid #918c01;
+}
+
+.registered-diets>.title {
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom: 30px;
+	display: block;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: -webkit-match-parent;
+}
+
+table th, table td {
+	padding: 10px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	white-space: nowrap;
+}
+
+table th {
+	background-color: #f1f1f1;
+	font-weight: bold;
+	text-align: center;
+	white-space: nowrap;
+}
+
+table td {
+	text-align: center;
+}
+
+.main-bottom-group {
+	border: 2px solid #ccc;
+	border-top: 5px solid #918c01;
+	width: 100%;
+	margin-bottom:100px;
+}
+
+.update-diets {
+	padding: 20px;
+	height: 500px;
+	width: 1170px;
+}
+
+.update-diets-header {
+	display: flex;
+	justify-content: space-between;
+	font-size: 30px;
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #ccc;
+}
+
+.update-diets-date {
+	height: 45px;
+	font-size: 22px;
+	margin-bottom: 20px;
+}
+
+.update-diets-date input {
+	margin-left: 20px;
+	width: 200px;
+	height: 30px;
+}
+
+.card-slide {
+	width: 100%;
+	overflow-x: scroll;
+	display: flex;
+	height: 200px;
+	margin-bottom:20px;
+}
+
+.slide-wrapper {
+	display: flex;
+}
+
+.card {
+	width: 120px;
+	height: 160px;
+	border: 1px solid black;
+	margin: 5px;
+	display: inline-block;
+	text-align: center;
+	padding:0;
+	background:none;
+}
+
+.card>img {
+	width: 115px;
+	height: 80px;
+}
+
+.update-diets-cate {
+	font-size: 21px;
+	margin-bottom: 20px;
+}
+.choosen-text{
+	width: 180px;
+}
+.choosen-diets{
+	font-size:22px;
+	display:flex;
+	
+}
+.choosen-result{
+	    display: flex;
+    flex-wrap: wrap;
+    width:100%;
+    height:100px;
+    overflow-y:auto;
+    margin-bottom:30px;
+}
+.choosen-result > span{
+		margin-bottom:10px;
+		margin-left: 15px;
+		padding:8px;
+		border: 2px solid #918c01;
+		height:fit-content;
+		font-size:18px;
+}
+.registerDietBtn{
+	padding:10px;
+	border :2px solid #918c01;
+	width:120px;
+	height: 50px;
+	background:none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #918c01;
+}
+.hidden{
+	display:none;
+}
