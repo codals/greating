@@ -1,10 +1,3 @@
-$(document).ready(function(){
-	
-	if (!Kakao.isInitialized()) {
-		  Kakao.init('');
-	}
-
-});
 
 
 var floatingButton = document.getElementById("floating-button");
@@ -21,10 +14,15 @@ window.addEventListener("scroll", function() {
   }
 });
 
-function share(postId) {
+function share(postId, kakaoShareKey) {
 	var postTitle = $('.title-text').text();
 	var imgUrl = $('.main-img img').attr('src');	
 	var voteCnt = parseInt($('.vote-count').text());
+	
+
+	if (!Kakao.isInitialized()) {
+		  Kakao.init(kakaoShareKey);
+	}
 	Kakao.Link
 			.sendDefault({
 				objectType : 'feed',

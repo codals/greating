@@ -47,36 +47,6 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
 
-	<!-- 페이지 로딩 전 -->
-	<!-- <script>
-	    $(document).ready(function() {
-	        // 페이지 로드되면 AJAX 요청 보내기
-	        var token = '${imgApiToken}'; 
-	        console.log(token);
-	        var imgUrl = '${postDetail.post.imgUrl}';
-	        console.log(imgUrl);
-	
-	        $.ajax({
-	            type: "GET",
-	            url: encodedUrl,
-	            headers: {
-	                token: token
-	            },
-	            success: function(response) {
-	                var resultUrl = encodeURIComponent(response);
-	                console.log("resultUrl", resultUrl);
-	
-	                var imgTag = $("<img>").attr("src", resultUrl).attr("alt", "Main Image"); // <img> 요소 생성 및 속성 설정
-	                $(".main-img").empty().append(imgTag); // 기존 내용을 지우고 새로운 이미지 태그 추가
-	
-	            },
-	            error: function() {
-	                // 에러 처리
-	                alert("이미지를 불러올 수 없습니다.");
-	            }
-	        });
-	    });
-	</script> -->
 </head>
 
 
@@ -85,7 +55,7 @@
 	<!-- header 가져오기 -->
 	<jsp:include page="../templates/header.jsp" />
 	<div class="hr"></div>
-	
+
 	<!-- 플로팅 공유 버튼 -->
 	<div class="floating-container">
 		<div class="floating-button">
@@ -96,7 +66,7 @@
 			        <img src="/greating/resources/images/templates/copy-link-icon.jpg" style="width: 28px; height: 28px; margin-top: 8px; margin-left: 10px;" onclick="copyLink()">>
 			      </div>
 			      <div class="floating-overlay-button">
-			        <img src="/greating/resources/images/templates/kakao.png" onclick="share(${postDetail.post.id})">
+			        <img src="/greating/resources/images/templates/kakao.png" onclick="share(${postDetail.post.id},'${kakaoShareKey}')">
 			      </div>
 			      <div class="floating-overlay-button">
 			        <img src="" onclick="">

@@ -52,6 +52,9 @@ public class DiyController {
 	@Value("${img.storage.path}")
     private String imgStoragePath;
 	
+	@Value("${kakao.share.key}")
+	private String kakaoShareKey;
+	
 	@GetMapping
 	public String loadMainPage() {
 		return "diy/diy-main";
@@ -106,23 +109,21 @@ public class DiyController {
 
 	@GetMapping("/{postId}")
 	public String loadPostDetailPage(@PathVariable int postId, @SessionAttribute("loginUser") User loginUser, Model model) {
-		log.debug("start post detail ");
 		
 		// 투표한 이력이 있는 지
 		boolean isVoted = diyService.checkVoted(new VoteRequestDto(postId, loginUser.getId()));
 		model.addAttribute("isVoted", isVoted);
-		log.info("isVoted {}", isVoted);
 		
 		// 스크랩한 이력이 있는 지 
 		boolean isScrapped = diyService.checkScrapped(new ScrapRequestDto(postId, loginUser.getId()));
 		model.addAttribute("isScrapped", isScrapped);
-		log.info("isScrapped {}", isScrapped);
 		
 		PostResponseDto postDetail = diyService.getPostDetail(postId);
 		model.addAttribute("postDetail", postDetail);
 		model.addAttribute("imgApiToken", imgApiToken);
 		
-		log.info(postDetail.getPost());
+		model.addAttribute("kakaoShareKey", kakaoShareKey);
+		
 		
 		return "diy/diy-detail";
 	}
