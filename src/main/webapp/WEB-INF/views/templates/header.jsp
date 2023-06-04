@@ -75,10 +75,9 @@
 						<a href="/spComn/checkAddress" class="direct__btn"> <img
 							src="${pageContext.request.contextPath}/resources/images/templates/btn_header_shipping.jpg"
 							alt="하루·택배 배송안내">
-						</a> <a href="/order/orderCart" class="direct__cart"> <span
-							id="cartCnt">0</span> <img
-							src="${pageContext.request.contextPath}/resources/images/templates/icon_header_cart.png"
-							alt="장바구니">
+						</a> <a href="cart" class="direct__cart">
+						<span id="cartCnt">0</span> 
+						<img src="${pageContext.request.contextPath}/resources/images/templates/icon_header_cart.png" alt="장바구니">
 						</a>
 					</nav>
 				</div>

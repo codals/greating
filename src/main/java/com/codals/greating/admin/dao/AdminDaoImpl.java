@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.codals.greating.admin.dto.AdminDto;
 import com.codals.greating.constant.MainCategoryCode;
 import com.codals.greating.diet.entity.DailyDiet;
 import com.codals.greating.diet.entity.Diet;
@@ -25,13 +26,13 @@ public class AdminDaoImpl implements AdminDao{
 		
 		String statement = "diet.selectDietsByMainCategory";
 		int searchCategory = category.getId();
-		return = sqlSession.selectList(statement,searchCategory);
+		return sqlSession.selectList(statement,searchCategory);
   }
 
 
 	@Override
 	public List<AdminDto> topList() {
-		return sqlsession.selectList("admin.topList");
+		return sqlSession.selectList("admin.topList");
 
 	}
 
@@ -43,7 +44,7 @@ public class AdminDaoImpl implements AdminDao{
   }
   @Override
 	public boolean approveCheck(long postId) {
-		int updatedRows = sqlsession.update("admin.approveCheck", postId);
+		int updatedRows = sqlSession.update("admin.approveCheck", postId);
 	    return updatedRows > 0;
 
 	}

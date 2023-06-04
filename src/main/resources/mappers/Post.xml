@@ -13,14 +13,14 @@
 		<result property="imgUrl" column="img_url" />
 	</resultMap>
 
-	<resultMap id="postResponseDtoResultMap"
-		type="PostResponseDto">
+	<resultMap id="postResponseDtoResultMap" type="PostResponseDto">
 		<association property="post" javaType="Post">
 			<id property="id" column="id" />
 			<result property="mainCategoryId" column="main_category_id" />
 			<result property="subCategoryId" column="sub_category_id" />
 			<result property="foodCountryId" column="food_country_id" />
 			<result property="userId" column="user_id" />
+			<result property="username" column="username" />
 			<result property="title" column="title" />
 			<result property="content" column="content" />
 			<result property="imgUrl" column="img_url" />
