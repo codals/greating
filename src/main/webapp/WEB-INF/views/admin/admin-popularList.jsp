@@ -1,35 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<link rel="stylesheet"
+	href="/greating/resources/css/templates/reset.css">
+
 <link rel="stylesheet" href="/greating/resources/css/admin/admin-popularList.css">
 <!-- jQuery 라이브러리 추가 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- admin-popular.js 파일 추가 -->
 <script src="/greating/resources/js/admin/admin-popular.js"></script>
 
+
+<link rel="stylesheet"
+	href="/greating/resources/css/admin/admin-popularList.css">
 </head>
 <body>
 	<!--사이드바-->
-	<div class="sidebar">
-		<div class="sidebar-div">
-			<div class="profile">
-				<img
-					src="/greating/resources/images/user/eddy.png"
-					alt="프로필 사진">
-				<h3 class="sidebar-text">관리자 : Eddy Bang</h3>
-			</div>
-			<ul class="menu">
-				<li><a href="admin/popular" class="sidebar-text">인기 식단 목록</a></li>
-				<li><a href="#" class="sidebar-text">출시 예정 식단 목록</a></li>
-			</ul>
-		</div>
-	</div>
+
+	<jsp:include page="/WEB-INF/views/admin/admin-sidebar.jsp" />
 
 
 	<div class="content">
@@ -48,6 +44,7 @@
 					</tr>
 				</thead>
 				<tbody>
+
 					 <c:forEach items="${list}" var="diet">
 	                    <tr>
 	                    	

@@ -28,4 +28,9 @@ public class AdminController {
 //		System.out.println(dto + "," + postList);
 		return "admin/admin-popularList";
 	}
+	
+	@GetMapping("/register")
+	public String adminRegister() {
+		return "admin/admin-register";
+	}
 }

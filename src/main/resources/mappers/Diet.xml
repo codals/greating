@@ -8,4 +8,30 @@
     FROM diet
     WHERE id = #{dietId}
   </select>
+  
+  <select id="selectDietsByMainCategory" parameterType="Integer" resultType="Diet">
+  	select *
+  	from diet
+  	where main_category_id = #{searchCategory}
+  
+  </select>
+  
+<update id="insertDailyDiets" parameterType="java.util.List">
+	INSERT INTO daily_diet (
+		  id, diet_id, start_date, end_date
+	)
+	SELECT daily_diet_id_seq.NEXTVAL AS id
+		 , T.* 
+	  FROM (
+	         <foreach collection="list" item="item" index="index" separator="union all">
+			SELECT #{item.dietId} as diet_id,
+				#{item.startDate} as startDate,
+				#{item.endDate} as endDate
+			 FROM SYS.DUAL
+	         </foreach> 
+	  ) T
+</update>
+  
+
+  
 </mapper>
