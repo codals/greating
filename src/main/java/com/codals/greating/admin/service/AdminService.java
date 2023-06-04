@@ -18,6 +18,8 @@ public interface AdminService {
 
 	boolean approveCheck(long postId);
 
+	List<AdminDto> commingSoonList();
+
 	List<AdminDailyDietResponseDto> getDailyDietsByDate(String date);
 
 }

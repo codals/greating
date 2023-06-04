@@ -20,7 +20,8 @@ public interface AdminDao {
 
 	boolean approveCheck(long postId);
 
-	List<AdminDailyDietResponseDto> selectDailyDietsByDate(String date);
+	List<AdminDto> commingSoonList();
 
+	List<AdminDailyDietResponseDto> selectDailyDietsByDate(String date);
 
 }

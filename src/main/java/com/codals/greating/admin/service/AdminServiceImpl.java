@@ -70,4 +70,11 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 
+	@Override
+	public List<AdminDto> commingSoonList() {
+		// TODO Auto-generated method stub
+		return adminDao.commingSoonList();
+	}
+
+
 }

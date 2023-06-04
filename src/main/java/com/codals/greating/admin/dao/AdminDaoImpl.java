@@ -48,6 +48,11 @@ public class AdminDaoImpl implements AdminDao {
 
 	}
 
+  @Override
+  public List<AdminDto> commingSoonList() {
+    return sqlSession.selectList("admin.commingSoonList");
+  }
+
 	@Override
 	public List<AdminDailyDietResponseDto> selectDailyDietsByDate(String date) {
 		String statement = "admin.selectDailyDietsByDate";

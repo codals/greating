@@ -69,4 +69,6 @@ public class AdminRestController {
 		log.info("controller diets{} ", diets);
 		return new ResponseEntity<>(diets, HttpStatus.OK);
 	}
+	
+	
 }
