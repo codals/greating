@@ -9,16 +9,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-
-<link
-	href="${pageContext.request.contextPath}/resources/css/user/mypage-mydiy.css"
-	rel="stylesheet">
-<link href="/greating/resources/css/user/mypage-pagination.css"
-rel="stylesheet">
-
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<link href="/greating/resources/css/user/mypage-pagination.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+	<link href="${pageContext.request.contextPath}/resources/css/user/mypage-mydiy.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+            integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+            crossorigin="anonymous"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/user/mypage-mydiy.js"></script>
 </head>
 <body>
 
@@ -46,24 +43,23 @@ rel="stylesheet">
 
 				<ul>
 					<c:forEach items="${list}" var="item">
-						<li class="myDiy-card">
+						<li class="myDiy-card" data-id="${item.id}">
 							<div class="myDiy-card-img">
-								<img src="${item.imgUrl}">
+								<img src="${item.imgUrl}" alt="">
 							</div>
 							<div class="myDiy-card-info">
 								<span class="mb-2">${item.title}</span>
 								<div class="hr"></div>
 								<div class="myDiy-card-tags">
-									<span style="font-size: 17px;"> 메인 구성 </span> <span
-										class="myDiy-card-tag">${item.riceFoodName}</span> <span
-										class="myDiy-card-tag">${item.soupFoodName}</span> <span
-										class="myDiy-card-tag">${item.mainFoodName}</span>
+									<span style="font-size: 17px;"> 메인 구성 </span>
+									<span class="myDiy-card-tag">${item.riceFoodName}</span>
+									<span class="myDiy-card-tag">${item.soupFoodName}</span>
+									<span class="myDiy-card-tag">${item.mainFoodName}</span>
 								</div>
 								<div class="myDiy-vote">
 									<span style="font-size: 17px;"> 투표 현황 </span>
 									<div class="myDiy-vote-num">
-										<img
-											src="${pageContext.request.contextPath}/resources/images/user/vote.png">
+										<img src="${pageContext.request.contextPath}/resources/images/user/vote.png" alt="">
 										<span>${item.voteCnt} Greating</span>
 									</div>
 								</div>
@@ -72,7 +68,7 @@ rel="stylesheet">
 					</c:forEach>
 				</ul>
 
-				
+
 				<c:if test="${dto.totalCount == 0 }">
 					<div class="noContentDiv">
 					<img class="mark_exclamation" src="/greating/resources/images/user/exclamationMark.png">
@@ -83,8 +79,8 @@ rel="stylesheet">
 
 				<!-- 페이징 버튼 -->
 				<div class="pagination">
-					
-				
+
+
 					<c:if test="${dto.page > 1}">
 						<a href="/greating/mypage/diets?page=1">처음</a>
 						<a href="/greating/mypage/diets?page=${dto.page - 1}">이전</a>

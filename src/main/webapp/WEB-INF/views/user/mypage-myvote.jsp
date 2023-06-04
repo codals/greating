@@ -18,6 +18,10 @@
 rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+		integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+		crossorigin="anonymous"></script>
+<script src="${pageContext.request.contextPath}/resources/js/user/mypage-myvote.js"></script>
 </head>
 <body>
 
@@ -40,10 +44,9 @@ rel="stylesheet">
 						</i> 전체선택
 					</div>
 				</div>
-
 				<ul>
 					<c:forEach items="${list }" var="list">
-						<li class="myScrap-card">
+						<li class="myScrap-card" data-id="${list.postId}">
 							<div class="myScrap-card-img">
 								<i class="fas fa-solid fa-thumbs-up fa-lg"
 									style="color: #918c01;"></i> <img src=" ${list.imgUrl }">
