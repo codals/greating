@@ -1,5 +1,6 @@
 package com.codals.greating.admin.service;
 
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.codals.greating.admin.dao.AdminDao;
 import com.codals.greating.admin.dto.AdminDietRegisterRequestDto;
+import com.codals.greating.admin.dto.AdminDto;
 import com.codals.greating.constant.MainCategoryCode;
 import com.codals.greating.diet.entity.DailyDiet;
 import com.codals.greating.diet.entity.Diet;
@@ -45,4 +47,15 @@ public class AdminServiceImpl implements AdminService{
 		return false;
 	}
 	
+	@Override
+	public List<AdminDto> topList() {
+		return adminDao.topList();
+	}
+
+	@Override
+	public boolean approveCheck(long postId) {
+		return adminDao.approveCheck(postId);
+	}
+
+
 }

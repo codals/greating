@@ -7,11 +7,11 @@ import lombok.Data;
 public class OrderResultResponseDto {
 
     private OrderDetailResponseDto orderDetail;
-    private List<OrderDietsByDateDto> orderDietsGroupByDeliveryDate;
+    private List<OrderDietsByDateDto> orderDietsByDates;
 
     public OrderResultResponseDto(OrderDetailResponseDto orderDetail,
-                                  List<OrderDietsByDateDto> orderDietsGroupByDeliveryDate) {
+                                  List<OrderDietsByDateDto> orderDietsByDates) {
         this.orderDetail = orderDetail;
-        this.orderDietsGroupByDeliveryDate = orderDietsGroupByDeliveryDate;
+        this.orderDietsByDates = orderDietsByDates;
     }
 }

@@ -31,6 +31,7 @@
     <typeAlias alias="VoteRequestDto" type="com.codals.greating.diy.dto.VoteRequestDto"/>
     <typeAlias alias="SearchRequestDto" type="com.codals.greating.diy.dto.SearchRequestDto"/>
     <typeAlias alias="SimplePostDto" type="com.codals.greating.diy.dto.SimplePostDto"/>
+    <typeAlias alias="AdminTopList" type="com.codals.greating.admin.dto.AdminDto"/>
     
   </typeAliases>
   

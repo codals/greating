@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+	<select id="topList"
+		resultType="AdminTopList">
+		SELECT
+			p.id,
+			p.title,
+			p.vote_cnt,
+			p.status,
+			p.created_at,
+			u.username,
+			mc.name AS mainCategoryName,
+			sc.name AS subCategoryName
+		FROM
+			post p
+			INNER JOIN "user" u ON p.user_id = u.id
+			INNER JOIN main_category mc ON p.main_category_id = mc.id
+			INNER JOIN sub_category sc ON p.sub_category_id = sc.id
+		WHERE
+    		p.status = 0
+		ORDER BY p.VOTE_CNT DESC
+		FETCH FIRST 10 ROWS ONLY
+	</select>
+	
+	<update id="approveCheck" parameterType="long">
+	    UPDATE post
+	    SET status = 2
+	    WHERE id = #{postId}
+	 </update>
+	  
+</mapper>

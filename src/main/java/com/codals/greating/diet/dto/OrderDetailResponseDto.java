@@ -12,13 +12,15 @@ public class OrderDetailResponseDto {
     private Integer week;
     private Integer mealCnt;
     private Integer deliveryCnt;
-    private int totalPrice;
+    private String totalPriceFormat;
 
     public OrderDetailResponseDto(Order order, List<OrderDiet> orderDiets) {
         this.subCategoryName = "저당식단"; // enum 예정
         this.week = order.getWeek();
         this.mealCnt = order.getMealCnt();
         this.deliveryCnt = order.getDeliveryCnt();
-        this.totalPrice = 0;
+        this.totalPriceFormat = String.format("%,d", orderDiets.stream()
+            .mapToInt(orderDiet -> orderDiet.getDiet().getPrice() * orderDiet.getCnt())
+            .sum());
     }
 }
