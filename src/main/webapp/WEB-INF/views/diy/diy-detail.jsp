@@ -55,26 +55,44 @@
 	<!-- header 가져오기 -->
 	<jsp:include page="../templates/header.jsp" />
 	<div class="hr"></div>
-	<div class="share">
-		<button id="floating-button" type="button" onclick="share(${postDetail.post.id},'${kakaoShareKey}')">공유하기
-		
-	</div>
-	<div class="advertise">
-		<div class="advertise-box">
-			<div class="advertise-box-img">
-				<img src="/greating/resources/images/diy/default.png">
-			</div>
-			<div class="advertise-box-info">
-				<span>코달이와 함께하는 </span> 
-				<span> DIY 식단 만들기 </span>
-			</div>
-			<div class="advertise-box-button">
-				<a href="/greating/mealdiy/new"> 만들러가기</a>
-			
-			</div>
-		
+
+	<!-- 플로팅 공유 버튼 -->
+	<div class="floating-container">
+		<div class="floating-button">
+			<img alt="" src="/greating/resources/images/templates/greating-floating-btn.png" onclick="toggleBox()">
+			<div class="overlay">
+			  <div style="display: flex;">
+			      <div class="floating-overlay-button">
+			        <img src="/greating/resources/images/templates/copy-link-icon.jpg" style="width: 28px; height: 28px; margin-top: 8px; margin-left: 10px;" onclick="copyLink()">>
+			      </div>
+			      <div class="floating-overlay-button">
+			        <img src="/greating/resources/images/templates/kakao.png" onclick="share(${postDetail.post.id},'${kakaoShareKey}')">
+			      </div>
+			      <div class="floating-overlay-button">
+			        <img src="" onclick="">
+			      </div>
+		    	</div>
+		    </div>
 		</div>
 	</div>
+	
+	<!-- 플로팅 배너 -->	
+	<div class="advertise">
+		<div style="font-size: 15px; color: #999;">이것도 확인해보세요!</div>
+		<div class="advertise-box">
+			<div class="advertise-box-img">
+				<img src="/greating/resources/images/templates/diy-floating-adv-v8.png">
+			</div>	
+		</div>
+		<div class="advertise-box">
+			<div class="advertise-box-btn"><a href="" style="color: black;">DIY 식단 투표하러 가기</a></div>
+		</div>
+		<div class="advertise-box">
+			<div class="advertise-box-btn"><a href="" style="color: black;">DIY 식단 만들러 가기</a></div>
+		</div>
+	</div>
+	
+	
 	<!-- 본 페이지 내용 -->
 	<div class="main-content hd__inner1100">
 		<ul class="page-category">
