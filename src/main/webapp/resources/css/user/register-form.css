@@ -1,3 +1,7 @@
+
+.hidden{
+	display:none;
+}
 .content-info > li {
   display: inline-block;
   height: 50px;
@@ -98,7 +102,7 @@ display: flex;
 justify-content: space-between;
 }
 
-.left-button, .right-button {
+.left-button, .submitBtn {
 flex: 1;
 margin: 0;
 display: block;
@@ -116,7 +120,7 @@ background: #FFF;
 border: 1px solid #ccc;
 }
 
-.right-button {
+.submitBtn {
 color: #fff;
 background: #918C00;
 }
@@ -167,4 +171,15 @@ gap: 10px; /* 각 직사각형 사이의 간격 */
 .referral-code > input {
   font-size: 12px;
   padding: 10px;
+}
+#username-validation,
+#password-validation,
+#password-same-result,
+#email-check-result{
+	display:block;
+	font-size: 12px !important;
+    padding-left: 110px;
+    margin-bottom: 10px;
+    color: #918c01;
+    font-weight: bold;
 }
