@@ -19,6 +19,7 @@ function share(postId, kakaoShareKey) {
 	var imgUrl = $('.main-img img').attr('src');	
 	var voteCnt = parseInt($('.vote-count').text());
 	
+	console.log("하이" + kakaoShareKey);
 
 	if (!Kakao.isInitialized()) {
 		  Kakao.init(kakaoShareKey);
