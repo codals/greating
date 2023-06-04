@@ -10,8 +10,7 @@
     <title>Insert title here</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <link href="${pageContext.request.contextPath}/resources/css/order/order-menu-info.css"
-          rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/order/order-menu-info.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/resources/js/order/order-menu-info.js"></script>
 </head>
 
