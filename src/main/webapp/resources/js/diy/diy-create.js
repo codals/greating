@@ -121,7 +121,10 @@ function changeBorderColor(button) {
 }
 
 function blockSalad() {
-	  alert("준비중인 기능입니다.");
+	Swal.fire({
+		title : '준비중인 기능입니다.',
+	});  
+//	alert("준비중인 기능입니다.");
 	  // 도시락으로 선택되도록 변경
 	  document.getElementById('diet').checked = true;
 	}
@@ -308,7 +311,10 @@ function handleSideCheckboxButtonChange(checkbox) {
     var modalSelectedCount = modalCheckboxes.length;
     
     if (greatingSelectedCount + modalSelectedCount > 2) {
-    	alert("이미 2개가 선택되었습니다. 새로운 옵션을 선택하려면 이미 선택된 옵션을 취소해주세요.");
+    	Swal.fire({
+    		title : '이미 2개가 선택되었습니다. <br>새로운 옵션을 선택하려면 이미 선택된 옵션을 취소해주세요.',
+    	});  
+//    	alert("이미 2개가 선택되었습니다. 새로운 옵션을 선택하려면 이미 선택된 옵션을 취소해주세요.");
     	checkbox.checked = false;
 	    checkbox.parentNode.classList.remove('selected');
 	    selectedCount--;
@@ -380,7 +386,10 @@ document.getElementById('cart').addEventListener('click', function() {
     var greatingCheckboxes = document.querySelectorAll('#side-container input[name="sideFoodIds"]:checked');
     var greatingSelectedCount = greatingCheckboxes.length;
     if (greatingSelectedCount === 2) {
-        alert("이미 2개가 선택되었습니다. 새로운 옵션을 선택하려면 이미 선택된 옵션을 취소해주세요.");
+    	Swal.fire({
+    		title : '이미 2개가 선택되었습니다. <br>새로운 옵션을 선택하려면 이미 선택된 옵션을 취소해주세요.',
+    	});  
+//    	alert("이미 2개가 선택되었습니다. 새로운 옵션을 선택하려면 이미 선택된 옵션을 취소해주세요.");
     }
 });
 
@@ -392,7 +401,10 @@ function handleModalSideCheckboxButtonChange(checkbox) {
     var modalSelectedCount = modalCheckboxes.length;
     
     if (greatingSelectedCount + modalSelectedCount > 2) {
-    	alert("이미 2개가 선택되었습니다. 새로운 옵션을 선택하려면 이미 선택된 옵션을 취소해주세요.");
+    	Swal.fire({
+    		title : '이미 2개가 선택되었습니다. <br>새로운 옵션을 선택하려면 이미 선택된 옵션을 취소해주세요.',
+    	});  
+//    	alert("이미 2개가 선택되었습니다. 새로운 옵션을 선택하려면 이미 선택된 옵션을 취소해주세요.");
     	checkbox.checked = false;
 	    checkbox.parentNode.classList.remove('selected');
 	    selectedCount--;
@@ -410,13 +422,19 @@ function sendFile(event, imgUploadUrl, token) {
 
 	var calorieErrorMessage = document.getElementById("calorieError").textContent;
 	if (calorieErrorMessage === "최대 칼로리는 최소 칼로리보다 작을 수 없습니다.") {
-		alert(calorieErrorMessage);
+		Swal.fire({
+    		title : calorieErrorMessage,
+    	}); 
+//		alert(calorieErrorMessage);
 		return; // 함수 실행 중단
 	}
 
 	var priceErrorMessage = document.getElementById("priceError").textContent;
 	if (priceErrorMessage === "최대 가격은 최소 가격보다 작을 수 없습니다.") {
-		alert(priceErrorMessage);
+		Swal.fire({
+    		title : priceErrorMessage,
+    	}); 
+//		alert(priceErrorMessage);
 		return; // 함수 실행 중단
 	}
 
@@ -495,8 +513,13 @@ function submitFormWithFilename(formData) {
       processData: false, // 데이터를 처리하지 않도록 설정합니다.
       contentType: false, // 기본 컨텐츠 유형을 설정하지 않도록 합니다.
       success: function(response) {
-        console.log(response);
-        alert("게시글 등록이 성공하였습니다.");
+//        console.log(response);
+//        alert("게시글 등록이 성공하였습니다.");
+    	  
+    	  Swal.fire({
+        	  title: '게시글 등록이 성공하였습니다.',
+          });
+    	  
         location.href = "/greating/mealdiy/" + response;
       },
       error: function(xhr, status, error) {
@@ -508,59 +531,86 @@ function submitFormWithFilename(formData) {
 
 // 필수값 검증
 function validateForm() {
-	var dietName = document.querySelector('input[name="dietName"]');
+	var dietName = document.querySelector('input[name="dietName"]').value;
 	var dietType = document.querySelector('input[name="dietType"]:checked');
     var foodCountryId = document.querySelector('input[name="foodCountryId"]:checked');
     var mainCategoryId = document.querySelector('input[name="mainCategoryId"]:checked');
     var subCategoryId = document.querySelector('input[name="subCategoryId"]:checked');
     var rice = document.querySelector('input[name="rice"]:checked');
     var soup = document.querySelector('input[name="soup"]:checked');
-    var mainCheckbox = document.querySelector('input[name="mainCheckbox"]:checked');
-    
+    var mainCheckbox = document.querySelector('input[name="mainCheckbox"]:checked');    
+   
     var valid = false;
     
     if (!dietType) {
-        alert("GREATING TYPE을 선택해주세요.");
+    	Swal.fire({
+      	  title: 'GREATING TYPE을 선택해주세요.',
+        });
+//    	alert("GREATING TYPE을 선택해주세요.");
         return valid;
     }
 
     if (!foodCountryId) {
-    	alert("STYLE을 선택해주세요.");
+    	Swal.fire({
+        	  title: 'STYLE을 선택해주세요.',
+          });
+//    	alert("STYLE을 선택해주세요.");
         return valid;
     }
 
     if (!mainCategoryId) {
-    	alert("CATEGORY를 선택해주세요.");
+    	Swal.fire({
+      	  title: 'CATEGORY를 선택해주세요.',
+        });
+//    	alert("CATEGORY를 선택해주세요.");
         return valid;
     }
     
     if (!subCategoryId) {
-    	alert("SUB CATEGORY를 선택해주세요.");
+    	Swal.fire({
+        	  title: 'SUB CATEGORY를 선택해주세요.',
+          });
+//    	alert("SUB CATEGORY를 선택해주세요.");
     	return valid;
     }
     
-    if (!dietName) {
-    	alert("제목을 입력해주세요.");
+    if (dietName.trim() == '') {
+    	Swal.fire({
+      	  title: '제목을 입력해주세요.',
+        });
+//    	alert("제목을 입력해주세요.");
         return valid;
     }
     
     if (!rice) {
-    	alert("밥 포함 여부를 선택해주세요.");
+    	Swal.fire({
+        	  title: '밥 포함 여부를 선택해주세요.',
+          });
+//    	alert("밥 포함 여부를 선택해주세요.");
         return valid;
     }
     
     if (!soup) {
-    	alert("국/찌개 포함 여부를 선택해주세요.");
+    	Swal.fire({
+      	  title: '국/찌개 포함 여부를 선택해주세요.',
+        });
+//    	alert("국/찌개 포함 여부를 선택해주세요.");
         return valid;
     }
     
     if (!mainCheckbox) {
-    	alert("메인요리 포함 여부를 선택해주세요.");
-        return valid;
+    	Swal.fire({
+			title : '메인요리  포함 여부를 선택해주세요.',
+		});
+//		alert("메인요리 포함 여부를 선택해주세요.");
+		return valid;
     }
     
     if (rice.id === 'rice-n' && soup.id === 'soup-n' && mainCheckbox.id === "main-n") {
-    	alert("밥, 국, 메인 중 최소 1개 이상을 선택해주세요.");
+    	Swal.fire({
+			title : '밥, 국, 메인 중 최소 1개 이상을 선택해주세요.',
+		});
+//    	alert("밥, 국, 메인 중 최소 1개 이상을 선택해주세요.");
         return valid;
     }
     
