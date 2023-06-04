@@ -8,19 +8,27 @@
 <title>Greating | DIY 식단</title>
 <meta charset="utf-8">
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-
-<link
-	href="${pageContext.request.contextPath}/resources/css/diy/diy-create.css"
-	rel="stylesheet">
-<script
-	src="${pageContext.request.contextPath}/resources/js/diy/diy-create.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+	
+	<link href="${pageContext.request.contextPath}/resources/css/diy/diy-create.css" rel="stylesheet">
+	<script	src="${pageContext.request.contextPath}/resources/js/diy/diy-create.js"></script>
+	
+	<!-- alert 창 커스텀  -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+	<link href="/greating/resources/css/templates/alert.css" rel="stylesheet">
 </head>
 <body>
+
+	<!-- header -->
 	<jsp:include page="../templates/header.jsp" />
 	<div class="hr"></div>
+	
+	<!-- floating -->	
+	<jsp:include page="/WEB-INF/views/templates/floating-adv.jsp" />
+	
+	
 	<main class="contents hd__inner1100">
 
 		<ul class="page-category">
@@ -90,7 +98,7 @@
 								<input id="healthy-diet" type="radio" name="mainCategoryId" value="1" onchange="handleCheckboxChange(this)">
 								<label for="healthy-diet">건강식단 </label>
 								<input id="care-diet" type="radio" name="mainCategoryId" value="2" onchange="handleCheckboxChange(this)">
-								<label for="care-diet">질병맞춤식단</label>
+								<label for="care-diet">질환맞춤식단</label>
 								<input id="challenge-diet" type="radio" name="mainCategoryId" value="3" onchange="handleCheckboxChange(this)">
 								<label for="challenge-diet">챌린지식단 </label>
 							</div>

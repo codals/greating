@@ -102,8 +102,8 @@ function updateSearchResultBox(data){
 		    dietCardImg.append(img);
 		    
 		    var dietCardInfo = $('<div class="diet-card-info"></div>');
-		    var title = $('<span>').text(item.title);
 		    var subInfo = $('<div class="diet-card-sub-info"></div>');
+		    var title = $('<span>').append($('<a>').attr('href', '/greating/mealdiy/' + item.id).css('color', 'black').text(item.title));
 		    var postHeart = $('<div class="post-heart"></div>').text(item.voteCnt);
 		    var postWriter = $('<div class="post-writer"></div>').text(item.username);
 		    subInfo.append(postHeart, postWriter);

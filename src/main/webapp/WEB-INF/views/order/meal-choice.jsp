@@ -5,21 +5,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+	
+	<link href="${pageContext.request.contextPath}/resources/css/order/meal-choice.css" rel="stylesheet">
+	<script src="${pageContext.request.contextPath}/resources/js/order/meal-choice.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-
-<link href="${pageContext.request.contextPath}/resources/css/order/meal-choice.css" rel="stylesheet">
-<script src="${pageContext.request.contextPath}/resources/js/order/meal-choice.js"></script>
+	<!-- alert 창 커스텀  -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+	<link href="/greating/resources/css/templates/alert.css" rel="stylesheet">
 
 </head>
 <body>
-
+	
+	<!-- header -->
 	<jsp:include page="/WEB-INF/views/templates/header.jsp" />
 	<div class="hr"></div>
+
+	<!-- floating -->	
+	<jsp:include page="/WEB-INF/views/templates/floating-adv.jsp" />
 
 	<!-- 설계하기및 현재 단계 -->
 	<div class="main-content contents hd__inner1100">

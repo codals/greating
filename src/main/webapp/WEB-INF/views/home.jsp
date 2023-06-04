@@ -33,7 +33,13 @@
 
 </head>
 <body>
+
+	<!-- header -->
 	<jsp:include page="/WEB-INF/views/templates/header.jsp" />
+	
+	<!-- floating -->	
+	<jsp:include page="/WEB-INF/views/templates/floating-adv.jsp" />
+	
 	<main id="contents">
 		<div class="main">
 			<section class="main_slide_sec">

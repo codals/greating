@@ -14,7 +14,10 @@ $(document).ready(function () {
       $(`.meal-count-${i}-${j}`).text(count);
       $('.total-count').text(totalCount - 1);
     } else {
-      alert('0개 이상 선택해주세요. ');
+    	Swal.fire({
+      	  title: '0개 이상 선택해주세요.',
+        });
+//    	alert('0개 이상 선택해주세요.');
     }
   });
 
@@ -22,7 +25,10 @@ $(document).ready(function () {
     totalCount = parseInt($('.total-count').text());
 
     if (totalCount >= 6) {
-      alert('최대 6개까지 선택이 가능합니다. ');
+    	Swal.fire({
+        	  title: '최대 6개까지 선택이 가능합니다.',
+          });
+    	alert('최대 6개까지 선택이 가능합니다.');
       return;
     }
 
@@ -61,7 +67,10 @@ $(document).ready(function () {
 $(document).ready(function () {
   $('.btn-buy').click(function () {
     if (totalCount !== 6) {
-      alert('6개를 선택해야 합니다.');
+    	Swal.fire({
+      	  title: '6개를 선택해야 합니다.',
+        });
+    	alert('6개를 선택해야 합니다.');
       return;
     }
     const mealCards = document.getElementsByClassName("meal-card");
@@ -69,8 +78,7 @@ $(document).ready(function () {
 
     for (let i = 0; i < mealCards.length; i++) {
       const mealCard = mealCards[i];
-      const deliveryDate = mealCard.getElementsByClassName(
-          "meal-diet-date")[0].value;
+      const deliveryDate = mealCard.getElementsByClassName("meal-diet-date")[0].value;
       const dietId = +mealCard.getElementsByClassName("meal-diet")[0].value;
       const cnt = +mealCard.getElementsByClassName("meal-count")[0].innerText;
       if (cnt > 0) {
@@ -90,15 +98,24 @@ $(document).ready(function () {
       data: JSON.stringify(data),
       success: function (response) {
         if (response) {
-          alert('식단 주문을 성공하였습니다.')
+        	Swal.fire({
+            	  title: '식단 주문을 성공하였습니다.',
+              });
+//        	alert('식단 주문을 성공하였습니다.')
           location.href = 'http://localhost:8080/greating/diets/mygreating/orders/'
               + response.orderId;
           return;
         }
-        alert("식단 주문을 실패하였습니다.");
+        Swal.fire({
+      	  title: '식단 주문을 실패하였습니다.',
+        });
+//        alert("식단 주문을 실패하였습니다.");
       },
       error: function () {
-        alert("식단 주문을 실패하였습니다.");
+          Swal.fire({
+          	  title: '식단 주문을 실패하였습니다.',
+            });
+//        alert("식단 주문을 실패하였습니다.");
       }
     });
   });
