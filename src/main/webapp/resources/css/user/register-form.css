@@ -1,3 +1,7 @@
+
+.hidden{
+	display:none;
+}
 .content-info > li {
   display: inline-block;
   height: 50px;
@@ -167,4 +171,15 @@ gap: 10px; /* 각 직사각형 사이의 간격 */
 .referral-code > input {
   font-size: 12px;
   padding: 10px;
+}
+#username-validation,
+#password-validation,
+#password-same-result,
+#email-check-result{
+	display:block;
+	font-size: 12px !important;
+    padding-left: 110px;
+    margin-bottom: 10px;
+    color: #918c01;
+    font-weight: bold;
 }

@@ -24,8 +24,14 @@ public class UserDaoImpl implements UserDao {
     }
 
 	@Override
-	public int insertUser(User user) {
+	public int insertUser(User user) throws Exception{
 		String statement = "user.insertUser";
 		return sqlSession.insert(statement, user);
+	}
+
+	@Override
+	public User selectUserEmail(String email) {
+		String statement = "user.selectUserEmail";
+		return sqlSession.selectOne(statement, email);
 	}
 }

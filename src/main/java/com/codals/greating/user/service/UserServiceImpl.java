@@ -27,9 +27,26 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean register(User user) {
 
-    	if(userDao.insertUser(user) ==1 ) {
-    		return true;
-    	}
-		return false;
+    	try {
+			if(userDao.insertUser(user) ==1 ) {
+				return true;
+			}else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
+
+	@Override
+	public boolean checkUserEmail(String email) {
+        if(userDao.selectUserEmail(email)==null) {
+        	return true;
+        }
+        return false;
+
+	}
+
+
 }

@@ -10,5 +10,8 @@ public interface UserDao {
 
     Optional<User> selectByUsername(String username);
 
-	int insertUser(User user);
+	int insertUser(User user) throws Exception;
+
+	User selectUserEmail(String email);
+
 }

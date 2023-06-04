@@ -38,4 +38,12 @@
 		VALUES ( #{username}, #{name}, #{password}, #{email}, #{birth}, #{gender}, #{phone}, #{role})
 
 	</insert>
+	
+	<select id="selectUserEmail"
+		parameterType="String"
+		resultType="User">
+		SELECT *
+		FROM "user"
+		WHERE email = #{email}
+	</select>
 </mapper>

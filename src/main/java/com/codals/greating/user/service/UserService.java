@@ -10,4 +10,7 @@ public interface UserService {
     User getUserByUsername(String username);
 
 	boolean register(User user);
+
+	boolean checkUserEmail(String email);
+
 }
