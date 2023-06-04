@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.codals.greating.admin.dao.AdminDao;
+import com.codals.greating.admin.dto.AdminDailyDietResponseDto;
 import com.codals.greating.admin.dto.AdminDietRegisterRequestDto;
 import com.codals.greating.admin.dto.AdminDto;
 import com.codals.greating.constant.MainCategoryCode;
@@ -16,7 +17,9 @@ import com.codals.greating.diet.entity.DailyDiet;
 import com.codals.greating.diet.entity.Diet;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Service
 @RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService{
@@ -46,6 +49,15 @@ public class AdminServiceImpl implements AdminService{
 		};
 		return false;
 	}
+
+
+	@Override
+	public List<AdminDailyDietResponseDto> getDailyDietsByDate(String date) {
+		
+		List<AdminDailyDietResponseDto> result =  adminDao.selectDailyDietsByDate(date);
+		log.info("result {} ", result);
+		return result;
+	}
 	
 	@Override
 	public List<AdminDto> topList() {
@@ -55,6 +67,13 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public boolean approveCheck(long postId) {
 		return adminDao.approveCheck(postId);
+	}
+
+
+	@Override
+	public List<AdminDto> commingSoonList() {
+		// TODO Auto-generated method stub
+		return adminDao.commingSoonList();
 	}
 
 

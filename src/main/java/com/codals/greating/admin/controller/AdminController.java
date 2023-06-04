@@ -23,14 +23,21 @@ public class AdminController {
 	@GetMapping("/popular")
 	public String loadAdminMainPage(@SessionAttribute("loginUser") User loginUser, Model model) {
 		List<AdminDto> postList = service.topList();
-//		model.addAttribute("dto", dto);
+
 		model.addAttribute("list", postList);
-//		System.out.println(dto + "," + postList);
+
 		return "admin/admin-popularList";
 	}
 	
 	@GetMapping("/register")
 	public String adminRegister() {
 		return "admin/admin-register";
+	}
+	
+	@GetMapping("/commingsoon")
+	public String loadAdminCommingSoon(Model model) {
+		List<AdminDto> commingSoonList = service.commingSoonList();
+		model.addAttribute("list", commingSoonList);
+		return "admin/admin-commingsoon";
 	}
 }
