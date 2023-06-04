@@ -51,12 +51,12 @@
                                         <button class="btn-menu-add">+ 메뉴추가</button>
                                     </td>
                                     <td class="order-td-2">
-                                        <c:forEach var="orderDiet" items="${orderDiets.orderDietResultResponse}">
+                                        <c:forEach var="orderDiet" items="${orderDiets.orderDiets}">
                                         <span>${orderDiet.name}</span><br>
                                         </c:forEach>
                                     </td>
                                     <td class="order-td-3">
-                                        <c:forEach var="orderDiet" items="${orderDiets.orderDietResultResponse}">
+                                        <c:forEach var="orderDiet" items="${orderDiets.orderDiets}">
                                             <span>${orderDiet.cnt}</span><br>
                                         </c:forEach>
                                     </td>
@@ -69,7 +69,7 @@
             <div class="meals-final">
                 <p class="meals-final__cont">
                     <span class="meals-final__cont-txt">Total</span>
-                    <em><span class="meals-final__cont__num" id="totalPriceWithAdd" data-total-count="57000">57,000원</span></em>
+                    <em><span class="meals-final__cont__num" id="totalPriceWithAdd">${orderDetail.totalPriceFormat}원</span></em>
                 </p>
             </div>
             <div class="meals-btn">

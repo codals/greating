@@ -1,5 +1,6 @@
 package com.codals.greating.admin.dao;
 
+
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +26,13 @@ public class AdminDaoImpl implements AdminDao{
 		String statement = "diet.selectDietsByMainCategory";
 		int searchCategory = category.getId();
 		return = sqlSession.selectList(statement,searchCategory);
+  }
+
+
+	@Override
+	public List<AdminDto> topList() {
+		return sqlsession.selectList("admin.topList");
+
 	}
 
 
@@ -32,6 +40,12 @@ public class AdminDaoImpl implements AdminDao{
 	public int insertDailyDiets(List<DailyDiet> diets) {
 		String statement = "diet.insertDailyDiets";
 		return sqlSession.update(statement, diets);
+  }
+  @Override
+	public boolean approveCheck(long postId) {
+		int updatedRows = sqlsession.update("admin.approveCheck", postId);
+	    return updatedRows > 0;
+
 	}
 
 }

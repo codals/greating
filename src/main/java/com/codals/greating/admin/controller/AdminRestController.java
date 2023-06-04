@@ -1,5 +1,6 @@
 package com.codals.greating.admin.controller;
 
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -48,5 +49,13 @@ public class AdminRestController {
 		}
 		
 	    return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
+  }
+	@PostMapping("/approve")
+	public ResponseEntity<Boolean> changeStatus(@RequestParam("postId") long postId) {
+		if(service.approveCheck(postId)) {
+			return ResponseEntity.ok().build(); 
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+
 	}
 }

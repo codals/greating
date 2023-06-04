@@ -1,5 +1,6 @@
 package com.codals.greating.admin.dao;
 
+
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,11 @@ public interface AdminDao {
 
 	List<Diet> selectDietsByMainCategory(MainCategoryCode category);
 
-
 	int insertDailyDiets(List<DailyDiet> diets);
+
+	List<AdminDto> topList();
+
+	boolean approveCheck(long postId);
+
 
 }

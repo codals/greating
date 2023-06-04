@@ -15,7 +15,8 @@ body {
 
 .main-img {
   width: 525px;
-  height: auto;
+  height: 525px;
+  max-height: auto;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
@@ -24,7 +25,9 @@ body {
 
 .main-img img {
 	width: 100%;
-	height: auto;
+	max-height: 525px;
+	object-fit: cover;
+	
     display: block;
 }
 

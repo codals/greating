@@ -1,5 +1,6 @@
 package com.codals.greating.admin.service;
 
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,4 +46,15 @@ public class AdminServiceImpl implements AdminService{
 		return false;
 	}
 	
+	@Override
+	public List<AdminDto> topList() {
+		return dao.topList();
+	}
+
+	@Override
+	public boolean approveCheck(long postId) {
+		return dao.approveCheck(postId);
+	}
+
+
 }

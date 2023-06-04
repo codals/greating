@@ -37,7 +37,7 @@ public class DietServiceImpl implements DietService {
 
     @Override
     public List<PreviewResponseDto> getWeeklyDailyDiets() {
-        List<DailyDiet> dailyDiets = dailyDietDao.selectDailyDietsByStartDate(DateUtil.dateToString(new Date()))
+        List<DailyDiet> dailyDiets = dailyDietDao.selectAllByStartDate(DateUtil.dateToString(new Date()))
             .orElseGet(null);
         return getPreviewResponseDto(dailyDiets);
     }
