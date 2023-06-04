@@ -8,4 +8,14 @@
     FROM diet
     WHERE id = #{dietId}
   </select>
+  
+  <select id="selectDietsByMainCategory" parameterType="Integer" resultType="Diet">
+  	select *
+  	from diet
+  	where main_category_id = #{searchCategory}
+  
+  </select>
+  
+
+  
 </mapper>

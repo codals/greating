@@ -47,36 +47,6 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
 
-	<!-- 페이지 로딩 전 -->
-	<!-- <script>
-	    $(document).ready(function() {
-	        // 페이지 로드되면 AJAX 요청 보내기
-	        var token = '${imgApiToken}'; 
-	        console.log(token);
-	        var imgUrl = '${postDetail.post.imgUrl}';
-	        console.log(imgUrl);
-	
-	        $.ajax({
-	            type: "GET",
-	            url: encodedUrl,
-	            headers: {
-	                token: token
-	            },
-	            success: function(response) {
-	                var resultUrl = encodeURIComponent(response);
-	                console.log("resultUrl", resultUrl);
-	
-	                var imgTag = $("<img>").attr("src", resultUrl).attr("alt", "Main Image"); // <img> 요소 생성 및 속성 설정
-	                $(".main-img").empty().append(imgTag); // 기존 내용을 지우고 새로운 이미지 태그 추가
-	
-	            },
-	            error: function() {
-	                // 에러 처리
-	                alert("이미지를 불러올 수 없습니다.");
-	            }
-	        });
-	    });
-	</script> -->
 </head>
 
 
@@ -85,26 +55,44 @@
 	<!-- header 가져오기 -->
 	<jsp:include page="../templates/header.jsp" />
 	<div class="hr"></div>
-	<div class="share">
-		<button id="floating-button" type="button" onclick="share(${postDetail.post.id})">공유하기</button>
-		
-	</div>
-	<div class="advertise">
-		<div class="advertise-box">
-			<div class="advertise-box-img">
-				<img src="/greating/resources/images/diy/default.png">
-			</div>
-			<div class="advertise-box-info">
-				<span>코달이와 함께하는 </span> 
-				<span> DIY 식단 만들기 </span>
-			</div>
-			<div class="advertise-box-button">
-				<a href="/greating/mealdiy/new"> 만들러가기</a>
-			
-			</div>
-		
+
+	<!-- 플로팅 공유 버튼 -->
+	<div class="floating-container">
+		<div class="floating-button">
+			<img alt="" src="/greating/resources/images/templates/greating-floating-btn.png" onclick="toggleBox()">
+			<div class="overlay">
+			  <div style="display: flex;">
+			      <div class="floating-overlay-button">
+			        <img src="/greating/resources/images/templates/copy-link-icon.jpg" style="width: 28px; height: 28px; margin-top: 8px; margin-left: 10px;" onclick="copyLink()">>
+			      </div>
+			      <div class="floating-overlay-button">
+			        <img src="/greating/resources/images/templates/kakao.png" onclick="share(${postDetail.post.id},'${kakaoShareKey}')">
+			      </div>
+			      <div class="floating-overlay-button">
+			        <img src="" onclick="">
+			      </div>
+		    	</div>
+		    </div>
 		</div>
 	</div>
+	
+	<!-- 플로팅 배너 -->	
+	<div class="advertise">
+		<div style="font-size: 15px; color: #999;">이것도 확인해보세요!</div>
+		<div class="advertise-box">
+			<div class="advertise-box-img">
+				<img src="/greating/resources/images/templates/diy-floating-adv-v8.png">
+			</div>	
+		</div>
+		<div class="advertise-box">
+			<div class="advertise-box-btn"><a href="" style="color: black;">DIY 식단 투표하러 가기</a></div>
+		</div>
+		<div class="advertise-box">
+			<div class="advertise-box-btn"><a href="" style="color: black;">DIY 식단 만들러 가기</a></div>
+		</div>
+	</div>
+	
+	
 	<!-- 본 페이지 내용 -->
 	<div class="main-content hd__inner1100">
 		<ul class="page-category">
