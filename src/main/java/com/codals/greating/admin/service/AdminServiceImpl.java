@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.codals.greating.admin.dao.AdminDao;
+import com.codals.greating.admin.dto.AdminDailyDietResponseDto;
 import com.codals.greating.admin.dto.AdminDietRegisterRequestDto;
 import com.codals.greating.admin.dto.AdminDto;
 import com.codals.greating.constant.MainCategoryCode;
@@ -45,6 +46,15 @@ public class AdminServiceImpl implements AdminService{
 			return true;
 		};
 		return false;
+	}
+
+
+	@Override
+	public List<AdminDailyDietResponseDto> getDailyDietsByDate(String date) {
+
+		
+		
+		return null;
 	}
 	
 	@Override

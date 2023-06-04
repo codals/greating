@@ -112,10 +112,8 @@
 }
 
 .content {
-	display: inline-block;
-	position: fixed;
-	height: 1000px;
-	overflow-y:auto;
+	height: auto;
+	margin-left:250px;
 }
 
 .main-content {

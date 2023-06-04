@@ -2,6 +2,13 @@ $(document).ready(function() {
 	calendarInit();
 });
 
+function formatDate(date) {
+	var year = date.getFullYear();
+	var month = (date.getMonth() + 1).toString().padStart(2, '0');
+	var day = date.getDate().toString().padStart(2, '0');
+	return year + '-' + month + '-' + day;
+}
+
 function calendarInit() {
 
 	var date = new Date();
@@ -41,17 +48,24 @@ function calendarInit() {
 		calendar.innerHTML = '';
 
 		for (var i = prevDate - prevDay + 1; i <= prevDate; i++) {
-			calendar.innerHTML = calendar.innerHTML
-					+ '<button class="day prev">' + i + '</button>'
+
+			var date = new Date(currentYear, currentMonth - 1, i);
+			var dateString = formatDate(date);
+			calendar.innerHTML += '<button class="day prev" onclick="getDailyDiets(\''
+					+ dateString + '\')">' + i + '</button>';
 		}
 
 		for (var i = 1; i <= nextDate; i++) {
-			calendar.innerHTML = calendar.innerHTML
-					+ '<button class="day current">' + i + '</button>'
+			var date = new Date(currentYear, currentMonth, i);
+			var dateString = formatDate(date);
+			calendar.innerHTML += '<button class="day current" onclick="getDailyDiets(\''
+					+ dateString + '\')">' + i + '</button>';
 		}
 		for (var i = 1; i <= (7 - nextDay == 7 ? 0 : 7 - nextDay); i++) {
-			calendar.innerHTML = calendar.innerHTML
-					+ '<a class="day next disable">' + i + '</a>'
+			var date = new Date(currentYear, currentMonth + 1, i);
+			var dateString = formatDate(date);
+			calendar.innerHTML += '<button class="day next" onclick="getDailyDiets(\''
+					+ dateString + '\')">' + i + '</button>';
 		}
 
 		if (today.getMonth() == currentMonth) {
@@ -79,7 +93,7 @@ $(document).ready(function() {
 		cardContainer.innerHTML = '';
 
 		$.ajax({
-			url : '/greating/api/admin/register?category='+selectedCategory,
+			url : '/greating/api/admin/register?category=' + selectedCategory,
 			method : 'GET',
 			success : function(response) {
 				console.log(response);
@@ -98,7 +112,6 @@ function updateDiets(response) {
 	var choosenResult = document.querySelector('.choosen-result');
 	var choosenDietIdDiv = document.querySelector('.choosen-diet-id');
 	var choosenDietIds = choosenDietIdDiv.getElementsByTagName('span');
-
 
 	function clearCardContainer() {
 		cardContainer.innerHTML = '';
@@ -142,20 +155,19 @@ function updateDiets(response) {
 	}
 
 	clearCardContainer();
-	
-	
+
 	response.forEach(function(data) {
 		var card = createCard(data);
 		cardContainer.appendChild(card);
 	});
 
-	function handleCheckboxChange(id,name, isChecked) {
+	function handleCheckboxChange(id, name, isChecked) {
 		if (isChecked) {
 			addSpanToChoosenResult(id, name);
 
 		} else {
-	
-				removeSpanFromChoosenResult(id, name);
+
+			removeSpanFromChoosenResult(id, name);
 		}
 
 	}
@@ -164,7 +176,7 @@ function updateDiets(response) {
 		var span = document.createElement('span');
 		span.textContent = name;
 		choosenResult.appendChild(span);
-		
+
 		var idSpan = document.createElement('span');
 		idSpan.textContent = id;
 		choosenDietIdDiv.appendChild(idSpan);
@@ -190,22 +202,20 @@ function updateDiets(response) {
 
 }
 
+function registerDailyDiet() {
 
-function registerDailyDiet(){
-	
 	var selectedDate = $('#date').val();
-	
+
 	if (selectedDate === '') {
-		  alert('날짜를 선택해주세요.');
-		  return;
+		alert('날짜를 선택해주세요.');
+		return;
 	}
-//	}
-//	var parsedDate = new LocalDate(selectedDate);
-//	var formattedDate = parsedDate.toISOString().split('T')[0];
+	// }
+	// var parsedDate = new LocalDate(selectedDate);
+	// var formattedDate = parsedDate.toISOString().split('T')[0];
 
 	var choosenDietIdDiv = document.querySelector('.choosen-diet-id');
 	var dietIds = document.querySelectorAll('.choosen-diet-id span');
-
 
 	var dietIdsList = []
 	for (var i = 0; i < dietIds.length; i++) {
@@ -213,48 +223,51 @@ function registerDailyDiet(){
 		dietIdsList.push(idValue);
 	}
 	console.log(dietIdsList);
-	console.log("date "+ selectedDate)
-	
+	console.log("date " + selectedDate)
+
 	const data = {
-		dietIds: dietIdsList,
-		startDate:selectedDate
+		dietIds : dietIdsList,
+		startDate : selectedDate
 	};
 
 	$.ajax({
 		url : '/greating/api/admin/register',
 		method : 'POST',
-		dataType: 'json',
-		contentType: 'application/json',
-		data: JSON.stringify(data),
+		dataType : 'json',
+		contentType : 'application/json',
+		data : JSON.stringify(data),
 
 		success : function(response) {
 			$('#date').val('');
 			$('input[name="category"]').prop('checked', false);
 
 			$('.choosen-diet-id').empty();
-			
+
 			$('.choosen-result').empty();
-			
+
 			$('.slide-wrapper').empty();
-			
+
 			alert('등록이 완료되었습니다. ');
-		
+
 		},
 		error : function() {
 			console.log('컨트롤러 호출 실패');
 		}
 	});
-	
-	
-	
+
 }
 
+function getDailyDiets(date){
+	$.ajax({
+		url : '/greating/api/admin/daily-diets?date='+date,
+		method : 'get',
+		success : function(response) {
+		
 
+		},
+		error : function() {
+			console.log('컨트롤러 호출 실패');
+		}
+	});
 
-
-
-
-
-
-
-
+}

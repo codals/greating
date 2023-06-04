@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codals.greating.admin.dto.AdminDailyDietResponseDto;
 import com.codals.greating.admin.dto.AdminDietRegisterRequestDto;
 import com.codals.greating.admin.service.AdminService;
 import com.codals.greating.constant.MainCategoryCode;
@@ -29,23 +30,22 @@ public class AdminRestController {
 
 	private final AdminService adminService;
 
-
 	@GetMapping("/register")
 	public ResponseEntity<List<Diet>> getDietsByMainCategory(MainCategoryCode category) {
-		
+
 		log.info(category);
 		List<Diet> diets = adminService.getDietsByMainCategory(category);
 		log.info(diets);
-	    return new ResponseEntity<>(diets, HttpStatus.OK);
+		return new ResponseEntity<>(diets, HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/register")
-	public ResponseEntity<Boolean> registerDailyDiets(@RequestBody AdminDietRegisterRequestDto requestDto){
+	public ResponseEntity<Boolean> registerDailyDiets(@RequestBody AdminDietRegisterRequestDto requestDto) {
 
 		log.info(requestDto);
-		
-		if(adminService.registerDailyDiets(requestDto)) {
-		    return new ResponseEntity<>(true, HttpStatus.OK);
+
+		if (adminService.registerDailyDiets(requestDto)) {
+			return new ResponseEntity<>(true, HttpStatus.OK);
 
 		}
 		
@@ -58,5 +58,13 @@ public class AdminRestController {
 		}
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
 
+
+	}
+
+	@GetMapping("daily-diets")
+	public ResponseEntity<List<Diet>> getDailyDiets(String date) {
+
+		List<AdminDailyDietResponseDto> diets = adminService.getDailyDietsByDate(date);
+		return null;
 	}
 }
