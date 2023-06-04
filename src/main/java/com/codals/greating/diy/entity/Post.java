@@ -22,6 +22,7 @@ public class Post {
 	private Integer subCategoryId;
 	private Integer foodCountryId;
 	private Integer userId;
+	private String username;
 	private String title;
 	private String content;
 	private String imgUrl;

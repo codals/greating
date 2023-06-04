@@ -12,8 +12,8 @@ public interface MyPageService {
 
 	public List<MyPageDto> diyList(MyPageDto dto, int page);
 
-	public List<MyPageDto> scrapList(MyPageScrapDto dto);
+	public List<MyPageDto> scrapList(MyPageScrapDto dto, int page);
 
-	public List<MyPageDto> voteList(MyPageScrapDto dto);
+	public List<MyPageDto> voteList(MyPageScrapDto dto, int page);
 
 }

@@ -271,7 +271,7 @@
 
 .diy-diet-rice-btns>input:checked+label, 
 .diy-diet-soup-btns>input:checked+label,
-	.diy-diet-main-btns>input:checked+label {
+.diy-diet-main-btns>input:checked+label {
 	border: 2px solid #918c01;
 	border-radius: 20px;
 	padding: 10px;
@@ -391,7 +391,7 @@
 	margin-top: 50px;
 }
 
-#cart {
+.cart-button {
 	background: #A6A6A6;
 	color: white;
 	padding: 13px;
@@ -400,7 +400,7 @@
 	font-size: 18px;
 }
 
-#cart>i {
+.cart-button>i {
 	margin-right: 10px;
 }
 /*modal */
@@ -424,19 +424,33 @@
 	text-align: center;
 }
 
+.modal-food-card[type="radio"],
 .modal-food-card[type="checkbox"] {
 	display: none;
 }
 
-.modal-food-card[type="checkbox"]:checked+label>img {
-	display: inline-block;
-	margin: 10px 5px 10px 5px;
-	text-align: center;
-	border: 3px solid #918c01;
+.modal-food-card[type="radio"]:checked+label {
+	border: 5px solid #918c01;
+	border-radius: 10px;
+	padding:10px;
 }
 
-.modal-food-card[type="checkbox"]:checked+label>span {
-	padding-left: 10px;
+.modal-food-card[type="checkbox"]:checked+label {
+	border: 5px solid #918c01;
+	border-radius: 10px;
+	padding:5px;
+}
+
+.modal-food-card[type="radio"]:checked+label>img
+ {
+	display: inline-block;
+	margin: 5px 3px 5px 3px;
+	text-align: center;
+	/* border: 5px solid #918c01; */
+}
+
+.modal-food-card[type="radio"]:checked+label>span {
+/* 	padding-left: 5px; */
 }
 
 .modalFoodImg {
@@ -447,15 +461,21 @@
 }
 
 .modal-food-card-price {
-	font-size: 25px;
+	font-size: 20px;
 	font-weight: bold;
 	line-height: 26px;
+	margin-top: 2px;
 }
 
 .modal-food-card-name {
 	font-size: 20px;
 	font-weight: bold;
 	line-height: 18px;
+}
+
+.modal-title {
+	font-weight: bold;
+	color: white;
 }
 
 .modalTitle {
@@ -467,6 +487,7 @@
 .modalTitleDesc {
 	margin: 5px 0px 15px 0px;
 	font-size: 18px;
+	color: #999999
 }
 
 .modalCloseBtn {
@@ -539,4 +560,26 @@
 	font-size: 20px;
 	padding: 12px;
 	width: 150px;
+}
+
+#selected-soup-name-sec,
+#selected-main-name-sec,
+#selected-side-name-sec,
+#selected-extra-name-sec {
+	margin-left: 10px; 
+	margin-top: 10px;
+}
+
+.text-border {
+  font-weight: bold;
+  color: #918c01;
+  font-size: 20px;
+}
+
+.diy-diet-price .error-span,
+.diy-diet-cal .error-span {
+    color: red !important;
+    font-size: 14px !important;
+    font-weight: 300 !important;
+    line-height: 1 !important;
 }

@@ -8,4 +8,9 @@ public interface UserService {
     boolean authenticate(LoginRequestDto loginRequestDto);
 
     User getUserByUsername(String username);
+
+	boolean register(User user);
+
+	boolean checkUserEmail(String email);
+
 }

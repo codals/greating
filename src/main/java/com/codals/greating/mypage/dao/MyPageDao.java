@@ -14,5 +14,9 @@ public interface MyPageDao {
 
 	List<MyPageDto> voteList(MyPageScrapDto dto);
 
-	int getTotalPageCount(long userId);
+	int getMyPostTotalPageCount(long userId);
+	
+	int getMyScrapTotalPageCount(long userId);
+	
+	int getMyVoteTotalPageCount(long userId);
 }

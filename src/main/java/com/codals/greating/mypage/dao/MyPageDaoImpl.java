@@ -37,9 +37,23 @@ public class MyPageDaoImpl implements MyPageDao {
 		return sqlsession.selectList("mypage.voteList", dto);
 	}
 
+
 	@Override
-	public int getTotalPageCount(long userId) {
-		return sqlsession.selectOne("mypage.getTotalPageCount", userId);
+	public int getMyPostTotalPageCount(long userId) {
+		// TODO Auto-generated method stub
+		return sqlsession.selectOne("mypage.getMyPostTotalPageCount", userId);
+	}
+
+	@Override
+	public int getMyScrapTotalPageCount(long userId) {
+		// TODO Auto-generated method stub
+		return sqlsession.selectOne("mypage.getMyScrapTotalPageCount", userId);
+	}
+
+	@Override
+	public int getMyVoteTotalPageCount(long userId) {
+		// TODO Auto-generated method stub
+		return sqlsession.selectOne("mypage.getMyVoteTotalPageCount", userId);
 	}
 
 

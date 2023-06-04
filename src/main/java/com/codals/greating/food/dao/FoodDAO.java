@@ -6,6 +6,8 @@ import com.codals.greating.food.entity.Food;
 
 public interface FoodDAO {
 
-	List<Food> findByFoodTypeId(int foodTypeId);
+	List<Food> findGreatingFoodsByFoodTypeId(int foodTypeId);
 
+	List<Food> findMarketFoodsByFoodTypeId(int foodTypeId);
+	
 }

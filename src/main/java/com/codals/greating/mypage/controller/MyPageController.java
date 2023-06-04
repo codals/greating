@@ -27,12 +27,12 @@ public class MyPageController {
     
     @GetMapping("/main")
     public String myPage(@SessionAttribute("loginUser") User loginUser, Model model) {
-    	System.out.println("/main");
+
         // 세션에서 로그인된 사용자 정보 가져오기
-        
+    	model.addAttribute("username", loginUser.getUsername());
        
         // 사용자 정보를 모델에 추가하여 화면에 표시
-        model.addAttribute("username", loginUser.getUsername());
+        
         model.addAttribute("email", loginUser.getEmail());
         
         return "user/mypage-welcome";
@@ -60,20 +60,19 @@ public class MyPageController {
         
         model.addAttribute("dto", dto);
         model.addAttribute("list", dietList);
-        System.out.println(dietList);
-        System.out.println(page);
         return "user/mypage-mydiy";
     }
 
 
     @GetMapping("/scrap")
-    public String loadMyScrapPage(@SessionAttribute("loginUser") User loginUser, MyPageScrapDto dto, Model model) {
+    public String loadMyScrapPage(@SessionAttribute("loginUser") User loginUser, MyPageScrapDto dto,
+    		@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
         
     	// 사용자 ID를 가져와서 dto에 설정
         dto.setUserId(loginUser.getId());
         
         // dto를 기반으로 사용자의 글 목록을 조회
-        List<MyPageDto> scrapList = service.scrapList(dto);
+        List<MyPageDto> scrapList = service.scrapList(dto, page);
         
         model.addAttribute("dto", dto);
         model.addAttribute("list", scrapList);
@@ -82,12 +81,13 @@ public class MyPageController {
     }
 
     @GetMapping("/voted")
-    public String loadMyVotedPage(@SessionAttribute("loginUser") User loginUser, MyPageScrapDto dto, Model model) {
+    public String loadMyVotedPage(@SessionAttribute("loginUser") User loginUser, MyPageScrapDto dto, 
+    		@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
     	// 사용자 ID를 가져와서 dto에 설정
         dto.setUserId(loginUser.getId());
         
         // dto를 기반으로 사용자의 글 목록을 조회
-        List<MyPageDto> voteList = service.voteList(dto);
+        List<MyPageDto> voteList = service.voteList(dto, page);
         
         model.addAttribute("dto", dto);
         model.addAttribute("list", voteList);

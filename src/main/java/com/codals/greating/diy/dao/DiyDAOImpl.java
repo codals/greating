@@ -13,6 +13,8 @@ import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.dto.SearchRequestDto;
 import com.codals.greating.diy.dto.SimplePostDto;
 import com.codals.greating.diy.entity.Post;
+import com.codals.greating.diy.entity.Scrap;
+import com.codals.greating.diy.entity.Vote;
 import com.codals.greating.exception.BusinessException;
 import com.codals.greating.exception.ErrorCode;
 import com.codals.greating.diy.dto.VoteRequestDto;
@@ -41,6 +43,8 @@ public class DiyDAOImpl implements DiyDAO {
 	    String insertStatement = "post.insertPost";
 	    String selectStatement = "post.selectLastInsertedId";
 	    String sequenceStatement = "post.nextPostId";
+	    
+		log.info("post 저장 전=" + post);
 
 	    // 게시글을 삽입합니다.
 	    int rowsAffected = sqlSession.insert(insertStatement, post);
@@ -58,6 +62,7 @@ public class DiyDAOImpl implements DiyDAO {
 	    // 생성된 게시글의 ID 값을 조회합니다.
 //	    Integer postId = sqlSession.selectOne(selectStatement);
 	    Integer postId = post.getId();
+		log.info("post 저장 직후=" + post);
 	    log.info("postId=" + postId);
 	    return nextVal-1;
 	}
@@ -100,6 +105,19 @@ public class DiyDAOImpl implements DiyDAO {
 	public List<SimplePostDto> selectPostBySearchConditions(SearchRequestDto requestDto) {
 		String statement = "post.selectPostBySearchConditions";
 		return sqlSession.selectList(statement,requestDto);
+	}
+
+	@Override
+	public Vote selectVoteByPostIdAndUserId(VoteRequestDto requestDto) {
+
+		String statement ="post.selectVoteByPostIdAndUserId";
+		return sqlSession.selectOne(statement,requestDto);
+	}
+
+	@Override
+	public Scrap selectScrapByPostIdAndUserId(ScrapRequestDto requestDto) {
+		String statement ="post.selectScrapByPostIdAndUserId";
+		return sqlSession.selectOne(statement,requestDto);
 	}
 
 }

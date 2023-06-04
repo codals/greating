@@ -15,7 +15,7 @@ public interface DiyService {
 
 	PostResponseDto getPostDetail(int postId);
 
-	Integer savePost(User loginUser, DiyRequestDto newPost, String path);
+	Integer savePost(User loginUser, DiyRequestDto newPost);
 
 	boolean scrap(ScrapRequestDto requestDto);
 	boolean cancelScrap(ScrapRequestDto requestDto);
@@ -26,5 +26,9 @@ public interface DiyService {
 	List<Post> loadPostsByCategoryType(int mainCategoryid);
 
 	List<SimplePostDto> search(SearchRequestDto requestDto);
+
+	boolean checkVoted(VoteRequestDto requestDto);
+
+	boolean checkScrapped(ScrapRequestDto requestDto);
 	
 }

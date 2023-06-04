@@ -16,16 +16,24 @@
     <typeAlias alias="User" type="com.codals.greating.user.entity.User"/>
     <typeAlias alias="Post" type="com.codals.greating.diy.entity.Post"/>
     <typeAlias alias="Food" type="com.codals.greating.food.entity.Food"/>
+    <typeAlias alias="Vote" type="com.codals.greating.diy.entity.Vote"/>
+    <typeAlias alias="Scrap" type="com.codals.greating.diy.entity.Scrap"/>
     <typeAlias alias="PostResponseDto" type="com.codals.greating.diy.dto.PostResponseDto"/>
     <typeAlias alias="MainCategory" type="com.codals.greating.diet.entity.MainCategory"/>
     <typeAlias alias="SubCategory" type="com.codals.greating.diet.entity.SubCategory"/>
+    <typeAlias alias="DailyDiet" type="com.codals.greating.diet.entity.DailyDiet"/>
+    <typeAlias alias="Diet" type="com.codals.greating.diet.entity.Diet"/>
+    <typeAlias alias="Order" type="com.codals.greating.diet.entity.Order"/>
+    <typeAlias alias="OrderDiet" type="com.codals.greating.diet.entity.OrderDiet"/>
     <typeAlias alias="MypageDiy" type="com.codals.greating.mypage.dto.MyPageDto"/>
     <typeAlias alias="MypageScrap" type="com.codals.greating.mypage.dto.MyPageScrapDto"/>
     <typeAlias alias="ScrapRequestDto" type="com.codals.greating.diy.dto.ScrapRequestDto"/>
     <typeAlias alias="VoteRequestDto" type="com.codals.greating.diy.dto.VoteRequestDto"/>
     <typeAlias alias="SearchRequestDto" type="com.codals.greating.diy.dto.SearchRequestDto"/>
     <typeAlias alias="SimplePostDto" type="com.codals.greating.diy.dto.SimplePostDto"/>
-    
+    <typeAlias alias="AdminTopList" type="com.codals.greating.admin.dto.AdminDto"/>
+    <typeAlias alias="AdminDailyDietResponseDto" type="com.codals.greating.admin.dto.AdminDailyDietResponseDto"/>
+        
   </typeAliases>
   
 </configuration>

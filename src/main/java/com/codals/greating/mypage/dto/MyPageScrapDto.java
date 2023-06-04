@@ -18,4 +18,10 @@ public class MyPageScrapDto {
 	private long maxCalorie;
 	private long maxPrice;
 	private String imgUrl;
+	// Paging
+    private int startRow;
+    private int endRow;
+	private int page;
+	private int totalPage;
+	private int totalCount;
 }

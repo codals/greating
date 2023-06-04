@@ -12,13 +12,6 @@
 <!-- css로 가져오기 -->
 <link href="${pageContext.request.contextPath}/resources/css/diy/diy-main.css" rel="stylesheet">
 
-<!-- font 가져오기 -->
-<link
-	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"
-	rel="stylesheet" />
-<link
-	href="https://fonts.googleapis.com/css?family=NanumMyeongjo&display=swap"
-	rel="stylesheet" />
 	
 <script src="/greating/resources/js/diy/diy-main.js"></script>
 
@@ -28,6 +21,10 @@
 
 	<!-- header 가져오기 -->
 	<jsp:include page="../templates/header.jsp" />
+	<div class="hr"></div>
+	
+	<!-- floating -->	
+	<jsp:include page="/WEB-INF/views/templates/floating-adv.jsp" />
 
 	<!-- 1. 배너 -->
 	<div class="banner-img">

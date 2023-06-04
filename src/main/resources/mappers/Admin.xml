@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+	<select id="topList" resultType="AdminTopList">
+		SELECT
+		p.id,
+		p.title,
+		p.vote_cnt,
+		p.status,
+		p.created_at,
+		u.username,
+		mc.name AS mainCategoryName,
+		sc.name
+		AS subCategoryName
+		FROM
+		post p
+		INNER JOIN "user" u ON p.user_id = u.id
+		INNER JOIN main_category mc ON p.main_category_id = mc.id
+		INNER JOIN
+		sub_category sc ON p.sub_category_id = sc.id
+		WHERE
+		p.status = 0
+		ORDER BY
+		p.VOTE_CNT DESC
+		FETCH FIRST 10 ROWS ONLY
+	</select>
+
+	<select id="commingSoonList"
+		resultType="AdminTopList">
+		SELECT
+			p.id,
+			p.title,
+			p.vote_cnt,
+			p.status,
+			p.created_at,
+			u.username,
+			mc.name AS mainCategoryName,
+			sc.name AS subCategoryName
+		FROM
+			post p
+			INNER JOIN "user" u ON p.user_id = u.id
+			INNER JOIN main_category mc ON p.main_category_id = mc.id
+			INNER JOIN sub_category sc ON p.sub_category_id = sc.id
+		WHERE
+    		p.status = 2
+		ORDER BY p.VOTE_CNT DESC
+	</select>
+	
+
+	<update id="approveCheck" parameterType="long">
+		UPDATE post
+		SET status =
+		2
+		WHERE id = #{postId}
+	</update>
+
+
+	<update id="insertDailyDiets" parameterType="java.util.List">
+		INSERT INTO daily_diet (
+		id, diet_id, start_date, end_date
+		)
+		SELECT
+		daily_diet_id_seq.NEXTVAL AS id
+		, T.*
+		FROM (
+		<foreach collection="list" item="item" index="index"
+			separator="union all">
+			SELECT #{item.dietId} as diet_id,
+			#{item.startDate} as
+			startDate,
+			#{item.endDate} as endDate
+			FROM SYS.DUAL
+		</foreach>
+		) T
+	</update>
+	
+	<select id="selectDailyDietsByDate" parameterType="String"
+		resultType="AdminDailyDietResponseDto">
+		select daily_diet.id as id,
+		daily_diet.diet_id as diet_id,
+		main_category.name as main_category_name,
+		sub_category.name as
+		sub_category_name,
+		diet.name as diet_name
+		from daily_diet join diet on
+		daily_diet.diet_id = diet.id
+		join main_category on main_category_id =
+		main_category.id
+		join sub_category on sub_category_id = sub_category.id
+		where #{date} =
+		daily_diet.start_date or #{date} = daily_diet.end_date
+	</select>
+
+</mapper>

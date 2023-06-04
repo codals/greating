@@ -13,14 +13,14 @@
 		<result property="imgUrl" column="img_url" />
 	</resultMap>
 
-	<resultMap id="postResponseDtoResultMap"
-		type="PostResponseDto">
+	<resultMap id="postResponseDtoResultMap" type="PostResponseDto">
 		<association property="post" javaType="Post">
 			<id property="id" column="id" />
 			<result property="mainCategoryId" column="main_category_id" />
 			<result property="subCategoryId" column="sub_category_id" />
 			<result property="foodCountryId" column="food_country_id" />
 			<result property="userId" column="user_id" />
+			<result property="username" column="username" />
 			<result property="title" column="title" />
 			<result property="content" column="content" />
 			<result property="imgUrl" column="img_url" />
@@ -109,8 +109,8 @@
 
 	<insert id="insertPost" parameterType="Post">
 	    <![CDATA[
-	    INSERT INTO post (main_category_id, sub_category_id, food_country_id, user_id, title, "CONTENT", img_url, rice_food_id, soup_food_id, main_food_id, side1_food_id, side2_food_id, extra_food_id, min_calorie, max_calorie, min_price, max_price)
-	    VALUES (#{mainCategoryId}, #{subCategoryId}, #{foodCountryId}, #{userId}, #{title}, #{content}, #{imgUrl}, #{riceFoodId}, #{soupFoodId}, #{mainFoodId}, #{side1FoodId}, #{side2FoodId}, #{extraFoodId}, #{minCalorie}, #{maxCalorie}, #{minPrice}, #{maxPrice})
+	    INSERT INTO post (main_category_id, sub_category_id, food_country_id, user_id, username, title, "CONTENT", img_url, rice_food_id, soup_food_id, main_food_id, side1_food_id, side2_food_id, extra_food_id, min_calorie, max_calorie, min_price, max_price)
+	    VALUES (#{mainCategoryId}, #{subCategoryId}, #{foodCountryId}, #{userId}, #{username}, #{title}, #{content}, #{imgUrl}, #{riceFoodId}, #{soupFoodId}, #{mainFoodId}, #{side1FoodId}, #{side2FoodId}, #{extraFoodId}, #{minCalorie}, #{maxCalorie}, #{minPrice}, #{maxPrice})
 	    ]]>
 	</insert>
 
@@ -125,39 +125,10 @@
 		SELECT
 		POST_ID_SEQ.CURRVAL AS id FROM DUAL
 	</select>
-
-	<!-- scrap 관련 -->
-	<insert id="insertScrap" parameterType="ScrapRequestDto">
-		INSERT INTO
-		scrap(user_id, post_id)
-		values(#{userId},#{postId})
-	</insert>
-
-	<delete id="deleteScrap" parameterType="ScrapRequestDto">
-		delete from scrap
-		where
-		user_id=#{userId} and post_id=#{postId}
-	</delete>
-
-
-
-
-
-
-	<!-- vote 관련 -->
-	<insert id="insertVote" parameterType="VoteRequestDto">
-		INSERT INTO vote (user_id,
-		post_id)
-		VALUES (#{userId}, #{postId})
-	</insert>
-
-	<delete id="deleteVote" parameterType="VoteRequestDto">
-		delete from vote
-		where
-		user_id=#{userId} and post_id=#{postId}
-	</delete>
-
-
+	
+	
+	
+	
 	<select id="selectPostsByMainCategory" parameterType="int"
 		resultType="Post">
 		SELECT *
@@ -199,6 +170,48 @@
 		ONLY -->
 		
 	</select>
+	
+	
+	
+
+	<!-- scrap 관련 -->
+	<insert id="insertScrap" parameterType="ScrapRequestDto">
+		INSERT INTO
+		scrap(user_id, post_id)
+		values(#{userId},#{postId})
+	</insert>
+
+	<delete id="deleteScrap" parameterType="ScrapRequestDto">
+		delete from scrap
+		where
+		user_id=#{userId} and post_id=#{postId}
+	</delete>
+	<select id="selectScrapByPostIdAndUserId" parameterType="ScrapRequestDto" resultType="Scrap">
+		select * from scrap
+		where post_id=#{postId} and user_id=#{userId}
+	</select>
+	
+
+
+	<!-- vote 관련 -->
+	<insert id="insertVote" parameterType="VoteRequestDto">
+		INSERT INTO vote (user_id,
+		post_id)
+		VALUES (#{userId}, #{postId})
+	</insert>
+
+	<delete id="deleteVote" parameterType="VoteRequestDto">
+		delete from vote
+		where
+		user_id=#{userId} and post_id=#{postId}
+	</delete>
+	
+	<select id="selectVoteByPostIdAndUserId" parameterType="VoteRequestDto" resultType="Vote">
+		select * from vote
+		where post_id=#{postId} and user_id=#{userId}
+	
+	</select>
+	
 
 
 </mapper>

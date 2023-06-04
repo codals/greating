@@ -1,0 +1,41 @@
+@charset "UTF-8";
+/* body {
+    margin: 0;
+    padding: 0;
+    background-color: #e5e5e5;
+} */
+
+
+
+.content {
+    margin-left: 250px;
+    padding-left: 80px;
+    position: absolute;
+    width: 80%;
+  
+}
+
+.content-div{
+    margin-top: 200px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+table th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+    text-align: center;
+}
+
+table td {
+    text-align: center;
+}

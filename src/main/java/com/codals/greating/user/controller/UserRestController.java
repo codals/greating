@@ -7,12 +7,17 @@ import com.codals.greating.user.entity.User;
 import com.codals.greating.user.service.UserService;
 import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Log4j2
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -25,16 +30,41 @@ public class UserRestController {
         boolean isAuthenticated = userService.authenticate(loginRequestDto);
         if (isAuthenticated) {
             User user = userService.getUserByUsername(loginRequestDto.getUsername());
-            httpSession.setAttribute(LOGIN_USER.getKey(), user);
+            httpSession.setAttribute(LOGIN_USER, user);
         }
         return ResponseEntity.ok(isAuthenticated);
     }
 
+  
+    @GetMapping("/check-username")
+    public ResponseEntity<Boolean> checkUserName(String username) {
+      
+    	if(userService.getUserByUsername(username).getUsername() == null) {
+    		return ResponseEntity.ok(true);
+    	}
+    	
+    	return ResponseEntity.ok(false);
+
+    }
+    
+    
+    @GetMapping("/check-email")
+    public ResponseEntity<Boolean> checkUserEmail(String email) {
+      
+    	if(userService.checkUserEmail(email)) {
+    		return ResponseEntity.ok(true);     
+    	}
+       	return ResponseEntity.ok(false);
+
+    }
+    
     @PostMapping("/register")
-    public String register() {
-        /**
-         * 회원가입;
-         */
-        return "redirect:/";
+    public ResponseEntity<Boolean> register(User user) {
+    	user.setRole("user");
+    	if(userService.register(user)) {
+    		return ResponseEntity.ok(true);     
+    	};
+    	
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
     }
 }
