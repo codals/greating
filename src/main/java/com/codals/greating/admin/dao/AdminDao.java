@@ -19,5 +19,7 @@ public interface AdminDao {
 
 	boolean approveCheck(long postId);
 
+	List<AdminDto> commingSoonList();
+
 
 }

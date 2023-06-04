@@ -49,4 +49,10 @@ public class AdminDaoImpl implements AdminDao{
 
 	}
 
+
+@Override
+public List<AdminDto> commingSoonList() {
+	return sqlSession.selectList("admin.commingSoonList");
+}
+
 }
