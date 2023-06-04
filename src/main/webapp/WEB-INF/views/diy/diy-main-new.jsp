@@ -99,7 +99,7 @@
 					<div class="greating-soup-btns">
 						<input id="soup-true" type="radio" name="soup-tf" value="y">
 						<label for="soup-true">국 포함</label> 
-						<input id="soup-false" type="radio" name="soup-tf" value="n">\
+						<input id="soup-false" type="radio" name="soup-tf" value="n">
 						<label for="soup-false">국 미포함</label>
 					</div>
 				</div>
@@ -116,7 +116,9 @@
 
 	<div class="main-content hd__inner1100">
 		<div class="hd__inner960">
-
+			<div style="margin:30px 0px -30px 20px;">
+				<h5 style="font-weight: bold;">실시간 인기 DIY 식단</h5>
+			</div>
 			<div class="diet-card-list">
 				<c:forEach var="post" items="${healthyPostTop10}">
 					<div class="diet-card">
@@ -137,11 +139,8 @@
 						</div>
 					</div>
 				</c:forEach>
-
 			</div>
-
 		</div>
-
 	</div>
 
 

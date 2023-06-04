@@ -60,6 +60,7 @@ public class DiyServiceImpl implements DiyService{
 							.subCategoryId(postRequest.getSubCategoryId())
 							.foodCountryId(postRequest.getFoodCountryId())
 							.userId(loginUser.getId())
+							.username(loginUser.getUsername())
 							.title(postRequest.getDietName())
 							.content(postRequest.getContent())
 							.imgUrl(imgStoragePath + "/" + postRequest.getFileName())
