@@ -49,7 +49,7 @@ public class DiyController {
 	
 	@GetMapping
 	public String loadMainPage() {
-		return "diy/diy-main";
+		return "diy/diy-main-new";
 	}
 
 	@GetMapping("/popular")
