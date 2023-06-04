@@ -4,6 +4,7 @@ package com.codals.greating.admin.dao;
 import java.util.Date;
 import java.util.List;
 
+import com.codals.greating.admin.dto.AdminDailyDietResponseDto;
 import com.codals.greating.admin.dto.AdminDto;
 import com.codals.greating.constant.MainCategoryCode;
 import com.codals.greating.diet.entity.DailyDiet;
@@ -21,5 +22,6 @@ public interface AdminDao {
 
 	List<AdminDto> commingSoonList();
 
+	List<AdminDailyDietResponseDto> selectDailyDietsByDate(String date);
 
 }
