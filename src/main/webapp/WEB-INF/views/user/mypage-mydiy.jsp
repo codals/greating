@@ -29,7 +29,7 @@ rel="stylesheet">
 		<ul class="page-category">
 			<li>Home</li>
 			<li>></li>
-			<li class="highlight">마이페이지</li>
+			<li class="highlight">마이페이지, ${dto.page }</li>
 		</ul>
 
 		<div class="mypage-main d-flex">
@@ -86,12 +86,16 @@ rel="stylesheet">
 					
 				
 					<c:if test="${dto.page > 1}">
-						<a href="/greating/mypage/diets?page=1">처음</a>
+						<c:if test="${dto.totalPage > 5}">
+							<a href="/greating/mypage/diets?page=1">처음</a>
+						</c:if>
 						<a href="/greating/mypage/diets?page=${dto.page - 1}">이전</a>
 					</c:if>
 
-					<%-- <c:set var="startPage" value="${dto.page - 2}" />
+					<!-- 현재 선택한 페이지가 가운데 있게하는 로직 -->
+					<c:set var="startPage" value="${dto.page - 2}" />
 					<c:set var="endPage" value="${dto.page + 2}" />
+					<!-- 다만 첫번째 페이지부터 3페이지까지는 1 2 3 4 5 가 띄워져야함 -->
 					<c:if test="${startPage < 1}">
 						<c:set var="startPage" value="1" />
 						<c:set var="endPage" value="5" />
@@ -99,18 +103,9 @@ rel="stylesheet">
 					<c:if test="${endPage > dto.totalPage}">
 						<c:set var="startPage" value="${dto.totalPage - 4}" />
 						<c:set var="endPage" value="${dto.totalPage}" />
-					</c:if> --%>
+					</c:if> 
 
-
-					<c:set var="startPage" value="${dto.page - 2}" />
-					<c:set var="endPage" value="${dto.page + 2}" />
-
-					<!-- 수정된 부분 시작 -->
-					<c:if test="${endPage - startPage + 1 > 5}">
-					  <c:set var="startPage" value="${endPage - 4}" />
-					</c:if>
-					<!-- 수정된 부분 끝 -->
-
+			
 					<c:choose>
 						<c:when test="${startPage < 1}">
 							<c:set var="startPage" value="1" />
@@ -142,7 +137,9 @@ rel="stylesheet">
 
 					<c:if test="${dto.page < dto.totalPage}">
 						<a href="/greating/mypage/diets?page=${dto.page + 1}">다음</a>
-						<a href="/greating/mypage/diets?page=${dto.totalPage}">끝</a>
+						<c:if test="${dto.totalPage > 5}">
+					        <a href="/greating/mypage/diets?page=${dto.totalPage}">끝</a>
+					    </c:if>
 					</c:if>
 				</div>
 

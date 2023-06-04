@@ -17,8 +17,8 @@ public class MyPageServiceImpl implements MyPageService {
 
 	@Override
 	public List<MyPageDto> diyList(MyPageDto dto, int page) {
-		int rowsPerPage = 5;
-		int startRow = (page - 1) * rowsPerPage + 1;
+		int rowsPerPage = 5; // 한 페이지에 표시할 항목의 수
+		int startRow = (page - 1) * rowsPerPage + 1; //현재 페이지에서 첫 번째 항목의 인덱스
 		int endRow = startRow + rowsPerPage - 1;
 		dto.setStartRow(startRow-1);
         dto.setEndRow(endRow-startRow+1);
