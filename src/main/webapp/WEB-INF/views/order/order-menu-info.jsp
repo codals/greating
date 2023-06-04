@@ -70,7 +70,7 @@
     <div class="meals-menu-btns">
         <div class="btnBox">
 
-            <div class="btn">
+            <div class="btn fixed">
                 <div>
                     <a href="${pageContext.request.contextPath}/diets/mygreating/orders/schedule" class="btn-init green btn-buy">주문하기</a>
                     <a href="#" id="giftBtn" class="btn-init gift btn-buy">선물하기</a>
