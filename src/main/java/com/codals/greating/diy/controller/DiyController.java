@@ -56,13 +56,9 @@ public class DiyController {
 	private String kakaoShareKey;
 	
 	@GetMapping
-<<<<<<< HEAD
-	public String loadMainPage() {
-=======
 	public String loadMainPage(Model model) {
 		List<Post> healthyPostTop10 = diyService.loadPostsByCategoryType(MainCategoryCode.HEALTHY_DIET.getId());
 		model.addAttribute("healthyPostTop10", healthyPostTop10);
->>>>>>> develop
 		return "diy/diy-main-new";
 	}
 
