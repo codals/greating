@@ -29,18 +29,11 @@
 			<li>></li>
 			<li class="highlight">건강식단</li>
 		</ul>
+				<jsp:include page="/WEB-INF/views/order/order-header.jsp" />
+		
 		<form action="/" method="post" name="order1-form">
 
-			<!-- 설계하기및 현재 단계 -->
-			<h2 class="meals__title">
-				<span>설계하기</span>
-			</h2>
-			<img src="${pageContext.request.contextPath}/resources/images/order/order1step.png" />
-			<ol class="meals-order">
-				<li class="on">기간/끼니수 선택</li>
-				<li style="color: rgb(174, 170, 170);">배송일 선택</li>
-				<li style="color: rgb(174, 170, 170);">메뉴 선택</li>
-			</ol>
+
 
 			<!-- 식단관리 기간을 선택하세요 -->
 			<section class="meals-area1">

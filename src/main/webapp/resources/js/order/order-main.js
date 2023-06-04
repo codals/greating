@@ -16,7 +16,6 @@ $(document).ready(function() {
     } else {
       button.removeClass('fixed');
     }
-    
     if (scrollPosition === 0) {
         button.addClass('fixed');
       } 
