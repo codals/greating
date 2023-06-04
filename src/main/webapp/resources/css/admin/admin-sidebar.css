@@ -3,9 +3,8 @@
 .sidebar {
 	width: 250px;
 	height: 100vh;
-	background-color: #c9c9c9;
 	float: left;
-	position: fixed;
+	position: absolute;
 	top: 0;
 	z-index: -10000;
 }

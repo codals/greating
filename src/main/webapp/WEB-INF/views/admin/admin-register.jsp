@@ -50,14 +50,14 @@
 			</div>
 
 			<div class="registered-diets">
-				<span class="title">6월 2일 등록된 식단</span>
+				<span class="title">등록된 식단 확인!:) </span>
 				<table>
 					<thead>
 						<tr>
 							<th>식단 번호</th>
 							<th>식단명</th>
-							<th>식단 메인 카테고리</th>
-							<th>식단 서브 카테고리</th>
+							<th>메인 분류</th>
+							<th>서브 분류</th>
 						</tr>
 					</thead>
 					<tbody>

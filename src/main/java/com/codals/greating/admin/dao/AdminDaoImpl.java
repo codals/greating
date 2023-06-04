@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.codals.greating.admin.dto.AdminDailyDietResponseDto;
 import com.codals.greating.admin.dto.AdminDto;
 import com.codals.greating.constant.MainCategoryCode;
 import com.codals.greating.diet.entity.DailyDiet;
@@ -36,7 +37,7 @@ public class AdminDaoImpl implements AdminDao {
 
 	@Override
 	public int insertDailyDiets(List<DailyDiet> diets) {
-		String statement = "diet.insertDailyDiets";
+		String statement = "admin.insertDailyDiets";
 		return sqlSession.update(statement, diets);
 	}
 
@@ -45,6 +46,12 @@ public class AdminDaoImpl implements AdminDao {
 		int updatedRows = sqlSession.update("admin.approveCheck", postId);
 		return updatedRows > 0;
 
+	}
+
+	@Override
+	public List<AdminDailyDietResponseDto> selectDailyDietsByDate(String date) {
+		String statement = "admin.selectDailyDietsByDate";
+		return sqlSession.selectList(statement, date);
 	}
 
 }

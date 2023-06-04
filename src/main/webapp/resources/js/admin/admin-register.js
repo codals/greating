@@ -1,6 +1,9 @@
 $(document).ready(function() {
 	calendarInit();
+	
 });
+
+
 
 function formatDate(date) {
 	var year = date.getFullYear();
@@ -84,6 +87,12 @@ function calendarInit() {
 		thisMonth = new Date(currentYear, currentMonth + 1, 1);
 		renderCalender(thisMonth);
 	});
+	
+	// 오늘 날짜의 식단을 옆에 띄우기 
+	var todayDate = formatDate(new Date(today));
+	console.log("today" , todayDate);
+	getDailyDiets(todayDate);
+	
 }
 
 $(document).ready(function() {
@@ -210,9 +219,6 @@ function registerDailyDiet() {
 		alert('날짜를 선택해주세요.');
 		return;
 	}
-	// }
-	// var parsedDate = new LocalDate(selectedDate);
-	// var formattedDate = parsedDate.toISOString().split('T')[0];
 
 	var choosenDietIdDiv = document.querySelector('.choosen-diet-id');
 	var dietIds = document.querySelectorAll('.choosen-diet-id span');
@@ -222,8 +228,6 @@ function registerDailyDiet() {
 		var idValue = parseInt(dietIds[i].textContent);
 		dietIdsList.push(idValue);
 	}
-	console.log(dietIdsList);
-	console.log("date " + selectedDate)
 
 	const data = {
 		dietIds : dietIdsList,
@@ -262,7 +266,8 @@ function getDailyDiets(date){
 		url : '/greating/api/admin/daily-diets?date='+date,
 		method : 'get',
 		success : function(response) {
-		
+			console.log(response);
+		      renderDailyDiets(date,response);
 
 		},
 		error : function() {
@@ -271,3 +276,30 @@ function getDailyDiets(date){
 	});
 
 }
+
+
+
+function renderDailyDiets(date,dailyDiets) {
+	  var tableBody = $('.registered-diets table tbody');
+	  tableBody.empty();
+
+	 
+	  for (var i = 0; i < dailyDiets.length; i++) {
+	    var diet = dailyDiets[i];
+	    var row =
+	      '<tr>' +
+	      '<td>' + diet.dietId + '</td>' +
+	      '<td>' + diet.dietName + '</td>' +
+	      '<td>' + diet.mainCategoryName + '</td>' +
+	      '<td>' + diet.subCategoryName + '</td>' +
+	      '</tr>';
+	    tableBody.append(row);
+	  }
+	  
+	  var title = $('.registered-diets .title');
+	  title.text(date + ' 등록된 식단');
+	}
+
+
+
+

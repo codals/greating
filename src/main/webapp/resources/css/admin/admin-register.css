@@ -114,25 +114,26 @@
 .content {
 	height: auto;
 	margin-left:250px;
+	position:absolute;
 }
 
 .main-content {
 	display: inline-block;
 	margin: 0 auto;
 	width: 1300px;
+	position : fixed;
 }
 
 .main-top,.main-bottom{
 	padding: 20px;
 	display: flex;
-	width:1000px;
 	margin: 25px 0px 0px 100px;
 }
 .main-bottom{
 	padding: 20px;
 	display: flex;
-	width:1000px;
 	margin: 25px 100px 100px 100px;
+	min-width:1100px;
 }
 .calendar {
 	width: 450px;
@@ -152,7 +153,7 @@
 }
 
 .registered-diets {
-	width: 700px;
+	min-width: 590px;
 	display: inline-block;
 	margin: 0px 0px 0px 50px;
 	padding:30px 20px 20px 20px;
@@ -177,12 +178,14 @@ table th, table td {
 	padding: 10px;
 	border-top: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
+	white-space: nowrap;
 }
 
 table th {
 	background-color: #f1f1f1;
 	font-weight: bold;
 	text-align: center;
+	white-space: nowrap;
 }
 
 table td {

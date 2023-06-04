@@ -62,9 +62,11 @@ public class AdminRestController {
 	}
 
 	@GetMapping("daily-diets")
-	public ResponseEntity<List<Diet>> getDailyDiets(String date) {
+	public ResponseEntity<List<AdminDailyDietResponseDto>> getDailyDiets(String date) {
 
+		log.info(date);
 		List<AdminDailyDietResponseDto> diets = adminService.getDailyDietsByDate(date);
-		return null;
+		log.info("controller diets{} ", diets);
+		return new ResponseEntity<>(diets, HttpStatus.OK);
 	}
 }

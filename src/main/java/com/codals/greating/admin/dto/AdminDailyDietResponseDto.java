@@ -17,9 +17,9 @@ public class AdminDailyDietResponseDto {
 
 	
 	private Integer id;
-	private Integer diet_id;
-	private String diet_name;
-	private String main_category_name;
-	private String sub_cateogory_name;
+	private Integer dietId;
+	private String dietName;
+	private String mainCategoryName;
+	private String subCategoryName;
 	
 }

@@ -17,7 +17,9 @@ import com.codals.greating.diet.entity.DailyDiet;
 import com.codals.greating.diet.entity.Diet;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Service
 @RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService{
@@ -51,10 +53,10 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public List<AdminDailyDietResponseDto> getDailyDietsByDate(String date) {
-
 		
-		
-		return null;
+		List<AdminDailyDietResponseDto> result =  adminDao.selectDailyDietsByDate(date);
+		log.info("result {} ", result);
+		return result;
 	}
 	
 	@Override
