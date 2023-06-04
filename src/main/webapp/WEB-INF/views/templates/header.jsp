@@ -8,7 +8,7 @@
 <link href="/greating/resources/css/templates/header.css" rel="stylesheet" />
 <link href="/greating/resources/css/templates/reset.css" rel="stylesheet" />
 
-<script src="/greating/resources/js/header.js"></script>
+<script src="/greating/resources/js/templates/header.js"></script>
 
 <!--  bootstrap  -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">

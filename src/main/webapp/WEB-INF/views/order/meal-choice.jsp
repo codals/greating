@@ -17,9 +17,13 @@
 
 </head>
 <body>
-
+	
+	<!-- header -->
 	<jsp:include page="/WEB-INF/views/templates/header.jsp" />
 	<div class="hr"></div>
+
+	<!-- floating -->	
+	<jsp:include page="/WEB-INF/views/templates/floating-adv.jsp" />
 
 	<!-- 설계하기및 현재 단계 -->
 	<div class="main-content contents hd__inner1100">

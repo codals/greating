@@ -4,18 +4,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link
-	href="${pageContext.request.contextPath}/resources/css/order/order-step1.css"
-	rel="stylesheet">
-<style type="text/css">
-</style>
-<meta charset="UTF-8">
-<title>order-step1</title>
+	<link href="${pageContext.request.contextPath}/resources/css/order/order-step1.css" rel="stylesheet">
+	<style type="text/css">
+	</style>
+	<meta charset="UTF-8">
+	<title>order-step1</title>
 </head>
+
 <body>
 	<!-- header -->
 	<jsp:include page="/WEB-INF/views/templates/header.jsp" />
 	<div class="hr"></div>
+	
+	<!-- floating -->	
+	<jsp:include page="/WEB-INF/views/templates/floating-adv.jsp" />
 
 	<div class="main-content hd__inner1100">
 		<!-- 카테고리 -->
@@ -32,10 +34,8 @@
 			<h2 class="meals__title">
 				<span>설계하기</span>
 			</h2>
-			<img
-				src="${pageContext.request.contextPath}/resources/images/order/order1step.png" />
+			<img src="${pageContext.request.contextPath}/resources/images/order/order1step.png" />
 			<ol class="meals-order">
-
 				<li class="on">기간/끼니수 선택</li>
 				<li style="color: rgb(174, 170, 170);">배송일 선택</li>
 				<li style="color: rgb(174, 170, 170);">메뉴 선택</li>
@@ -103,19 +103,19 @@
 				</h3>
 
 				<p class="meals-final__cont">
-				<h1 class="h1 meals-area_div_title">
-					<span class="meals-final__cont__num" data-total-count="0">0</span>끼
-				</h1>
+					<h1 class="h1 meals-area_div_title">
+						<span class="meals-final__cont__num" data-total-count="0">0</span>끼
+					</h1>
 				</p>
 			</div>
 
 			<div class="meals-btn">
 				<a href="order2" class="btn-init">
 					<p class="meals-span">빠른주문</p>
-				</a> <a
-					href="${pageContext.request.contextPath}/diets/mygreating/orders/delivery"
-					class="btn-init white normal"><p class="meals-span"
-						id="next_text">다음단계</p></a>
+				</a> 
+				<a href="${pageContext.request.contextPath}/diets/mygreating/orders/delivery" class="btn-init white normal">
+					<p class="meals-span" id="next_text">다음단계</p>
+				</a>
 			</div>
 		</form>
 

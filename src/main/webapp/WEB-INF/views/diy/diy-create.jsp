@@ -19,8 +19,15 @@
 	src="${pageContext.request.contextPath}/resources/js/diy/diy-create.js"></script>
 </head>
 <body>
+
+	<!-- header -->
 	<jsp:include page="../templates/header.jsp" />
 	<div class="hr"></div>
+	
+	<!-- floating -->	
+	<jsp:include page="/WEB-INF/views/templates/floating-adv.jsp" />
+	
+	
 	<main class="contents hd__inner1100">
 
 		<ul class="page-category">
