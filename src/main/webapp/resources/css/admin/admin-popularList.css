@@ -1,15 +1,17 @@
 @charset "UTF-8";
-body {
+/* body {
     margin: 0;
     padding: 0;
     background-color: #e5e5e5;
-}
+} */
 
 
 
 .content {
     margin-left: 250px;
-    padding: 20px;
+    padding-left: 80px;
+    position: absolute;
+    width: 80%;
   
 }
 
