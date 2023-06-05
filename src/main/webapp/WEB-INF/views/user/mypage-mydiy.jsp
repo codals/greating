@@ -26,7 +26,7 @@
 		<ul class="page-category">
 			<li>Home</li>
 			<li>></li>
-			<li class="highlight">마이페이지, ${dto.page }</li>
+			<li class="highlight">마이페이지</li>
 		</ul>
 
 		<div class="mypage-main d-flex">
@@ -56,13 +56,17 @@
 									<span class="myDiy-card-tag">${item.riceFoodName}</span>
 									<span class="myDiy-card-tag">${item.soupFoodName}</span>
 									<span class="myDiy-card-tag">${item.mainFoodName}</span>
-									<sapn class="myDiy-card-del"><button onclick="confirmDelete(${item.id})">삭제하기</button>
 								</div>
 								<div class="myDiy-vote">
 									<span style="font-size: 17px;"> 투표 현황 </span>
 									<div class="myDiy-vote-num">
 										<img src="${pageContext.request.contextPath}/resources/images/user/vote.png" alt="">
 										<span>${item.voteCnt} Greating</span>
+									</div>
+									<div class="div-myDiy-card-button">
+										
+											<button class="myDiy-card-button" onclick="confirmDelete(${item.id})">삭제하기</button>
+										
 									</div>
 								</div>
 							</div>

@@ -65,8 +65,8 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public int deleteMyDiy(int postId) {
-		int result = dao.deleteMyDiy(postId);
+	public int deleteMyDiy(int id) {
+		int result = dao.deleteMyDiy(id);
 		return result;
 		
 	}

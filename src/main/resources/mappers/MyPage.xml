@@ -88,7 +88,7 @@
 	</select>
 	
 	<update id="deleteMyDiy" parameterType="int">
-        { CALL delete_post_with_related_data(#{postId}) }
+        { CALL delete_post_with_related_data(#{id}) }
     </update>
 	
 </mapper>
