@@ -1,4 +1,13 @@
 @charset "UTF-8";
+.advertise {
+	position: fixed;
+	top: 200px !important;
+	right: 5%;
+	width: 220px;
+	height: auto;
+	z-index: 10000;
+	/* 	border-radius: 10px; */
+}
 
 .main {
 	min-height: calc(100vh - 136px);
