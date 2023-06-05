@@ -1,11 +1,13 @@
 package com.codals.greating.diet.controller;
 
 import static com.codals.greating.constant.SessionKey.DELIVERY_DATES;
+import static com.codals.greating.constant.SessionKey.ORDER_ID;
 
 import com.codals.greating.diet.dto.OrderResultResponseDto;
 import com.codals.greating.diet.service.DietService;
 import java.util.Date;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,11 +53,16 @@ public class DietController {
         return "order/meal-choice";
     }
 
-    @GetMapping("/orders/{orderId}")
-    public String loadOrderResultPage(@PathVariable Integer orderId, Model model) {
+    @GetMapping("/orders/result")
+    public String loadOrderResultPage(@SessionAttribute(name = ORDER_ID, required = false) Integer orderId, Model model, HttpSession session) {
+        if (orderId == null) {
+            return "redirect:/diets/mygreating/orders/schedule";
+        }
         OrderResultResponseDto orderDetail = dietService.getOrderDetail(orderId);
         model.addAttribute("orderDetail", orderDetail.getOrderDetail());
         model.addAttribute("orderDietsGroupByDeliveryDate", orderDetail.getOrderDietsByDates());
+        session.removeAttribute(DELIVERY_DATES);
+        session.removeAttribute(ORDER_ID);
         return "order/order-result";
     }
 

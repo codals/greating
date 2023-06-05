@@ -102,8 +102,7 @@ $(document).ready(function () {
             	  title: '식단 주문을 성공하였습니다.',
               });
 //        	alert('식단 주문을 성공하였습니다.')
-          location.href = 'http://localhost:8080/greating/diets/mygreating/orders/'
-              + response.orderId;
+          location.href = 'http://localhost:8080/greating/diets/mygreating/orders/result';
           return;
         }
         Swal.fire({
