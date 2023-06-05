@@ -41,3 +41,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+$(document).ready(function () {
+  $(".admin-page").click(function () {
+    location.href = '/greating/admin/popular';
+  });
+});
