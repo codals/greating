@@ -1,5 +1,7 @@
 package com.codals.greating.diy.dao;
 
+import static com.codals.greating.constant.PostStatus.VOTE_FINISHED;
+
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -119,4 +121,9 @@ public class DiyDAOImpl implements DiyDAO {
 		return sqlSession.selectOne(statement,requestDto);
 	}
 
+	@Override
+	public int updateExpiredPostStatus() {
+		int voteFinishedId = VOTE_FINISHED.getId();
+		return sqlSession.update("post.updateStatusOfExpiredPosts", voteFinishedId);
+	}
 }

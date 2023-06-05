@@ -30,5 +30,6 @@ public interface DiyService {
 	boolean checkVoted(VoteRequestDto requestDto);
 
 	boolean checkScrapped(ScrapRequestDto requestDto);
-	
+
+	void updateExpiredPostStatus();
 }

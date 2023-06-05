@@ -1,16 +1,12 @@
 package com.codals.greating.diy.service;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.http.ResponseEntity;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +18,6 @@ import com.codals.greating.diy.dto.SearchRequestDto;
 import com.codals.greating.diy.dto.SimplePostDto;
 import com.codals.greating.diy.entity.Post;
 import com.codals.greating.user.entity.User;
-import com.codals.greating.util.ImageUrlGenerator;
 import com.codals.greating.diy.dto.VoteRequestDto;
 
 import lombok.RequiredArgsConstructor;
@@ -163,15 +158,24 @@ public class DiyServiceImpl implements DiyService{
 		}
 		return false;
 	}
-      
+
+
 	@Override
 	public Integer savePost(User loginUser, DiyRequestDto postRequest) {
 		// 1. 파일명 생성해서 받아오기 (tomcat서버에 저장된 경로 + UUID로 만든 파일명 + 확장자)
-		
+
 		// 2. post 객체 생성하기
 		Post post = createPost(loginUser, postRequest);
-		
+
 		// 3. post DB에 저장하기
 		return diyDAO.savePost(post);
+	}
+
+	@Override
+	@Scheduled(cron = "0 0 12 * * *")
+	@Transactional
+	public void updateExpiredPostStatus() {
+		int updateCount = diyDAO.updateExpiredPostStatus();
+		log.info("Expired Post Status Update Job executed. Updated status for {} posts.", updateCount);
 	}
 }

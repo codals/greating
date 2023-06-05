@@ -29,4 +29,6 @@ public interface DiyDAO {
 	Vote selectVoteByPostIdAndUserId(VoteRequestDto requestDto);
 
 	Scrap selectScrapByPostIdAndUserId(ScrapRequestDto requestDto);
+
+	int updateExpiredPostStatus();
 }
