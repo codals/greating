@@ -97,7 +97,7 @@
 				<div class="btn">
 					<div>
 						<a href="#" class="btn-init green btn-buy">주문하기 ( <span class="total-count">0</span> / 6 )
-						</a> <a href="${header.referer}" id="cancelBtn" class="btn-init cancel btn-buy">취소 </a>
+						</a> <a href="${pageContext.request.contextPath}/diets/mygreating/delivery" id="cancelBtn" class="btn-init cancel btn-buy">취소 </a>
 					</div>
 				</div>
 			</div>
