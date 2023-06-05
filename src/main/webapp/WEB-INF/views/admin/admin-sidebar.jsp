@@ -12,6 +12,7 @@
 		<ul class="menu">
 			<li><a href="/greating/admin/popular" class="sidebar-text">인기 식단 목록</a></li>
 			<li><a href="/greating/admin/commingsoon" class="sidebar-text">출시 예정 식단 목록</a></li>
+			<li><a href="/greating/admin/register" class="sidebar-text">식단 등록하기</a></li>
 		</ul>
 	</div>
 </section>

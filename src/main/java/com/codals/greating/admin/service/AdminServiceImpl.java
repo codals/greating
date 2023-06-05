@@ -77,4 +77,11 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 
+	@Override
+	public boolean approveCancel(long postId) {
+		// TODO Auto-generated method stub
+		return adminDao.approveCancel(postId);
+	}
+
+
 }

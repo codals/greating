@@ -16,7 +16,7 @@
 <!-- jQuery 라이브러리 추가 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- admin-popular.js 파일 추가 -->
-<script src="/greating/resources/js/admin/admin-popular.js"></script>
+<script src="/greating/resources/js/admin/admin-popular2.js"></script>
 
 
 <link rel="stylesheet"
