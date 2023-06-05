@@ -191,7 +191,6 @@ body {
 	display: block;
 	position: absolute;
 	bottom: 0;
-	z-index: -1;
 	width: 100%;
 	height: 3px;
 	background: #918c00;
@@ -207,12 +206,10 @@ body {
 	font-weight: bold;
 	text-align: center;
 	line-height: 55px;
-	z-index: -1;
 }
 
 .tab-menu .tab-menu__inner .tab-menu__list:first-child {
 	margin-left: 0;
-	z-index: -1;
 }
 
 .tab-menu .tab-menu__inner .tab-menu__list a {
