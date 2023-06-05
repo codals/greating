@@ -1,113 +1,129 @@
 @charset "UTF-8";
 
-.advertise{
+.advertise {
 	position: fixed;
-	top:180px;
-	right:300px;
+	top: 300px;
+	right: 5%;
 	width: 220px;
 	height: auto;
-/* 	border-radius: 10px; */
+	z-index: 10000;
+	/* 	border-radius: 10px; */
 }
 
-.advertise-box{
+@media ( max-width : 1000px) {
+	.advertise {
+		display: none;
+	}
+}
+
+@media ( max-width : 1200px) {
+	.floating-button {
+		display: none;
+	}
+}
+
+.advertise-box {
 	border: 0.5px solid #999;
-/* 	margin: auto;
+	/* 	margin: auto;
 	padding: auto; */
 	background-color: white;
 }
 
 .advertise-box-btn {
-	text-align: center; 
-	height: 35px; 
+	text-align: center;
+	height: 35px;
 	margin-top: 10px;
 	background-color: white;
 }
 
-.advertise-box-img > img{
+.advertise-box-img>img {
 	width: 100%;
 }
 
-.advertise-box-img{
-/* 	border-bottom: 2px solid #918c01; */
+.advertise-box-img {
+	/* 	border-bottom: 2px solid #918c01; */
 	/* padding: 5px; */
 	
 }
-.advertise-box-info{
-	display:flex;
+
+.advertise-box-info {
+	display: flex;
 	align-items: center;
 	flex-direction: column;
 }
-.advertise-box-info > span{
-	display:block;
+
+.advertise-box-info>span {
+	display: block;
 }
-.advertise-box-button{
+
+.advertise-box-button {
 	display: flex;
-    justify-content: center;
-    padding: 5px;
-    /* border-top: 1px solid #918c01; */
-    background: #918c01;
+	justify-content: center;
+	padding: 5px;
+	/* border-top: 1px solid #918c01; */
+	background: #918c01;
 }
 
-.advertise-box-button > a{
-	color:white;
-
+.advertise-box-button>a {
+	color: white;
 }
 
-.floating-container{
-	display:inline-block;
+.floating-container {
+	display: inline-block;
 	position: relative;
 }
 
 .floating-button {
-  position: fixed;
-  right: 600px;
-  bottom: 30px;
-  color: #918c01;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
+	position: fixed;
+	right: 10%; 
+	top: 220px;
+	color: #918c01;
+	cursor: pointer;
+	transition: transform 0.3s ease-in-out;
+	z-index:1000;
 }
 
-.floating-button > img {
+.floating-button>img {
 	width: 80px;
 	height: 80px;
 }
 
 .overlay {
-  position: absolute;
-  right: 0px;
-  bottom: 0px;
-  width: 220px;
-  height: 80px;
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0);
-  padding: 10px;  
-  border: 1px solid #918c01;
-  border-radius: 45px;
-  transform: translateX(-50%);
-  display: none;
-  z-index: 1;
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	width: 220px;
+	height: 80px;
+	background-color: white;
+	box-shadow: 0 2px 4px rgba(0, 0, 0);
+	padding: 10px;
+	border: 1px solid #918c01;
+	border-radius: 45px;
+	transform: translateX(-50%);
+	display: none;
+	z-index: 1;
 }
 
 .show-overlay {
-  display: block;
+	display: block;
 }
 
 .floating-overlay-button {
 	position: relative;
 	width: 50px;
 	height: 50px;
-  	border: 1px solid #999;
-  	border-radius: 45px;
-  	display: inline-block;
-  	margin-left: 7px;
-  	margin-right: 7px;
-  	margin-top: 5px;
-    justify-content: center;
-    align-items: center;
+	border: 1px solid #999;
+	border-radius: 45px;
+	display: inline-block;
+	margin-left: 7px;
+	margin-right: 7px;
+	margin-top: 5px;
+	justify-content: center;
+	align-items: center;
 }
 
-.floating-overlay-button > img {
+.floating-overlay-button>img {
 	width: 50px;
 	height: 50px;
-    cursor: pointer;
+	cursor: pointer;
 }

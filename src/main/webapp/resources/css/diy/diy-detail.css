@@ -1,46 +1,45 @@
 @charset "UTF-8";
 
 body {
-  font-size: 14px;
+	font-size: 14px;
 }
 
 /* 1. 상단 메인 정보 */
-
 .main-info-container {
-  margin-top: 20px;
-  opacity: 1;
-  display: flex;
-  align-items: flex-start;
+	margin-top: 20px;
+	opacity: 1;
+	display: flex;
+	align-items: flex-start;
 }
 
 .main-img {
-  width: 525px;
-  height: 525px;
-  max-height: auto;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
-  opacity: 1;
+	width: 525px;
+	height: 525px;
+	max-height: auto;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: contain;
+	opacity: 1;
 }
 
 .main-img img {
 	width: 100%;
 	max-height: 525px;
 	object-fit: cover;
-	
-    display: block;
+	display: block;
 }
 
 .main-info-text-container {
-  margin-left: 30px;
+	margin-left: 30px;
+	min-width: 500px;
 }
 
 .main-info-line {
-  display: flex;
-  align-items: center;
-  height: 70px;
-  border-top: 0.3px solid #CCCCCC;
-  border-bottom: 0.3px solid #CCCCCC;
+	display: flex;
+	align-items: center;
+	height: 70px;
+	border-top: 0.3px solid #CCCCCC;
+	border-bottom: 0.3px solid #CCCCCC;
 }
 
 .category-line {
@@ -48,74 +47,75 @@ body {
 }
 
 .info-title {
-  width: 150px;
-  color: #999;
-  font-family: Noto Sans KR;
-  font-weight: DemiLight;
-  font-size: 18px;
-  opacity: 1;
-  text-align: left;
+	width: 150px;
+	color: #999;
+	font-family: Noto Sans KR;
+	font-weight: DemiLight;
+	font-size: 18px;
+	opacity: 1;
+	text-align: left;
 }
 
 .info-text {
-  color: #99999;
-  font-family: Noto Sans KR;
-  font-weight: DemiBold;
-  font-size: 18px;
-  opacity: 1;
-  text-align: left;
-  flex: 1;
+	color: #99999;
+	font-family: Noto Sans KR;
+	font-weight: DemiBold;
+	font-size: 18px;
+	opacity: 1;
+	text-align: left;
+	display:flex;
 }
 
 .diy-category-info {
-  width: auto;
-  color: #999999;
-  font-family: Noto Sans KR;
-  font-weight: Bold;
-  font-size: 20px;
-  opacity: 1;
-  text-align: right;
-  margin-left: 10px;
-  padding: 4px 8px;
-  border: 1px solid #999999;
+	width: auto;
+	color: #999999;
+	font-family: Noto Sans KR;
+	font-weight: Bold;
+	font-size: 20px;
+	opacity: 1;
+	text-align: right;
+	margin-left: 10px;
+	padding: 4px 8px;
+	border: 1px solid #999999;
 }
 
 .diy-dish-info {
-  width: 73px;
-  color: rgba(145,140,1,1);
-  top: 5px;
-  left: 9px;
-  font-family: Noto Sans KR;
-  font-weight: Bold;
-  font-size: 18px;
-  opacity: 1;
-  text-align: center;
-  margin-right: 5px;
-  padding: 4px 8px;
-  border: 1px solid rgba(145,140,1,1);
+	color: rgba(145, 140, 1, 1);
+	top: 5px;
+	left: 9px;
+	width: max-content;
+	margin-bottom:5px;
+	margin-top:5px;
+	font-family: Noto Sans KR;
+	font-weight: Bold;
+	font-size: 18px;
+	text-align: center;
+	margin-right: 5px;
+	padding: 9px 8px;
+	border: 1px solid rgba(145, 140, 1, 1);
 }
 
 .diy-vote-info {
-  color: #99999;
-  top: 5px;
-  left: 9px;
-  font-family: Noto Sans KR;
-  font-weight: Bold;
-  font-size: 20px;
-  opacity: 1;
-  text-align: center;
-  margin-right: 10px;
+	color: #99999;
+	top: 5px;
+	left: 9px;
+	font-family: Noto Sans KR;
+	font-weight: Bold;
+	font-size: 20px;
+	opacity: 1;
+	text-align: center;
+	margin-right: 10px;
 }
 
 .vote-count {
-  color: rgba(145,140,1,1);
+	color: rgba(145, 140, 1, 1);
 }
 
 .button-group {
-  display: flex;
-  justify-content: center;
-  height: 60px;
-  margin-top: 10px;
+	display: flex;
+	justify-content: center;
+	height: 60px;
+	margin-top: 10px;
 }
 
 .vote-button {
@@ -130,7 +130,7 @@ body {
 	font-size: 20px;
 	opacity: 1;
 	text-align: center;
-	border: 1px solid rgba(145,140,1,1);
+	border: 1px solid rgba(145, 140, 1, 1);
 	flex-grow: 1;
 }
 
@@ -147,11 +147,9 @@ body {
 	text-align: center;
 	flex-grow: 1;
 	border: 1px solid white;
-	
 }
 
 /* 2. 하단 상세 정보 */
-
 .detail-info-container {
 	margin-top: 20px;
 	width: 100%;
@@ -159,150 +157,148 @@ body {
 }
 
 /* tab 부분 */
-
 .tab-menu {
-/*   z-index: 3; */
-/*   top: 0; */
-  height: 150px;
-  padding-top: 50px;
+	/*   z-index: 3; */
+	/*   top: 0; */
+	height: 150px;
+	padding-top: 50px;
 }
 
 .tab-menu.fixed {
-  position: fixed;
+	position: fixed;
 }
 
 /* bootstrap 디자인 무효화 */
 .tab-menu .nav-pills .nav-link {
-  background-color: transparent;
-  border-radius: 0;
-  border: none;
+	background-color: transparent;
+	border-radius: 0;
+	border: none;
 }
 
 .tab-menu .nav-pills .nav-link.active {
-  background-color: transparent;
+	background-color: transparent;
 }
 
 .tab-menu .tab-menu__inner {
-  position: relative;
-  width: 100%;
-  height: 63px;
-  margin: 0 auto;
+	position: relative;
+	width: 100%;
+	height: 63px;
+	margin: 0 auto;
 }
 
 /* 경계선 */
 .tab-menu .tab-menu__inner:after {
-  display: block;
-  position: absolute;
-  bottom: 0;
-  z-index: -1;
-  width: 100%;
-  height: 3px;
-  background: #918c00;
-  content: '';
+	display: block;
+	position: absolute;
+	bottom: 0;
+	z-index: -1;
+	width: 100%;
+	height: 3px;
+	background: #918c00;
+	content: '';
 }
 
 .tab-menu .tab-menu__inner .tab-menu__list {
-  position: relative;
-  float: left;
-  width: 300px;
-  height: 55px;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  line-height: 55px;
-  z-index: -1;
+	position: relative;
+	float: left;
+	width: 300px;
+	height: 55px;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 55px;
+	z-index: -1;
 }
 
 .tab-menu .tab-menu__inner .tab-menu__list:first-child {
-  margin-left: 0;
-  z-index: -1;
+	margin-left: 0;
+	z-index: -1;
 }
 
 .tab-menu .tab-menu__inner .tab-menu__list a {
-  display: block;
-  padding-right: 24px;
-  color: #666;
+	display: block;
+	padding-right: 24px;
+	color: #666;
 }
 
 .tab-menu__list a:after {
-  content: '';
-  bottom: -8px;
-  display: block;
-  position: absolute;
-  right: 2px;
-  width: 0;
-  height: 0;
-  border-top: 24px solid transparent;
-  border-right: 12px solid transparent;
-  border-bottom: 22px solid #EAEAEA;
-  border-left: 13px solid #EAEAEA;
+	content: '';
+	bottom: -8px;
+	display: block;
+	position: absolute;
+	right: 2px;
+	width: 0;
+	height: 0;
+	border-top: 24px solid transparent;
+	border-right: 12px solid transparent;
+	border-bottom: 22px solid #EAEAEA;
+	border-left: 13px solid #EAEAEA;
 }
 
 .tab-menu__list a strong {
-  display: block;
-  background: #eaeaea;
-  border-radius: 20px 20px 0 0;
+	display: block;
+	background: #eaeaea;
+	border-radius: 20px 20px 0 0;
 }
 
 .tab-menu__list--on {
-  z-index: 2;
+	z-index: 2;
 }
 
 .tab-menu__list--on a:after {
-    bottom: -8px;
+	bottom: -8px;
 	border-top: 24px solid transparent;
-    border-right: 12px solid transparent;
-    border-bottom: 22px solid #918c00;
-    border-left: 13px solid #918c00;
+	border-right: 12px solid transparent;
+	border-bottom: 22px solid #918c00;
+	border-left: 13px solid #918c00;
 }
 
 .tab-menu__list--on a strong {
 	background: #918c00;
-    color: #FFF;
+	color: #FFF;
 }
 
 .tab-menu__count {
-  display: block;
-  position: absolute;
-  top: -4px;
-  right: 14px;
-  z-index: 2;
-  min-width: 29px;
-  min-height: 29px;
-  padding: 0 8px;
-  background: #3d3d3d;
-  color: #fff;
-  font-size: 14px;
-  text-align: center;
-  line-height: 28px;
-  border-radius: 15px;
-  box-sizing: border-box;
+	display: block;
+	position: absolute;
+	top: -4px;
+	right: 14px;
+	z-index: 2;
+	min-width: 29px;
+	min-height: 29px;
+	padding: 0 8px;
+	background: #3d3d3d;
+	color: #fff;
+	font-size: 14px;
+	text-align: center;
+	line-height: 28px;
+	border-radius: 15px;
+	box-sizing: border-box;
 }
 
 /* 디테일 info */
-
 .tab-content {
-  padding-left: 0; /* 왼쪽 여백 제거 */
+	padding-left: 0; /* 왼쪽 여백 제거 */
 }
 
 .tab-pane.container {
-  margin-left: 0; /* 왼쪽 여백 제거 */
-  min-width: 100%;
+	margin-left: 0; /* 왼쪽 여백 제거 */
+	min-width: 100%;
 }
 
 .diy-advertise-sec {
-  max-width: 100%;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
-  opacity: 1;
-  text-align: center;
+	max-width: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: contain;
+	opacity: 1;
+	text-align: center;
 }
 
 .diy-advertise-sec img {
 	width: 100%;
-    display: block;
-    height: 400px;
+	display: block;
+    height: 650px;
     object-fit: cover;
 }
 
@@ -328,25 +324,24 @@ body {
 }
 
 .info-img-section {
-	flex:1;
+	flex: 1;
 	display: flex;
-    justify-content: flex-end;
+	justify-content: flex-end;
 }
 
 .sub-info-line.last-line {
-  border-bottom: none;
+	border-bottom: none;
 }
 
 .sub-info-line {
-  display: flex;
-  align-items: center;
-  height: 50px;
-  border-bottom: 0.3px solid #CCCCCC;
+	display: flex;
+	align-items: center;
+	height: 50px;
+	border-bottom: 0.3px solid #CCCCCC;
 }
 
-.sub-info-line .info-title,
-.sub-info-line .info-text {
-  font-size: 16px;
+.sub-info-line .info-title, .sub-info-line .info-text {
+	font-size: 16px;
 }
 
 .info-img-section img {
@@ -364,23 +359,23 @@ body {
 }
 
 .main-title {
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  opacity: 1;
-  border-bottom: 2px solid #999;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	opacity: 1;
+	border-bottom: 2px solid #999;
 }
 
 .title-text {
-  width: 491px;
-  color: rgba(28,28,28,1);
-  top: 23px;
-  left: 33px;
-  font-family: Noto Sans KR;
-  font-weight: Bold;
-  font-size: 30px;
-  opacity: 1;
-  text-align: left;
+	width: 491px;
+	color: rgba(28, 28, 28, 1);
+	top: 23px;
+	left: 33px;
+	font-family: Noto Sans KR;
+	font-weight: Bold;
+	font-size: 30px;
+	opacity: 1;
+	text-align: left;
 }
 
 .main-introduction {
@@ -388,23 +383,23 @@ body {
 }
 
 .diy-type {
-  color: rgba(145,140,1,1);
-  font-family: Noto Sans KR;
-  font-weight: Bold;
-  font-size: 20px;
-  opacity: 1;
-  text-align: left;
+	color: rgba(145, 140, 1, 1);
+	font-family: Noto Sans KR;
+	font-weight: Bold;
+	font-size: 20px;
+	opacity: 1;
+	text-align: left;
 }
 
 .new-badge {
-  width: 8px;
-  color: rgba(255,0,0,1);
-  font-family: Noto Sans KR;
-  font-weight: Bold;
-  font-size: 13px;
-  opacity: 1;
-  text-align: center;
-  vertical-align: top;
+	width: 8px;
+	color: rgba(255, 0, 0, 1);
+	font-family: Noto Sans KR;
+	font-weight: Bold;
+	font-size: 13px;
+	opacity: 1;
+	text-align: center;
+	vertical-align: top;
 }
 
 .comment-section .sub-info-line .info-title {
@@ -413,8 +408,117 @@ body {
 
 .comment-section {
 	margin-bottom: 80px;
+	border: 1px solid #ccc;
+	border-radius: 30px;
+	width: 100%;
+	min-height: 200px;
 }
 
 .last-section {
 	margin-bottom: 50px;
 }
+.diy-realted-post{
+	width:100%;
+	height:100%;
+	margin-top: 30px;
+}
+.diy-related-post-section{
+	width: 100%;
+    min-height: 420px;
+    margin-top: 30px;
+    margin-bottom:50px;
+}
+.related-post-card,.market-card{
+width: 270px;
+    height: 270px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.diy-realted-post {
+    display: flex;
+    
+    justify-content: space-around;
+}
+/* .related-post-card-img{
+    width: 100%;
+    padding: 7px;
+    height: 85%
+}
+.related-post-card-img > img{
+	    width: inherit;
+    height: inherit;
+    object-fit: cover;
+    border-radius:10px;
+}
+ */
+.related-post-card-img,
+.market-card-img{
+  position:relative;
+  width: 250px;
+  height: 250px;
+} 
+.related-post-card-img img,
+.market-card-img img{
+  width: 100%;
+  height: 100%;
+} 
+.related-post-card-img::before,
+.market-card-img::before{
+  position:absolute;
+  width: 100%;
+  height: 100%;
+  content:'';
+  top:-5px;
+  left:-5px;
+/*   border: 2px solid #918c01;
+ */  z-index:-1;
+  transition: all 0.2s;
+
+}
+.related-post-card-img:hover::before,
+.market-card-img:hover::before{
+  top: 3px;
+  left: 3px
+}
+.related-post-card-img::after,
+.market-card-img::after{
+  position:absolute;
+  width: 100%;
+  height: 100%;
+  content:'';
+  top:3px;
+  left:3px;
+  background:#918c01;
+  z-index:-1;
+  transition: all 0.2s;
+}
+.related-post-card-img:hover::after,
+.market-card-img:hover::after{
+  top: -3px;
+  left:-3px
+}
+
+.related-post-card-info{
+	padding: 5px;
+    font-size: 25px;
+    font-weight: bold;
+}
+.market-section{
+	margin-bottom:70px;
+}
+.market-cards{
+	display:flex;
+	margin-top:30px;
+	
+}
+.market-card > img{
+	width: 250px;
+	height: 250px;	
+}
+.market-card > span{
+	display:block;
+	font-size:25px;
+	font-weight: bold;
+}
+	 	
