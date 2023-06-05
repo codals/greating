@@ -23,9 +23,6 @@ public class DietController {
 
     @GetMapping
     public String loadOrderMainPage() {
-        /**
-         * order-main.jsp 예정
-         */
         return "order/order-main";
     }
 
@@ -46,7 +43,10 @@ public class DietController {
     }
 
     @GetMapping("/orders/choice")
-    public String loadOrderChoicePage(@SessionAttribute(DELIVERY_DATES) List<Date> deliveryDates, Model model) {
+    public String loadOrderChoicePage(@SessionAttribute(name = DELIVERY_DATES, required = false) List<Date> deliveryDates, Model model) {
+        if (deliveryDates == null) {
+            return "redirect:/diets/mygreating/orders/schedule";
+        }
         model.addAttribute("dailyDiets", dietService.getDailyDietsByDeliveryDates(deliveryDates));
         return "order/meal-choice";
     }
