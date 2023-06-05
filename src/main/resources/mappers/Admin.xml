@@ -57,6 +57,12 @@
 		WHERE id = #{postId}
 	</update>
 
+	<update id="approveCancel" parameterType="long">
+		UPDATE post
+		SET status =
+		0
+		WHERE id = #{postId}
+	</update>
 
 	<update id="insertDailyDiets" parameterType="java.util.List">
 		INSERT INTO daily_diet (

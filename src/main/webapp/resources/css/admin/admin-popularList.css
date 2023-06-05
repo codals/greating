@@ -39,3 +39,28 @@ table th {
 table td {
     text-align: center;
 }
+
+td
+{
+ max-width: 50px;
+ overflow: hidden;
+ text-align: center;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+}
+
+td:first-child:hover{
+	background-color: #ccc
+}
+
+a {
+	text-decoration: none;
+	color: black;
+	
+}
+
+
+button {
+	border: 0;
+	background-color:transparent;
+}
