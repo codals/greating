@@ -9,6 +9,7 @@ import static org.mockito.Mockito.when;
 
 import com.codals.greating.user.dao.UserDao;
 import com.codals.greating.user.dto.LoginRequestDto;
+import com.codals.greating.user.entity.Role;
 import com.codals.greating.user.entity.User;
 import java.util.Optional;
 import org.junit.Before;
@@ -33,7 +34,7 @@ public class UserServiceImplTest {
     @Before
     public void setup() {
         user = new User(1, "user1", "홍길동", "password123",
-            "john.doe@example.com", "1990-01-01", "Male", "1234567890", "user");
+            "john.doe@example.com", "1990-01-01", "Male", "1234567890", Role.USER);
     }
 
     @Test

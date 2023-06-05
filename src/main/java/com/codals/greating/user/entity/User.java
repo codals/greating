@@ -20,7 +20,7 @@ public class User extends BaseEntity {
     private String birth;
     private String gender;
     private String phone;
-    private String role;
+    private Role role;
 
     public User(Integer id,
                 String username,
@@ -30,7 +30,7 @@ public class User extends BaseEntity {
                 String birth,
                 String gender,
                 String phone,
-                String role) {
+                Role role) {
         this.id = id;
         this.username = username;
         this.name = name;

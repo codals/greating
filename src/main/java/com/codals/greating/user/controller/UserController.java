@@ -1,5 +1,6 @@
 package com.codals.greating.user.controller;
 
+import com.codals.greating.user.entity.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -40,7 +41,7 @@ public class UserController {
     @PostMapping("/register")
     public String register(User user) {
        
-    	user.setRole("user");
+    	user.setRole(Role.USER);
     	if(userService.register(user)) {
     		return "/user/login";
     	};

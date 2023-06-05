@@ -3,6 +3,7 @@ package com.codals.greating.user.controller;
 import static com.codals.greating.constant.SessionKey.LOGIN_USER;
 
 import com.codals.greating.user.dto.LoginRequestDto;
+import com.codals.greating.user.entity.Role;
 import com.codals.greating.user.entity.User;
 import com.codals.greating.user.service.UserService;
 import javax.servlet.http.HttpSession;
@@ -60,7 +61,7 @@ public class UserRestController {
     
     @PostMapping("/register")
     public ResponseEntity<Boolean> register(User user) {
-    	user.setRole("user");
+    	user.setRole(Role.USER);
     	if(userService.register(user)) {
     		return ResponseEntity.ok(true);     
     	};
