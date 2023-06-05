@@ -37,8 +37,7 @@ public class DietServiceImpl implements DietService {
 
     @Override
     public List<PreviewResponseDto> getWeeklyDailyDiets() {
-        List<DailyDiet> dailyDiets = dailyDietDao.selectAllByStartDate(DateUtil.dateToString(new Date()))
-            .orElseGet(null);
+        List<DailyDiet> dailyDiets = dailyDietDao.selectAllByStartDate(DateUtil.dateToString(new Date()));
         return getPreviewResponseDto(dailyDiets);
     }
 
@@ -47,8 +46,7 @@ public class DietServiceImpl implements DietService {
         return deliveryDates.stream()
             .map(deliveryDate -> {
                 String deliveryDateFormat = DateUtil.dateToString(deliveryDate);
-                List<DailyDiet> dailyDiets = dailyDietDao.selectAllByStartDateOrEndDate(deliveryDateFormat)
-                    .orElse(null);
+                List<DailyDiet> dailyDiets = dailyDietDao.selectAllByStartDateOrEndDate(deliveryDateFormat);
                 List<PreviewDietResponseDto> dietsResponse = dailyDiets.stream()
                     .map(dailyDiet -> new PreviewDietResponseDto(dailyDiet.getDiet()))
                     .collect(Collectors.toList());

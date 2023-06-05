@@ -11,7 +11,6 @@ import com.codals.greating.user.dao.UserDao;
 import com.codals.greating.user.dto.LoginRequestDto;
 import com.codals.greating.user.entity.Role;
 import com.codals.greating.user.entity.User;
-import java.util.Optional;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,7 +40,7 @@ public class UserServiceImplTest {
     public void 사용자가_인증에_성공한다() {
         // given
         when(userDao.selectByUsernameAndPassword(Mockito.any(LoginRequestDto.class)))
-            .thenReturn(Optional.of(user));
+            .thenReturn(user);
 
         // when
         boolean result = userServiceImpl.authenticate(new LoginRequestDto("홍길동", "password123"));
@@ -54,7 +53,7 @@ public class UserServiceImplTest {
     public void 사용자가_인증에_실패한다() {
         // given
         when(userDao.selectByUsernameAndPassword(Mockito.any(LoginRequestDto.class)))
-            .thenReturn(Optional.empty());
+            .thenReturn(null);
 
         // when
         boolean result = userServiceImpl.authenticate(new LoginRequestDto("홍길동", "password123"));
@@ -67,7 +66,7 @@ public class UserServiceImplTest {
     public void 유효한_사용자를_조회한다() {
         // given
         String username = "user1";
-        when(userDao.selectByUsername(username)).thenReturn(Optional.of(user));
+        when(userDao.selectByUsername(username)).thenReturn(user);
 
         // when
         User resultUser = userServiceImpl.getUserByUsername(username);
@@ -83,7 +82,7 @@ public class UserServiceImplTest {
     public void 존재하지_않는_사용자를_조회한다() {
         // given
         String username = "nonexistent";
-        when(userDao.selectByUsername(username)).thenReturn(Optional.empty());
+        when(userDao.selectByUsername(username)).thenReturn(null);
 
         // when
         User resultUser = userServiceImpl.getUserByUsername(username);
