@@ -140,9 +140,33 @@
 		ONLY
 	</select>
 
-	<select id="selectPostBySearchConditions"
-		parameterType="SearchRequestDto" resultType="SimplePostDto">
+	<select id="selectPostBySearchConditions" parameterType="SearchRequestDto" resultType="SimplePostDto">
 		SELECT *
+		FROM post
+		<where>
+			<if test="hasRice != null">
+				AND nvl2(rice_food_id, 1, 0) = #{hasRice}
+			</if>
+			<if test="hasSoup != null">
+				AND nvl2(soup_food_id, 1, 0) = #{hasSoup}
+			</if>
+			<if test="mainCategories != null and mainCategories.size() > 0">
+				AND main_category_id IN
+				<foreach item="category" collection="mainCategories" separator="," open="(" close=")">
+					#{category.id}
+				</foreach>
+			</if>
+			<if test="foodCountries != null and foodCountries.size() > 0">
+				AND food_country_id IN
+				<foreach item="country" collection="foodCountries" separator="," open="(" close=")">
+					#{country.id}
+				</foreach>
+			</if>
+		</where>
+	</select>
+	
+	<select id="countTotalPostBySearchConditions" parameterType="SearchRequestDto" resultType="Integer">
+		SELECT COUNT(*)
 		FROM post
 		<where>
 				<if test="hasRice != null">
@@ -166,9 +190,6 @@
 					</foreach>
 				</if> 
 		</where>
-	<!-- 	OFFSET 0 ROWS FETCH FIRST 10 ROWS
-		ONLY -->
-		
 	</select>
 	
 	

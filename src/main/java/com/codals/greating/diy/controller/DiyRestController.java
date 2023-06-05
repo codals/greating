@@ -20,6 +20,7 @@ import com.codals.greating.constant.MainCategoryCode;
 import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.dto.SearchRequestDto;
+import com.codals.greating.diy.dto.SearchResponseDto;
 import com.codals.greating.diy.dto.SimplePostDto;
 import com.codals.greating.diy.dto.VoteRequestDto;
 import com.codals.greating.diy.service.DiyService;
@@ -41,9 +42,6 @@ public class DiyRestController {
                          @RequestParam(required = false) String classification,
                          @RequestParam(required = false) boolean includeRice,
                          @RequestParam(required = false) boolean includeSoup) {
-        /**
-         * diy 메인 > 돋보기, 선택완료 버튼 (Ajax)
-         */
         return "diy/diy-main";
     }
     
@@ -52,12 +50,8 @@ public class DiyRestController {
 									  @ModelAttribute DiyRequestDto postRequest,
 							          HttpSession session) {
 
-		log.info(postRequest);
-		log.info("soupId=" + postRequest.getSoupFoodId());
-
 		Integer postId = diyService.savePost(loginUser, postRequest);
-				
-		
+	
 	    return new ResponseEntity<>(postId, HttpStatus.OK);
 	}
     
@@ -76,9 +70,6 @@ public class DiyRestController {
     	}
     	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
     }
-    
-	
-
 
 	@PostMapping("/vote")
 	public ResponseEntity<Boolean>  votePost(int postId, @SessionAttribute("loginUser") User loginUser ){
@@ -87,7 +78,6 @@ public class DiyRestController {
 		}
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
 	}
-	
 	
 	@DeleteMapping("/{postId}/vote")
 	public ResponseEntity<Boolean> voteCancel(@PathVariable("postId") int postId, @SessionAttribute("loginUser") User loginUser ){
@@ -98,10 +88,20 @@ public class DiyRestController {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
 	}
 	
+	// Pagination 적용 전
+//	@GetMapping("/search")
+//	public ResponseEntity<List<SimplePostDto>> search(SearchRequestDto requestDto) {
+//		List<SimplePostDto> searchedPosts = diyService.search(requestDto);	
+//	    return new ResponseEntity<>(searchedPosts, HttpStatus.OK);
+//	}
+
+	// pagination 적용 후
 	@GetMapping("/search")
-	public ResponseEntity<List<SimplePostDto>> search(SearchRequestDto requestDto) {
-		List<SimplePostDto> searchedPosts = diyService.search(requestDto);	
-	    return new ResponseEntity<>(searchedPosts, HttpStatus.OK);
+	public ResponseEntity<SearchResponseDto> search(SearchRequestDto requestDto, @RequestParam(value = "page", defaultValue = "1") int page) {
+		requestDto.setPage(page);
+		SearchResponseDto response = diyService.search(requestDto);	
+		log.info(response);
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
 }

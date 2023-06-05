@@ -38,7 +38,6 @@ import static com.codals.greating.constant.FoodTypeCode.*;
 @PropertySource("classpath:application.properties")
 public class DiyController {
 	
-
 	private final DiyService diyService;
 	
 	private final FoodService foodService;

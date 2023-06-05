@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.codals.greating.mypage.dto.MyPageDto;
 import com.codals.greating.mypage.dto.MyPageScrapDto;
+import com.codals.greating.util.pagination.Pagination;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,8 +18,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MyPageDaoImpl implements MyPageDao {
 	
-	@Autowired
-	SqlSession sqlsession;
+	private final SqlSession sqlsession;
 	
 	@Override
 	public List<MyPageDto> diyList(MyPageDto dto) {

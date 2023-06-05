@@ -11,6 +11,10 @@ function openSearchBox() {
 
 function search(){
 	
+	// 이전 pagination 제거
+    var paginationContainer = document.getElementById("paginationContainer");
+    paginationContainer.innerHTML = "";
+	
 	let mainCategories = [];
 	let foodCountries = [];
 	let hasRice;
@@ -88,12 +92,21 @@ function search(){
 }
 
 function updateSearchResultBox(data){
+	
+	console.log(data)
 	$('.search-container').css('display','none');
+	
+	var defaultTitle = $("#default-title");
+	defaultTitle.empty();
+	defaultTitle.append('<h4 style="font-weight: bold;">검색 결과</h4>');
 	
 	var dietCardList = $('.diet-card-list');
 	dietCardList.empty(); 
 	
-	data.forEach(function(item){
+	var posts = data.posts.slice(0, 9); // 처음 12개만 선택
+	console.log("posts=", posts)
+	
+	posts.forEach(function(item){
 		   var dietCard = $('<div class="col-4 diet-card"></div>');
 		    
 		    var dietCardImg = $('<div class="diet-card-img"></div>');
@@ -126,9 +139,95 @@ function updateSearchResultBox(data){
 		
 	});
 	
+	// pagination 추가
+    // 페이징 버튼 생성 및 추가
+	var paginationContainer = document.getElementById("paginationContainer");
+	paginationContainer.innerHTML = "";
+	
+	// pagination 추가
+	var pagination = generatePagination(data);
+	paginationContainer.appendChild(pagination);
+	
 	dietCardList.append(dietCardList);
 
 }
+
+//페이징 버튼 생성
+function generatePagination(dto) {
+    var pagination = document.createElement("div");
+    pagination.classList.add("pagination");
+
+    if (dto.page > 1) {
+        if (dto.totalPage > 5) {
+            var firstPageLink = document.createElement("a");
+            firstPageLink.href = "?page=1";
+            firstPageLink.innerText = "처음";
+            pagination.appendChild(firstPageLink);
+        }
+
+        var prevPageLink = document.createElement("a");
+        prevPageLink.href = "?page=" + (dto.page - 1);
+        prevPageLink.innerText = "이전";
+        pagination.appendChild(prevPageLink);
+    }
+
+    var startPage = dto.page - 2;
+    var endPage = dto.page + 2;
+
+    if (startPage < 1) {
+        startPage = 1;
+        endPage = 5;
+    }
+
+    if (endPage > dto.totalPage) {
+        startPage = dto.totalPage - 4;
+        endPage = dto.totalPage;
+    }
+
+    if (startPage < 1) {
+        startPage = 1;
+    }
+    if (endPage > dto.totalPage) {
+        endPage = dto.totalPage;
+    }
+
+    for (var pageNum = startPage; pageNum <= endPage; pageNum++) {
+        var pageLink = document.createElement("a");
+        pageLink.href = "?page=" + pageNum;
+        if (pageNum === dto.page) {
+            var strong = document.createElement("strong");
+            strong.innerText = pageNum;
+            pageLink.appendChild(strong);
+        } else {
+            pageLink.innerText = pageNum;
+        }
+        pagination.appendChild(pageLink);
+    }
+
+    if (dto.page < dto.totalPage) {
+        var nextPageLink = document.createElement("a");
+        nextPageLink.href = "?page=" + (dto.page + 1);
+        nextPageLink.innerText = "다음";
+        pagination.appendChild(nextPageLink);
+
+        if (dto.totalPage > 5) {
+            var lastPageLink = document.createElement("a");
+            lastPageLink.href = "?page=" + dto.totalPage;
+            lastPageLink.innerText = "끝";
+            pagination.appendChild(lastPageLink);
+        }
+    }
+
+    return pagination;
+}
+
+//페이징 버튼 클릭 시 페이지 이동
+function goToPage(page) {
+    location.href = "?page=" + page;
+}
+
+
+
 
 function resetSelection(){
 	  $('input[type="checkbox"]').prop('checked', false);

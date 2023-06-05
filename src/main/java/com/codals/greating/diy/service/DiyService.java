@@ -6,6 +6,7 @@ import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.PostResponseDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.dto.SearchRequestDto;
+import com.codals.greating.diy.dto.SearchResponseDto;
 import com.codals.greating.diy.dto.SimplePostDto;
 import com.codals.greating.diy.dto.VoteRequestDto;
 import com.codals.greating.diy.entity.Post;
@@ -25,7 +26,7 @@ public interface DiyService {
 
 	List<Post> loadPostsByCategoryType(int mainCategoryid);
 
-	List<SimplePostDto> search(SearchRequestDto requestDto);
+	SearchResponseDto search(SearchRequestDto requestDto);
 
 	boolean checkVoted(VoteRequestDto requestDto);
 

@@ -19,6 +19,7 @@ import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.PostResponseDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.dto.SearchRequestDto;
+import com.codals.greating.diy.dto.SearchResponseDto;
 import com.codals.greating.diy.dto.SimplePostDto;
 import com.codals.greating.diy.entity.Post;
 import com.codals.greating.user.entity.User;
@@ -50,11 +51,6 @@ public class DiyServiceImpl implements DiyService{
 	}
 	
 	private Post createPost(User loginUser, DiyRequestDto postRequest) {
-		
-		log.info("request -> post 매핑 전 =" + postRequest);
-		log.info("path=" + imgStoragePath);
-    	log.info("token=" + imgApiToken);
-    	
 		Post newPost = Post.builder()
 							.mainCategoryId(postRequest.getMainCategoryId())
 							.subCategoryId(postRequest.getSubCategoryId())
@@ -74,9 +70,6 @@ public class DiyServiceImpl implements DiyService{
 							.minPrice(postRequest.getMinPrice())
 							.maxPrice(postRequest.getMaxPrice())
 							.build();
-
-		log.info("request -> post 매핑 후 =" + newPost);
-
 		return newPost;
 	}
 
@@ -141,10 +134,36 @@ public class DiyServiceImpl implements DiyService{
 		return diyDAO.selectPostsByMainCategory(mainCategoryId);
 	}
 
+//	// pagination 적용 전
+//	@Override
+//	public List<SimplePostDto> search(SearchRequestDto requestDto) {
+//		return diyDAO.selectPostBySearchConditions(requestDto);
+//	}
+	
+	// pagination 적용 후
 	@Override
-	public List<SimplePostDto> search(SearchRequestDto requestDto) {
-
-		return diyDAO.selectPostBySearchConditions(requestDto);
+	public SearchResponseDto search(SearchRequestDto requestDto) {
+		int rowsPerPage = 9;
+		requestDto.setOffset((requestDto.getPage() - 1) * rowsPerPage);
+		requestDto.setLimit(rowsPerPage);
+		
+		List<SimplePostDto> result = diyDAO.selectPostBySearchConditions(requestDto);
+		
+		log.info(result);
+		
+		int totalCount = diyDAO.getTotalSearchResultCount(requestDto);
+		
+		log.info(totalCount);
+		
+		SearchResponseDto response = SearchResponseDto.builder()
+				  .page(requestDto.getPage())
+				  .totalCount(totalCount)
+				  .totalPage((int) Math.ceil((double) totalCount / rowsPerPage))
+				  .posts(result)
+				  .build();
+		
+		log.info(response);
+		return response;
 	}
 
 	@Override

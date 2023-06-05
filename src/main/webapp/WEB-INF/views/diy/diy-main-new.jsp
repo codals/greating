@@ -10,9 +10,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/greating/resources/js/diy/diy-main.js"></script>
 
-<link
-	href="${pageContext.request.contextPath}/resources/css/diy/diy-main-new.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/diy/diy-main-new.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/templates/pagination.css" rel="stylesheet">
+
 <!-- alert 창 커스텀  -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
@@ -120,11 +120,11 @@
 
 	<div class="main-content hd__inner1100">
 		<div class="hd__inner960">
-			<div style="margin:30px 0px -30px 20px;">
-				<h5 style="font-weight: bold;">실시간 인기 DIY 식단</h5>
-			</div>
+			<div id="default-title" style="margin:30px 0px -30px 20px;">
+					<h5 style="font-weight: bold;">실시간 인기 DIY 식단</h5>
+				</div>
 			<div class="diet-card-list">
-				<c:forEach var="post" items="${healthyPostTop10}">
+				<c:forEach var="post" items="${healthyPostTop10}" varStatus="loop" begin="0" end="8">
 					<div class="diet-card">
 						<div class="diet-card-img">
 							<img src="${post.imgUrl}"> 
@@ -144,6 +144,12 @@
 					</div>
 				</c:forEach>
 			</div>
+			
+<%-- 			<!-- pagination 추가 -->
+			<jsp:include page="../templates/pagination.jsp" /> --%>
+			
+			<div id="paginationContainer"></div>
+			
 		</div>
 	</div>
 
