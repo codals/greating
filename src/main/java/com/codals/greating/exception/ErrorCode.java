@@ -14,6 +14,7 @@ public enum ErrorCode {
 
 	// Unauthorized (401)
 	INVALID_LOGIN("INVALID_LOGIN", "로그인이 필요합니다.", 401),
+	INVALID_LOGIN_ACCESS("INVALID_LOGIN", "이미 로그인되었습니다.", 403),
 
 	// NOT_FOUND (404)
 	USER_NOT_FOUND("USER_NOT_FOUND", "등록되지 않은 사용자입니다.", 404), 

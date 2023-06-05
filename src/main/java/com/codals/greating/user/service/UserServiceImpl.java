@@ -14,13 +14,13 @@ public class UserServiceImpl implements UserService {
     private final UserDao userDao;
 
     public boolean authenticate(LoginRequestDto loginRequestDto) {
-        User user = userDao.selectByUsernameAndPassword(loginRequestDto).orElseGet(User::new); // 에러 논의 필요
+        User user = userDao.selectByUsernameAndPassword(loginRequestDto); // 에러 논의 필요
         return user.getId() != null;
     }
 
     @Override
     public User getUserByUsername(String username) {
-        return userDao.selectByUsername(username).orElseGet(User::new);
+        return userDao.selectByUsername(username);
     }
 
     @Transactional

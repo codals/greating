@@ -150,9 +150,8 @@
 								</div>
 								<div class="button-container">
 									<input type="button" class="left-button"
-										onclick="location.href='${header.referer}'" value="취소">
-									<input type="submit" class="submitBtn" value="회원가입"
-										onclick="submitRegisterForm(event)">
+										onclick="location.href='${pageContext.request.contextPath}/register-agreement'" value="취소">
+									<input type="submit" class="submitBtn" value="회원가입" onclick="submitRegisterForm(event)">
 								</div>
 
 								<div class="checkInfo hidden">
