@@ -46,7 +46,7 @@
 				<div class="healthy-top-slide fadeInUp">
 					<div class="slider healthy-slide">
 						<c:forEach items="${healthyPostTop10}" var="post">
-							<div class="slider-card healthy-card">
+                            <div class="slider-card healthy-card" data-id="${post.id}">
 								<img src="${post.imgUrl}" alt="">
 								<span><a href="/greating/mealdiy/${post.id}" style="color:black;">${post.title}</a></span>
 							</div>
@@ -69,7 +69,7 @@
 				<div class="care-top-slide fadeInUp">
 					<div class="slider care-slide">
 						<c:forEach items="${medicalPostTop10}" var="post">
-							<div class="slider-card care-card">
+							<div class="slider-card care-card" data-id="${post.id}">
 								<img src="${post.imgUrl}" alt="">
 								<span><a href="/greating/mealdiy/${post.id}" style="color:black;">${post.title}</a></span>
 							</div>
@@ -92,7 +92,7 @@
 				<div class="challenge-top-slide fadeInUp">
 					<div class="slider challenge-slide">
 						<c:forEach items="${callengePostTop10}" var="post">
-							<div class="slider-card challenge-card">
+							<div class="slider-card challenge-card" data-id="${post.id}">
 								<img src="${post.imgUrl}" alt="">
 								<span><a href="/greating/mealdiy/${post.id}" style="color:black;">${post.title}</a></span>
 							</div>

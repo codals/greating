@@ -18,6 +18,10 @@
 rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+		integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+		crossorigin="anonymous"></script>
+<script src="${pageContext.request.contextPath}/resources/js/user/mypage-myscrap.js"></script>
 </head>
 <body>
 
@@ -29,7 +33,7 @@ rel="stylesheet">
 		<ul class="page-category">
 			<li>Home</li>
 			<li>></li>
-			<li class="highlight">마이페이지, ${dto.totalPage }</li>
+			<li class="highlight">마이페이지, ${dto.totalPage}</li>
 		</ul>
 
 		<div class="mypage-main d-flex">
@@ -46,18 +50,17 @@ rel="stylesheet">
 				</div>
 
 				<ul>
-					<c:forEach items="${list }" var="list" >
-						<li class="myScrap-card">
+					<c:forEach items="${list}" var="list">
+						<li class="myScrap-card" data-id="${list.postId}" >
 							<div class="myScrap-card-img">
-								<i class="fas fa-solid fa-bookmark fa-lg"
-									style="color: #918c01;"></i> <img
-									src="${list.imgUrl }">
+								<i class="fas fa-solid fa-bookmark fa-lg" style="color: #918c01;"></i>
+								<img src="${list.imgUrl}" alt="">
 							</div>
 							<div class="myScrap-card-info">
-								<h3>${list.postTitle }</h3>
+								<h3>${list.postTitle}</h3>
 								<div class="author-info">
 									<p>영양사</p>
-									<p>${list.userName }</p>
+									<p>${list.userName}</p>
 								</div>
 								<div class="calorie-info">
 									<p>희망칼로리</p>
@@ -94,16 +97,16 @@ rel="stylesheet">
 								<c:set var="startPage" value="${dto.totalPage - 4}" />
 							</c:when>
 						</c:choose>
-	
+
 						<c:if test="${startPage < 1}">
 							<c:set var="startPage" value="1" />
 						</c:if>
 						<c:if test="${endPage > dto.totalPage}">
 							<c:set var="endPage" value="${dto.totalPage}" />
 						</c:if>
-	
-	
-	
+
+
+
 						<c:forEach var="pageNum" begin="${startPage}" end="${endPage}">
 							<c:choose>
 								<c:when test="${pageNum eq dto.page}">
@@ -114,7 +117,7 @@ rel="stylesheet">
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
-	
+
 						<c:if test="${dto.page < dto.totalPage}">
 							<a href="/greating/mypage/scrap?page=${dto.page + 1}">다음</a>
 							<a href="/greating/mypage/scrap?page=${dto.totalPage}">끝</a>

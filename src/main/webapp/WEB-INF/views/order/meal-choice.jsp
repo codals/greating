@@ -40,7 +40,6 @@
 			<li class="highlight">주문하기</li>
 		</ul>
 		<jsp:include page="/WEB-INF/views/order/order-header.jsp" />
-
 		<div id="mchoice">
 
 			<c:forEach var="dailyDiet" items="${dailyDiets}" varStatus="status">
