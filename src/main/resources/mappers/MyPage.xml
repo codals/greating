@@ -62,7 +62,7 @@
 	</select>
 
 	<select id="scrapList" resultType="MypageScrap">
-		SELECT p.title, u.username,
+		SELECT p.id ,p.title, u.username,
 		p.min_calorie, p.max_calorie, p.img_url
 		FROM scrap ps
 		JOIN post p ON
@@ -70,12 +70,12 @@
 		JOIN "user" u ON p.user_id = u.id
 		WHERE ps.user_id =
 		#{userId}
-		ORDER BY ps.id
+		ORDER BY ps.id desc
 		OFFSET #{startRow} ROWS FETCH NEXT #{endRow} ROWS ONLY
 	</select>
 
 	<select id="voteList" resultType="MypageScrap">
-		SELECT p.title, u.username,
+		SELECT p.id , p.title, u.username,
 		p.min_calorie, p.max_calorie, p.img_url
 		FROM vote ps
 		JOIN post p ON
@@ -86,4 +86,9 @@
 		ORDER BY ps.id desc
 		OFFSET #{startRow} ROWS FETCH NEXT #{endRow} ROWS ONLY
 	</select>
+	
+	<update id="deleteMyDiy" parameterType="int">
+        { CALL delete_post_with_related_data(#{postId}) }
+    </update>
+	
 </mapper>

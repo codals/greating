@@ -64,4 +64,11 @@ public class MyPageServiceImpl implements MyPageService {
 		return dao.voteList(dto);
 	}
 
+	@Override
+	public int deleteMyDiy(int postId) {
+		int result = dao.deleteMyDiy(postId);
+		return result;
+		
+	}
+
 }

@@ -19,4 +19,6 @@ public interface MyPageDao {
 	int getMyScrapTotalPageCount(long userId);
 	
 	int getMyVoteTotalPageCount(long userId);
+
+	int deleteMyDiy(int postId);
 }

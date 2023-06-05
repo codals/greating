@@ -45,16 +45,18 @@
 					<c:forEach items="${list}" var="item">
 						<li class="myDiy-card" data-id="${item.id}">
 							<div class="myDiy-card-img">
-								<img src="${item.imgUrl}" alt="">
+								<img src="${item.imgUrl}" alt="" onclick="navigateToMealDiy(${item.id})">
 							</div>
 							<div class="myDiy-card-info">
-								<span class="mb-2">${item.title}</span>
+								<span class="mb-2" onclick="navigateToMealDiy(${item.id})">${item.title}</span>
+								
 								<div class="hr"></div>
 								<div class="myDiy-card-tags">
 									<span style="font-size: 17px;"> 메인 구성 </span>
 									<span class="myDiy-card-tag">${item.riceFoodName}</span>
 									<span class="myDiy-card-tag">${item.soupFoodName}</span>
 									<span class="myDiy-card-tag">${item.mainFoodName}</span>
+									<sapn class="myDiy-card-del"><button onclick="confirmDelete(${item.id})">삭제하기</button>
 								</div>
 								<div class="myDiy-vote">
 									<span style="font-size: 17px;"> 투표 현황 </span>

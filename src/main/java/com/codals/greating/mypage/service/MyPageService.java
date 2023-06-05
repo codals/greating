@@ -16,4 +16,6 @@ public interface MyPageService {
 
 	public List<MyPageDto> voteList(MyPageScrapDto dto, int page);
 
+	public int deleteMyDiy(int postId);
+
 }
