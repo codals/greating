@@ -125,8 +125,7 @@ public class DiyController {
 		model.addAttribute("imgApiToken", imgApiToken);
 		
 		model.addAttribute("kakaoShareKey", kakaoShareKey);
-		
-		
+		log.info(postDetail);
 		return "diy/diy-detail";
 	}
 	

@@ -14,6 +14,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class PostResponseDto {
 	
 	private Post post;
@@ -23,6 +24,7 @@ public class PostResponseDto {
 	private MainCategory mainCategory;
 	private SubCategory subCategory;
 	
+	private String foodCountry;
 	private Food rice;
 	private Food soup;
 	private Food main;
