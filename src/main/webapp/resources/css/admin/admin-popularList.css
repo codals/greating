@@ -64,3 +64,8 @@ button {
 	border: 0;
 	background-color:transparent;
 }
+
+.cancel-button{
+	color: red;
+	border: solid 1px #ccc;
+}

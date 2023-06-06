@@ -64,6 +64,30 @@
 		WHERE id = #{postId}
 	</update>
 
+	<update id="approveDiyCheck" parameterType="long">
+		UPDATE post
+		SET status =
+		3
+		WHERE id = #{postId}
+	</update>
+
+	<delete id="approveDiyCancel" parameterType="long">
+		  DELETE FROM diet
+		  WHERE name IN (
+		    SELECT d.name
+		    FROM diet d
+		    JOIN post p ON d.name = p.title
+		    WHERE p.id = #{postId}
+		  )
+	</delete>
+	
+	<update id="registerDiy" parameterType="int">
+	  INSERT INTO diet (main_category_id, sub_category_id, name, price, thumbnail_img_url)
+	  (SELECT main_category_id, sub_category_id, title, max_price, img_url
+	  FROM post
+	  WHERE id = #{postId})
+	</update>
+
 	<update id="insertDailyDiets" parameterType="java.util.List">
 		INSERT INTO daily_diet (
 		id, diet_id, start_date, end_date

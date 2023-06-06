@@ -65,4 +65,23 @@ public class AdminDaoImpl implements AdminDao {
 		return updatedRows > 0;
 	}
 
+	@Override
+	public boolean approveDiy(long postId) {
+		int updatedRows = sqlSession.update("admin.approveDiyCheck", postId);
+		return updatedRows > 0;
+	}
+
+	@Override
+	public boolean approveDiyCancel(long postId) {
+		int updatedRows = sqlSession.delete("admin.approveDiyCancel", postId);
+		return updatedRows > 0;
+	}
+
+	@Override
+	public boolean approveDiyRegister(int postId) {
+		System.out.println("DAO입니다." + postId);
+		int insertRows = sqlSession.insert("admin.registerDiy", postId);
+		return insertRows > 0;
+	}
+
 }

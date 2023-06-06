@@ -24,4 +24,10 @@ public interface AdminService {
 
 	boolean approveCancel(long postId);
 
+	boolean approveDiy(long postId);
+
+	boolean approveDiyCancel(long postId);
+
+	boolean approveDiyRegister(int postId);
+
 }

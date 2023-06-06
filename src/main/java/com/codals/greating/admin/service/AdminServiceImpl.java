@@ -84,4 +84,25 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 
+	@Override
+	public boolean approveDiy(long postId) {
+		// TODO Auto-generated method stub
+		return adminDao.approveDiy(postId);
+	}
+
+
+	@Override
+	public boolean approveDiyCancel(long postId) {
+		// TODO Auto-generated method stub
+		return adminDao.approveDiyCancel(postId);
+	}
+
+
+	@Override
+	public boolean approveDiyRegister(int postId) {
+		// TODO Auto-generated method stub
+		return adminDao.approveDiyRegister(postId);
+	}
+
+
 }
