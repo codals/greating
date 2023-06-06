@@ -26,7 +26,7 @@
         <td style="padding: 15px 10px; color: #333333; font-size: 14px;" th:text="${item.deliveryDate}"></td>
         <td style="padding: 15px 10px; color: #333333; font-size: 14px;" th:text="${item.productName}"></td>
         <td style="padding: 15px 10px; color: #333333; font-size: 14px;" th:text="${item.cnt}"></td>
-        <td style="padding: 15px 10px; color: #333333; font-size: 14px;" th:text="${item.price}"></td>
+        <td style="padding: 15px 10px; color: #333333; font-size: 14px;" th:text="${item.price}*${item.cnt}"></td>
       </tr>
     </table>
     <p style="margin-top: 30px; margin-bottom: 10px; color: #333333; font-size: 16px;">총 가격: <strong style="color: #ff9900; font-size: 18px;" th:text="${totalPrice}"></strong>원</p>
