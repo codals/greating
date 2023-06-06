@@ -48,8 +48,7 @@ public class DiyServiceImpl implements DiyService{
     @Value("${img.api.token}")
     private String imgApiToken;
 	
-    @Autowired
-	private RedisTemplate<String, Object> redisTemplate;
+    private final RedisTemplate<String, Object> redisTemplate;
     
 	@Override
 	public PostResponseDto getPostDetail(int postId) {

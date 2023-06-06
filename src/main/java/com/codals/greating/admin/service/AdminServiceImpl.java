@@ -4,7 +4,11 @@ package com.codals.greating.admin.service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,9 +27,13 @@ import lombok.extern.log4j.Log4j2;
 @Service
 @RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService{
-
+	
+	private final String DAILY_DIET_CACHE_KEY = "dailyDiets: ";
+	
 	private final AdminDao adminDao;
+	private final RedisTemplate<String, Object> redisTemplate;
 
+	
 	@Override
 	public List<Diet> getDietsByMainCategory(MainCategoryCode category) {
 		return adminDao.selectDietsByMainCategory(category);
@@ -35,19 +43,35 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	@Transactional
 	public boolean registerDailyDiets(AdminDietRegisterRequestDto requestDto) {
-
+		int selectedCnt = requestDto.getDietIds().size();
+		
+		// 1. 저장할 DailyDiets 객체 생성
 		List<DailyDiet> diets = new ArrayList<DailyDiet>();
 		for(Integer dietId : requestDto.getDietIds()) {
-			DailyDiet diet = new DailyDiet();
-			diet.setDietId(dietId);
-			diet.setStartDate(LocalDate.parse(requestDto.getStartDate()));
-			diet.setEndDate(diet.getStartDate().plusDays(1));
+			DailyDiet diet = DailyDiet.builder()
+									  .dietId(dietId)
+									  .startDate(LocalDate.parse(requestDto.getStartDate()))
+									  .endDate(LocalDate.parse(requestDto.getStartDate()).plusDays(1))
+									  .build();
 			diets.add(diet);
 		}
-		if(adminDao.insertDailyDiets(diets) == requestDto.getDietIds().size()) {
-			return true;
-		};
+
+		// 2. DAO를 활용하여 데이터 저장
+		int resultCnt = adminDao.insertDailyDiets(diets);
+		if (resultCnt == selectedCnt) {					// 개수대로 제대로 저장이 되었으면
+		    cacheDailyDiet(requestDto.getStartDate());	// Redis에 캐싱하기 (이미 key가 있어도 업데이트된 데이터로 덮어씌움)
+		    return true;
+		}
 		return false;
+	}
+	
+	private void cacheDailyDiet(String targetDate) {
+		String cacheKey = DAILY_DIET_CACHE_KEY + targetDate;
+	    List<AdminDailyDietResponseDto> cachingDiets = adminDao.selectDailyDietsByDate(targetDate);
+		
+	    redisTemplate.opsForValue().set(cacheKey, cachingDiets, 14, TimeUnit.DAYS);
+	    
+	    log.info("일일 식단 데이터를 Redis에 저장: {}", cacheKey);
 	}
 
 
