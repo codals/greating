@@ -16,6 +16,7 @@ public class MailConfig {
         javaMailSender.setUsername("gmailUsername");
         javaMailSender.setPassword("gmailPassword");
         javaMailSender.setPort(587);
+        javaMailSender.setDefaultEncoding("UTF-8");
         javaMailSender.setJavaMailProperties(getMailProperties());
         return javaMailSender;
     }

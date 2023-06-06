@@ -15,6 +15,8 @@ import com.codals.greating.diet.dto.PreviewDietResponseDto;
 import com.codals.greating.diet.dto.PreviewResponseDto;
 import com.codals.greating.diet.entity.DailyDiet;
 import com.codals.greating.diet.entity.OrderDiet;
+import com.codals.greating.email.dto.OrderDto;
+import com.codals.greating.email.service.EmailService;
 import com.codals.greating.user.entity.User;
 import com.codals.greating.util.DateUtil;
 import java.time.LocalDate;
@@ -34,6 +36,7 @@ public class DietServiceImpl implements DietService {
     private final DailyDietDao dailyDietDao;
     private final OrderDao orderDao;
     private final OrderDietDao orderDietDao;
+    private final EmailService emailService;
 
     @Override
     public List<PreviewResponseDto> getWeeklyDailyDiets() {
@@ -66,6 +69,7 @@ public class DietServiceImpl implements DietService {
                 orderDietDao.insertOrderDiet(orderDiet);
             }
         }
+        emailService.sendOrderEmail(new OrderDto(user, orderRequestDto));
         return new OrderResponseDto(orderRequestDto.getOrderId());
     }
 

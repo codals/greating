@@ -44,6 +44,7 @@
     <beans:property name="port" value="587"/>
     <beans:property name="username" value="gmailUsername"/>
     <beans:property name="password" value="gmailPassword"/>
+    <beans:property name="defaultEncoding" value="UTF-8"/>
     <beans:property name="javaMailProperties">
       <beans:props>
         <beans:prop key="mail.smtp.auth">true</beans:prop>
@@ -71,4 +72,7 @@
     <beans:property name="characterEncoding" value="UTF-8"/>
   </beans:bean>
   <!-- thymeleaf 설정  -->
+
+  <beans:bean id="gmailEmailSender" class="com.codals.greating.email.GmailEmailSender"/>
+
 </beans:beans>
