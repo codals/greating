@@ -1,5 +1,6 @@
 package com.codals.greating.diet.service;
 
+import com.codals.greating.diet.OrderConfirmationEvent;
 import com.codals.greating.diet.dao.DailyDietDao;
 import com.codals.greating.diet.dao.OrderDao;
 import com.codals.greating.diet.dao.OrderDietDao;
@@ -71,7 +72,7 @@ public class DietServiceImpl implements DietService {
                 orderDietDao.insertOrderDiet(orderDiet);
             }
         }
-        OrderEvent orderEvent = new OrderEvent(this, new OrderDto(user, orderRequestDto));
+        OrderConfirmationEvent orderEvent = new OrderConfirmationEvent(this, new OrderDto(user, orderRequestDto));
         eventPublisher.publishEvent(orderEvent);
         return new OrderResponseDto(orderRequestDto.getOrderId());
     }

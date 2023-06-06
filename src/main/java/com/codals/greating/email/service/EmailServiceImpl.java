@@ -1,6 +1,6 @@
 package com.codals.greating.email.service;
 
-import com.codals.greating.diet.service.OrderEvent;
+import com.codals.greating.diet.OrderConfirmationEvent;
 import com.codals.greating.external.sender.GmailEmailSender;
 import com.codals.greating.email.dto.OrderDto;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class EmailServiceImpl implements EmailService {
 
     @Async
     @Override
-    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT, classes = OrderEvent.class)
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT, classes = OrderConfirmationEvent.class)
     public void sendOrderEmail(OrderDto order) {
         Context context = new Context();
         context.setVariable("name", order.getUserName());

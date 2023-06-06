@@ -1,4 +1,4 @@
-package com.codals.greating.diet.service;
+package com.codals.greating.diet;
 
 import com.codals.greating.email.service.EmailService;
 import lombok.RequiredArgsConstructor;
@@ -7,12 +7,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class OrderHandler implements ApplicationListener<OrderEvent> {
+public class OrderConfirmationHandler implements ApplicationListener<OrderConfirmationEvent> {
 
     private final EmailService emailService;
 
     @Override
-    public void onApplicationEvent(OrderEvent event) {
+    public void onApplicationEvent(OrderConfirmationEvent event) {
         emailService.sendOrderEmail(event.getOrder());
     }
 }
