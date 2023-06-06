@@ -40,7 +40,7 @@ public class DietServiceImpl implements DietService {
         List<DailyDiet> dailyDiets = dailyDietDao.selectAllByStartDate(DateUtil.dateToString(new Date()));
         return getPreviewResponseDto(dailyDiets);
     }
-
+ 
     @Override
     public List<PlanResponseDto> getDailyDietsByDeliveryDates(List<Date> deliveryDates) {
         return deliveryDates.stream()
