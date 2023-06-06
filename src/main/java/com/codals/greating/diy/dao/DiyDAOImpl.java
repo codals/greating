@@ -126,4 +126,10 @@ public class DiyDAOImpl implements DiyDAO {
 		int voteFinishedId = VOTE_FINISHED.getId();
 		return sqlSession.update("post.updateStatusOfExpiredPosts", voteFinishedId);
 	}
+
+  @Override
+  public List<SimplePostDto> selectPostsBySubCategory(int subCategoryId) {
+		String statement ="post.selectPostsBySubCategory";
+		return sqlSession.selectList(statement, subCategoryId);
+	}
 }

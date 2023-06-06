@@ -6,12 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	// 각 탭 메뉴 요소에 클릭 이벤트 리스너 추가
 	tabMenuList.forEach(function(tab) {
 
-		tab.click(function(){
-			console.log('clicked');
-
-		});
 		tab.addEventListener("click", function() {
-			console.log('clicked');
 			document.querySelector(".tab-menu__list--on").classList
 					.remove("tab-menu__list--on");
 
