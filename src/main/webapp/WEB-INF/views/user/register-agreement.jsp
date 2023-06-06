@@ -9,9 +9,9 @@
             integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
             integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
-   
+
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   
+
     <link href="${pageContext.request.contextPath}/resources/css/user/register-agreement.css" rel="stylesheet">
 
 <script src="/greating/resources/js/user/register.js"></script>
@@ -86,7 +86,7 @@
                     본인은 만 14세 이상으로 개인정보 및 약관 동의 내용을 확인하였으며, 위 내용에 동의 합니다.<br>
                 </p>
                 <div class="button-container">
-                    <button class="left-button" onclick="location.href='${header.referer}'">취소</button>
+                    <button class="left-button" onclick="location.href='${pageContext.request.contextPath}/register'">취소</button>
                     <button class="right-button">다음</button>
                 </div>
 

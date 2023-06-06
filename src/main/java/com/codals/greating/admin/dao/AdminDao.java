@@ -24,4 +24,6 @@ public interface AdminDao {
 
 	List<AdminDailyDietResponseDto> selectDailyDietsByDate(String date);
 
+	boolean approveCancel(long postId);
+
 }

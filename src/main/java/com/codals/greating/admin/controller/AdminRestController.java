@@ -60,6 +60,16 @@ public class AdminRestController {
 
 
 	}
+	
+	@PostMapping("/approveCancel")
+	public ResponseEntity<Boolean> changeStatusCancel(@RequestParam("postId") long postId) {
+		if(adminService.approveCancel(postId)) {
+			return ResponseEntity.ok().build(); 
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+
+
+	}
 
 	@GetMapping("daily-diets")
 	public ResponseEntity<List<AdminDailyDietResponseDto>> getDailyDiets(String date) {

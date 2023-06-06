@@ -13,7 +13,9 @@
 		<result property="imgUrl" column="img_url" />
 	</resultMap>
 
-	<resultMap id="postResponseDtoResultMap" type="PostResponseDto">
+	<resultMap id="postResponseDtoResultMap"
+		type="PostResponseDto">
+		<result property="foodCountry" column="food_country"></result>
 		<association property="post" javaType="Post">
 			<id property="id" column="id" />
 			<result property="mainCategoryId" column="main_category_id" />
@@ -85,7 +87,9 @@
 		main_cate.id as main_cate_id, main_cate.name as
 		main_cate_name,
 		sub_cate.id as sub_cate_id, sub_cate.name as
-		sub_cate_name
+		sub_cate_name,
+		food_country.id as food_country_id, food_country.country
+		as food_country
 		FROM post p
 		JOIN "user"
 		u on p.user_id = u.id
@@ -95,8 +99,10 @@
 		LEFT JOIN
 		sub_category sub_cate on
 		p.sub_category_id = sub_cate.id
-		WHERE p.id =
-		#{postId}
+		LEFT JOIN
+		food_country on p.food_country_id = food_country.id
+		WHERE p.id
+		=#{postId}
 	</select>
 
 	<select id="selectFoodById" parameterType="int"
@@ -125,10 +131,10 @@
 		SELECT
 		POST_ID_SEQ.CURRVAL AS id FROM DUAL
 	</select>
-	
-	
-	
-	
+
+
+
+
 	<select id="selectPostsByMainCategory" parameterType="int"
 		resultType="Post">
 		SELECT *
@@ -140,60 +146,44 @@
 		ONLY
 	</select>
 
-	<select id="selectPostBySearchConditions" parameterType="SearchRequestDto" resultType="SimplePostDto">
+	<select id="selectPostsBySubCategory" parameterType="int"
+		resultType="SimplePostDto">
+		select p.* from (select * from post where sub_category_id=#{subCategoryId} order by dbms_random.value) p
+		OFFSET 0 ROWS FETCH FIRST 4 ROWS ONLY
+	</select>
+
+	<select id="selectPostBySearchConditions"
+		parameterType="SearchRequestDto" resultType="SimplePostDto">
 		SELECT *
 		FROM post
 		<where>
 			<if test="hasRice != null">
-				AND nvl2(rice_food_id, 1, 0) = #{hasRice}
+				AND nvl2(rice_food_id, 1, 0)= #{hasRice}
 			</if>
 			<if test="hasSoup != null">
-				AND nvl2(soup_food_id, 1, 0) = #{hasSoup}
+				AND nvl2(soup_food_id, 1, 0)= #{hasSoup}
 			</if>
 			<if test="mainCategories != null and mainCategories.size() > 0">
 				AND main_category_id IN
-				<foreach item="category" collection="mainCategories" separator="," open="(" close=")">
+				<foreach item="category" collection="mainCategories"
+					separator="," open="(" close=")">
 					#{category.id}
 				</foreach>
 			</if>
 			<if test="foodCountries != null and foodCountries.size() > 0">
 				AND food_country_id IN
-				<foreach item="country" collection="foodCountries" separator="," open="(" close=")">
+				<foreach item="country" collection="foodCountries"
+					separator="," open="(" close=")">
 					#{country.id}
 				</foreach>
 			</if>
 		</where>
+		<!-- OFFSET 0 ROWS FETCH FIRST 10 ROWS ONLY -->
+
 	</select>
-	
-	<select id="countTotalPostBySearchConditions" parameterType="SearchRequestDto" resultType="Integer">
-		SELECT COUNT(*)
-		FROM post
-		<where>
-				<if test="hasRice != null">
-					AND nvl2(rice_food_id, 1, 0)= #{hasRice}
-				</if>
-				<if test="hasSoup != null">
-					AND nvl2(soup_food_id, 1, 0)= #{hasSoup}
-				</if>
-				<if test="mainCategories != null and mainCategories.size() > 0">
-					AND main_category_id IN
-					<foreach item="category" collection="mainCategories"
-						separator="," open="(" close=")">
-						#{category.id}
-					</foreach>
-				</if>
-				<if test="foodCountries != null and foodCountries.size() > 0">
-					AND food_country_id IN
-					<foreach item="country" collection="foodCountries"
-						separator="," open="(" close=")">
-						#{country.id}
-					</foreach>
-				</if> 
-		</where>
-	</select>
-	
-	
-	
+
+
+
 
 	<!-- scrap 관련 -->
 	<insert id="insertScrap" parameterType="ScrapRequestDto">
@@ -207,11 +197,13 @@
 		where
 		user_id=#{userId} and post_id=#{postId}
 	</delete>
-	<select id="selectScrapByPostIdAndUserId" parameterType="ScrapRequestDto" resultType="Scrap">
+	<select id="selectScrapByPostIdAndUserId"
+		parameterType="ScrapRequestDto" resultType="Scrap">
 		select * from scrap
-		where post_id=#{postId} and user_id=#{userId}
+		where
+		post_id=#{postId} and user_id=#{userId}
 	</select>
-	
+
 
 
 	<!-- vote 관련 -->
@@ -226,13 +218,17 @@
 		where
 		user_id=#{userId} and post_id=#{postId}
 	</delete>
-	
-	<select id="selectVoteByPostIdAndUserId" parameterType="VoteRequestDto" resultType="Vote">
+
+	<select id="selectVoteByPostIdAndUserId"
+		parameterType="VoteRequestDto" resultType="Vote">
 		select * from vote
-		where post_id=#{postId} and user_id=#{userId}
-	
+		where
+		post_id=#{postId} and user_id=#{userId}
 	</select>
-	
 
-
+	<update id="updateStatusOfExpiredPosts" parameterType="Integer">
+		UPDATE post
+		SET status = #{voteFinishedId}
+		WHERE created_at &lt; SYSDATE - 7
+	</update>
 </mapper>

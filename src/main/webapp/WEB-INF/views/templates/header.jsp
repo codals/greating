@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.codals.greating.user.entity.Role" %>
 <!-- JSP 페이지 설정 -->
 
 <!-- Google Fonts 스타일시트 -->
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
 
 <!-- 헤더에 사용될 CSS 파일 -->
-<link href="/greating/resources/css/templates/header.css" rel="stylesheet" />
-<link href="/greating/resources/css/templates/reset.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/css/templates/header.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/css/templates/reset.css" rel="stylesheet" />
 
-<script src="/greating/resources/js/templates/header.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/templates/header.js"></script>
 
 <!--  bootstrap  -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
@@ -21,7 +22,7 @@
 		<!-- 맨 위 로그인/유저 관련 배너들 -->
 		<div class="banner">
 			<!-- 로그인된 사용자인 경우 -->
-			<c:if test="${not empty sessionScope.loginUser}">
+			<c:if test="${not empty sessionScope.loginUser && sessionScope.loginUser.role == Role.USER}">
 				<span class="welcome-message">
 				<a href="${pageContext.request.contextPath}/mypage/diets"
 				style="color: inherit; text-decoration: none;">
@@ -30,6 +31,19 @@
 				<span class="link">쿠폰등록</span>
 				<span class="divider"></span>
 				<span class="customer-service-label">고객센터</span>
+				<span class="divider"></span>
+				<span class="link">로그아웃</span>
+			</c:if>
+
+			<c:if test="${not empty sessionScope.loginUser && sessionScope.loginUser.role == Role.ADMIN}">
+				<span class="welcome-message">
+				<a href="${pageContext.request.contextPath}/mypage/diets"
+				   style="color: inherit; text-decoration: none;">
+				${sessionScope.loginUser.name}님</a></span>
+				<span class="divider"></span>
+				<span class="link">쿠폰등록</span>
+				<span class="divider"></span>
+				<span class="admin-page">관리자 페이지</span>
 				<span class="divider"></span>
 				<span class="link">로그아웃</span>
 			</c:if>

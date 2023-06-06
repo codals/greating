@@ -332,7 +332,7 @@
 				</div>
 
 				<div class="submut-btn mt-5">
-					<input id="diy-diet-form-cancelbtn" type="button" value="등록 취소" onclick=" location.href='${header.referer}'">
+					<input id="diy-diet-form-cancelbtn" type="button" value="등록 취소" onclick=" location.href='${pageContext.request.contextPath}/mealdiy'">
  					<input id="diy-diet-form-subbtn" type="submit" value="등록 완료" onclick="sendFile(event, '${imgUploadUrl}', '${imgApiToken}')">
 				</div>
 

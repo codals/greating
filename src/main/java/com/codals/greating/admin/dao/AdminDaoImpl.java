@@ -59,4 +59,10 @@ public class AdminDaoImpl implements AdminDao {
 		return sqlSession.selectList(statement, date);
 	}
 
+	@Override
+	public boolean approveCancel(long postId) {
+		int updatedRows = sqlSession.update("admin.approveCancel", postId);
+		return updatedRows > 0;
+	}
+
 }

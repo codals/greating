@@ -1,5 +1,7 @@
 package com.codals.greating.diy.dao;
 
+import static com.codals.greating.constant.PostStatus.VOTE_FINISHED;
+
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -8,7 +10,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.codals.greating.diy.dto.PostResponseDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
@@ -35,7 +36,7 @@ public class DiyDAOImpl implements DiyDAO {
     private final Pagination<SimplePostDto> pagination;
 	
 	@Override
-	public <Optional>PostResponseDto selectPostByPostId(int postId) {;
+	public PostResponseDto selectPostByPostId(int postId) {;
 		String statement = "post.selectPostByPostId";
 		return sqlSession.selectOne(statement, postId);
 	}
@@ -129,4 +130,15 @@ public class DiyDAOImpl implements DiyDAO {
 		return sqlSession.selectOne(statement,requestDto);
 	}
 
+	@Override
+	public int updateExpiredPostStatus() {
+		int voteFinishedId = VOTE_FINISHED.getId();
+		return sqlSession.update("post.updateStatusOfExpiredPosts", voteFinishedId);
+	}
+
+  @Override
+  public List<SimplePostDto> selectPostsBySubCategory(int subCategoryId) {
+		String statement ="post.selectPostsBySubCategory";
+		return sqlSession.selectList(statement, subCategoryId);
+	}
 }

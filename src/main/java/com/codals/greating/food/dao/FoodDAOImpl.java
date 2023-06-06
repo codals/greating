@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.codals.greating.food.dto.FoodSimpleDto;
 import com.codals.greating.food.entity.Food;
 
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,12 @@ public class FoodDAOImpl implements FoodDAO {
 		String statement = "food.findAllMarketFoodByFoodTypeId";
 		List<Food> result = session.selectList(statement, foodTypeId);
 		return result;
+	}
+
+	@Override
+	public List<Food> selectMarketFoodByRandom() {
+		String statement = "food.selectMarketFoodByRandom";
+		return session.selectList(statement);
 	}
 
 }

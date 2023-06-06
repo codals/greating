@@ -1,19 +1,22 @@
 package com.codals.greating.diy.service;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.http.ResponseEntity;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.codals.greating.diet.entity.MainCategory;
+import com.codals.greating.diet.entity.SubCategory;
 import com.codals.greating.diy.dao.DiyDAO;
 import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.PostResponseDto;
@@ -23,7 +26,6 @@ import com.codals.greating.diy.dto.SearchResponseDto;
 import com.codals.greating.diy.dto.SimplePostDto;
 import com.codals.greating.diy.entity.Post;
 import com.codals.greating.user.entity.User;
-import com.codals.greating.util.ImageUrlGenerator;
 import com.codals.greating.diy.dto.VoteRequestDto;
 
 import lombok.RequiredArgsConstructor;
@@ -45,10 +47,31 @@ public class DiyServiceImpl implements DiyService{
     @Value("${img.api.token}")
     private String imgApiToken;
 	
+    private final RedisTemplate<String, Object> redisTemplate;
+    
 	@Override
 	public PostResponseDto getPostDetail(int postId) {
+		
+		ValueOperations<String, Object> list = redisTemplate.opsForValue();
+		
+		if(redisTemplate.hasKey("testing")){
+			System.out.println("==============================================");
+			System.out.println("testing 키가 이미 있음");
+			System.out.println("==============================================");
+			System.out.println("데이터 확인 " + list.get("testing"));
+		}else {
+			System.out.println("==============================================");
+			System.out.println(" 키가 없음");
+			PostResponseDto value = diyDAO.selectPostByPostId(postId);
+			list.set("testing", value, 300, TimeUnit.SECONDS); //키 유효시간 300초로 설정
+			System.out.println("Redis에" + " 키 저장");
+			System.out.println("==============================================");
+		}
+		
+		
 		return diyDAO.selectPostByPostId(postId);
 	}
+	
 	
 	private Post createPost(User loginUser, DiyRequestDto postRequest) {
 		Post newPost = Post.builder()
@@ -182,15 +205,29 @@ public class DiyServiceImpl implements DiyService{
 		}
 		return false;
 	}
-      
+
+
 	@Override
 	public Integer savePost(User loginUser, DiyRequestDto postRequest) {
 		// 1. 파일명 생성해서 받아오기 (tomcat서버에 저장된 경로 + UUID로 만든 파일명 + 확장자)
-		
+
 		// 2. post 객체 생성하기
 		Post post = createPost(loginUser, postRequest);
-		
+
 		// 3. post DB에 저장하기
 		return diyDAO.savePost(post);
+	}
+
+	@Override
+	@Scheduled(cron = "0 0 12 * * *")
+	@Transactional
+	public void updateExpiredPostStatus() {
+		int updateCount = diyDAO.updateExpiredPostStatus();
+		log.info("Expired Post Status Update Job executed. Updated status for {} posts.", updateCount);
+}
+  
+  @Override
+  public List<SimplePostDto> getRelatedPosts(int subCategoryId) {
+		return diyDAO.selectPostsBySubCategory(subCategoryId);
 	}
 }

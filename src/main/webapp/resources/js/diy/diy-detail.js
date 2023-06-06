@@ -1,10 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
 	var tabMenuList = document.querySelectorAll(".tab-menu__list");
 
+	
+	console.log('tabMenuList', tabMenuList);
 	// 각 탭 메뉴 요소에 클릭 이벤트 리스너 추가
 	tabMenuList.forEach(function(tab) {
+
 		tab.addEventListener("click", function() {
-			// 현재 활성 탭 스타일 제거
 			document.querySelector(".tab-menu__list--on").classList
 					.remove("tab-menu__list--on");
 

@@ -1,42 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="dailyDiet">
-  <resultMap id="dietMap" type="Diet">
-    <result column="diet_id" property="id"/>
-    <result column="main_category_id" property="mainCategoryId"/>
-    <result column="sub_category_id" property="subCategoryId"/>
-    <result column="name" property="name"/>
-    <result column="amount" property="amount"/>
-    <result column="storage_type" property="storageType"/>
-    <result column="thumbnail_img_url" property="thumbnailImgUrl"/>
-    <result column="content_img_url" property="contentImgUrl"/>
-    <result column="calorie" property="calorie"/>
-    <result column="price" property="price"/>
-  </resultMap>
-  <resultMap id="dailyDietMap" type="DailyDiet">
-    <result column="daily_diet_id" property="id"/>
-    <result column="diet_id" property="dietId"/>
-    <result column="start_date" property="startDate"/>
-    <result column="end_date" property="endDate"/>
-    <collection property="diet" resultMap="dietMap"/>
-  </resultMap>
-  <select id="selectAllByStartDate" parameterType="String" resultMap="dailyDietMap">
-    SELECT *
-    FROM daily_diet A
-           JOIN diet B
-                ON A.diet_id = B.id
-    WHERE A.start_date BETWEEN TO_DATE(#{startDateFormat}, 'YYYY-MM-DD')
-            AND (TO_DATE(#{startDateFormat}, 'YYYY-MM-DD') + INTERVAL '13' DAY)
-  </select>
-  <select id="selectAllByStartDateOrEndDate" parameterType="String" resultMap="dailyDietMap">
-    SELECT A.id daily_diet_id, A.diet_id, A.start_date, A.end_date, B.id diet_id, B.main_category_id, B.sub_category_id, B.name, B.amount,
-           B.storage_type, B.thumbnail_img_url, B.content_img_url, B.calorie, B.price
-    FROM daily_diet A
-           JOIN diet B
-                ON A.diet_id = B.id
-    WHERE A.start_date = TO_DATE(#{startDateFormat}, 'YYYY-MM-DD')
-       OR A.end_date = TO_DATE(#{startDateFormat}, 'YYYY-MM-DD')
-  </select>
+
+	<resultMap id="dietMap" type="Diet">
+		<result column="diet_id" property="id" />
+		<result column="main_category_id" property="mainCategoryId" />
+		<result column="sub_category_id" property="subCategoryId" />
+		<result column="name" property="name" />
+		<result column="amount" property="amount" />
+		<result column="storage_type" property="storageType" />
+		<result column="thumbnail_img_url" property="thumbnailImgUrl" />
+		<result column="content_img_url" property="contentImgUrl" />
+		<result column="calorie" property="calorie" />
+		<result column="price" property="price" />
+	</resultMap>
+
+	<resultMap id="dailyDietMap" type="DailyDiet">
+		<result column="daily_diet_id" property="id" />
+		<result column="diet_id" property="dietId" />
+		<result column="start_date" property="startDate" />
+		<result column="end_date" property="endDate" />
+		<collection property="diet" resultMap="dietMap" />
+	</resultMap>
+	
+	<select id="selectAllByStartDate" parameterType="String" resultMap="dailyDietMap">
+		SELECT * FROM daily_diet A
+			JOIN diet B
+			ON A.diet_id = B.id
+			WHERE A.start_date BETWEEN TO_DATE(#{startDateFormat}, 'YYYY-MM-DD') AND (TO_DATE(#{startDateFormat}, 'YYYY-MM-DD') + INTERVAL '13' DAY)
+	</select>
+	
+	<select id="selectAllByStartDateOrEndDate" parameterType="String" resultMap="dailyDietMap">
+		SELECT A.id AS daily_diet_id, A.diet_id, A.start_date, A.end_date, 
+			   B.id AS diet_id, B.main_category_id, B.sub_category_id, B.name, B.amount,
+			   B.storage_type, B.thumbnail_img_url, B.content_img_url, B.calorie, B.price
+			FROM daily_diet A
+			JOIN diet B
+			ON A.diet_id = B.id
+			WHERE A.start_date = TO_DATE(#{startDateFormat}, 'YYYY-MM-DD') OR A.end_date = TO_DATE(#{startDateFormat}, 'YYYY-MM-DD')
+	</select>
+	
 </mapper>
