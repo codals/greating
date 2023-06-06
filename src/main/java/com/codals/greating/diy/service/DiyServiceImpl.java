@@ -1,25 +1,15 @@
 package com.codals.greating.diy.service;
 
-import java.io.File;
-import java.io.IOException;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.http.ResponseEntity;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.codals.greating.diet.entity.MainCategory;
-import com.codals.greating.diet.entity.SubCategory;
 import com.codals.greating.diy.dao.DiyDAO;
 import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.PostResponseDto;
@@ -28,7 +18,6 @@ import com.codals.greating.diy.dto.SearchRequestDto;
 import com.codals.greating.diy.dto.SimplePostDto;
 import com.codals.greating.diy.entity.Post;
 import com.codals.greating.user.entity.User;
-import com.codals.greating.util.ImageUrlGenerator;
 import com.codals.greating.diy.dto.VoteRequestDto;
 
 import lombok.RequiredArgsConstructor;
@@ -55,32 +44,11 @@ public class DiyServiceImpl implements DiyService{
 	@Override
 	public PostResponseDto getPostDetail(int postId) {
 		
-		ValueOperations<String, Object> list = redisTemplate.opsForValue();
-		
-		if(redisTemplate.hasKey("testing")){
-			System.out.println("==============================================");
-			System.out.println("testing 키가 이미 있음");
-			System.out.println("==============================================");
-			System.out.println("데이터 확인 " + list.get("testing"));
-		}else {
-			System.out.println("==============================================");
-			System.out.println(" 키가 없음");
-			PostResponseDto value = diyDAO.selectPostByPostId(postId);
-			list.set("testing", value, 300, TimeUnit.SECONDS); //키 유효시간 300초로 설정
-			System.out.println("Redis에" + " 키 저장");
-			System.out.println("==============================================");
-		}
-		
-		
 		return diyDAO.selectPostByPostId(postId);
 	}
 	
 	
 	private Post createPost(User loginUser, DiyRequestDto postRequest) {
-		
-		log.info("request -> post 매핑 전 =" + postRequest);
-		log.info("path=" + imgStoragePath);
-    	log.info("token=" + imgApiToken);
     	
 		Post newPost = Post.builder()
 							.mainCategoryId(postRequest.getMainCategoryId())
@@ -155,7 +123,6 @@ public class DiyServiceImpl implements DiyService{
 			if(diyDAO.deleteScrap(requestDto)==1) {
 				return true;
 			}
-			log.warn("해당 scrap 데이터가 없습니다.");
 			return false;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -171,7 +138,7 @@ public class DiyServiceImpl implements DiyService{
 
 		List<Post> cachedData = getCachedPostsByCategoryType(cacheKey);
 		if(cachedData != null){ //캐시에 이미 있는 경우 
-			log.info("Top 10 Cached Data Return {} ", cachedData);
+			log.info("Cached Data Return");
 			return cachedData;
 		}
 		// 캐시된 데이터가 없는 경우 
