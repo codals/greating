@@ -3,14 +3,18 @@ package com.codals.greating.diy.service;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,10 +50,31 @@ public class DiyServiceImpl implements DiyService{
     @Value("${img.api.token}")
     private String imgApiToken;
 	
+    private final RedisTemplate<String, Object> redisTemplate;
+    
 	@Override
 	public PostResponseDto getPostDetail(int postId) {
+		
+		ValueOperations<String, Object> list = redisTemplate.opsForValue();
+		
+		if(redisTemplate.hasKey("testing")){
+			System.out.println("==============================================");
+			System.out.println("testing 키가 이미 있음");
+			System.out.println("==============================================");
+			System.out.println("데이터 확인 " + list.get("testing"));
+		}else {
+			System.out.println("==============================================");
+			System.out.println(" 키가 없음");
+			PostResponseDto value = diyDAO.selectPostByPostId(postId);
+			list.set("testing", value, 300, TimeUnit.SECONDS); //키 유효시간 300초로 설정
+			System.out.println("Redis에" + " 키 저장");
+			System.out.println("==============================================");
+		}
+		
+		
 		return diyDAO.selectPostByPostId(postId);
 	}
+	
 	
 	private Post createPost(User loginUser, DiyRequestDto postRequest) {
 		
