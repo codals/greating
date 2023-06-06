@@ -30,4 +30,6 @@ public interface AdminService {
 
 	boolean approveDiyRegister(int postId);
 
+	boolean submitPrice(int postId, int price);
+
 }

@@ -32,4 +32,6 @@ public interface AdminDao {
 
 	boolean approveDiyRegister(int postId);
 
+	boolean submitPrice(int postId, int price);
+
 }

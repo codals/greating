@@ -40,13 +40,19 @@ table td {
     text-align: center;
 }
 
-td
+td:not(:first-child)
 {
  max-width: 50px;
  overflow: hidden;
  text-align: center;
- text-overflow: ellipsis;
- white-space: nowrap;
+ 
+}
+
+td:first-child{
+	max-width: 80px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-align: left;
 }
 
 td:first-child:hover{

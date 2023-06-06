@@ -106,6 +106,17 @@ public class AdminRestController {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
 	}
 	
+	@PostMapping("/submitPrice")
+	public ResponseEntity<Boolean> submitPrice(@RequestParam int postId, @RequestParam int price) {
+		System.out.println("==================submitPrice================");
+	    System.out.println("Post ID: " + postId);
+	    System.out.println("Price: " + price);
+		if(adminService.submitPrice(postId,price)) {
+			return ResponseEntity.ok().build(); 
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+	}
+
 	
 }
 

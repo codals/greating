@@ -105,4 +105,11 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 
+	@Override
+	public boolean submitPrice(int postId, int price) {
+		// TODO Auto-generated method stub
+		return adminDao.submitPrice(postId,price);
+	}
+
+
 }
