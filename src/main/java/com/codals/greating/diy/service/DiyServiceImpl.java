@@ -40,7 +40,7 @@ import lombok.extern.log4j.Log4j2;
 @PropertySource("classpath:application.properties")
 public class DiyServiceImpl implements DiyService{
 
-	Logger log = LogManager.getLogger("case3");
+	private final String TOP_10_CACHE_KEY = "Top10: ";
 	
 	private final DiyDAO diyDAO;
 	
@@ -163,11 +163,33 @@ public class DiyServiceImpl implements DiyService{
 		}
 	}
 
-	@Override
+	/* Redis 캐싱하기 */
+	@Override 
 	public List<Post> loadPostsByCategoryType(int mainCategoryId) {
-		return diyDAO.selectPostsByMainCategory(mainCategoryId);
+		String cacheKey = TOP_10_CACHE_KEY + mainCategoryId;
+		List<Post> result = null;
+
+		List<Post> cachedData = getCachedPostsByCategoryType(cacheKey);
+		if(cachedData != null){ //캐시에 이미 있는 경우 
+			log.info("Top 10 Cached Data Return {} ", cachedData);
+			return cachedData;
+		}
+		// 캐시된 데이터가 없는 경우 
+		result = diyDAO.selectPostsByMainCategory(mainCategoryId);
+		cacheTop10Posts(cacheKey, result);
+		return result;
+		
 	}
 
+	private List<Post> getCachedPostsByCategoryType(String cacheKey){
+		return (List<Post>) redisTemplate.opsForValue().get(cacheKey);
+	}
+	
+	private void cacheTop10Posts(String cacheKey, List<Post> cachingData) {
+		redisTemplate.opsForValue().set(cacheKey,cachingData, 1, TimeUnit.DAYS);
+		log.info("Top 10 datas Redis Caching");
+	}
+	
 	@Override
 	public List<SimplePostDto> search(SearchRequestDto requestDto) {
 
