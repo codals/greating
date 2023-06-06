@@ -52,4 +52,15 @@ public class FoodServiceImpl implements FoodService {
 		return result;
 
 	}
+
+	@Override
+	public List<FoodSimpleDto> loadMarketFoodByRandom() {
+		List<Food> foods =  foodDAO.selectMarketFoodByRandom();
+		
+		List<FoodSimpleDto> result = new ArrayList<>();
+		for (Food food : foods) {
+			result.add(new FoodSimpleDto(food.getId(), food.getName(), food.getImgUrl()));
+		}
+		return result;
+	}
 }	

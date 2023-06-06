@@ -14,6 +14,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.codals.greating.diet.entity.MainCategory;
+import com.codals.greating.diet.entity.SubCategory;
 import com.codals.greating.diy.dao.DiyDAO;
 import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.PostResponseDto;
@@ -173,5 +175,10 @@ public class DiyServiceImpl implements DiyService{
 		
 		// 3. post DB에 저장하기
 		return diyDAO.savePost(post);
+	}
+
+	@Override
+	public List<SimplePostDto> getRelatedPosts(int subCategoryId) {
+		return diyDAO.selectPostsBySubCategory(subCategoryId);
 	}
 }

@@ -119,4 +119,10 @@ public class DiyDAOImpl implements DiyDAO {
 		return sqlSession.selectOne(statement,requestDto);
 	}
 
+	@Override
+	public List<SimplePostDto> selectPostsBySubCategory(int subCategoryId) {
+		String statement ="post.selectPostsBySubCategory";
+		return sqlSession.selectList(statement, subCategoryId);
+	}
+
 }

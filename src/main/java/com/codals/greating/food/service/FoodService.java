@@ -10,4 +10,7 @@ public interface FoodService {
 	List<FoodSimpleDto> loadGreatingFoodsByFoodType(int foodTypeId);
 
 	List<FoodDetailDto> loadMarketFoodsByFoodType(int foodTypeId);
+
+	List<FoodSimpleDto> loadMarketFoodByRandom();
+
 }
