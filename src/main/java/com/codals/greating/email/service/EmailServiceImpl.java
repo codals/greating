@@ -1,11 +1,13 @@
 package com.codals.greating.email.service;
 
+import com.codals.greating.diet.service.OrderEvent;
 import com.codals.greating.external.sender.GmailEmailSender;
 import com.codals.greating.email.dto.OrderDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.event.TransactionPhase;
+import org.springframework.transaction.event.TransactionalEventListener;
 import org.thymeleaf.context.Context;
 
 @Service
@@ -17,7 +19,7 @@ public class EmailServiceImpl implements EmailService {
 
     @Async
     @Override
-    @EventListener
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT, classes = OrderEvent.class)
     public void sendOrderEmail(OrderDto order) {
         Context context = new Context();
         context.setVariable("name", order.getUserName());
