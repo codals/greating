@@ -10,7 +10,7 @@
   <annotation-driven/>
 
   <resources mapping="/resources/**" location="/resources/"/>
-<!--   <resources mapping="/uploaded/" location="/resources/images/uploaded/" />  -->
+  <!--   <resources mapping="/uploaded/" location="/resources/images/uploaded/" />  -->
 
   <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     <beans:property name="prefix" value="/WEB-INF/views/"/>
@@ -32,11 +32,24 @@
       <beans:bean class="com.codals.greating.interceptor.LoginInterceptor"/>
     </interceptor>
   </interceptors>
-  
+
   <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	    <beans:property name="maxUploadSize" value="5242880" /> <!-- 파일 최대 크기 설정 (예: 5MB) -->
-	    <beans:property name="maxInMemorySize" value="1048576" /> <!-- 메모리에 보관할 최대 크기 설정 (예: 1MB) -->
-	    <beans:property name="defaultEncoding" value="UTF-8" /> <!-- 기본 인코딩 설정 -->
-	</beans:bean>
+    <beans:property name="maxUploadSize" value="5242880"/> <!-- 파일 최대 크기 설정 (예: 5MB) -->
+    <beans:property name="maxInMemorySize" value="1048576"/> <!-- 메모리에 보관할 최대 크기 설정 (예: 1MB) -->
+    <beans:property name="defaultEncoding" value="UTF-8"/> <!-- 기본 인코딩 설정 -->
+  </beans:bean>
+
+  <beans:bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <beans:property name="host" value="smtp.gmail.com"/>
+    <beans:property name="port" value="587"/>
+    <beans:property name="username" value="gmailUsername"/>
+    <beans:property name="password" value="gmailPassword"/>
+    <beans:property name="javaMailProperties">
+      <beans:props>
+        <beans:prop key="mail.smtp.auth">true</beans:prop>
+        <beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+      </beans:props>
+    </beans:property>
+  </beans:bean>
 
 </beans:beans>
