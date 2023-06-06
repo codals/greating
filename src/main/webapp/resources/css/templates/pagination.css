@@ -37,7 +37,8 @@
   margin: 0 5px;
   border: 1px solid #ececec;
   border-radius: 3px;
-  background-color: #ececec
+  background-color: #ececec;
+  cursor: pointer;
 }
 
 .pagination a:hover,

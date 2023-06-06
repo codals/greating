@@ -27,4 +27,7 @@ public class SearchRequestDto {
 	private int page;
 	private int offset;
 	private int limit;
+	
+	private int startRow;
+	private int endRow;
 }

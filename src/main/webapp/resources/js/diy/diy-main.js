@@ -9,7 +9,11 @@ function openSearchBox() {
   }
 }
 
-function search(){
+function search(page){
+		
+	// 이전 pagination 제거
+    var paginationContainer = document.getElementById("paginationContainer");
+    paginationContainer.innerHTML = "";
 	
 	// 이전 pagination 제거
     var paginationContainer = document.getElementById("paginationContainer");
@@ -42,7 +46,6 @@ function search(){
 	    hasSoup = 0;
 	  }
 	 
-	 
 	 queryParams ='';
 	 if (mainCategories.length !== 0) {
 		
@@ -62,8 +65,17 @@ function search(){
 
 	 queryParams = queryParams.slice(0, -1);
 	 
+	 var url = "/greating/api/mealdiy/search?" + queryParams;
+	 if (page) {
+		 if (queryParams == "") {
+			 url += "?page=" + page;
+		 } else {
+			 url += "&page=" + page;
+		 }
+	 }
+	 
 	 $.ajax({
-	        url: "/greating/api/mealdiy/search?"+queryParams,
+	        url: url,
 	        type: "get",
 	        success: function(response) {
 	        	var data = response;
@@ -98,7 +110,7 @@ function updateSearchResultBox(data){
 	
 	var defaultTitle = $("#default-title");
 	defaultTitle.empty();
-	defaultTitle.append('<h4 style="font-weight: bold;">검색 결과</h4>');
+	defaultTitle.append('<h3 style="font-weight: bold;">검색 결과</h3>');
 	
 	var dietCardList = $('.diet-card-list');
 	dietCardList.empty(); 
@@ -193,7 +205,10 @@ function generatePagination(dto) {
 
     for (var pageNum = startPage; pageNum <= endPage; pageNum++) {
         var pageLink = document.createElement("a");
-        pageLink.href = "?page=" + pageNum;
+        pageLink.setAttribute("data-page", pageNum); // 데이터 속성에 페이지 번호 저장
+        pageLink.addEventListener("click", function(event) {
+            goToPage(Number(this.getAttribute("data-page"))); // 데이터 속성에서 페이지 번호 가져와서 goToPage() 함수 호출
+        });
         if (pageNum === dto.page) {
             var strong = document.createElement("strong");
             strong.innerText = pageNum;
@@ -223,11 +238,8 @@ function generatePagination(dto) {
 
 //페이징 버튼 클릭 시 페이지 이동
 function goToPage(page) {
-    location.href = "?page=" + page;
+    search(page);
 }
-
-
-
 
 function resetSelection(){
 	  $('input[type="checkbox"]').prop('checked', false);

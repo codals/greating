@@ -120,7 +120,16 @@
 
 	<div class="main-content hd__inner1100">
 		<div class="hd__inner960">
+		
 			<div id="default-title" style="margin:30px 0px -30px 20px;">
+					<h3 style="font-weight: bold;">조건 검색하기</h3>
+					
+					<br><br>
+					위의 검색 창 돋보기 버튼을 눌러서 내가 원하는 조건들로 검색해보세요!
+					<br><br><br><br>
+					
+					<hr>
+					
 					<h5 style="font-weight: bold;">실시간 인기 DIY 식단</h5>
 				</div>
 			<div class="diet-card-list">

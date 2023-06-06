@@ -158,8 +158,10 @@ public class DiyServiceImpl implements DiyService{
 	@Override
 	public SearchResponseDto search(SearchRequestDto requestDto) {
 		int rowsPerPage = 9;
-		requestDto.setOffset((requestDto.getPage() - 1) * rowsPerPage);
-		requestDto.setLimit(rowsPerPage);
+//		requestDto.setOffset((requestDto.getPage() - 1) * rowsPerPage);
+//		requestDto.setLimit(rowsPerPage);
+		requestDto.setStartRow((requestDto.getPage() - 1) * rowsPerPage);
+		requestDto.setEndRow(rowsPerPage);
 		
 		List<SimplePostDto> result = diyDAO.selectPostBySearchConditions(requestDto);
 		
