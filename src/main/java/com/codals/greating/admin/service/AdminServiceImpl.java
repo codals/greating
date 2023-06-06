@@ -17,6 +17,7 @@ import com.codals.greating.admin.dao.AdminDao;
 import com.codals.greating.admin.dto.AdminDailyDietResponseDto;
 import com.codals.greating.admin.dto.AdminDietRegisterRequestDto;
 import com.codals.greating.admin.dto.AdminDto;
+import com.codals.greating.constant.CacheKey;
 import com.codals.greating.constant.MainCategoryCode;
 import com.codals.greating.diet.dao.DailyDietDao;
 import com.codals.greating.diet.dto.PreviewResponseDto;
@@ -32,12 +33,9 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService{
 	
-	private static final String PREVIEW_DAILY_DIET_CACHE_KEY = "daily-diet-preview : ";
-	
 	private final AdminDao adminDao;
 	private final DailyDietDao dailyDietDao;
 	private final RedisTemplate<String, Object> redisTemplate;
-
 	
 	@Override
 	public List<Diet> getDietsByMainCategory(MainCategoryCode category) {
@@ -72,7 +70,7 @@ public class AdminServiceImpl implements AdminService{
 	
 	// USER가 조회하는 용도의 캐싱
 	private void cachePreviewDailyDiet(String targetDate) {
-		String cacheKey = PREVIEW_DAILY_DIET_CACHE_KEY + targetDate;
+		String cacheKey = CacheKey.PREVIEW_DAILY_DIET_CACHE_KEY + targetDate;
 	    List<DailyDiet> cachingDiets = dailyDietDao.selectAllByStartDate(DateUtil.dateToString(new Date()));
 	    
 	    redisTemplate.opsForValue().set(cacheKey, cachingDiets, 31, TimeUnit.DAYS);
@@ -84,26 +82,10 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public List<AdminDailyDietResponseDto> getDailyDietsByDate(String targetDate) {
 		
-		List<AdminDailyDietResponseDto> result = null;
-		
-		List<AdminDailyDietResponseDto> cachedData = getCachedDailyDietsByDate(targetDate);
-		if (cachedData != null) {	// 1. 캐시된 데이터가 있으면 캐시에서 가져오기 (Cache Hit)
-			result = cachedData;
-	        log.info("일일 식단 데이터를 Redis에서 가져옴: {}", targetDate);
-	        
-		} else {					// 2. 캐시된 데이터가 없으면, DB에서 가져오기
-			result =  adminDao.selectDailyDietsByDate(targetDate);
-			cacheAdminDailyDiet(targetDate);		// 캐시된 데이터가 없었으니, 미리 캐싱해두기
-		}
+		List<AdminDailyDietResponseDto> result = adminDao.selectDailyDietsByDate(targetDate);
 		
 		log.info("result {} ", result);
 		return result;
-	}
-	
-	private List<AdminDailyDietResponseDto> getCachedDailyDietsByDate(String targetDate) {
-	    String cacheKey = DAILY_DIET_CACHE_KEY + targetDate;
-	    List<AdminDailyDietResponseDto> cachedData = (List<AdminDailyDietResponseDto>) redisTemplate.opsForValue().get(cacheKey);
-	    return cachedData;
 	}
 	
 	@Override

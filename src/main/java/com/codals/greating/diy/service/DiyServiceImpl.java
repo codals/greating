@@ -35,8 +35,6 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 @PropertySource("classpath:application.properties")
 public class DiyServiceImpl implements DiyService{
-
-	Logger log = LogManager.getLogger("case3");
 	
 	private final DiyDAO diyDAO;
 	
