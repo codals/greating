@@ -1,10 +1,121 @@
+
+function fetchChartData(){
+  // Perform AJAX request here
+  // You can use JavaScript's built-in XMLHttpRequest or fetch API,
+  // or any other AJAX library like jQuery.ajax()
+
+	var postId = $('.postId').text();
+	console.log(postId)
+  // Example using fetch API
+	fetch('/greating/api/mealdiy/statics?postId='+postId, {
+		  method: 'GET',
+		 
+		})
+		.then(function(response) {
+		  if (response.ok) {
+			  console.log(response);
+		    return response.json();
+		  } else {
+		    throw new Error('Error: ' + response.status);
+		  }
+		})
+		.then(function(data) {
+		  // Handle the retrieved data here
+		  console.log('Data:', data);
+		  
+		  // 남/ 녀 투표 비율 
+		  new Chart(document.getElementById("vote-gender-chart"), {
+			    type: 'doughnut',
+			    data: {
+			      labels: ["남성","여성"],
+			      datasets: [
+			        {
+			          label: "투표 현황",
+			          backgroundColor: ["#918C01", "#D7AC87"],
+			          data: [data.maleTotalVoteCount,data.femaleTotalVoteCount]
+			        }
+			      ]
+			    },
+			    options: {
+			      title: {
+			        display: false,
+			        text: ''
+			      },
+			      legend: {
+						labels: {
+							fontColor: "#000",
+							fontSize: 30
+						}
+					},
+			    }
+			});
+		  
+		  // 연령대별 투표 차트 
+		  new Chart(document.getElementById("vote-ages-chart"), {
+			  type: 'bar',
+			  data: {
+			    labels: ["10대", "20대", "30대", "40대", "50대이상"],
+			    datasets: [
+			      {
+			        label: "남성",
+			        backgroundColor: "#918c01",
+			        data: [data.male10sVoteCount, data.male20sVoteCount, data.male30sVoteCount, data.male40sVoteCount, data.male50sVoteCount]
+			      },
+			      {
+			        label: "여성",
+			        backgroundColor: "#D7AC87",
+			        data: [data.female10sVoteCount, data.female20sVoteCount, data.female30sVoteCount, data.female40VoteCount, data.female50sVoteCount]
+			      }
+			    ]
+			  },
+			  options: {
+			    scales: {
+			    	xAxes: [{
+						ticks:{
+							fontColor : 'rgba(12, 13, 13, 1)',
+							fontSize :  40
+						},
+						gridLines:{
+							color: "#918c01",
+							lineWidth: 2
+						}
+					}],
+			     yAxes: [{
+			        ticks: {
+			          stepSize: 1
+			        }
+			      }]
+			    },
+			    legend: {
+					labels: {
+						fontColor: "#000",
+						fontSize: 30
+					}
+				},
+			    title: {
+			      display: false,
+			      text: '투표 현황'
+			    }
+			  }
+			});
+
+		  
+		})
+		.catch(function(error) {
+		  // Handle any errors that occurred during the request
+		  console.error('Error:', error);
+		});
+}
+
+
+
 document.addEventListener("DOMContentLoaded", function() {
 	var tabMenuList = document.querySelectorAll(".tab-menu__list");
 
 	
 	console.log('tabMenuList', tabMenuList);
 	// 각 탭 메뉴 요소에 클릭 이벤트 리스너 추가
-	tabMenuList.forEach(function(tab) {
+	tabMenuList.forEach(function(tab,index) {
 
 		tab.addEventListener("click", function() {
 			document.querySelector(".tab-menu__list--on").classList
@@ -12,6 +123,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
 			// 클릭한 탭에 활성 탭 스타일 추가
 			this.classList.add("tab-menu__list--on");
+			
+			if(index==1){
+				fetchChartData();
+			}
+			
+			
 		});
 	});
 });
@@ -241,3 +358,43 @@ function updateScrapButton(postId, buttonText, status) {
 	    voteButton.attr('onclick', 'checkScrapCancel(' + postId + ')');
 	}
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+	  function openUpdateCommentBox() {
+	    var checkbox = document.querySelector('input[type="checkbox"]');
+	    var commentsContainer = document.getElementById('comments-container');
+
+	    if (checkbox.checked) {
+	      commentsContainer.style.display = 'block';
+	    } else {
+	      commentsContainer.style.display = 'none';
+	    }
+	  }
+	});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
