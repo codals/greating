@@ -80,7 +80,6 @@ public class AdminServiceImpl implements AdminService{
 		
 		List<AdminDailyDietResponseDto> result = null;
 		
-		
 		List<AdminDailyDietResponseDto> cachedData = getCachedDailyDietsByDate(targetDate);
 		if (cachedData != null) {	// 1. 캐시된 데이터가 있으면 캐시에서 가져오기 (Cache Hit)
 			result = cachedData;
@@ -88,6 +87,7 @@ public class AdminServiceImpl implements AdminService{
 	        
 		} else {					// 2. 캐시된 데이터가 없으면, DB에서 가져오기
 			result =  adminDao.selectDailyDietsByDate(targetDate);
+			cacheDailyDiet(targetDate);		// 캐시된 데이터가 없었으니, 미리 캐싱해두기
 		}
 		
 		log.info("result {} ", result);
@@ -96,7 +96,7 @@ public class AdminServiceImpl implements AdminService{
 	
 	private List<AdminDailyDietResponseDto> getCachedDailyDietsByDate(String targetDate) {
 	    String cacheKey = DAILY_DIET_CACHE_KEY + targetDate;
-	    List<AdminDailyDietResponseDto> cachedData = (List<AdminDailyDietResponseDto>) redisTemplate.opsForValue().get(cacheKey);	    
+	    List<AdminDailyDietResponseDto> cachedData = (List<AdminDailyDietResponseDto>) redisTemplate.opsForValue().get(cacheKey);
 	    return cachedData;
 	}
 	
