@@ -76,11 +76,28 @@ public class AdminServiceImpl implements AdminService{
 
 
 	@Override
-	public List<AdminDailyDietResponseDto> getDailyDietsByDate(String date) {
+	public List<AdminDailyDietResponseDto> getDailyDietsByDate(String targetDate) {
 		
-		List<AdminDailyDietResponseDto> result =  adminDao.selectDailyDietsByDate(date);
+		List<AdminDailyDietResponseDto> result = null;
+		
+		
+		List<AdminDailyDietResponseDto> cachedData = getCachedDailyDietsByDate(targetDate);
+		if (cachedData != null) {	// 1. 캐시된 데이터가 있으면 캐시에서 가져오기 (Cache Hit)
+			result = cachedData;
+	        log.info("일일 식단 데이터를 Redis에서 가져옴: {}", targetDate);
+	        
+		} else {					// 2. 캐시된 데이터가 없으면, DB에서 가져오기
+			result =  adminDao.selectDailyDietsByDate(targetDate);
+		}
+		
 		log.info("result {} ", result);
 		return result;
+	}
+	
+	private List<AdminDailyDietResponseDto> getCachedDailyDietsByDate(String targetDate) {
+	    String cacheKey = DAILY_DIET_CACHE_KEY + targetDate;
+	    List<AdminDailyDietResponseDto> cachedData = (List<AdminDailyDietResponseDto>) redisTemplate.opsForValue().get(cacheKey);	    
+	    return cachedData;
 	}
 	
 	@Override
