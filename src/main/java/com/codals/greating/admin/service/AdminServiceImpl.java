@@ -62,19 +62,18 @@ public class AdminServiceImpl implements AdminService{
 		// 2. DAO를 활용하여 데이터 저장
 		int resultCnt = adminDao.insertDailyDiets(diets);
 		if (resultCnt == selectedCnt) {					// 개수대로 제대로 저장이 되었으면
-			cachePreviewDailyDiet(requestDto.getStartDate());	// Redis에 캐싱하기 (이미 key가 있어도 업데이트된 데이터로 덮어씌움)
+			cacheTwoWeekDailyDiets(requestDto.getStartDate());	// Redis에 캐싱하기 (이미 key가 있어도 업데이트된 데이터로 덮어씌움)
 		    return true;
 		}
 		return false;
 	}
 	
-	private void cachePreviewDailyDiet(String targetDate) {
+	private void cacheTwoWeekDailyDiets(String targetDate) {
 		String cacheKey = CacheKey.TWO_WEEK_PREVIEW_CACHE_KEY + targetDate;
 	    List<DailyDiet> cachingDiets = dailyDietDao.selectAllByStartDate(DateUtil.dateToString(new Date()));
 	    
 	    redisTemplate.opsForValue().set(cacheKey, cachingDiets, 1, TimeUnit.DAYS);
-	    
-	    log.info("PREVIEW cache를 1달간 Redis에 저장 : {}", cacheKey);
+	    log.info("[REDIS] TWO_WEEK_PREVIEW - Cache 저장 - {}", cacheKey);
 	}
 
 
@@ -98,14 +97,12 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public List<AdminDto> commingSoonList() {
-		// TODO Auto-generated method stub
 		return adminDao.commingSoonList();
 	}
 
 
 	@Override
 	public boolean approveCancel(long postId) {
-		// TODO Auto-generated method stub
 		return adminDao.approveCancel(postId);
 	}
 
