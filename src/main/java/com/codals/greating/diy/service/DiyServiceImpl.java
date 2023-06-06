@@ -1,22 +1,14 @@
 package com.codals.greating.diy.service;
 
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.http.ResponseEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.codals.greating.diet.entity.MainCategory;
-import com.codals.greating.diet.entity.SubCategory;
 import com.codals.greating.diy.dao.DiyDAO;
 import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.PostResponseDto;
@@ -35,6 +27,8 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 @PropertySource("classpath:application.properties")
 public class DiyServiceImpl implements DiyService{
+
+	private final String TOP_10_CACHE_KEY = "Top10: ";
 	
 	private final DiyDAO diyDAO;
 	
@@ -49,32 +43,11 @@ public class DiyServiceImpl implements DiyService{
 	@Override
 	public PostResponseDto getPostDetail(int postId) {
 		
-		ValueOperations<String, Object> list = redisTemplate.opsForValue();
-		
-		if(redisTemplate.hasKey("testing")){
-			System.out.println("==============================================");
-			System.out.println("testing 키가 이미 있음");
-			System.out.println("==============================================");
-			System.out.println("데이터 확인 " + list.get("testing"));
-		}else {
-			System.out.println("==============================================");
-			System.out.println(" 키가 없음");
-			PostResponseDto value = diyDAO.selectPostByPostId(postId);
-			list.set("testing", value, 300, TimeUnit.SECONDS); //키 유효시간 300초로 설정
-			System.out.println("Redis에" + " 키 저장");
-			System.out.println("==============================================");
-		}
-		
-		
 		return diyDAO.selectPostByPostId(postId);
 	}
 	
 	
 	private Post createPost(User loginUser, DiyRequestDto postRequest) {
-		
-		log.info("request -> post 매핑 전 =" + postRequest);
-		log.info("path=" + imgStoragePath);
-    	log.info("token=" + imgApiToken);
     	
 		Post newPost = Post.builder()
 							.mainCategoryId(postRequest.getMainCategoryId())
@@ -149,7 +122,6 @@ public class DiyServiceImpl implements DiyService{
 			if(diyDAO.deleteScrap(requestDto)==1) {
 				return true;
 			}
-			log.warn("해당 scrap 데이터가 없습니다.");
 			return false;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -157,11 +129,33 @@ public class DiyServiceImpl implements DiyService{
 		}
 	}
 
-	@Override
+	/* Redis 캐싱하기 */
+	@Override 
 	public List<Post> loadPostsByCategoryType(int mainCategoryId) {
-		return diyDAO.selectPostsByMainCategory(mainCategoryId);
+		String cacheKey = TOP_10_CACHE_KEY + mainCategoryId;
+		List<Post> result = null;
+
+		List<Post> cachedData = getCachedPostsByCategoryType(cacheKey);
+		if(cachedData != null){ //캐시에 이미 있는 경우 
+			log.info("Cached Data Return");
+			return cachedData;
+		}
+		// 캐시된 데이터가 없는 경우 
+		result = diyDAO.selectPostsByMainCategory(mainCategoryId);
+		cacheTop10Posts(cacheKey, result);
+		return result;
+		
 	}
 
+	private List<Post> getCachedPostsByCategoryType(String cacheKey){
+		return (List<Post>) redisTemplate.opsForValue().get(cacheKey);
+	}
+	
+	private void cacheTop10Posts(String cacheKey, List<Post> cachingData) {
+		redisTemplate.opsForValue().set(cacheKey,cachingData, 1, TimeUnit.DAYS);
+		log.info("Top 10 datas Redis Caching");
+	}
+	
 	@Override
 	public List<SimplePostDto> search(SearchRequestDto requestDto) {
 
