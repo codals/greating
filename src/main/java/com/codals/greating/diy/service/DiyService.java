@@ -32,6 +32,7 @@ public interface DiyService {
 
 	boolean checkScrapped(ScrapRequestDto requestDto);
 
+	void updateExpiredPostStatus();
+  
 	List<SimplePostDto> getRelatedPosts(int subCategoryId);
-	
 }
