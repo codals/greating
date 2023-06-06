@@ -338,7 +338,7 @@ body {
 }
 
 .sub-info-line .info-title, .sub-info-line .info-text {
-	font-size: 16px;
+	font-size: 20px;
 }
 
 .info-img-section img {
@@ -409,6 +409,8 @@ body {
 	border-radius: 30px;
 	width: 100%;
 	min-height: 200px;
+	padding: 30px;
+    font-size: 25px;
 }
 
 .last-section {
@@ -457,8 +459,10 @@ width: 270px;
 } 
 .related-post-card-img img,
 .market-card-img img{
-  width: 100%;
-  height: 100%;
+    width: inherit;
+    height: inherit;
+    object-fit:cover;
+
 } 
 .related-post-card-img::before,
 .market-card-img::before{
@@ -513,7 +517,18 @@ width: 270px;
 	width: 250px;
 	height: 250px;	
 }
-.market-card > span{
+.market-card-info{
+	display:flex;
+	justify-content: space-between;
+    padding: 0px 15px 0px 15px;
+    flex-wrap: wrap;
+}
+.market-tag{
+	padding: 5px;
+    border: 1px solid #918c01;
+    margin-top: 5px;
+}
+.market-food-name{
 	display:block;
 	font-size:25px;
 	font-weight: bold;

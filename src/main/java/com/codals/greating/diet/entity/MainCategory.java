@@ -10,6 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MainCategory {
-	private Long id;
+	private Integer id;
 	private String name;
 }

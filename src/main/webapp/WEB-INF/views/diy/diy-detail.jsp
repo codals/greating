@@ -277,7 +277,11 @@
 								style="margin-left: 10px; border: none; height: 0.5px; display: inline-block; background-color: black; width: 67%">
 						</div>
 
-						<div class="info-text-section comment-section"></div>
+						<div class="info-text-section comment-section">
+
+							<p>${postDetail.post.content}</p>
+
+						</div>
 
 					</div>
 
@@ -289,32 +293,15 @@
 						</div>
 
 						<div class="diy-realted-post">
-							<div class="related-post-card">
-								<div class="related-post-card-img">
-									<img src="/greating/resources/images/diy/img_diy_sample.png">
+							<c:forEach items="${relatedPosts}" var="relatedPost">
+
+								<div class="related-post-card">
+									<div class="related-post-card-img">
+										<img src="${relatedPost.imgUrl}">
+									</div>
+									<div class="related-post-card-info">${relatedPost.title}</div>
 								</div>
-								<div class="related-post-card-info">진우형 도시락</div>
-							</div>
-							<div class="related-post-card">
-								<div class="related-post-card-img">
-									<img src="/greating/resources/images/diy/img_diy_sample.png">
-								</div>
-								<div class="related-post-card-info">진우형 도시락</div>
-							</div>
-							<div class="related-post-card">
-								<div class="related-post-card-img">
-									<img src="/greating/resources/images/diy/img_diy_sample.png">
-								</div>
-								<div class="related-post-card-info">진우형 도시락 진우형 도시락 진우형
-									도시락</div>
-							</div>
-							<div class="related-post-card">
-								<div class="related-post-card-img">
-									<img src="/greating/resources/images/diy/img_diy_sample.png">
-								</div>
-								<div class="related-post-card-info">진우형 도시락 진우형 도시락 진우형
-									도시락</div>
-							</div>
+							</c:forEach>
 						</div>
 
 
@@ -328,13 +315,18 @@
 						</div>
 
 						<ul class="market-cards">
-							<c:forEach var="item" begin="1" end="4">
+							<c:forEach items="${relatedFoods}" var="relatedFood">
 
 								<li class="market-card">
 									<div class="market-card-img">
 
-										<img src="/greating/resources/images/market/LA갈비.png">
-									</div> <span> LA 갈비 </span>
+										<img src="${relatedFood.imgUrl}">
+									</div>
+									<div class="market-card-info">
+										<span class="market-food-name"> ${relatedFood.name} </span>
+										 <span class="market-tag"> 건강마켓 </span>
+
+									</div>
 								</li>
 							</c:forEach>
 
