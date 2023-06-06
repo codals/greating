@@ -29,7 +29,6 @@ public class DailyDiet extends BaseEntity {
     private Diet diet;
     
     public DailyDiet(LinkedHashMap<String, Object> cachedMap) {
-//    	this.id = (Integer) cachedMap.get("id");
     	this.dietId = (Integer) cachedMap.get("dietId");
     	this.startDate = LocalDate.parse((String) cachedMap.get("startDate"), DateTimeFormatter.ISO_DATE);
     	this.endDate = LocalDate.parse((String) cachedMap.get("endDate"), DateTimeFormatter.ISO_DATE);

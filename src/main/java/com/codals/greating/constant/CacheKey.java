@@ -4,5 +4,6 @@ import lombok.Getter;
 
 @Getter
 public class CacheKey {
-	public static final String PREVIEW_DAILY_DIET_CACHE_KEY = "daily-diet-preview : ";
+	public static final String TWO_WEEK_PREVIEW_CACHE_KEY = "two-week-preview : (start at) ";
+	public static final String DAILY_PREVIEW_CACHE_KEY = "daily-preview : ";
 }

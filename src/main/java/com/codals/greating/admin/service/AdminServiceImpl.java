@@ -69,7 +69,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	private void cachePreviewDailyDiet(String targetDate) {
-		String cacheKey = CacheKey.PREVIEW_DAILY_DIET_CACHE_KEY + targetDate;
+		String cacheKey = CacheKey.TWO_WEEK_PREVIEW_CACHE_KEY + targetDate;
 	    List<DailyDiet> cachingDiets = dailyDietDao.selectAllByStartDate(DateUtil.dateToString(new Date()));
 	    
 	    redisTemplate.opsForValue().set(cacheKey, cachingDiets, 31, TimeUnit.DAYS);

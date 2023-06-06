@@ -51,53 +51,81 @@ public class DietServiceImpl implements DietService {
     public List<PreviewResponseDto> getWeeklyDailyDiets() {
     	List<DailyDiet> data = null;
     	String currentDate = DateUtil.dateToString(new Date());
-    	String cacheKey = CacheKey.PREVIEW_DAILY_DIET_CACHE_KEY + currentDate;
+    	String cacheKey = CacheKey.TWO_WEEK_PREVIEW_CACHE_KEY + currentDate;
 
     	List<PreviewResponseDto> response = null;
 
-    	// 1. 캐시에 있는지 확인하고, 캐시에 있으면 가져오기
-    	List<DailyDiet> cachedData = getCachedDailyDietsByDate(cacheKey);
-    	if (cachedData != null) {
-    		data = cachedData;
-            log.info("redis에서 캐시 가져옴 - {}", cacheKey);
-    		response = convertCacheToPreviews(data);
-    	} else {
-    		data = dailyDietDao.selectAllByStartDate(currentDate);
-            log.info("redis에 캐시 데이터 없음 ");
+    	List<DailyDiet> cachedData = getCachedTwoWeekDailyDiets(cacheKey);
+    	if (cachedData != null) {    	// 1. 캐시에 있는지 확인하고, 캐시에 있으면 가져오기
+    		response = convertCacheToPreviews(cachedData);
+    	} else {						// 1. 캐시에 없으면  DB에서 가져오기, 캐싱해두기
+            log.info("[REDIS] TWO_WEEK_PREVIEW - Cache Miss - {}", cacheKey);
+            data = dailyDietDao.selectAllByStartDate(currentDate);
 
-            cacheDailyDiet(cacheKey, currentDate, data);
-            log.info("새로 캐시 완료 - {}", cacheKey);
-            
+            cacheTwoWeekDailyDiets(cacheKey, currentDate, data);
             return getPreviewResponseDto(data);
 		}
     	
         return response;
     }
  
-    private List<DailyDiet> getCachedDailyDietsByDate(String cacheKey) {
+    // 2주치 Daily Diet 캐시 가져오기
+    private List<DailyDiet> getCachedTwoWeekDailyDiets(String cacheKey) {
     	List<DailyDiet> cachedData = (List<DailyDiet>) redisTemplate.opsForValue().get(cacheKey);
+        log.info("[REDIS] TWO_WEEK_PREVIEW - Cache Hit - {}", cacheKey);
     	return cachedData;
 	}
     
-	private void cacheDailyDiet(String cacheKey, String targetDate, List<DailyDiet> cachingData) {
-	    redisTemplate.opsForValue().set(cacheKey, cachingData, 24 * 31, TimeUnit.HOURS);
-	    log.info("PREVIEW cache를 1달간 Redis에 저장 : {}", cacheKey);
+    // 2주치 Daily Diet 캐싱하기
+	private void cacheTwoWeekDailyDiets(String cacheKey, String targetDate, List<DailyDiet> cachingData) {
+	    redisTemplate.opsForValue().set(cacheKey, cachingData, 31, TimeUnit.DAYS);
+	    log.info("[REDIS] TWO_WEEK_PREVIEW - Cache 저장 - {}", cacheKey);
 	}
     
     @Override
-    public List<PlanResponseDto> getDailyDietsByDeliveryDates(List<Date> deliveryDates) {
+    public List<PlanResponseDto> getDailyDietsByDeliveryDates(List<Date> deliveryDates) {    	
         return deliveryDates.stream()
             .map(deliveryDate -> {
                 String deliveryDateFormat = DateUtil.dateToString(deliveryDate);
-                List<DailyDiet> dailyDiets = dailyDietDao.selectAllByStartDateOrEndDate(deliveryDateFormat);
-                List<PreviewDietResponseDto> dietsResponse = dailyDiets.stream()
-                    .map(dailyDiet -> new PreviewDietResponseDto(dailyDiet.getDiet()))
-                    .collect(Collectors.toList());
+                	
+        		List<PreviewDietResponseDto> dietsResponse = null;
+
+                // 1. 캐시에 있는지 확인하고, 캐시에 있으면 가져오기
+            	String cacheKey = CacheKey.DAILY_PREVIEW_CACHE_KEY + deliveryDateFormat;
+            	List<?> cachedData = getCachedDailyDiet(cacheKey);
+            	if (cachedData != null) {
+            		List<DailyDiet> dailyDiets = cachedData.stream()
+            											   .map(cache -> new DailyDiet((LinkedHashMap<String, Object>) cache))
+            											   .collect(Collectors.toList());
+            		dietsResponse = dailyDiets.stream()
+							                  .map(dailyDiet -> new PreviewDietResponseDto(((DailyDiet) dailyDiet).getDiet()))
+							                  .collect(Collectors.toList());
+            	} else {
+                    log.info("[REDIS] DAILY_PREVIEW - Cache Miss - {}", cacheKey);
+                    List<DailyDiet> dailyDiets = dailyDietDao.selectAllByStartDateOrEndDate(deliveryDateFormat);
+            		dietsResponse = dailyDiets.stream()
+							                   .map(dailyDiet -> new PreviewDietResponseDto(dailyDiet.getDiet()))
+							                   .collect(Collectors.toList());
+            		
+            		cacheDailyDiet(cacheKey, dailyDiets);
+            	}
+            	
                 return new PlanResponseDto(deliveryDateFormat, dietsResponse);
             })
-            .collect(Collectors.toList());
+           .collect(Collectors.toList());
     }
 
+    private List<DailyDiet> getCachedDailyDiet(String cacheKey) {
+    	List<DailyDiet> cachedData = (List<DailyDiet>) redisTemplate.opsForValue().get(cacheKey);
+        log.info("[REDIS] DAILY_PREVIEW - Cache Hit - {}", cacheKey);
+    	return cachedData;
+	}
+    
+	private void cacheDailyDiet(String cacheKey, List<DailyDiet> cachingData) {
+	    redisTemplate.opsForValue().set(cacheKey, cachingData, 1, TimeUnit.DAYS);
+	    log.info("[REDIS] DAILY_PREVIEW - Cache 저장 - {}", cacheKey);
+	}
+	
     @Override
     @Transactional
     public OrderResponseDto order(User user, OrderRequestDto orderRequestDto) {

@@ -31,4 +31,8 @@ public class Diet extends BaseEntity {
 		this.name = (String) cachedMap.get("name");
 		this.price = (Integer) cachedMap.get("price");
 	}
+    
+    public Diet(Diet diet) {
+    	
+    }
 }
