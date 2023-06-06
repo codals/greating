@@ -629,8 +629,9 @@ body {
 }
 .tab2-comment{
 	padding:10px;
-	    border: 1px solid gray;
+	border: 1px solid gray;
     border-radius: 10px;
+    margin-bottom:20px;
 }
 .tab2-comment-header{
 	    display: flex;
@@ -641,9 +642,9 @@ body {
 	display:inline-block;
 }
 .tab2-comment-header > .btns > button{
-	    border: 1px solid gray;
+	border: 1px solid gray;
     padding: 4px;
-    width: 60px;
+    width: 75px;
     border-radius: 8px;
     margin: 0px 5px 0px 5px;
 }

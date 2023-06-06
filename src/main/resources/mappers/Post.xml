@@ -256,4 +256,32 @@
 		SET status = #{voteFinishedId}
 		WHERE created_at &lt; SYSDATE - 7
 	</update>
+	
+	
+	
+	<!-- comment 관련  -->
+	<select id="selectComments" parameterType="Integer" resultType="CommentResponseDto">
+		
+	select c.*, username 
+	from "comment" c join "user" u on u.id = c.user_id 
+	where post_id = #{postId} order by c.created_at desc
+	
+	</select>
+	
+	<select id="selectCommentById" parameterType="Integer" resultType="CommentResponseDto">
+		select c.*, username from "comment" c join "user" u on u.id = c.user_id where c.id = #{commentId}
+	</select>
+	<update id="updateComment" parameterType="Comment">
+		update "comment" set content = #{content}  where id= #{id}
+	</update>
+	
+	<insert id="insertComment" parameterType="Comment" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+		insert into "comment"(user_id, post_id, content, created_at) values(#{userId},#{postId}, #{content},sysdate)
+		<selectKey keyProperty="id" resultType="int" order="AFTER">
+			SELECT comment_id_seq.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+	
+	
+	
 </mapper>

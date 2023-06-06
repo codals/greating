@@ -11,18 +11,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.codals.greating.constant.MainCategoryCode;
+import com.codals.greating.diy.dto.CommentResponseDto;
 import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.PostStaticResponseDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.dto.SearchRequestDto;
 import com.codals.greating.diy.dto.SimplePostDto;
 import com.codals.greating.diy.dto.VoteRequestDto;
+import com.codals.greating.diy.entity.Comment;
 import com.codals.greating.diy.service.DiyService;
 import com.codals.greating.user.entity.User;
 
@@ -98,7 +101,25 @@ public class DiyRestController {
 		}
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
 	}
+	@PostMapping("/comment-new")
+	public ResponseEntity<CommentResponseDto> createComment(Comment comment){
+
+		CommentResponseDto newComment = diyService.createComment(comment);
+		if(newComment!=null) {
+			log.info("new comment : {} ", newComment);
+			return new ResponseEntity<>(newComment, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 	
+	@PostMapping("/comment-update")
+	public ResponseEntity<Boolean> updateComment(Comment comment){
+		if(diyService.updateComment(comment)) {
+			return new ResponseEntity<>(true, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
+	   
+	}
 	@GetMapping("/search")
 	public ResponseEntity<List<SimplePostDto>> search(SearchRequestDto requestDto) {
 		List<SimplePostDto> searchedPosts = diyService.search(requestDto);	
@@ -109,7 +130,6 @@ public class DiyRestController {
 	public ResponseEntity<PostStaticResponseDto> statics(int postId) {
 		
 		PostStaticResponseDto postStatics = diyService.getPostVoteStatics(postId);
-		log.info("투표 통계 {}" ,postStatics);
 	    return new ResponseEntity<>(postStatics, HttpStatus.OK);
 		
 	}

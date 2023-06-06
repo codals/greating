@@ -67,7 +67,7 @@
 			<li>></li>
 			<li class="highlight">DIY 도시락 상세</li>
 		</ul>
-		<span class="hidden postId">${postDetail.post.id}</span>
+		<span class="postId" style="display:none;">${postDetail.post.id}</span>
 		<div class="main-info-container">
 
 			<div class="main-img">
@@ -169,7 +169,7 @@
 					</li>
 					<li class="nav-item tab-menu__list tab2"><a class="nav-link"
 						data-toggle="pill" href="#comments"> <strong>투표 현황 /
-								댓글</strong> <span class="tab-menu__count" id="reviwCnt">30</span>
+								댓글</strong> <span class="tab-menu__count" id="reviwCnt">${comments.size()}</span>
 					</a></li>
 				</ul>
 			</div>
@@ -345,7 +345,7 @@
 				<div class="tab-pane fade container" id="comments">
 
 					<div class="vote-static-section">
-						<span class="vote-static-title">  Greating Votes</span>
+						<span class="vote-static-title"> Greating Votes</span>
 						<hr>
 						<div class="vote-chart">
 
@@ -359,7 +359,7 @@
 					<div class="comments-section">
 						<span class="comment-title">Greating Reviews </span>
 						<div class="comment-header-group">
-							<span> Total Reviews : 24</span>
+							<span> Total Reviews : ${comments.size()}</span>
 							<button class="btn btn-primary" type="button"
 								id="updateCommentOpenBtn" data-bs-toggle="collapse"
 								data-bs-target="#updateComment" aria-expanded="false"
@@ -370,38 +370,37 @@
 							<div class="card card-body">
 								<div class="update-comments-group">
 									<input type="text" placeholder="댓글을 입력헤주세요"
-										class="update-comments">
-									<button id="updateCommentBtn" onclick="updateComment()">댓글 등록</button>
+										class="update-comments" id="update-comment-content">
+									<button id="updateCommentBtn" onclick="updateComment(${postDetail.post.id}, ${loginUser.id})">댓글
+										등록</button>
 								</div>
 							</div>
 						</div>
 
 						<div class="tab2-comments">
-							
-							<!--  for Each 돌아야 하는 부분  -->
-							<div class="tab2-comment">
-								<div class="tab2-comment-header">
-									<span> 작성자 : 김승주  | 2020.02.20 </span>
-									<div class="btns">
-									<button class="tab2-comment-reupload"> 수정 </button>
-									<button class="tab2-comment-reupload"> 삭제</button>
-								</div>
-								</div>
-								<div class="tab2-comment-content">
-									<textarea> 내용 </textarea>
-								</div>
-							
-							
-							</div>
-						
-						
-						</div>
-						
-						
 
+							<c:forEach items="${comments}" var="postComment">
+								<div class="tab2-comment" id="tab2-comment-${postComment.id}">
+									<div class="tab2-comment-header">
+										<div class="tab2-comment-text">
+											<span> 작성자 : ${postComment.username} | </span>
+											<span class="comment-createdAt">${postComment.createdAt} </span>
+										</div>
+										<div class="btns">
+											<c:if test="${postComment.userId == loginUser.id}">
+												<button class="tab2-comment-reupload" onclick="enableCommentEdit(this,${postComment.id})">수정</button>
+												<button class="tab2-comment-delete" onclick="checkDeleteComment(${postComment.id})">삭제</button>
+											</c:if>
+										</div>
+									</div>
+									<div class="tab2-comment-content">
+										<textarea id="comment-${postComment.id}" readonly> ${postComment.content} </textarea>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
 					</div>
 				</div>
-
 			</div>
 
 		</div>

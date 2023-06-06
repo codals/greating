@@ -18,12 +18,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.codals.greating.diet.entity.MainCategory;
 import com.codals.greating.diet.entity.SubCategory;
 import com.codals.greating.diy.dao.DiyDAO;
+import com.codals.greating.diy.dto.CommentResponseDto;
 import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.PostResponseDto;
 import com.codals.greating.diy.dto.PostStaticResponseDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.dto.SearchRequestDto;
 import com.codals.greating.diy.dto.SimplePostDto;
+import com.codals.greating.diy.entity.Comment;
 import com.codals.greating.diy.entity.Post;
 import com.codals.greating.user.entity.User;
 import com.codals.greating.diy.dto.VoteRequestDto;
@@ -216,5 +218,41 @@ public class DiyServiceImpl implements DiyService{
 	@Override
 	public PostStaticResponseDto getPostVoteStatics(int postId) {
 		return diyDAO.selectPostVoteStatics(postId);
+	}
+
+
+	@Override
+	public List<CommentResponseDto> getComments(int postId){
+		
+		return diyDAO.selectComments(postId);
+	}
+
+
+	@Override
+	@Transactional
+	public boolean updateComment(Comment comment) {
+		try {
+			if(diyDAO.updateComment(comment)==1) {
+				return true;
+			}
+			log.warn("댓글 업데이트 실패입니다.");
+			return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	@Transactional(rollbackFor = {Exception.class}) // 리팩터링 필요 
+	public CommentResponseDto createComment(Comment comment) {
+		try {
+			int insertedCommentId = diyDAO.insertComment(comment);
+			CommentResponseDto result = diyDAO.selectCommentById(insertedCommentId);
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
