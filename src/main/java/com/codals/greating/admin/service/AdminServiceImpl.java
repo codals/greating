@@ -72,7 +72,7 @@ public class AdminServiceImpl implements AdminService{
 		String cacheKey = CacheKey.TWO_WEEK_PREVIEW_CACHE_KEY + targetDate;
 	    List<DailyDiet> cachingDiets = dailyDietDao.selectAllByStartDate(DateUtil.dateToString(new Date()));
 	    
-	    redisTemplate.opsForValue().set(cacheKey, cachingDiets, 31, TimeUnit.DAYS);
+	    redisTemplate.opsForValue().set(cacheKey, cachingDiets, 1, TimeUnit.DAYS);
 	    
 	    log.info("PREVIEW cache를 1달간 Redis에 저장 : {}", cacheKey);
 	}

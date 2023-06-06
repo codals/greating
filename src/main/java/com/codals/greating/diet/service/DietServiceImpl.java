@@ -78,7 +78,7 @@ public class DietServiceImpl implements DietService {
     
     // 2주치 Daily Diet 캐싱하기
 	private void cacheTwoWeekDailyDiets(String cacheKey, String targetDate, List<DailyDiet> cachingData) {
-	    redisTemplate.opsForValue().set(cacheKey, cachingData, 31, TimeUnit.DAYS);
+	    redisTemplate.opsForValue().set(cacheKey, cachingData, 1, TimeUnit.DAYS);
 	    log.info("[REDIS] TWO_WEEK_PREVIEW - Cache 저장 - {}", cacheKey);
 	}
     
