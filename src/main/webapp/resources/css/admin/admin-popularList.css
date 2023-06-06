@@ -43,14 +43,15 @@ table td {
 td:not(:first-child)
 {
  max-width: 50px;
- overflow: hidden;
+ 
  text-align: center;
  
 }
 
 td:first-child{
-	max-width: 80px;
+	max-width: 50px;
 	text-overflow: ellipsis;
+	overflow: hidden;
 	white-space: nowrap;
 	text-align: left;
 }

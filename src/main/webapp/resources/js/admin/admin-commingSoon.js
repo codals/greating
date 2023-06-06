@@ -78,9 +78,13 @@ function submitPrice(postId, price) {
 			console.log("Price submitted successfully!");
 			// 동작 완료 메시지로 텍스트 업데이트
 			$('#priceInput').next('span').text("가격이 전송되었습니다.");
-			// 여기에 성공 시 동작할 코드 작성
+
+			// priceInputText와 priceInput 제거
+			$('#priceInput').nextAll('span, input').remove();
+
 			// submitButton 제거
-			var submitButton = $('#priceInput').nextAll('button');
+			$('#priceInput').next('button').remove();
+
 			$(submitButton).remove();
 			// 예를 들어, 화면 갱신이나 다른 동작을 수행할 수 있습니다.
 		},
