@@ -3,7 +3,6 @@ package com.codals.greating.diy.service;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -179,20 +178,29 @@ public class DiyServiceImpl implements DiyService{
 		}
 		return false;
 	}
-      
+
+
 	@Override
 	public Integer savePost(User loginUser, DiyRequestDto postRequest) {
 		// 1. 파일명 생성해서 받아오기 (tomcat서버에 저장된 경로 + UUID로 만든 파일명 + 확장자)
-		
+
 		// 2. post 객체 생성하기
 		Post post = createPost(loginUser, postRequest);
-		
+
 		// 3. post DB에 저장하기
 		return diyDAO.savePost(post);
 	}
 
 	@Override
-	public List<SimplePostDto> getRelatedPosts(int subCategoryId) {
+	@Scheduled(cron = "0 0 12 * * *")
+	@Transactional
+	public void updateExpiredPostStatus() {
+		int updateCount = diyDAO.updateExpiredPostStatus();
+		log.info("Expired Post Status Update Job executed. Updated status for {} posts.", updateCount);
+}
+  
+  @Override
+  public List<SimplePostDto> getRelatedPosts(int subCategoryId) {
 		return diyDAO.selectPostsBySubCategory(subCategoryId);
 	}
 }

@@ -30,5 +30,7 @@ public interface DiyDAO {
 
 	Scrap selectScrapByPostIdAndUserId(ScrapRequestDto requestDto);
 
+	int updateExpiredPostStatus();
+  
 	List<SimplePostDto> selectPostsBySubCategory(int subCategoryId);
 }
