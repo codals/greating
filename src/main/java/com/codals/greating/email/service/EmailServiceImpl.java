@@ -3,6 +3,7 @@ package com.codals.greating.email.service;
 import com.codals.greating.external.sender.GmailEmailSender;
 import com.codals.greating.email.dto.OrderDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
@@ -16,6 +17,7 @@ public class EmailServiceImpl implements EmailService {
 
     @Async
     @Override
+    @EventListener
     public void sendOrderEmail(OrderDto order) {
         Context context = new Context();
         context.setVariable("name", order.getUserName());

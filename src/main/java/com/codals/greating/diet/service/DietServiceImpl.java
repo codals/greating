@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,6 +38,7 @@ public class DietServiceImpl implements DietService {
     private final OrderDao orderDao;
     private final OrderDietDao orderDietDao;
     private final EmailService emailService;
+    private final ApplicationEventPublisher eventPublisher;
 
     @Override
     public List<PreviewResponseDto> getWeeklyDailyDiets() {
@@ -69,7 +71,8 @@ public class DietServiceImpl implements DietService {
                 orderDietDao.insertOrderDiet(orderDiet);
             }
         }
-        emailService.sendOrderEmail(new OrderDto(user, orderRequestDto));
+        OrderEvent orderEvent = new OrderEvent(this, new OrderDto(user, orderRequestDto));
+        eventPublisher.publishEvent(orderEvent);
         return new OrderResponseDto(orderRequestDto.getOrderId());
     }
 
