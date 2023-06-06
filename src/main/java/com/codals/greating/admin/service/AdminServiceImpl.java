@@ -28,7 +28,7 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService{
 	
-	private final String DAILY_DIET_CACHE_KEY = "dailyDiets: ";
+	private static final String DAILY_DIET_CACHE_KEY = "dailyDiets: ";
 	
 	private final AdminDao adminDao;
 	private final RedisTemplate<String, Object> redisTemplate;
@@ -81,11 +81,11 @@ public class AdminServiceImpl implements AdminService{
 		List<AdminDailyDietResponseDto> result = null;
 		
 		List<AdminDailyDietResponseDto> cachedData = getCachedDailyDietsByDate(targetDate);
-		if (cachedData != null) {	// 1. 캐시된 데이터가 있으면 캐시에서 가져오기 (Cache Hit)
+		if (cachedData != null) {			// 1. 캐시된 데이터가 있으면 캐시에서 가져오기 (Cache Hit)
 			result = cachedData;
 	        log.info("일일 식단 데이터를 Redis에서 가져옴: {}", targetDate);
 	        
-		} else {					// 2. 캐시된 데이터가 없으면, DB에서 가져오기
+		} else {							// 2. 캐시된 데이터가 없으면, DB에서 가져오기
 			result =  adminDao.selectDailyDietsByDate(targetDate);
 			cacheDailyDiet(targetDate);		// 캐시된 데이터가 없었으니, 미리 캐싱해두기
 		}
@@ -113,14 +113,12 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public List<AdminDto> commingSoonList() {
-		// TODO Auto-generated method stub
 		return adminDao.commingSoonList();
 	}
 
 
 	@Override
 	public boolean approveCancel(long postId) {
-		// TODO Auto-generated method stub
 		return adminDao.approveCancel(postId);
 	}
 
