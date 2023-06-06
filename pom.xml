@@ -163,6 +163,13 @@
 			<artifactId>lettuce-core</artifactId>
 			<version>6.0.2.RELEASE</version>
 		</dependency>
+		
+		 <!-- Java 8 날짜/시간 직렬화 모듈 -->
+	    <dependency>
+	        <groupId>com.fasterxml.jackson.datatype</groupId>
+	        <artifactId>jackson-datatype-jsr310</artifactId>
+	        <version>2.14.1</version>
+	    </dependency>
 
 	</dependencies>
 	<build>

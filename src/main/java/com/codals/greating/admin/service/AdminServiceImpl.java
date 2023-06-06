@@ -68,7 +68,6 @@ public class AdminServiceImpl implements AdminService{
 		return false;
 	}
 	
-	// USER가 조회하는 용도의 캐싱
 	private void cachePreviewDailyDiet(String targetDate) {
 		String cacheKey = CacheKey.PREVIEW_DAILY_DIET_CACHE_KEY + targetDate;
 	    List<DailyDiet> cachingDiets = dailyDietDao.selectAllByStartDate(DateUtil.dateToString(new Date()));
@@ -81,9 +80,7 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public List<AdminDailyDietResponseDto> getDailyDietsByDate(String targetDate) {
-		
 		List<AdminDailyDietResponseDto> result = adminDao.selectDailyDietsByDate(targetDate);
-		
 		log.info("result {} ", result);
 		return result;
 	}

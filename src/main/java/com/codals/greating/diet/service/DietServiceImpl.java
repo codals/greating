@@ -1,5 +1,6 @@
 package com.codals.greating.diet.service;
 
+import com.codals.greating.constant.CacheKey;
 import com.codals.greating.diet.dao.DailyDietDao;
 import com.codals.greating.diet.dao.OrderDao;
 import com.codals.greating.diet.dao.OrderDietDao;
@@ -14,33 +15,75 @@ import com.codals.greating.diet.dto.PlanResponseDto;
 import com.codals.greating.diet.dto.PreviewDietResponseDto;
 import com.codals.greating.diet.dto.PreviewResponseDto;
 import com.codals.greating.diet.entity.DailyDiet;
+import com.codals.greating.diet.entity.Diet;
 import com.codals.greating.diet.entity.OrderDiet;
 import com.codals.greating.user.entity.User;
 import com.codals.greating.util.DateUtil;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Log4j2
 @Service
 @RequiredArgsConstructor
 public class DietServiceImpl implements DietService {
 
-    private final DailyDietDao dailyDietDao;
     private final OrderDao orderDao;
     private final OrderDietDao orderDietDao;
-
+    private final DailyDietDao dailyDietDao;
+    private final RedisTemplate<String, Object> redisTemplate;
+    
     @Override
     public List<PreviewResponseDto> getWeeklyDailyDiets() {
-        List<DailyDiet> dailyDiets = dailyDietDao.selectAllByStartDate(DateUtil.dateToString(new Date()));
-        return getPreviewResponseDto(dailyDiets);
+    	List<DailyDiet> data = null;
+    	String currentDate = DateUtil.dateToString(new Date());
+    	String cacheKey = CacheKey.PREVIEW_DAILY_DIET_CACHE_KEY + currentDate;
+
+    	List<PreviewResponseDto> response = null;
+
+    	// 1. 캐시에 있는지 확인하고, 캐시에 있으면 가져오기
+    	List<DailyDiet> cachedData = getCachedDailyDietsByDate(cacheKey);
+    	if (cachedData != null) {
+    		data = cachedData;
+            log.info("redis에서 캐시 가져옴 - {}", cacheKey);
+    		response = convertCacheToPreviews(data);
+    	} else {
+    		data = dailyDietDao.selectAllByStartDate(currentDate);
+            log.info("redis에 캐시 데이터 없음 ");
+
+            cacheDailyDiet(cacheKey, currentDate, data);
+            log.info("새로 캐시 완료 - {}", cacheKey);
+            
+            return getPreviewResponseDto(data);
+		}
+    	
+        return response;
     }
  
+    private List<DailyDiet> getCachedDailyDietsByDate(String cacheKey) {
+    	List<DailyDiet> cachedData = (List<DailyDiet>) redisTemplate.opsForValue().get(cacheKey);
+    	return cachedData;
+	}
+    
+	private void cacheDailyDiet(String cacheKey, String targetDate, List<DailyDiet> cachingData) {
+	    redisTemplate.opsForValue().set(cacheKey, cachingData, 24 * 31, TimeUnit.HOURS);
+	    log.info("PREVIEW cache를 1달간 Redis에 저장 : {}", cacheKey);
+	}
+    
     @Override
     public List<PlanResponseDto> getDailyDietsByDeliveryDates(List<Date> deliveryDates) {
         return deliveryDates.stream()
@@ -97,6 +140,22 @@ public class DietServiceImpl implements DietService {
                 .collect(Collectors.toList())))
             .sorted(Comparator.comparing(PreviewResponseDto::getStartDate))
             .collect(Collectors.toList());
+    }
+    
+    private List<PreviewResponseDto> convertCacheToPreviews(List<?> cacheDiets) {    	
+    	Map<LocalDate, List<PreviewDietResponseDto>> dateDietMap = new TreeMap<>();
+    	
+    	for (Object cacheUnit : cacheDiets) {
+    		DailyDiet dailyDiet = new DailyDiet((LinkedHashMap<String, Object>) cacheUnit);
+    		List<PreviewDietResponseDto> list = dateDietMap.computeIfAbsent(dailyDiet.getStartDate(), k -> new ArrayList<>());
+            list.add(new PreviewDietResponseDto(dailyDiet.getDiet()));
+    	}
+    	
+    	List<PreviewResponseDto> result = new ArrayList<PreviewResponseDto>();
+    	for (LocalDate key : dateDietMap.keySet()) {
+    		result.add(new PreviewResponseDto(key, dateDietMap.get(key)));
+    	}    	
+    	return result;  
     }
 
 }

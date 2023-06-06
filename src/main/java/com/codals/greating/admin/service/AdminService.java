@@ -13,7 +13,7 @@ public interface AdminService {
 	List<Diet> getDietsByMainCategory(MainCategoryCode category);
 
 	boolean registerDailyDiets(AdminDietRegisterRequestDto requestDto);
-
+	
 	List<AdminDto> topList();
 
 	boolean approveCheck(long postId);
