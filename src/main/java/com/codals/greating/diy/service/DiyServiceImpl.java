@@ -20,6 +20,7 @@ import com.codals.greating.diet.entity.SubCategory;
 import com.codals.greating.diy.dao.DiyDAO;
 import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.PostResponseDto;
+import com.codals.greating.diy.dto.PostStaticResponseDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.dto.SearchRequestDto;
 import com.codals.greating.diy.dto.SimplePostDto;
@@ -210,5 +211,10 @@ public class DiyServiceImpl implements DiyService{
   @Override
   public List<SimplePostDto> getRelatedPosts(int subCategoryId) {
 		return diyDAO.selectPostsBySubCategory(subCategoryId);
+	}
+
+	@Override
+	public PostStaticResponseDto getPostVoteStatics(int postId) {
+		return diyDAO.selectPostVoteStatics(postId);
 	}
 }

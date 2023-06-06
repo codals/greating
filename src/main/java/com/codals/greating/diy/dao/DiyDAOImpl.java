@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import com.codals.greating.diy.dto.PostResponseDto;
+import com.codals.greating.diy.dto.PostStaticResponseDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.dto.SearchRequestDto;
 import com.codals.greating.diy.dto.SimplePostDto;
@@ -132,4 +133,11 @@ public class DiyDAOImpl implements DiyDAO {
 		String statement ="post.selectPostsBySubCategory";
 		return sqlSession.selectList(statement, subCategoryId);
 	}
+
+	@Override
+	public PostStaticResponseDto selectPostVoteStatics(int postId) {
+		String statement ="post.selectPostVoteStatics";
+		return sqlSession.selectOne(statement,postId);
+	}
+
 }

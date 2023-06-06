@@ -5,6 +5,7 @@ import java.util.List;
 import com.codals.greating.diet.entity.MainCategory;
 import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.PostResponseDto;
+import com.codals.greating.diy.dto.PostStaticResponseDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.dto.SearchRequestDto;
 import com.codals.greating.diy.dto.SimplePostDto;
@@ -35,4 +36,5 @@ public interface DiyService {
 	void updateExpiredPostStatus();
   
 	List<SimplePostDto> getRelatedPosts(int subCategoryId);
+	PostStaticResponseDto getPostVoteStatics(int postId);
 }

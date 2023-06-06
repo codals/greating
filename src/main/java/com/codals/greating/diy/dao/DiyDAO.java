@@ -3,6 +3,7 @@ package com.codals.greating.diy.dao;
 import java.util.List;
 
 import com.codals.greating.diy.dto.PostResponseDto;
+import com.codals.greating.diy.dto.PostStaticResponseDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.dto.SearchRequestDto;
 import com.codals.greating.diy.dto.SimplePostDto;
@@ -33,4 +34,7 @@ public interface DiyDAO {
 	int updateExpiredPostStatus();
   
 	List<SimplePostDto> selectPostsBySubCategory(int subCategoryId);
+
+	PostStaticResponseDto selectPostVoteStatics(int postId);
+
 }

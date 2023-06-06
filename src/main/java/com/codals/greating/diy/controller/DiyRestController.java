@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.codals.greating.constant.MainCategoryCode;
 import com.codals.greating.diy.dto.DiyRequestDto;
+import com.codals.greating.diy.dto.PostStaticResponseDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.dto.SearchRequestDto;
 import com.codals.greating.diy.dto.SimplePostDto;
@@ -102,6 +103,15 @@ public class DiyRestController {
 	public ResponseEntity<List<SimplePostDto>> search(SearchRequestDto requestDto) {
 		List<SimplePostDto> searchedPosts = diyService.search(requestDto);	
 	    return new ResponseEntity<>(searchedPosts, HttpStatus.OK);
+	}
+	
+	@GetMapping("/statics")
+	public ResponseEntity<PostStaticResponseDto> statics(int postId) {
+		
+		PostStaticResponseDto postStatics = diyService.getPostVoteStatics(postId);
+		log.info("투표 통계 {}" ,postStatics);
+	    return new ResponseEntity<>(postStatics, HttpStatus.OK);
+		
 	}
 
 }
