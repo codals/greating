@@ -282,6 +282,11 @@
 		</selectKey>
 	</insert>
 	
+	<delete id="deleteCommentById" parameterType="int">
+		delete from "comment"
+		where
+		id=#{commentId}
+	</delete>
 	
 	
 </mapper>

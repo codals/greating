@@ -167,4 +167,10 @@ public class DiyDAOImpl implements DiyDAO {
 		return sqlSession.selectOne(statement, commentId);
 	}
 
+	@Override
+	public int deleteCommentById(int commentId) {
+		String statement ="post.deleteCommentById";
+		return sqlSession.delete(statement, commentId);
+	}
+
 }

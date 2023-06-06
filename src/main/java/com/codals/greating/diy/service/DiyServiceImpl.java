@@ -39,7 +39,6 @@ import lombok.extern.log4j.Log4j2;
 @PropertySource("classpath:application.properties")
 public class DiyServiceImpl implements DiyService{
 
-	Logger log = LogManager.getLogger("case3");
 	
 	private final DiyDAO diyDAO;
 	
@@ -254,5 +253,15 @@ public class DiyServiceImpl implements DiyService{
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+
+	@Override
+	@Transactional
+	public boolean deleteComment(int commentId) {
+		if(diyDAO.deleteCommentById(commentId)==1) {
+			return true;
+		}
+		return false;
 	}
 }

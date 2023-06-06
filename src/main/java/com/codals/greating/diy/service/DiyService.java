@@ -45,4 +45,6 @@ public interface DiyService {
 	boolean updateComment(Comment comment);
 
 	CommentResponseDto createComment(Comment comment);
+
+	boolean deleteComment(int commentId);
 }

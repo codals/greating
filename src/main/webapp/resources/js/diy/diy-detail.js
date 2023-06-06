@@ -104,6 +104,46 @@ function enableCommentEdit(button,commentId) {
 	  } 
 }
 
+// 댓글 삭제 확인
+function checkDeleteComment(commentId){
+	 Swal.fire({
+		    title: '해당 댓글을 삭제하시겠습니까?',
+		    showCancelButton: true,
+		    confirmButtonText: '삭제하기',
+		  }).then(function(result) {
+		    if (result.isConfirmed) {
+		      deleteComment(commentId)
+		        .then(function(response) {
+		          Swal.fire({
+		        	  title: '삭제 완료되었습니다!',
+		        	  confirmButtonText: '닫기'
+		          });
+		          var commentElement = $('#tab2-comment-' + commentId);
+			      commentElement.remove();
+		        })
+		        .catch(function(error) {
+		          Swal.fire('댓글 삭제를 실패하였습니다!', 'error');
+		        });
+		    }
+		  });
+}
+
+
+
+function deleteComment(commentId) {
+	  return new Promise(function(resolve, reject) {
+	  $.ajax({
+	    url: '/greating/api/mealdiy/'+commentId+'/comment',
+	    type: 'DELETE',
+	    success: function(response) {
+	        resolve(response);
+	      },
+	      error: function(xhr, status, error) {
+	        reject(error);
+	      }
+	  	});
+	  });
+	}
 
 
 function editComment(button,commentId) {

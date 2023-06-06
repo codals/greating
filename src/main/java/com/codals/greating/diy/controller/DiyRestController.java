@@ -112,6 +112,14 @@ public class DiyRestController {
 		return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+    @DeleteMapping("/{commentId}/comment")
+	public ResponseEntity<Boolean> deleteComment(@PathVariable("commentId") int commentId){
+    	if(diyService.deleteComment(commentId)) {
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+    }
+	
 	@PostMapping("/comment-update")
 	public ResponseEntity<Boolean> updateComment(Comment comment){
 		if(diyService.updateComment(comment)) {

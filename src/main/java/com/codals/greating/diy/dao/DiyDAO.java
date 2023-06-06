@@ -47,4 +47,6 @@ public interface DiyDAO {
 
 	CommentResponseDto selectCommentById(int commentId);
 
+	int deleteCommentById(int commentId);
+
 }
