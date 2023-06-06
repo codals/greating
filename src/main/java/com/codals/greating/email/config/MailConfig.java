@@ -1,4 +1,4 @@
-package com.codals.greating.email;
+package com.codals.greating.email.config;
 
 import java.util.Properties;
 import org.springframework.context.annotation.Bean;

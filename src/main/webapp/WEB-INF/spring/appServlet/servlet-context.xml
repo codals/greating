@@ -73,6 +73,6 @@
   </beans:bean>
   <!-- thymeleaf 설정  -->
 
-  <beans:bean id="gmailEmailSender" class="com.codals.greating.email.GmailEmailSender"/>
+  <beans:bean id="gmailEmailSender" class="com.codals.greating.external.sender.GmailEmailSender"/>
 
 </beans:beans>

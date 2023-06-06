@@ -1,6 +1,6 @@
 package com.codals.greating.email.service;
 
-import com.codals.greating.email.GmailEmailSender;
+import com.codals.greating.external.sender.GmailEmailSender;
 import com.codals.greating.email.dto.OrderDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

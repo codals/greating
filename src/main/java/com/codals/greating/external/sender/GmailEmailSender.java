@@ -1,4 +1,4 @@
-package com.codals.greating.email;
+package com.codals.greating.external.sender;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
