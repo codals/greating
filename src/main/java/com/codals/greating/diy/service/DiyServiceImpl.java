@@ -139,6 +139,7 @@ public class DiyServiceImpl implements DiyService{
 		List<Post> cachedData = getCachedPostsByCategoryType(cacheKey);
 		if(cachedData != null){ //캐시에 이미 있는 경우 
 			log.info("Cached Data Return");
+			log.info("캐시된 data=" + cachedData);
 			return cachedData;
 		}
 		// 캐시된 데이터가 없는 경우 
@@ -153,6 +154,7 @@ public class DiyServiceImpl implements DiyService{
 	}
 	
 	private void cacheTop10Posts(String cacheKey, List<Post> cachingData) {
+		log.info("캐싱 전=" + cachingData);
 		redisTemplate.opsForValue().set(cacheKey,cachingData, 1, TimeUnit.DAYS);
 		log.info("Top 10 datas Redis Caching");
 	}
@@ -172,14 +174,14 @@ public class DiyServiceImpl implements DiyService{
 		List<SimplePostDto> cachedData = getcachedSearchResult(cacheKey);
 		if (cachedData != null) {
 			result = cachedData;
-	        log.info("검색 결과를 Redis에서 가져옴: {}", cacheKey);
+	        log.info("[REDIS] SEARCH - Cache Hit - {}", cacheKey);
 		} else {
 			result = diyDAO.selectPostBySearchConditions(requestDto);
 			cacheSearchResult(cacheKey, result);
-	        log.info("검색 결과가 Redis에 없음 → Redis에 검색 결과 캐싱 완료 : {}", cacheKey);
+            log.info("[REDIS] SEARCH - Cache Miss - {}", cacheKey);
 		}
-		
-		int totalCount = diyDAO.getTotalSearchResultCount(requestDto);
+
+		int totalCount = result.size();
 		SearchResponseDto response = SearchResponseDto.builder()
 				  .page(requestDto.getPage())
 				  .totalCount(totalCount)
@@ -191,12 +193,14 @@ public class DiyServiceImpl implements DiyService{
 	}
 
 	private List<SimplePostDto> getcachedSearchResult(String cacheKey) {
+		@SuppressWarnings("unchecked")
 		List<SimplePostDto> cachedData = (List<SimplePostDto>) redisTemplate.opsForValue().get(cacheKey);
 	    return cachedData;
 	}
 
 	private void cacheSearchResult(String cacheKey, List<SimplePostDto> result) {
 		redisTemplate.opsForValue().set(cacheKey, result, 60, TimeUnit. MINUTES);
+	    log.info("[REDIS] SEARCH - Cache 저장 - {}", cacheKey);
 	}
 
 
