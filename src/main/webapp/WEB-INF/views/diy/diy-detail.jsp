@@ -347,7 +347,7 @@
 				<div class="tab-pane fade container" id="comments">
 
 					<div class="vote-static-section">
-						<span class="vote-static-title"> Greating Votes</span>
+						<span class="vote-static-title"><img src="/greating/resources/images/diy/comment-icon.png" style="width:80px;"> Greating Votes</span>
 						<hr>
 						<div class="vote-chart">
 
@@ -359,9 +359,11 @@
 						<hr>
 					</div>
 					<div class="comments-section">
-						<span class="comment-title">Greating Reviews </span>
+						<span class="comment-title"><img src="/greating/resources/images/diy/comment-icon.png" style="width:80px;">
+						Greating Reviews 
+						</span>
 						<div class="comment-header-group">
-							<span> Total Reviews : ${comments.size()}</span>
+							<span> Total Reviews : <span class="comment-count"> ${comments.size()} </span></span>
 							<button class="btn btn-primary" type="button"
 								id="updateCommentOpenBtn" data-bs-toggle="collapse"
 								data-bs-target="#updateComment" aria-expanded="false"
@@ -373,8 +375,7 @@
 								<div class="update-comments-group">
 									<input type="text" placeholder="댓글을 입력헤주세요"
 										class="update-comments" id="update-comment-content">
-									<button id="updateCommentBtn"
-										onclick="updateComment(${postDetail.post.id}, ${loginUser.id})">댓글
+									<button id="updateCommentBtn" onclick="updateComment(${postDetail.post.id}, ${loginUser.id})">댓글
 										등록</button>
 								</div>
 							</div>

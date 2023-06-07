@@ -33,6 +33,12 @@ function createCommentBox(response){
 	  var commentElement = createCommentElement(response);
 
 	  $('.tab2-comments').prepend(commentElement);
+	  
+	  var commentCount = parseInt($('.comment-count').text());
+
+	  commentCount += 1;
+	  $('.comment-count').text(commentCount);	  
+	  
 	
 }
 
@@ -120,6 +126,9 @@ function checkDeleteComment(commentId){
 		          });
 		          var commentElement = $('#tab2-comment-' + commentId);
 			      commentElement.remove();
+			      var commentCount = parseInt($('.comment-count').text());
+			      commentCount -= 1;
+			      $('.comment-count').text(commentCount);
 		        })
 		        .catch(function(error) {
 		          Swal.fire('댓글 삭제를 실패하였습니다!', 'error');

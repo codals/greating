@@ -11,3 +11,7 @@ function copyLink() {
     alert("링크 복사 실패");
   });
 }
+
+function linkYoutube(){
+	window.location.href="https://www.youtube.com/@greating";
+}
