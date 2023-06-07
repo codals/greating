@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.codals.greating.aop.ExecutionTime;
 import com.codals.greating.constant.CacheKey;
 import com.codals.greating.diy.SearchCodeBuilder;
 import com.codals.greating.diy.dao.DiyDAO;
@@ -47,10 +48,8 @@ public class DiyServiceImpl implements DiyService{
     
 	@Override
 	public PostResponseDto getPostDetail(int postId) {
-		
 		return diyDAO.selectPostByPostId(postId);
 	}
-	
 	
 	private Post createPost(User loginUser, DiyRequestDto postRequest) {    	
 		Post newPost = Post.builder()
@@ -132,6 +131,7 @@ public class DiyServiceImpl implements DiyService{
 
 	/* Redis 캐싱하기 */
 	@Override 
+    @ExecutionTime
 	public List<Post> loadPostsByCategoryType(int mainCategoryId) {
 		String cacheKey = CacheKey.TOP_10_CACHE_KEY + mainCategoryId;
 		List<Post> result = null;
@@ -149,6 +149,7 @@ public class DiyServiceImpl implements DiyService{
 		
 	}
 
+    @ExecutionTime
 	private List<Post> getCachedPostsByCategoryType(String cacheKey){
 		return (List<Post>) redisTemplate.opsForValue().get(cacheKey);
 	}
@@ -160,6 +161,7 @@ public class DiyServiceImpl implements DiyService{
 	}
 	
 	@Override
+    @ExecutionTime
 	public SearchResponseDto search(SearchRequestDto requestDto) {
 		int rowsPerPage = 9;
 		requestDto.setStartRow((requestDto.getPage() - 1) * rowsPerPage);
@@ -192,6 +194,7 @@ public class DiyServiceImpl implements DiyService{
 		return response;
 	}
 
+    @ExecutionTime
 	private List<SimplePostDto> getcachedSearchResult(String cacheKey) {
 		@SuppressWarnings("unchecked")
 		List<SimplePostDto> cachedData = (List<SimplePostDto>) redisTemplate.opsForValue().get(cacheKey);
@@ -206,7 +209,6 @@ public class DiyServiceImpl implements DiyService{
 
 	@Override
 	public boolean checkVoted(VoteRequestDto requestDto) {
-
 		if(diyDAO.selectVoteByPostIdAndUserId(requestDto)!= null) {
 			return true;
 		}
@@ -253,7 +255,6 @@ public class DiyServiceImpl implements DiyService{
 
 	@Override
 	public List<CommentResponseDto> getComments(int postId){
-		
 		return diyDAO.selectComments(postId);
 	}
 

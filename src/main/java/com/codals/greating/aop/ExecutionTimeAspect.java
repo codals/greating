@@ -15,14 +15,16 @@ import lombok.extern.log4j.Log4j2;
 public class ExecutionTimeAspect {
 	
 	@Around("@annotation(com.codals.greating.aop.ExecutionTime)")
-	public void measure(ProceedingJoinPoint pjp) throws Throwable {
+	public Object measure(ProceedingJoinPoint pjp) throws Throwable {
 		StopWatch stopWatch = new StopWatch();
 		stopWatch.start();
-		
-		pjp.proceed();
+				
+		Object result = pjp.proceed();
 		
 		stopWatch.stop();
-		log.info("[Execution Time] {} : {}ms ", pjp.getSignature().getName(), stopWatch.getTotalTimeMillis()); // 부가적인 코드
+		log.info("[Execution Time] {} - {}ms ", pjp.getSignature().toShortString(), stopWatch.getTotalTimeMillis());
+		
+		return result;
 	}	
 	
 }

@@ -50,7 +50,7 @@ public class DietServiceImpl implements DietService {
     private final DailyDietDao dailyDietDao;
     private final RedisTemplate<String, Object> redisTemplate;
 
- // 생성자에 @Qualifier 적용
+    // 생성자에 @Qualifier 적용
     public DietServiceImpl(OrderDao orderDao, OrderDietDao orderDietDao, DailyDietDao dailyDietDao, ApplicationEventPublisher eventPublisher, @Qualifier("redisJacksonTemplate") RedisTemplate<String, Object> redisTemplate) {
         this.orderDao = orderDao;
         this.orderDietDao = orderDietDao;
@@ -66,6 +66,9 @@ public class DietServiceImpl implements DietService {
     	String currentDate = DateUtil.dateToString(new Date());
     	String cacheKey = CacheKey.TWO_WEEK_PREVIEW_CACHE_KEY + currentDate;
 
+    	log.info("today=" + currentDate);
+    	log.info("result=" + dailyDietDao.selectAllByStartDate(currentDate));
+    	
     	List<PreviewResponseDto> response = null;
 
     	List<DailyDiet> cachedData = getCachedTwoWeekDailyDiets(cacheKey);
@@ -75,9 +78,11 @@ public class DietServiceImpl implements DietService {
     	} else {						// 2. 캐시에 없으면  DB에서 가져오기, 캐싱해두기
             log.info("[REDIS] TWO_WEEK_PREVIEW - Cache Miss - {}", cacheKey);
             data = dailyDietDao.selectAllByStartDate(currentDate);
+            log.info("data= " + data);
 
             cacheTwoWeekDailyDiets(cacheKey, data);
-            return getPreviewResponseDto(data);
+            response = getPreviewResponseDto(data);
+            log.info("response= " + data);
 		}
 
         return response;
@@ -193,6 +198,7 @@ public class DietServiceImpl implements DietService {
             .collect(Collectors.toList());
     }
 
+    @ExecutionTime
     private List<PreviewResponseDto> convertCacheToPreviews(List<?> cacheDiets) {
     	Map<LocalDate, List<PreviewDietResponseDto>> dateDietMap = new TreeMap<>();
 
