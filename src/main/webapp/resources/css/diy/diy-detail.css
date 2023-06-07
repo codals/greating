@@ -63,7 +63,7 @@ body {
 	font-size: 18px;
 	opacity: 1;
 	text-align: left;
-	display:flex;
+	display: flex;
 }
 
 .diy-category-info {
@@ -84,8 +84,8 @@ body {
 	top: 5px;
 	left: 9px;
 	width: max-content;
-	margin-bottom:5px;
-	margin-top:5px;
+	margin-bottom: 5px;
+	margin-top: 5px;
 	font-family: Noto Sans KR;
 	font-weight: Bold;
 	font-size: 18px;
@@ -191,7 +191,6 @@ body {
 	display: block;
 	position: absolute;
 	bottom: 0;
-	z-index: -1;
 	width: 100%;
 	height: 3px;
 	background: #918c00;
@@ -207,12 +206,10 @@ body {
 	font-weight: bold;
 	text-align: center;
 	line-height: 55px;
-	z-index: -1;
 }
 
 .tab-menu .tab-menu__inner .tab-menu__list:first-child {
 	margin-left: 0;
-	z-index: -1;
 }
 
 .tab-menu .tab-menu__inner .tab-menu__list a {
@@ -298,8 +295,8 @@ body {
 .diy-advertise-sec img {
 	width: 100%;
 	display: block;
-    height: 650px;
-    object-fit: cover;
+	height: 650px;
+	object-fit: cover;
 }
 
 .detail-info-section {
@@ -341,7 +338,7 @@ body {
 }
 
 .sub-info-line .info-title, .sub-info-line .info-text {
-	font-size: 16px;
+	font-size: 20px;
 }
 
 .info-img-section img {
@@ -412,33 +409,38 @@ body {
 	border-radius: 30px;
 	width: 100%;
 	min-height: 200px;
+	padding: 30px;
+	font-size: 25px;
 }
 
 .last-section {
 	margin-bottom: 50px;
 }
-.diy-realted-post{
-	width:100%;
-	height:100%;
+
+.diy-realted-post {
+	width: 100%;
+	height: 100%;
 	margin-top: 30px;
 }
-.diy-related-post-section{
+
+.diy-related-post-section {
 	width: 100%;
-    min-height: 420px;
-    margin-top: 30px;
-    margin-bottom:50px;
+	min-height: 420px;
+	margin-top: 30px;
+	margin-bottom: 50px;
 }
-.related-post-card,.market-card{
-width: 270px;
-    height: 270px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
+
+.related-post-card, .market-card {
+	width: 270px;
+	height: 270px;
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
 }
+
 .diy-realted-post {
-    display: flex;
-    
-    justify-content: space-around;
+	display: flex;
+	justify-content: space-around;
 }
 /* .related-post-card-img{
     width: 100%;
@@ -452,73 +454,203 @@ width: 270px;
     border-radius:10px;
 }
  */
-.related-post-card-img,
-.market-card-img{
-  position:relative;
-  width: 250px;
-  height: 250px;
-} 
-.related-post-card-img img,
-.market-card-img img{
-  width: 100%;
-  height: 100%;
-} 
-.related-post-card-img::before,
-.market-card-img::before{
-  position:absolute;
-  width: 100%;
-  height: 100%;
-  content:'';
-  top:-5px;
-  left:-5px;
-/*   border: 2px solid #918c01;
- */  z-index:-1;
-  transition: all 0.2s;
-
-}
-.related-post-card-img:hover::before,
-.market-card-img:hover::before{
-  top: 3px;
-  left: 3px
-}
-.related-post-card-img::after,
-.market-card-img::after{
-  position:absolute;
-  width: 100%;
-  height: 100%;
-  content:'';
-  top:3px;
-  left:3px;
-  background:#918c01;
-  z-index:-1;
-  transition: all 0.2s;
-}
-.related-post-card-img:hover::after,
-.market-card-img:hover::after{
-  top: -3px;
-  left:-3px
-}
-
-.related-post-card-info{
-	padding: 5px;
-    font-size: 25px;
-    font-weight: bold;
-}
-.market-section{
-	margin-bottom:70px;
-}
-.market-cards{
-	display:flex;
-	margin-top:30px;
-	
-}
-.market-card > img{
+.related-post-card-img, .market-card-img {
+	position: relative;
 	width: 250px;
-	height: 250px;	
+	height: 250px;
 }
-.market-card > span{
-	display:block;
-	font-size:25px;
+
+.related-post-card-img img, .market-card-img img {
+	width: inherit;
+	height: inherit;
+	object-fit: cover;
+}
+
+.related-post-card-img::before, .market-card-img::before {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	content: '';
+	top: -5px;
+	left: -5px;
+	/*   border: 2px solid #918c01;
+ */
+	z-index: -1;
+	transition: all 0.2s;
+}
+
+.related-post-card-img:hover::before, .market-card-img:hover::before {
+	top: 3px;
+	left: 3px
+}
+
+.related-post-card-img::after, .market-card-img::after {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	content: '';
+	top: 3px;
+	left: 3px;
+	background: #918c01;
+	z-index: -1;
+	transition: all 0.2s;
+}
+
+.related-post-card-img:hover::after, .market-card-img:hover::after {
+	top: -3px;
+	left: -3px
+}
+
+.related-post-card-info {
+	padding: 5px;
+	font-size: 25px;
 	font-weight: bold;
 }
-	 	
+
+.market-section {
+	margin-bottom: 70px;
+}
+
+.market-cards {
+	display: flex;
+	margin-top: 30px;
+}
+
+.market-card>img {
+	width: 250px;
+	height: 250px;
+}
+
+.market-card-info {
+	display: flex;
+	justify-content: space-between;
+	padding: 0px 15px 0px 0px;
+	flex-wrap: wrap;
+	margin-top: 10px;
+}
+
+.market-tag {
+	padding: 6px;
+	border: 1px solid #918c01;
+	margin-top: 5px;
+	border-radius: 18px;
+}
+
+.market-food-name {
+	display: block;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.vote-static-section {
+	width: 100%;
+	/* 	border : 1px solid #918c01;
+ */
+	padding: 20px;
+}
+
+.vote-static-title, .comment-title {
+	font-size: 30px;
+	font-weight: bold;
+	display: block;
+	background: #ccc;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.vote-chart {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#vote-gender-chart {
+	display: inline-block !important;
+	height: 250px !important;
+	width: 300px !important;
+}
+
+#vote-ages-chart {
+	display: inline-block !important;
+	width: 650px !important;
+	height: 280px !important;
+}
+
+.vote-static-section hr {
+	border-top: 2px solid #918C00;
+}
+
+.comment-header-group {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	align-items: center;
+}
+
+.comment-header-group>span {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.update-comments input {
+	width: 100%;
+}
+
+.update-comments {
+	padding: 10px;
+	border: 1px solid #ccc;
+	height: 60px;
+	width: 100%;
+}
+
+.update-comments-group {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	    border: 1px solid #ccc;
+}
+
+#updateCommentOpenBtn {
+	color: #918c01;
+	background: white;
+	padding: 8px;
+	border: 1px solid #918c01;
+}
+
+#updateComment {
+	margin-bottom: 40px;
+}
+
+#updateCommentBtn {
+	    width: 100px;
+    margin: 6px;
+    border: 1px solid gray;
+    padding: 6px;
+}
+.tab2-comment{
+	padding:10px;
+	border: 1px solid gray;
+    border-radius: 10px;
+    margin-bottom:20px;
+}
+.tab2-comment-header{
+	    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+.tab2-comment-header > .btns{
+	display:inline-block;
+}
+.tab2-comment-header > .btns > button{
+	border: 1px solid gray;
+    padding: 4px;
+    width: 75px;
+    border-radius: 8px;
+    margin: 0px 5px 0px 5px;
+}
+.tab2-comment-content > textarea{
+	width:100%;
+	border-radius:10px;
+	height: 65px;
+	
+}

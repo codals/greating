@@ -16,12 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import com.codals.greating.constant.MainCategoryCode;
+import com.codals.greating.diy.dto.CommentResponseDto;
 import com.codals.greating.diy.dto.DiyRequestDto;
+import com.codals.greating.diy.dto.PostStaticResponseDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.dto.SearchRequestDto;
-import com.codals.greating.diy.dto.SimplePostDto;
+import com.codals.greating.diy.dto.SearchResponseDto;
 import com.codals.greating.diy.dto.VoteRequestDto;
+import com.codals.greating.diy.entity.Comment;
 import com.codals.greating.diy.service.DiyService;
 import com.codals.greating.user.entity.User;
 
@@ -41,9 +43,6 @@ public class DiyRestController {
                          @RequestParam(required = false) String classification,
                          @RequestParam(required = false) boolean includeRice,
                          @RequestParam(required = false) boolean includeSoup) {
-        /**
-         * diy 메인 > 돋보기, 선택완료 버튼 (Ajax)
-         */
         return "diy/diy-main";
     }
     
@@ -52,12 +51,8 @@ public class DiyRestController {
 									  @ModelAttribute DiyRequestDto postRequest,
 							          HttpSession session) {
 
-		log.info(postRequest);
-		log.info("soupId=" + postRequest.getSoupFoodId());
-
 		Integer postId = diyService.savePost(loginUser, postRequest);
-				
-		
+	
 	    return new ResponseEntity<>(postId, HttpStatus.OK);
 	}
     
@@ -76,9 +71,6 @@ public class DiyRestController {
     	}
     	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
     }
-    
-	
-
 
 	@PostMapping("/vote")
 	public ResponseEntity<Boolean>  votePost(int postId, @SessionAttribute("loginUser") User loginUser ){
@@ -88,7 +80,6 @@ public class DiyRestController {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
 	}
 	
-	
 	@DeleteMapping("/{postId}/vote")
 	public ResponseEntity<Boolean> voteCancel(@PathVariable("postId") int postId, @SessionAttribute("loginUser") User loginUser ){
 		
@@ -97,11 +88,48 @@ public class DiyRestController {
 		}
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
 	}
+
+  @PostMapping("/comment-new")
+	public ResponseEntity<CommentResponseDto> createComment(Comment comment){
+
+		CommentResponseDto newComment = diyService.createComment(comment);
+		if(newComment!=null) {
+			log.info("new comment : {} ", newComment);
+			return new ResponseEntity<>(newComment, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 	
+    @DeleteMapping("/{commentId}/comment")
+	public ResponseEntity<Boolean> deleteComment(@PathVariable("commentId") int commentId){
+    	if(diyService.deleteComment(commentId)) {
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+    }
+	
+	@PostMapping("/comment-update")
+	public ResponseEntity<Boolean> updateComment(Comment comment){
+		if(diyService.updateComment(comment)) {
+			return new ResponseEntity<>(true, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
+	   
+	}
+  
 	@GetMapping("/search")
-	public ResponseEntity<List<SimplePostDto>> search(SearchRequestDto requestDto) {
-		List<SimplePostDto> searchedPosts = diyService.search(requestDto);	
-	    return new ResponseEntity<>(searchedPosts, HttpStatus.OK);
+	public ResponseEntity<SearchResponseDto> search(SearchRequestDto requestDto, @RequestParam(value = "page", defaultValue = "1") int page) {
+		requestDto.setPage(page);
+		SearchResponseDto response = diyService.search(requestDto);	
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+	
+	@GetMapping("/statics")
+	public ResponseEntity<PostStaticResponseDto> statics(int postId) {
+		
+		PostStaticResponseDto postStatics = diyService.getPostVoteStatics(postId);
+	    return new ResponseEntity<>(postStatics, HttpStatus.OK);
+		
 	}
 
 }

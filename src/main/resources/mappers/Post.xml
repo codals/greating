@@ -34,7 +34,7 @@
 			<result property="createdAt" column="created_at" />
 			<result property="modifiedAt" column="modified_at" />
 		</association>
-		
+
 
 		<association property="user" javaType="User">
 			<id property="id" column="user_id" />
@@ -79,15 +79,15 @@
 	</resultMap>
 
 	<!-- SELECT 쿼리 실행 -->
-	<select id="selectPostByPostId" parameterType="int"
-		resultMap="postResponseDtoResultMap">
+	<select id="selectPostByPostId" parameterType="int" resultMap="postResponseDtoResultMap">
 		SELECT p.*, u.id as user_id , u.username as username, u.name
 		as name,
 		main_cate.id as main_cate_id, main_cate.name as
 		main_cate_name,
 		sub_cate.id as sub_cate_id, sub_cate.name as
 		sub_cate_name,
-		food_country.id as food_country_id, food_country.country as food_country
+		food_country.id as food_country_id, food_country.country
+		as food_country
 		FROM post p
 		JOIN "user"
 		u on p.user_id = u.id
@@ -99,11 +99,11 @@
 		p.sub_category_id = sub_cate.id
 		LEFT JOIN
 		food_country on p.food_country_id = food_country.id
-		WHERE p.id =#{postId}
+		WHERE p.id
+		=#{postId}
 	</select>
 
-	<select id="selectFoodById" parameterType="int"
-		resultMap="foodResultMap">
+	<select id="selectFoodById" parameterType="int" resultMap="foodResultMap">
 		SELECT id, name, price, description, img_url
 		FROM food
 		WHERE
@@ -117,8 +117,7 @@
 	    ]]>
 	</insert>
 
-	<!-- 현재 세션에 대한 마지막 삽입 ID를 반환하기 때문에 다른 스레드가 동시에 삽입을 수행하는 경우에도 올바른 ID 값을 반환할 
-		수 있음 -->
+	<!-- 현재 세션에 대한 마지막 삽입 ID를 반환하기 때문에 다른 스레드가 동시에 삽입을 수행하는 경우에도 올바른 ID 값을 반환할 수 있음 -->
 	<select id="nextPostId" resultType="java.lang.Integer">
 		SELECT POST_ID_SEQ.NEXTVAL
 		FROM DUAL
@@ -128,12 +127,8 @@
 		SELECT
 		POST_ID_SEQ.CURRVAL AS id FROM DUAL
 	</select>
-	
-	
-	
-	
-	<select id="selectPostsByMainCategory" parameterType="int"
-		resultType="Post">
+
+	<select id="selectPostsByMainCategory" parameterType="int" resultType="Post">
 		SELECT *
 		from post
 		where main_category_id = #{mainCategoryId}
@@ -143,9 +138,41 @@
 		ONLY
 	</select>
 
-	<select id="selectPostBySearchConditions"
-		parameterType="SearchRequestDto" resultType="SimplePostDto">
+	<select id="selectPostsBySubCategory" parameterType="int" resultType="SimplePostDto">
+		select p.* from (select * from post where sub_category_id=#{subCategoryId} order by dbms_random.value) p
+		OFFSET 0 ROWS FETCH FIRST 4 ROWS ONLY
+	</select>
+
+	<select id="selectPostBySearchConditions" parameterType="SearchRequestDto" resultType="SimplePostDto">
 		SELECT *
+		FROM post
+		<where>
+			<if test="hasRice != null">
+				AND nvl2(rice_food_id, 1, 0)= #{hasRice}
+			</if>
+			<if test="hasSoup != null">
+				AND nvl2(soup_food_id, 1, 0)= #{hasSoup}
+			</if>
+			<if test="mainCategories != null and mainCategories.size() > 0">
+				AND main_category_id IN
+				<foreach item="category" collection="mainCategories"
+					separator="," open="(" close=")">
+					#{category.id}
+				</foreach>
+			</if>
+			<if test="foodCountries != null and foodCountries.size() > 0">
+				AND food_country_id IN
+				<foreach item="country" collection="foodCountries"
+					separator="," open="(" close=")">
+					#{country.id}
+				</foreach>
+			</if>
+		</where>
+		OFFSET #{startRow} ROWS FETCH NEXT #{endRow} ROWS ONLY
+	</select>
+
+	<select id="countTotalPostBySearchConditions" parameterType="SearchRequestDto" resultType="Integer">
+		SELECT COUNT(*)
 		FROM post
 		<where>
 				<if test="hasRice != null">
@@ -163,19 +190,13 @@
 				</if>
 				<if test="foodCountries != null and foodCountries.size() > 0">
 					AND food_country_id IN
-					<foreach item="country" collection="foodCountries"
-						separator="," open="(" close=")">
+					<foreach item="country" collection="foodCountries" separator="," open="(" close=")">
 						#{country.id}
 					</foreach>
 				</if> 
 		</where>
-	<!-- 	OFFSET 0 ROWS FETCH FIRST 10 ROWS
-		ONLY -->
-		
 	</select>
-	
-	
-	
+
 
 	<!-- scrap 관련 -->
 	<insert id="insertScrap" parameterType="ScrapRequestDto">
@@ -189,12 +210,12 @@
 		where
 		user_id=#{userId} and post_id=#{postId}
 	</delete>
-	<select id="selectScrapByPostIdAndUserId" parameterType="ScrapRequestDto" resultType="Scrap">
+	<select id="selectScrapByPostIdAndUserId"
+		parameterType="ScrapRequestDto" resultType="Scrap">
 		select * from scrap
-		where post_id=#{postId} and user_id=#{userId}
+		where
+		post_id=#{postId} and user_id=#{userId}
 	</select>
-	
-
 
 	<!-- vote 관련 -->
 	<insert id="insertVote" parameterType="VoteRequestDto">
@@ -208,13 +229,75 @@
 		where
 		user_id=#{userId} and post_id=#{postId}
 	</delete>
-	
-	<select id="selectVoteByPostIdAndUserId" parameterType="VoteRequestDto" resultType="Vote">
+
+	<select id="selectVoteByPostIdAndUserId"
+		parameterType="VoteRequestDto" resultType="Vote">
 		select * from vote
-		where post_id=#{postId} and user_id=#{userId}
+		where
+		post_id=#{postId} and user_id=#{userId}
+	</select>
+	
+	<select id="selectPostVoteStatics" parameterType="int" resultType="PostStaticResponseDto">
+
+		SELECT
+		  COUNT(*) AS total_vote_cnt,
+		  COUNT(CASE WHEN u.gender = 'female' THEN 1 END) AS female_total_vote_count,
+		  COUNT(CASE WHEN u.gender = 'male' THEN 1 END) AS male_total_vote_count,
+		  SUM(CASE WHEN u.gender = 'female' AND TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(u.birth, 'YYYYMMDD'))/12) BETWEEN 10 AND 19 THEN 1 ELSE 0 END) AS female_10s_vote_count,
+		  SUM(CASE WHEN u.gender = 'female' AND TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(u.birth, 'YYYYMMDD'))/12) BETWEEN 20 AND 29 THEN 1 ELSE 0 END) AS female_20s_vote_count,
+		  SUM(CASE WHEN u.gender = 'female' AND TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(u.birth, 'YYYYMMDD'))/12) BETWEEN 30 AND 39 THEN 1 ELSE 0 END) AS female_30s_vote_count,
+		  SUM(CASE WHEN u.gender = 'female' AND TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(u.birth, 'YYYYMMDD'))/12) BETWEEN 40 AND 49 THEN 1 ELSE 0 END) AS female_40s_vote_count,
+		  SUM(CASE WHEN u.gender = 'female' AND TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(u.birth, 'YYYYMMDD'))/12) >= 50 THEN 1 ELSE 0 END) AS female_50s_vote_count,
+		  SUM(CASE WHEN u.gender = 'male' AND TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(u.birth, 'YYYYMMDD'))/12) BETWEEN 10 AND 19 THEN 1 ELSE 0 END) AS male_10s_vote_count,
+		  SUM(CASE WHEN u.gender = 'male' AND TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(u.birth, 'YYYYMMDD'))/12) BETWEEN 20 AND 29 THEN 1 ELSE 0 END) AS male_20s_vote_count,
+		  SUM(CASE WHEN u.gender = 'male' AND TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(u.birth, 'YYYYMMDD'))/12) BETWEEN 30 AND 39 THEN 1 ELSE 0 END) AS male_30s_vote_count,
+		  SUM(CASE WHEN u.gender = 'male' AND TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(u.birth, 'YYYYMMDD'))/12) BETWEEN 40 AND 49 THEN 1 ELSE 0 END) AS male_40s_vote_count,
+		  SUM(CASE WHEN u.gender = 'male' AND TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(u.birth, 'YYYYMMDD'))/12) >= 50 THEN 1 ELSE 0 END) AS male_50s_vote_count
+		FROM
+		  vote v
+		JOIN
+		  "user" u ON v.user_id = u.id
+		WHERE
+		  v.post_id = #{postId}
+	
+	</select>
+
+	<update id="updateStatusOfExpiredPosts" parameterType="Integer">
+		UPDATE post
+		SET status = #{voteFinishedId}
+		WHERE created_at &lt; SYSDATE - 7
+	</update>
+	
+	
+	
+	<!-- comment 관련  -->
+	<select id="selectComments" parameterType="Integer" resultType="CommentResponseDto">
+		
+	select c.*, username 
+	from "comment" c join "user" u on u.id = c.user_id 
+	where post_id = #{postId} order by c.created_at desc
 	
 	</select>
 	
-
-
+	<select id="selectCommentById" parameterType="Integer" resultType="CommentResponseDto">
+		select c.*, username from "comment" c join "user" u on u.id = c.user_id where c.id = #{commentId}
+	</select>
+	<update id="updateComment" parameterType="Comment">
+		update "comment" set content = #{content}  where id= #{id}
+	</update>
+	
+	<insert id="insertComment" parameterType="Comment" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+		insert into "comment"(user_id, post_id, content, created_at) values(#{userId},#{postId}, #{content},sysdate)
+		<selectKey keyProperty="id" resultType="int" order="AFTER">
+			SELECT comment_id_seq.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+	
+	<delete id="deleteCommentById" parameterType="int">
+		delete from "comment"
+		where
+		id=#{commentId}
+	</delete>
+	
+	
 </mapper>

@@ -57,8 +57,6 @@ public class AdminRestController {
 			return ResponseEntity.ok().build(); 
 		}
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
-
-
 	}
 	
 	@PostMapping("/approveCancel")
@@ -67,8 +65,6 @@ public class AdminRestController {
 			return ResponseEntity.ok().build(); 
 		}
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
-
-
 	}
 
 	@GetMapping("daily-diets")
@@ -81,4 +77,46 @@ public class AdminRestController {
 	}
 	
 	
+	
+	@PostMapping("/approveDiy")
+	public ResponseEntity<Boolean> approveDiy(@RequestParam("postId") long postId) {
+		System.out.println("======approveDiy======");
+		if(adminService.approveDiy(postId)) {
+			return ResponseEntity.ok().build(); 
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+	}
+	
+	@PostMapping("/registerDiy")
+	public ResponseEntity<Boolean> approveDiyRegister(@RequestParam("postId") int postId) {
+		System.out.println("======approveDiyRegister======");
+		System.out.println(postId);
+		if(adminService.approveDiyRegister(postId)) {
+			return ResponseEntity.ok().build(); 
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+	}
+	
+	@PostMapping("/approveDiyCancel")
+	public ResponseEntity<Boolean> changeDiy(@RequestParam("postId") long postId) {
+		System.out.println("======changeDiy======");
+		if(adminService.approveDiyCancel(postId)) {
+			return ResponseEntity.ok().build(); 
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+	}
+	
+	@PostMapping("/submitPrice")
+	public ResponseEntity<Boolean> submitPrice(@RequestParam int postId, @RequestParam int price) {
+		System.out.println("==================submitPrice================");
+	    System.out.println("Post ID: " + postId);
+	    System.out.println("Price: " + price);
+		if(adminService.submitPrice(postId,price)) {
+			return ResponseEntity.ok().build(); 
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+	}
+
+	
 }
+

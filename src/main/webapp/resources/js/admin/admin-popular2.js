@@ -9,7 +9,7 @@ function approve(postId, button) {
             console.log("Post status approved!");
             
             // 성공 메시지로 텍스트 업데이트
-            $(button).text("성공");
+            $(button).text("승인완료");
             
             // 취소 버튼 생성
          

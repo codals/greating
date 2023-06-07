@@ -16,6 +16,10 @@
 <link href="/greating/resources/css/diy/diy-detail.css" rel="stylesheet">
 
 <!-- js 가져오기 -->
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
 <script src="/greating/resources/js/diy/diy-detail.js"></script>
@@ -43,15 +47,8 @@
 <link href="/greating/resources/css/templates/alert.css"
 	rel="stylesheet">
 
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
 
 </head>
-
 
 <body>
 
@@ -70,6 +67,7 @@
 			<li>></li>
 			<li class="highlight">DIY 도시락 상세</li>
 		</ul>
+		<span class="postId" style="display:none;">${postDetail.post.id}</span>
 		<div class="main-info-container">
 
 			<div class="main-img">
@@ -91,7 +89,7 @@
 
 					<span class="info-title">분류</span> <span class="info-text">
 						<span>${postDetail.mainCategory.name} >
-							${postDetail.subCategory.name} >  ${postDetail.foodCountry}</span>
+							${postDetail.subCategory.name} > ${postDetail.foodCountry}</span>
 
 					</span>
 
@@ -165,13 +163,13 @@
 			<div class="tab-menu">
 				<ul class="nav nav-pills tab-menu__inner">
 					<li
-						class="nav-item tab-menu__list tnb-area__list tab-menu__list--on">
+						class="nav-item tab-menu__list tnb-area__list tab-menu__list--on tab1">
 						<a class="nav-link active" data-toggle="pill" href="#detail"><strong>식단
 								정보</strong></a>
 					</li>
-					<li class="nav-item tab-menu__list"><a class="nav-link"
+					<li class="nav-item tab-menu__list tab2"><a class="nav-link"
 						data-toggle="pill" href="#comments"> <strong>투표 현황 /
-								댓글</strong> <span class="tab-menu__count" id="reviwCnt">8</span>
+								댓글</strong> <span class="tab-menu__count" id="reviwCnt">${comments.size()}</span>
 					</a></li>
 				</ul>
 			</div>
@@ -180,10 +178,8 @@
 			<div class="tab-content">
 
 				<!-- Tab 1 : 식단 정보 탭이 열리면 -->
-				<div class="tab-pane container active" id="detail">
-
+				<div class="tab-pane container fade show active" id="detail">
 					<div class="diy-detail">
-
 						<!-- DIY 식단 관련 홍보 이미지 -->
 						<div class="diy-advertise-sec" style="">
 							<img src="/greating/resources/images/diy/diy-detail-banner.jpeg">
@@ -191,15 +187,12 @@
 
 					</div>
 
-					<!-- 식단 정보 요약 -->
 					<div class="detail-info-section">
-
 						<div class="info-section-title">
 							<div style="display: inline-block">Greating Info</div>
 							<hr
 								style="margin-left: 10px; border: none; height: 1px; display: inline-block; background-color: black; width: 79%">
 						</div>
-
 						<div class="info-img-text-sec">
 							<div class="info-text-section">
 								<div class="sub-info-line">
@@ -209,17 +202,14 @@
 
 									</span>
 								</div>
-
 								<div class="sub-info-line">
 									<span class="info-title">희망 칼로리</span> <span class="info-text">${postDetail.post.minCalorie}
 										~ ${postDetail.post.maxCalorie}</span>
 								</div>
-
 								<div class="sub-info-line">
 									<span class="info-title">희망 가격대</span> <span class="info-text">${postDetail.post.minPrice}
 										~ ${postDetail.post.maxPrice} 원</span>
 								</div>
-
 								<div class="sub-info-line">
 									<span class="info-title">영양사</span> <span class="info-text">${postDetail.user.name}</span>
 								</div>
@@ -229,24 +219,21 @@
 										pattern="yyyy-MM-dd" var="formattedDate" />
 
 								</div>
-							</div>
 
+							</div>
 							<div class="info-img-section">
 								<img src="/greating/resources/images/diy/img_low_calorie.png">
 							</div>
 						</div>
 					</div>
-
-					<!-- 식단 메뉴 설명 -->
 					<div class="detail-info-section">
-
 						<div class="info-section-title">
 							<div style="display: inline-block">Greating Components</div>
 							<hr
 								style="margin-left: 10px; border: none; height: 1px; display: inline-block; background-color: black; width: 65.5%">
 						</div>
-
 						<div class="info-text-section">
+
 							<div class="sub-info-line">
 								<span class="info-title">Rice</span> <span class="info-text">${postDetail.rice.name}</span>
 							</div>
@@ -265,12 +252,10 @@
 								<span class="info-title">Side Dish 2</span> <span
 									class="info-text">${postDetail.side2.name}</span>
 							</div>
-						</div>
 
+						</div>
 					</div>
 
-
-					<!-- 식단 사진 샘플 -->
 					<div class="detail-info-section">
 						<div class="info-section-title">
 							<div style="display: inline-block">Greating Samples</div>
@@ -289,11 +274,10 @@
 							</div>
 						</div>
 					</div>
-
-
-					<!-- 식단 Comments -->
 					<div class="detail-info-section">
+						<!-- comment 섹션  -->
 						<div class="info-section-title">
+
 							<div style="display: inline-block">Greater's Comments</div>
 							<hr
 								style="margin-left: 10px; border: none; height: 0.5px; display: inline-block; background-color: black; width: 67%">
@@ -301,19 +285,10 @@
 
 						<div class="info-text-section comment-section">
 
-							<!-- 	<div class="sub-info-line">
-								<span class="info-title">1. </span> <span class="info-text">비지찌개에는
-									삼겹살을 넣어주세요.</span>
-							</div>
-							<div class="sub-info-line">
-								<span class="info-title">2. </span> <span class="info-text">파채를
-									많이 넣어주세요.</span>
-							</div>
-							<div class="sub-info-line">
-								<span class="info-title">3. </span> <span class="info-text">깻잎
-									장아찌는 매콤하게 해주세요.</span>
-							</div> -->
+							<p>${postDetail.post.content}</p>
+
 						</div>
+
 					</div>
 
 					<div class="diy-related-post-section">
@@ -324,32 +299,15 @@
 						</div>
 
 						<div class="diy-realted-post">
-							<div class="related-post-card">
-								<div class="related-post-card-img">
-									<img src="/greating/resources/images/diy/img_diy_sample.png">
+							<c:forEach items="${relatedPosts}" var="relatedPost">
+
+								<div class="related-post-card">
+									<div class="related-post-card-img">
+										<img src="${relatedPost.imgUrl}">
+									</div>
+									<div class="related-post-card-info">${relatedPost.title}</div>
 								</div>
-								<div class="related-post-card-info">진우형 도시락</div>
-							</div>
-							<div class="related-post-card">
-								<div class="related-post-card-img">
-									<img src="/greating/resources/images/diy/img_diy_sample.png">
-								</div>
-								<div class="related-post-card-info">진우형 도시락</div>
-							</div>
-							<div class="related-post-card">
-								<div class="related-post-card-img">
-									<img src="/greating/resources/images/diy/img_diy_sample.png">
-								</div>
-								<div class="related-post-card-info">진우형 도시락 진우형 도시락 진우형
-									도시락</div>
-							</div>
-							<div class="related-post-card">
-								<div class="related-post-card-img">
-									<img src="/greating/resources/images/diy/img_diy_sample.png">
-								</div>
-								<div class="related-post-card-info">진우형 도시락 진우형 도시락 진우형
-									도시락</div>
-							</div>
+							</c:forEach>
 						</div>
 
 
@@ -363,36 +321,90 @@
 						</div>
 
 						<ul class="market-cards">
-							<c:forEach var="item" begin="1" end="4">
+							<c:forEach items="${relatedFoods}" var="relatedFood">
 
 								<li class="market-card">
 									<div class="market-card-img">
 
-										<img src="/greating/resources/images/market/LA갈비.png">
-									</div> <span> LA 갈비 </span>
+										<img src="${relatedFood.imgUrl}">
+									</div>
+									<div class="market-card-info">
+										<span class="market-food-name"> ${relatedFood.name} </span> <span
+											class="market-tag"> 건강마켓 </span>
+
+									</div>
 								</li>
 							</c:forEach>
 
 						</ul>
 					</div>
 
-
 				</div>
+				<!-- tab1 종료  -->
+				<!-- tab2 시작  -->
+				<div class="tab-pane fade container" id="comments">
 
-				<!-- DIY 식단 관련 홍보 이미지 -->
-				<div class="diy-advertise-sec last-section">
-					<img src="/greating/resources/images/diy/img_greating_adv.png">
+					<div class="vote-static-section">
+						<span class="vote-static-title"> Greating Votes</span>
+						<hr>
+						<div class="vote-chart">
+
+							<canvas id="vote-gender-chart"></canvas>
+
+							<canvas id="vote-ages-chart"></canvas>
+
+						</div>
+						<hr>
+					</div>
+					<div class="comments-section">
+						<span class="comment-title">Greating Reviews </span>
+						<div class="comment-header-group">
+							<span> Total Reviews : ${comments.size()}</span>
+							<button class="btn btn-primary" type="button"
+								id="updateCommentOpenBtn" data-bs-toggle="collapse"
+								data-bs-target="#updateComment" aria-expanded="false"
+								aria-controls="updateComment">댓글 작성</button>
+						</div>
+
+						<div class="collapse" id="updateComment">
+							<div class="card card-body">
+								<div class="update-comments-group">
+									<input type="text" placeholder="댓글을 입력헤주세요"
+										class="update-comments" id="update-comment-content">
+									<button id="updateCommentBtn" onclick="updateComment(${postDetail.post.id}, ${loginUser.id})">댓글
+										등록</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="tab2-comments">
+
+							<c:forEach items="${comments}" var="postComment">
+								<div class="tab2-comment" id="tab2-comment-${postComment.id}">
+									<div class="tab2-comment-header">
+										<div class="tab2-comment-text">
+											<span> 작성자 : ${postComment.username} | </span>
+											<span class="comment-createdAt">${postComment.createdAt} </span>
+										</div>
+										<div class="btns">
+											<c:if test="${postComment.userId == loginUser.id}">
+												<button class="tab2-comment-reupload" onclick="enableCommentEdit(this,${postComment.id})">수정</button>
+												<button class="tab2-comment-delete" onclick="checkDeleteComment(${postComment.id})">삭제</button>
+											</c:if>
+										</div>
+									</div>
+									<div class="tab2-comment-content">
+										<textarea id="comment-${postComment.id}" readonly> ${postComment.content} </textarea>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+					</div>
 				</div>
-
 			</div>
 
-			<!-- Tab 2 : 투표 현황/댓글 탭이 열리면 -->
-			<div class="tab-pane container fade" id="comments">준비중인 기능입니다.
-			</div>
 		</div>
 	</div>
-
-
 
 	<!-- footer 가져오기 -->
 	<jsp:include page="../templates/footer.jsp" />

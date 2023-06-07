@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.codals.greating.constant.MainCategoryCode;
+import com.codals.greating.diy.dto.CommentResponseDto;
 import com.codals.greating.diy.dto.PostResponseDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
+import com.codals.greating.diy.dto.SimplePostDto;
 import com.codals.greating.diy.dto.VoteRequestDto;
 import com.codals.greating.diy.entity.Post;
 import com.codals.greating.diy.service.DiyService;
@@ -35,7 +37,6 @@ import static com.codals.greating.constant.FoodTypeCode.*;
 @PropertySource("classpath:application.properties")
 public class DiyController {
 	
-
 	private final DiyService diyService;
 	
 	private final FoodService foodService;
@@ -119,6 +120,21 @@ public class DiyController {
 		
 		PostResponseDto postDetail = diyService.getPostDetail(postId);
 		model.addAttribute("postDetail", postDetail);
+		
+		
+		// 관련된 포스트 
+		List<SimplePostDto> relatedPosts = diyService.getRelatedPosts(postDetail.getMainCategory().getId());
+		model.addAttribute("relatedPosts", relatedPosts);
+		
+		// 랜덤 건강 마켓 상품 
+		List<FoodSimpleDto> relatedFoods = foodService.loadMarketFoodByRandom();
+		model.addAttribute("relatedFoods", relatedFoods);
+		
+		// 댓글 
+		List<CommentResponseDto> comments = diyService.getComments(postId);
+		log.info("comments {} ", comments);
+		model.addAttribute("comments", comments);
+		
 		model.addAttribute("imgApiToken", imgApiToken);
 		
 		model.addAttribute("kakaoShareKey", kakaoShareKey);

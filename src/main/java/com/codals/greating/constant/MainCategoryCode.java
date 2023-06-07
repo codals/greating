@@ -1,20 +1,16 @@
 package com.codals.greating.constant;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public enum MainCategoryCode {
-	HEALTHY_DIET(1, "HEALTHY_DIET", "건강식단"),
-	MEDICAL_DIET(2, "CARE_DIET", "질환맞춤식단"),
-	CHALLENGE_DIET(3, "CHALLENGE_DIET", "챌린지식단");
-	
-	private MainCategoryCode(int id, String code, String koreanName) {
-        this.id = id;
-        this.code = code;
-        this.koreanName = koreanName;
-    }
+	HEALTHY_DIET(1, "건강식단", "HD"),
+	MEDICAL_DIET(2, "질환맞춤식단", "MD"),
+	CHALLENGE_DIET(3, "챌린지식단", "CD");
 	
 	private final int id;
-	private final String code;
 	private final String koreanName;
+	private final String cacheCode;
 }

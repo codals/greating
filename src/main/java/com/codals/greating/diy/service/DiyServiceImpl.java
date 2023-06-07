@@ -1,28 +1,28 @@
 package com.codals.greating.diy.service;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.http.ResponseEntity;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.codals.greating.constant.CacheKey;
+import com.codals.greating.diy.SearchCodeBuilder;
 import com.codals.greating.diy.dao.DiyDAO;
+import com.codals.greating.diy.dto.CommentResponseDto;
 import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.PostResponseDto;
+import com.codals.greating.diy.dto.PostStaticResponseDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.dto.SearchRequestDto;
+import com.codals.greating.diy.dto.SearchResponseDto;
 import com.codals.greating.diy.dto.SimplePostDto;
+import com.codals.greating.diy.entity.Comment;
 import com.codals.greating.diy.entity.Post;
 import com.codals.greating.user.entity.User;
-import com.codals.greating.util.ImageUrlGenerator;
 import com.codals.greating.diy.dto.VoteRequestDto;
 
 import lombok.RequiredArgsConstructor;
@@ -33,10 +33,10 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 @PropertySource("classpath:application.properties")
 public class DiyServiceImpl implements DiyService{
-
-	Logger log = LogManager.getLogger("case3");
 	
 	private final DiyDAO diyDAO;
+	private final SearchCodeBuilder searchCodeBuilder;
+	private final RedisTemplate<String, Object> redisTemplate;
 	
     @Value("${img.storage.path}")
     private String imgStoragePath;
@@ -44,17 +44,15 @@ public class DiyServiceImpl implements DiyService{
     @Value("${img.api.token}")
     private String imgApiToken;
 	
+    
 	@Override
 	public PostResponseDto getPostDetail(int postId) {
+		
 		return diyDAO.selectPostByPostId(postId);
 	}
 	
-	private Post createPost(User loginUser, DiyRequestDto postRequest) {
-		
-		log.info("request -> post 매핑 전 =" + postRequest);
-		log.info("path=" + imgStoragePath);
-    	log.info("token=" + imgApiToken);
-    	
+	
+	private Post createPost(User loginUser, DiyRequestDto postRequest) {    	
 		Post newPost = Post.builder()
 							.mainCategoryId(postRequest.getMainCategoryId())
 							.subCategoryId(postRequest.getSubCategoryId())
@@ -74,9 +72,6 @@ public class DiyServiceImpl implements DiyService{
 							.minPrice(postRequest.getMinPrice())
 							.maxPrice(postRequest.getMaxPrice())
 							.build();
-
-		log.info("request -> post 매핑 후 =" + newPost);
-
 		return newPost;
 	}
 
@@ -128,7 +123,6 @@ public class DiyServiceImpl implements DiyService{
 			if(diyDAO.deleteScrap(requestDto)==1) {
 				return true;
 			}
-			log.warn("해당 scrap 데이터가 없습니다.");
 			return false;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -136,16 +130,79 @@ public class DiyServiceImpl implements DiyService{
 		}
 	}
 
-	@Override
+	/* Redis 캐싱하기 */
+	@Override 
 	public List<Post> loadPostsByCategoryType(int mainCategoryId) {
-		return diyDAO.selectPostsByMainCategory(mainCategoryId);
+		String cacheKey = CacheKey.TOP_10_CACHE_KEY + mainCategoryId;
+		List<Post> result = null;
+
+		List<Post> cachedData = getCachedPostsByCategoryType(cacheKey);
+		if(cachedData != null){ //캐시에 이미 있는 경우 
+			log.info("Cached Data Return");
+			log.info("캐시된 data=" + cachedData);
+			return cachedData;
+		}
+		// 캐시된 데이터가 없는 경우 
+		result = diyDAO.selectPostsByMainCategory(mainCategoryId);
+		cacheTop10Posts(cacheKey, result);
+		return result;
+		
 	}
 
+	private List<Post> getCachedPostsByCategoryType(String cacheKey){
+		return (List<Post>) redisTemplate.opsForValue().get(cacheKey);
+	}
+	
+	private void cacheTop10Posts(String cacheKey, List<Post> cachingData) {
+		log.info("캐싱 전=" + cachingData);
+		redisTemplate.opsForValue().set(cacheKey,cachingData, 1, TimeUnit.DAYS);
+		log.info("Top 10 datas Redis Caching");
+	}
+	
 	@Override
-	public List<SimplePostDto> search(SearchRequestDto requestDto) {
+	public SearchResponseDto search(SearchRequestDto requestDto) {
+		int rowsPerPage = 9;
+		requestDto.setStartRow((requestDto.getPage() - 1) * rowsPerPage);
+		requestDto.setEndRow(rowsPerPage);
+	
+		// 캐시 활용을 위한 cache key 생성
+		String cacheKey = searchCodeBuilder.buildCode(requestDto);
+		
+		List<SimplePostDto> result = null;
+		
+		// 캐시에서 데이터 가져오기
+		List<SimplePostDto> cachedData = getcachedSearchResult(cacheKey);
+		if (cachedData != null) {
+			result = cachedData;
+	        log.info("[REDIS] SEARCH - Cache Hit - {}", cacheKey);
+		} else {
+			result = diyDAO.selectPostBySearchConditions(requestDto);
+			cacheSearchResult(cacheKey, result);
+            log.info("[REDIS] SEARCH - Cache Miss - {}", cacheKey);
+		}
 
-		return diyDAO.selectPostBySearchConditions(requestDto);
+		int totalCount = result.size();
+		SearchResponseDto response = SearchResponseDto.builder()
+				  .page(requestDto.getPage())
+				  .totalCount(totalCount)
+				  .totalPage((int) Math.ceil((double) totalCount / rowsPerPage))
+				  .posts(result)
+				  .build();
+		
+		return response;
 	}
+
+	private List<SimplePostDto> getcachedSearchResult(String cacheKey) {
+		@SuppressWarnings("unchecked")
+		List<SimplePostDto> cachedData = (List<SimplePostDto>) redisTemplate.opsForValue().get(cacheKey);
+	    return cachedData;
+	}
+
+	private void cacheSearchResult(String cacheKey, List<SimplePostDto> result) {
+		redisTemplate.opsForValue().set(cacheKey, result, 60, TimeUnit. MINUTES);
+	    log.info("[REDIS] SEARCH - Cache 저장 - {}", cacheKey);
+	}
+
 
 	@Override
 	public boolean checkVoted(VoteRequestDto requestDto) {
@@ -163,15 +220,79 @@ public class DiyServiceImpl implements DiyService{
 		}
 		return false;
 	}
-      
+
+
 	@Override
 	public Integer savePost(User loginUser, DiyRequestDto postRequest) {
-		// 1. 파일명 생성해서 받아오기 (tomcat서버에 저장된 경로 + UUID로 만든 파일명 + 확장자)
-		
-		// 2. post 객체 생성하기
+		// 1. 저장할 포스트 생성
 		Post post = createPost(loginUser, postRequest);
 		
-		// 3. post DB에 저장하기
-		return diyDAO.savePost(post);
+		// 2. DB에 저장 후, 새로 생성된 postId 반환 
+		Integer newPostId = diyDAO.savePost(post);
+		return newPostId;
+	}
+
+	@Override
+	@Scheduled(cron = "0 0 12 * * *")
+	@Transactional
+	public void updateExpiredPostStatus() {
+		int updateCount = diyDAO.updateExpiredPostStatus();
+		log.info("Expired Post Status Update Job executed. Updated status for {} posts.", updateCount);
+}
+  
+  @Override
+  public List<SimplePostDto> getRelatedPosts(int subCategoryId) {
+		return diyDAO.selectPostsBySubCategory(subCategoryId);
+	}
+
+	@Override
+	public PostStaticResponseDto getPostVoteStatics(int postId) {
+		return diyDAO.selectPostVoteStatics(postId);
+	}
+
+
+	@Override
+	public List<CommentResponseDto> getComments(int postId){
+		
+		return diyDAO.selectComments(postId);
+	}
+
+
+	@Override
+	@Transactional
+	public boolean updateComment(Comment comment) {
+		try {
+			if(diyDAO.updateComment(comment)==1) {
+				return true;
+			}
+			log.warn("댓글 업데이트 실패입니다.");
+			return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	@Transactional(rollbackFor = {Exception.class}) // 리팩터링 필요 
+	public CommentResponseDto createComment(Comment comment) {
+		try {
+			int insertedCommentId = diyDAO.insertComment(comment);
+			CommentResponseDto result = diyDAO.selectCommentById(insertedCommentId);
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+
+	@Override
+	@Transactional
+	public boolean deleteComment(int commentId) {
+		if(diyDAO.deleteCommentById(commentId)==1) {
+			return true;
+		}
+		return false;
 	}
 }

@@ -22,9 +22,9 @@
 				<li class="snb-box-list">
 					<ul class="snb-box-inner">
 						<li class="snb-box-inner-list"><h4>나의 식단</h4></li>
-						<li class="snb-box-inner-list"><a href="${pageContext.request.contextPath}/mypage/diets"> 내가 등록한 식단 </a></li>
-						<li class="snb-box-inner-list"><a href="${pageContext.request.contextPath}/mypage/scrap"> 나의 스크랩 식단 </a></li>
-						<li class="snb-box-inner-list"><a href="${pageContext.request.contextPath}/mypage/voted"> 내가 투표한 식단 </a></li>
+						<li class="snb-box-inner-list"><a href="${pageContext.request.contextPath}/mypage/diets?page=1"> 내가 등록한 식단 </a></li>
+						<li class="snb-box-inner-list"><a href="${pageContext.request.contextPath}/mypage/scrap?page=1"> 나의 스크랩 식단 </a></li>
+						<li class="snb-box-inner-list"><a href="${pageContext.request.contextPath}/mypage/voted?page=1"> 내가 투표한 식단 </a></li>
 					</ul>
 
 

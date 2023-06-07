@@ -13,7 +13,7 @@ public interface AdminService {
 	List<Diet> getDietsByMainCategory(MainCategoryCode category);
 
 	boolean registerDailyDiets(AdminDietRegisterRequestDto requestDto);
-
+	
 	List<AdminDto> topList();
 
 	boolean approveCheck(long postId);
@@ -23,5 +23,13 @@ public interface AdminService {
 	List<AdminDailyDietResponseDto> getDailyDietsByDate(String date);
 
 	boolean approveCancel(long postId);
+
+	boolean approveDiy(long postId);
+
+	boolean approveDiyCancel(long postId);
+
+	boolean approveDiyRegister(int postId);
+
+	boolean submitPrice(int postId, int price);
 
 }

@@ -23,5 +23,11 @@ public class SearchRequestDto {
 	
 	private Integer hasRice;
 	private Integer hasSoup;
-
+	
+	private int page;
+	private int offset;
+	private int limit;
+	
+	private int startRow;
+	private int endRow;
 }
