@@ -50,7 +50,6 @@ public class DietServiceImpl implements DietService {
     private final DailyDietDao dailyDietDao;
     private final RedisTemplate<String, Object> redisTemplate;
 
-    // 생성자에 @Qualifier 적용
     public DietServiceImpl(OrderDao orderDao, OrderDietDao orderDietDao, DailyDietDao dailyDietDao, ApplicationEventPublisher eventPublisher, @Qualifier("redisJacksonTemplate") RedisTemplate<String, Object> redisTemplate) {
         this.orderDao = orderDao;
         this.orderDietDao = orderDietDao;
@@ -75,6 +74,7 @@ public class DietServiceImpl implements DietService {
     	} else {						// 2. 캐시에 없으면  DB에서 가져오기, 캐싱해두기
             log.info("[REDIS] TWO_WEEK_PREVIEW - Cache Miss - {}", cacheKey);
             data = dailyDietDao.selectAllByStartDate(currentDate);
+            
             cacheTwoWeekDailyDiets(cacheKey, data);
             response = getPreviewResponseDto(data);
 		}
@@ -91,6 +91,7 @@ public class DietServiceImpl implements DietService {
 	}
 
     // 2주치 Daily Diet 캐싱하기
+    @ExecutionTime
 	private void cacheTwoWeekDailyDiets(String cacheKey, List<DailyDiet> cachingData) {
 	    redisTemplate.opsForValue().set(cacheKey, cachingData, 1, TimeUnit.DAYS);
 	    log.info("[REDIS] TWO_WEEK_PREVIEW - Cache 저장 - {}", cacheKey);
@@ -139,6 +140,7 @@ public class DietServiceImpl implements DietService {
     	return cachedData;
 	}
 
+    @ExecutionTime
 	private void cacheDailyDiet(String cacheKey, List<DailyDiet> cachingData) {
 	    redisTemplate.opsForValue().set(cacheKey, cachingData, 1, TimeUnit.DAYS);
 	    log.info("[REDIS] DAILY_PREVIEW - Cache 저장 - {}", cacheKey);
