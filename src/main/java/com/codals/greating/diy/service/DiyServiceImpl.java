@@ -1,6 +1,5 @@
 package com.codals.greating.diy.service;
 
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.codals.greating.constant.CacheKey;
 import com.codals.greating.diy.SearchCodeBuilder;
 import com.codals.greating.diy.dao.DiyDAO;
 import com.codals.greating.diy.dto.CommentResponseDto;
@@ -33,9 +33,6 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 @PropertySource("classpath:application.properties")
 public class DiyServiceImpl implements DiyService{
-
-
-	private final String TOP_10_CACHE_KEY = "Top10: ";
 	
 	private final DiyDAO diyDAO;
 	private final SearchCodeBuilder searchCodeBuilder;
@@ -136,7 +133,7 @@ public class DiyServiceImpl implements DiyService{
 	/* Redis 캐싱하기 */
 	@Override 
 	public List<Post> loadPostsByCategoryType(int mainCategoryId) {
-		String cacheKey = TOP_10_CACHE_KEY + mainCategoryId;
+		String cacheKey = CacheKey.TOP_10_CACHE_KEY + mainCategoryId;
 		List<Post> result = null;
 
 		List<Post> cachedData = getCachedPostsByCategoryType(cacheKey);

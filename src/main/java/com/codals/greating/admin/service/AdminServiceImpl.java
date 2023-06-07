@@ -97,6 +97,19 @@ public class AdminServiceImpl implements AdminService{
 		return result;
 	}
 	
+	private List<AdminDailyDietResponseDto> getCachedDailyDietsByDate(String targetDate) {
+	    String cacheKey = DAILY_DIET_CACHE_KEY + targetDate;
+	    List<AdminDailyDietResponseDto> cachedData = (List<AdminDailyDietResponseDto>) redisTemplate.opsForValue().get(cacheKey);
+	    return cachedData;
+	}
+	
+	private void cacheDailyDiet(String targetDate) {
+		String cacheKey = DAILY_DIET_CACHE_KEY + targetDate;
+	    List<AdminDailyDietResponseDto> cachingDiets = adminDao.selectDailyDietsByDate(targetDate);
+		
+	    redisTemplate.opsForValue().set(cacheKey, cachingDiets, 14, TimeUnit.DAYS);
+	}
+	
 	@Override
 	public List<AdminDto> topList() {
 		return adminDao.topList();
