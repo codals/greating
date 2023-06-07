@@ -77,10 +77,8 @@
 											alt=""> <span>${item.voteCnt} Greating</span>
 									</div>
 									<div class="div-myDiy-card-button">
-
-										<button class="myDiy-card-button"
-											onclick="confirmDelete(${item.id})">삭제하기</button>
-
+										
+											<button class="myDiy-card-button" onclick="confirmDelete(${item.id})">삭제하기</button>			
 									</div>
 								</div>
 							</div>
