@@ -135,3 +135,56 @@ hr {
   color: #fff;
   background-color: #918C00;
 }
+
+/* join header 공통 */
+.join-header-section {
+	max-width: 750px;
+	margin: 0 auto;
+}
+
+.join-header {
+	position: relative;
+	margin: 40px 0 45px;
+	text-align: center;
+	counter-reset: meals_list;
+}
+.join-header li{
+	display: inline-block;
+    position: relative;
+    width: 160px;
+    margin: 0 5px;
+    vertical-align: top;
+    color: #888;
+}
+.join-header:before {
+ content: '';
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    height: 1px;
+    width: 320px;
+    background: #918c00;
+    transform: translate(-50%, 0);
+}
+.join-header li:before {
+    counter-increment: meals_list;
+    content: counter(meals_list);
+    display: block;
+    box-sizing: border-box;
+    width: 35px;
+    height: 35px;
+    margin: 0 auto 10px;
+    text-align: center;
+    line-height: 31px;
+    border: 2px solid #918c00;
+    background: #FFF;
+    font-size: 14px;
+    font-weight: 600;
+    color: #918c00;
+    border-radius: 50%;
+}
+
+.join-header > .on:before{
+	background:#918c01 !important;
+	color:white !important;
+}

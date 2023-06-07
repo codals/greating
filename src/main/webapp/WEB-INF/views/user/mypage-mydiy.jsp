@@ -9,13 +9,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/greating/resources/css/user/mypage-pagination.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-	<link href="${pageContext.request.contextPath}/resources/css/user/mypage-mydiy.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
-            integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
-            crossorigin="anonymous"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/user/mypage-mydiy.js"></script>
+<link href="/greating/resources/css/user/mypage-pagination.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<link
+	href="${pageContext.request.contextPath}/resources/css/user/mypage-mydiy.css"
+	rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+	integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+	crossorigin="anonymous"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/user/mypage-mydiy.js"></script>
 </head>
 <body>
 
@@ -45,28 +50,35 @@
 					<c:forEach items="${list}" var="item">
 						<li class="myDiy-card" data-id="${item.id}">
 							<div class="myDiy-card-img">
-								<img src="${item.imgUrl}" alt="" onclick="navigateToMealDiy(${item.id})">
+								<img src="${item.imgUrl}" alt=""
+									onclick="navigateToMealDiy(${item.id})">
 							</div>
 							<div class="myDiy-card-info">
 								<span class="mb-2" onclick="navigateToMealDiy(${item.id})">${item.title}</span>
-								
+
 								<div class="hr"></div>
 								<div class="myDiy-card-tags">
 									<span style="font-size: 17px;"> 메인 구성 </span>
-									<span class="myDiy-card-tag">${item.riceFoodName}</span>
-									<span class="myDiy-card-tag">${item.soupFoodName}</span>
-									<span class="myDiy-card-tag">${item.mainFoodName}</span>
+									<c:if test="${item.riceFoodName ne null}">
+										<span class="myDiy-card-tag">${item.riceFoodName}</span>
+									</c:if>
+									<c:if test="${item.soupFoodName ne null}">
+										<span class="myDiy-card-tag">${item.soupFoodName}</span>
+									</c:if>
+									<c:if test="${item.mainFoodName ne null}">
+										<span class="myDiy-card-tag">${item.mainFoodName}</span>
+									</c:if>
 								</div>
 								<div class="myDiy-vote">
 									<span style="font-size: 17px;"> 투표 현황 </span>
 									<div class="myDiy-vote-num">
-										<img src="${pageContext.request.contextPath}/resources/images/user/vote.png" alt="">
-										<span>${item.voteCnt} Greating</span>
+										<img
+											src="${pageContext.request.contextPath}/resources/images/user/vote.png"
+											alt=""> <span>${item.voteCnt} Greating</span>
 									</div>
 									<div class="div-myDiy-card-button">
 										
-											<button class="myDiy-card-button" onclick="confirmDelete(${item.id})">삭제하기</button>
-										
+											<button class="myDiy-card-button" onclick="confirmDelete(${item.id})">삭제하기</button>			
 									</div>
 								</div>
 							</div>
@@ -77,8 +89,9 @@
 
 				<c:if test="${dto.totalCount == 0 }">
 					<div class="noContentDiv">
-					<img class="mark_exclamation" src="/greating/resources/images/user/exclamationMark.png">
-					<p class="noContents">아직 작성한 식단이 없습니다.</p>
+						<img class="mark_exclamation"
+							src="/greating/resources/images/user/exclamationMark.png">
+						<p class="noContents">아직 작성한 식단이 없습니다.</p>
 					</div>
 				</c:if>
 
@@ -105,9 +118,9 @@
 					<c:if test="${endPage > dto.totalPage}">
 						<c:set var="startPage" value="${dto.totalPage - 4}" />
 						<c:set var="endPage" value="${dto.totalPage}" />
-					</c:if> 
+					</c:if>
 
-			
+
 					<c:choose>
 						<c:when test="${startPage < 1}">
 							<c:set var="startPage" value="1" />
@@ -140,8 +153,8 @@
 					<c:if test="${dto.page < dto.totalPage}">
 						<a href="/greating/mypage/diets?page=${dto.page + 1}">다음</a>
 						<c:if test="${dto.totalPage > 5}">
-					        <a href="/greating/mypage/diets?page=${dto.totalPage}">끝</a>
-					    </c:if>
+							<a href="/greating/mypage/diets?page=${dto.totalPage}">끝</a>
+						</c:if>
 					</c:if>
 				</div>
 

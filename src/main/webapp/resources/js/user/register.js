@@ -1,20 +1,53 @@
 $(document).ready(function() {
-	// right-button 클릭 이벤트 처리
+	
+	// 전체 약관동의 버튼 
+	const allCheck = document.querySelector('.all-check');
+	
+	// 하위 약관동의 버튼 
+	const checkboxes = document.querySelectorAll('.checkbox-container input[type="checkbox"]');
+
+	function handleAllCheck() {
+
+	  checkboxes.forEach(checkbox => {
+	    checkbox.checked = allCheck.checked;
+	  });
+	}
+	// 전체 약관동의 버튼과 하위 약관동의 버튼 같게 설정
+	allCheck.addEventListener('change', handleAllCheck);
+	
+		const aggrementCheckBoxes = document.querySelectorAll('.agreement-check');
+
+	// 하위 약관 동의 체크박스의 변경 이벤트를 처리 ( 전체 약관 동의 해제 ) 
+	function handleAggrementCheckBoxes() {
+	  const isAnyUnchecked = Array.from(aggrementCheckBoxes).some(checkbox => !checkbox.checked);
+
+	  allCheck.checked = !isAnyUnchecked;
+	}
+
+	allCheck.addEventListener('change', handleAllCheck);
+
+	aggrementCheckBoxes.forEach(checkbox => {
+	  checkbox.addEventListener('change', handleAggrementCheckBoxes);
+	});
+	
+
+	// 약관동의 다음페이지로 넘어가기 전 약관동의 여부 검사
 	$('.right-button').click(function(e) {
 		var allChecked = true;
 
-		// 모든 input 체크박스 검사
-		$('input[type="checkbox"]').each(function() {
+		$('.must-check').each(function() {
 			if (!$(this).is(':checked')) {
 				allChecked = false;
 				return false; // 반복문 종료
 			}
 		});
 
-		// 모든 체크박스가 체크되지 않은 경우
 		if (!allChecked) {
-			e.preventDefault(); // 기본 동작(링크 이동) 막기
-			alert('약관에 동의해야 회원가입이 가능합니다.');
+			e.preventDefault(); 
+			 Swal.fire({
+	        	  title: '약관동의를 다시 확인해주세요!',
+	        	  confirmButtonText: '닫기'
+	          });
 		} else {
 			location.href = '/greating/register-form';
 		}
@@ -27,18 +60,14 @@ $(document).ready(
 		function() {
 			var usernameInput = $('#username');
 
-			// 입력 필드의 값이 변경될 때마다 validateUsername 함수 호출
 			usernameInput.on('input', validateUsername);
 
-			// validateUsername 함수
 			function validateUsername() {
 				var username = usernameInput.val();
 
-				// 정규식을 사용하여 조건을 확인
 				var pattern = /^(?=.*[a-zA-Z])[a-zA-Z\d]{6,}$/;
 				var isValid = pattern.test(username);
 
-				// 결과를 출력
 				var validationSpan = $('#username-validation');
 				validationSpan.text(isValid ? '올바른 형식입니다.'
 						: '6자리 이상 영문 혹은 영문 숫자 조합이어야 합니다.');
@@ -51,7 +80,6 @@ $(document).ready(
 					var userNameValidation = $('.userNameValidation');
 					userNameValidation.prop('checked', false);
 				}
-				// 중복 체크 다시 하도록!
 				var userDuplicateCheck = $('.userNameCheckResult');
 				userDuplicateCheck.prop('checked', false);
 
@@ -246,8 +274,15 @@ function submitRegisterForm(e) {
 	      processData : false,
 	      contentType : false,
 	      success: function(response) {
-	    	  alert('회원가입에 성공하였습니다. ');
-	    	  window.location.href='/greating/login';
+	    	  Swal.fire({
+	        	  title: '회원가입이 완료되었습니다!',
+	        	  text: '🌱 Greating과 함께해주셔서 감사합니다.🌱',
+	        	  confirmButtonText: '로그인 페이지로'
+	          }).then((result) => {
+	        	  if (result.isConfirmed) {
+	        		    window.location.href = '/greating/login';
+	        		  }
+	        		}); 	  
 	      },
 	      error: function(response) {
 	    	  alert('회원가입에 실패하였습니다.');
