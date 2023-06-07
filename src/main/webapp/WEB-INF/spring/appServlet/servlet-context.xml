@@ -24,8 +24,10 @@
   <interceptors>
     <interceptor>
       <mapping path="/mypage/**"/>
-      <mapping path="/mealdiy/{postId}"/>
+      <mapping path="/mealdiy/**"/>
       <mapping path="/diets/**"/>
+      <exclude-mapping path="/mealdiy"/>
+      <exclude-mapping path="/mealdiy/popular"/>
       <exclude-mapping path="/diets/mygreating"/>
       <exclude-mapping path="/diets/mygreating/preview"/>
       <beans:bean class="com.codals.greating.interceptor.LoginInterceptor"/>
