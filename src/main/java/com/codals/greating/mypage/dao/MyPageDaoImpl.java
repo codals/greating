@@ -56,5 +56,10 @@ public class MyPageDaoImpl implements MyPageDao {
 		return sqlsession.selectOne("mypage.getMyVoteTotalPageCount", userId);
 	}
 
+	@Override
+	public int deleteMyDiy(int postId) {
+		return sqlsession.delete("mypage.deleteMyDiy", postId);
+	}
+
 
 }

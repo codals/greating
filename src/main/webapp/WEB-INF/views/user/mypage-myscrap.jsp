@@ -57,7 +57,7 @@ rel="stylesheet">
 								<img src="${list.imgUrl}" alt="">
 							</div>
 							<div class="myScrap-card-info">
-								<h3>${list.postTitle}</h3>
+								<h3>${list.title}</h3>
 								<div class="author-info">
 									<p>영양사</p>
 									<p>${list.userName}</p>
