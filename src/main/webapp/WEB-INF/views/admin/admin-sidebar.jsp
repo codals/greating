@@ -6,11 +6,11 @@
 <section class="sidebar">
 	<div class="sidebar-div">
 		<div class="profile">
-			<img src="/greating/resources/images/user/eddy.png" alt="프로필 사진">
-			<h3 class="sidebar-text">관리자 : Eddy Bang</h3>
+			<img src="/greating/resources/images/user/admin_photo2.png" alt="프로필 사진">
+			<h3 class="sidebar-text">관리자 : Admin</h3>
 		</div>
 		<ul class="menu">
-			<li><a href="/greating/admin/popular" class="sidebar-text">인기 식단 목록</a></li>
+			<li><a href="/greating/admin/popular" class="sidebar-text">투표 종료 인기 식단 목록</a></li>
 			<li><a href="/greating/admin/commingsoon" class="sidebar-text">출시 예정 식단 목록</a></li>
 			<li><a href="/greating/admin/register" class="sidebar-text">식단 등록하기</a></li>
 		</ul>

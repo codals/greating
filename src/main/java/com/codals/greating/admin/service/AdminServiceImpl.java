@@ -33,6 +33,8 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService{
 	
+	private static final String DAILY_DIET_CACHE_KEY = "dailyDiets: ";
+	
 	private final AdminDao adminDao;
 	private final DailyDietDao dailyDietDao;
 	private final RedisTemplate<String, Object> redisTemplate;
@@ -79,8 +81,19 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public List<AdminDailyDietResponseDto> getDailyDietsByDate(String targetDate) {
-		List<AdminDailyDietResponseDto> result = adminDao.selectDailyDietsByDate(targetDate);
-		log.info("result {} ", result);
+    
+		List<AdminDailyDietResponseDto> result = null;
+    
+		List<AdminDailyDietResponseDto> cachedData = getCachedDailyDietsByDate(targetDate);
+		if (cachedData != null) {			// 1. 캐시된 데이터가 있으면 캐시에서 가져오기 (Cache Hit)
+			result = cachedData;
+	        log.info("일일 식단 데이터를 Redis에서 가져옴: {}", targetDate);
+	        
+		} else {							// 2. 캐시된 데이터가 없으면, DB에서 가져오기
+			result =  adminDao.selectDailyDietsByDate(targetDate);
+			cacheDailyDiet(targetDate);		// 캐시된 데이터가 없었으니, 미리 캐싱해두기
+		}
+    
 		return result;
 	}
 	
@@ -104,6 +117,34 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public boolean approveCancel(long postId) {
 		return adminDao.approveCancel(postId);
+	}
+
+
+	@Override
+	public boolean approveDiy(long postId) {
+		// TODO Auto-generated method stub
+		return adminDao.approveDiy(postId);
+	}
+
+
+	@Override
+	public boolean approveDiyCancel(long postId) {
+		// TODO Auto-generated method stub
+		return adminDao.approveDiyCancel(postId);
+	}
+
+
+	@Override
+	public boolean approveDiyRegister(int postId) {
+		// TODO Auto-generated method stub
+		return adminDao.approveDiyRegister(postId);
+	}
+
+
+	@Override
+	public boolean submitPrice(int postId, int price) {
+		// TODO Auto-generated method stub
+		return adminDao.submitPrice(postId,price);
 	}
 
 

@@ -6,14 +6,17 @@ import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.codals.greating.diy.SearchCodeBuilder;
 import com.codals.greating.diy.dao.DiyDAO;
 import com.codals.greating.diy.dto.DiyRequestDto;
 import com.codals.greating.diy.dto.PostResponseDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.dto.SearchRequestDto;
+import com.codals.greating.diy.dto.SearchResponseDto;
 import com.codals.greating.diy.dto.SimplePostDto;
 import com.codals.greating.diy.entity.Post;
 import com.codals.greating.user.entity.User;
@@ -31,6 +34,8 @@ public class DiyServiceImpl implements DiyService{
 	private final String TOP_10_CACHE_KEY = "Top10: ";
 	
 	private final DiyDAO diyDAO;
+	private final SearchCodeBuilder searchCodeBuilder;
+	private final RedisTemplate<String, Object> redisTemplate;
 	
     @Value("${img.storage.path}")
     private String imgStoragePath;
@@ -38,7 +43,6 @@ public class DiyServiceImpl implements DiyService{
     @Value("${img.api.token}")
     private String imgApiToken;
 	
-    private final RedisTemplate<String, Object> redisTemplate;
     
 	@Override
 	public PostResponseDto getPostDetail(int postId) {
@@ -47,8 +51,7 @@ public class DiyServiceImpl implements DiyService{
 	}
 	
 	
-	private Post createPost(User loginUser, DiyRequestDto postRequest) {
-    	
+	private Post createPost(User loginUser, DiyRequestDto postRequest) {    	
 		Post newPost = Post.builder()
 							.mainCategoryId(postRequest.getMainCategoryId())
 							.subCategoryId(postRequest.getSubCategoryId())
@@ -68,9 +71,6 @@ public class DiyServiceImpl implements DiyService{
 							.minPrice(postRequest.getMinPrice())
 							.maxPrice(postRequest.getMaxPrice())
 							.build();
-
-		log.info("request -> post 매핑 후 =" + newPost);
-
 		return newPost;
 	}
 
@@ -157,10 +157,47 @@ public class DiyServiceImpl implements DiyService{
 	}
 	
 	@Override
-	public List<SimplePostDto> search(SearchRequestDto requestDto) {
-
-		return diyDAO.selectPostBySearchConditions(requestDto);
+	public SearchResponseDto search(SearchRequestDto requestDto) {
+		int rowsPerPage = 9;
+		requestDto.setStartRow((requestDto.getPage() - 1) * rowsPerPage);
+		requestDto.setEndRow(rowsPerPage);
+	
+		// 캐시 활용을 위한 cache key 생성
+		String cacheKey = searchCodeBuilder.buildCode(requestDto);
+		
+		List<SimplePostDto> result = null;
+		
+		// 캐시에서 데이터 가져오기
+		List<SimplePostDto> cachedData = getcachedSearchResult(cacheKey);
+		if (cachedData != null) {
+			result = cachedData;
+	        log.info("검색 결과를 Redis에서 가져옴: {}", cacheKey);
+		} else {
+			result = diyDAO.selectPostBySearchConditions(requestDto);
+			cacheSearchResult(cacheKey, result);
+	        log.info("검색 결과가 Redis에 없음 → Redis에 검색 결과 캐싱 완료 : {}", cacheKey);
+		}
+		
+		int totalCount = diyDAO.getTotalSearchResultCount(requestDto);
+		SearchResponseDto response = SearchResponseDto.builder()
+				  .page(requestDto.getPage())
+				  .totalCount(totalCount)
+				  .totalPage((int) Math.ceil((double) totalCount / rowsPerPage))
+				  .posts(result)
+				  .build();
+		
+		return response;
 	}
+
+	private List<SimplePostDto> getcachedSearchResult(String cacheKey) {
+		List<SimplePostDto> cachedData = (List<SimplePostDto>) redisTemplate.opsForValue().get(cacheKey);
+	    return cachedData;
+	}
+
+	private void cacheSearchResult(String cacheKey, List<SimplePostDto> result) {
+		redisTemplate.opsForValue().set(cacheKey, result, 60, TimeUnit. MINUTES);
+	}
+
 
 	@Override
 	public boolean checkVoted(VoteRequestDto requestDto) {
@@ -182,13 +219,12 @@ public class DiyServiceImpl implements DiyService{
 
 	@Override
 	public Integer savePost(User loginUser, DiyRequestDto postRequest) {
-		// 1. 파일명 생성해서 받아오기 (tomcat서버에 저장된 경로 + UUID로 만든 파일명 + 확장자)
-
-		// 2. post 객체 생성하기
+		// 1. 저장할 포스트 생성
 		Post post = createPost(loginUser, postRequest);
-
-		// 3. post DB에 저장하기
-		return diyDAO.savePost(post);
+		
+		// 2. DB에 저장 후, 새로 생성된 postId 반환 
+		Integer newPostId = diyDAO.savePost(post);
+		return newPostId;
 	}
 
 	@Override

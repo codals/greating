@@ -26,7 +26,7 @@
 		<ul class="page-category">
 			<li>Home</li>
 			<li>></li>
-			<li class="highlight">마이페이지, ${dto.page }</li>
+			<li class="highlight">마이페이지</li>
 		</ul>
 
 		<div class="mypage-main d-flex">
@@ -45,10 +45,11 @@
 					<c:forEach items="${list}" var="item">
 						<li class="myDiy-card" data-id="${item.id}">
 							<div class="myDiy-card-img">
-								<img src="${item.imgUrl}" alt="">
+								<img src="${item.imgUrl}" alt="" onclick="navigateToMealDiy(${item.id})">
 							</div>
 							<div class="myDiy-card-info">
-								<span class="mb-2">${item.title}</span>
+								<span class="mb-2" onclick="navigateToMealDiy(${item.id})">${item.title}</span>
+								
 								<div class="hr"></div>
 								<div class="myDiy-card-tags">
 									<span style="font-size: 17px;"> 메인 구성 </span>
@@ -61,6 +62,11 @@
 									<div class="myDiy-vote-num">
 										<img src="${pageContext.request.contextPath}/resources/images/user/vote.png" alt="">
 										<span>${item.voteCnt} Greating</span>
+									</div>
+									<div class="div-myDiy-card-button">
+										
+											<button class="myDiy-card-button" onclick="confirmDelete(${item.id})">삭제하기</button>
+										
 									</div>
 								</div>
 							</div>
