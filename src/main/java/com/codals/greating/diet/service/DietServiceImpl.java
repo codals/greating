@@ -1,23 +1,5 @@
 package com.codals.greating.diet.service;
 
-import com.codals.greating.constant.CacheKey;
-import com.codals.greating.diet.dao.DailyDietDao;
-import com.codals.greating.diet.dao.OrderDao;
-import com.codals.greating.diet.dao.OrderDietDao;
-import com.codals.greating.diet.dto.OrderDietsByDateDto;
-import com.codals.greating.diet.dto.OrderDietDto;
-import com.codals.greating.diet.dto.OrderDietRequestDto;
-import com.codals.greating.diet.dto.OrderDetailResponseDto;
-import com.codals.greating.diet.dto.OrderRequestDto;
-import com.codals.greating.diet.dto.OrderResponseDto;
-import com.codals.greating.diet.dto.OrderResultResponseDto;
-import com.codals.greating.diet.dto.PlanResponseDto;
-import com.codals.greating.diet.dto.PreviewDietResponseDto;
-import com.codals.greating.diet.dto.PreviewResponseDto;
-import com.codals.greating.diet.entity.DailyDiet;
-import com.codals.greating.diet.entity.OrderDiet;
-import com.codals.greating.user.entity.User;
-import com.codals.greating.util.DateUtil;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -28,22 +10,53 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.codals.greating.config.RedisJacksonConfig;
+import com.codals.greating.constant.CacheKey;
+import com.codals.greating.diet.dao.DailyDietDao;
+import com.codals.greating.diet.dao.OrderDao;
+import com.codals.greating.diet.dao.OrderDietDao;
+import com.codals.greating.diet.dto.OrderDetailResponseDto;
+import com.codals.greating.diet.dto.OrderDietDto;
+import com.codals.greating.diet.dto.OrderDietRequestDto;
+import com.codals.greating.diet.dto.OrderDietsByDateDto;
+import com.codals.greating.diet.dto.OrderRequestDto;
+import com.codals.greating.diet.dto.OrderResponseDto;
+import com.codals.greating.diet.dto.OrderResultResponseDto;
+import com.codals.greating.diet.dto.PlanResponseDto;
+import com.codals.greating.diet.dto.PreviewDietResponseDto;
+import com.codals.greating.diet.dto.PreviewResponseDto;
+import com.codals.greating.diet.entity.DailyDiet;
+import com.codals.greating.diet.entity.OrderDiet;
+import com.codals.greating.user.entity.User;
+import com.codals.greating.util.DateUtil;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+
 @Log4j2
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class DietServiceImpl implements DietService {
 
     private final OrderDao orderDao;
     private final OrderDietDao orderDietDao;
     private final DailyDietDao dailyDietDao;
+    
     private final RedisTemplate<String, Object> redisTemplate;
+    
+ // 생성자에 @Qualifier 적용
+    public DietServiceImpl(OrderDao orderDao, OrderDietDao orderDietDao, DailyDietDao dailyDietDao, @Qualifier("redisJacksonTemplate") RedisTemplate<String, Object> redisTemplate) {
+        this.orderDao = orderDao;
+        this.orderDietDao = orderDietDao;
+        this.dailyDietDao = dailyDietDao;
+        this.redisTemplate = redisTemplate;
+    }
     
     @Override
     public List<PreviewResponseDto> getWeeklyDailyDiets() {
