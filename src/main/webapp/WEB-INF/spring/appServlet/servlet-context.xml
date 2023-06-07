@@ -9,6 +9,8 @@
 
   <annotation-driven/>
 
+  <context:property-placeholder location="classpath:application.properties"/>
+
   <resources mapping="/resources/**" location="/resources/"/>
   <!--   <resources mapping="/uploaded/" location="/resources/images/uploaded/" />  -->
 
@@ -42,8 +44,8 @@
   <beans:bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
     <beans:property name="host" value="smtp.gmail.com"/>
     <beans:property name="port" value="587"/>
-    <beans:property name="username" value="gmailUsername"/>
-    <beans:property name="password" value="gmailPassword"/>
+    <beans:property name="username" value="${gmail.username}"/>
+    <beans:property name="password" value="${gmail.password}"/>
     <beans:property name="defaultEncoding" value="UTF-8"/>
     <beans:property name="javaMailProperties">
       <beans:props>

@@ -19,7 +19,7 @@ public class EmailServiceImpl implements EmailService {
 
     @Async
     @Override
-    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT, classes = OrderConfirmationEvent.class)
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void sendOrderEmail(OrderDto order) {
         Context context = new Context();
         context.setVariable("name", order.getUserName());
