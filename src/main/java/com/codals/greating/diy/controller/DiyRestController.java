@@ -37,19 +37,10 @@ import lombok.extern.log4j.Log4j2;
 public class DiyRestController {
 	
 	private final DiyService diyService;
-
-    @PostMapping
-    public String search(@RequestParam(required = false) String category,
-                         @RequestParam(required = false) String classification,
-                         @RequestParam(required = false) boolean includeRice,
-                         @RequestParam(required = false) boolean includeSoup) {
-        return "diy/diy-main";
-    }
     
     @PostMapping("/new")
-	public ResponseEntity<?> savePost(@SessionAttribute("loginUser") User loginUser,
-									  @ModelAttribute DiyRequestDto postRequest,
-							          HttpSession session) {
+	public ResponseEntity<Integer> savePost(@SessionAttribute("loginUser") User loginUser,
+									  @ModelAttribute DiyRequestDto postRequest) {
 
 		Integer postId = diyService.savePost(loginUser, postRequest);
 	

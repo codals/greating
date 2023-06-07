@@ -1,7 +1,5 @@
 package com.codals.greating.admin.controller;
 
-
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -67,7 +65,7 @@ public class AdminRestController {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
 	}
 
-	@GetMapping("daily-diets")
+	@GetMapping("/daily-diets")
 	public ResponseEntity<List<AdminDailyDietResponseDto>> getDailyDiets(String date) {
 
 		log.info(date);
