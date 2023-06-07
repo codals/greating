@@ -501,9 +501,16 @@ body {
 	left: -3px
 }
 
+.related-post-card a{
+	color:black;
+}
+.related-post-card a:hover{
+	color:#918c01;
+	text-decoration:none;
+}
 .related-post-card-info {
 	padding: 5px;
-	font-size: 25px;
+	font-size: 20px;
 	font-weight: bold;
 }
 
