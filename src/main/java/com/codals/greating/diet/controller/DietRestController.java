@@ -43,12 +43,4 @@ public class DietRestController {
         session.setMaxInactiveInterval(DELIVERY_MAX_INACTIVE_INTERVAL);
         return ResponseEntity.ok(true);
     }
-
-    @PostMapping("/cart")
-    public String addToCart() {
-        /**
-         * 장바구니 담기
-         */
-        return "redirect:/diets/mygreating/cart";
-    }
 }

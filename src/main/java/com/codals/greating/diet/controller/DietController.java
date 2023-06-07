@@ -65,12 +65,4 @@ public class DietController {
         session.removeAttribute(ORDER_ID);
         return "order/order-result";
     }
-
-    @GetMapping("/cart")
-    public String loadCartPage() {
-        /**
-         * cart.jsp 예정 (cart 디렉토리 재설정 필요)
-         */
-        return "order/cart";
-    }
 }
