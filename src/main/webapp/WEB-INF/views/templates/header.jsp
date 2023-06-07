@@ -32,7 +32,8 @@
 				<span class="divider"></span>
 				<span class="customer-service-label">고객센터</span>
 				<span class="divider"></span>
-				<span class="link">로그아웃</span>
+				<span class="link"><a href="javascript:logout()" style="color: black;">로그아웃</a></span>
+				
 			</c:if>
 
 			<c:if test="${not empty sessionScope.loginUser && sessionScope.loginUser.role == Role.ADMIN}">
@@ -45,7 +46,7 @@
 				<span class="divider"></span>
 				<span class="admin-page">관리자 페이지</span>
 				<span class="divider"></span>
-				<span class="link">로그아웃</span>
+				<span class="link" style="display: none;"><a href="javascript:logout()" style="color: black;">로그아웃</a></span>
 			</c:if>
 
 			<!-- 로그인되지 않은 사용자인 경우 -->
