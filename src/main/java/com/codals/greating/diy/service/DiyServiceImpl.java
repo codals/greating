@@ -162,42 +162,57 @@ public class DiyServiceImpl implements DiyService{
 	@Override
     @ExecutionTime
 	public SearchResponseDto search(SearchRequestDto requestDto) {
+		// 1. pagination 설정
 		int rowsPerPage = 9;
 		requestDto.setStartRow((requestDto.getPage() - 1) * rowsPerPage);
 		requestDto.setEndRow(rowsPerPage);
 	
-		// 캐시 활용을 위한 cache key 생성
-		String cacheKey = searchCodeBuilder.buildCode(requestDto);
+		// 2. 캐시 활용을 위한 cache key 생성
+		String searchCode = searchCodeBuilder.buildCode(requestDto);
+		String dataCacheKey = CacheKey.SEARCH_CODE_CACHE_KEY + searchCode + requestDto.getPage();
+		String totalCntCacheKey = CacheKey.SEARCH_CODE_TOTAL_CNT_CODE_CACHE_KEY + searchCode;
 		
-		List<SimplePostDto> result = null;
-		
-		// 캐시에서 데이터 가져오기
-		List<SimplePostDto> cachedData = getcachedSearchResult(cacheKey);
+		// 3. 캐시에서 데이터 가져오기
+		List<SimplePostDto> searchResult;
+		int totalCount;
+
+		List<SimplePostDto> cachedData = getcachedSearchResult(dataCacheKey);
 		if (cachedData != null) {
-			result = cachedData;
-	        log.info("[REDIS] SEARCH - Cache Hit - {}", cacheKey);
+			searchResult = cachedData;
+			totalCount = getcachedTotalCnt(totalCntCacheKey);
+	        log.info("[REDIS] SEARCH - Cache Hit - {}", dataCacheKey);
+	        log.info("[REDIS] SEARCH - Cache Hit - {}", totalCntCacheKey);
 		} else {
-			result = diyDAO.selectPostBySearchConditions(requestDto);
-			cacheSearchResult(cacheKey, result);
-            log.info("[REDIS] SEARCH - Cache Miss - {}", cacheKey);
+			searchResult = diyDAO.selectPostBySearchConditions(requestDto);
+			totalCount = diyDAO.getTotalSearchResultCount(requestDto);
+			cacheSearchResult(dataCacheKey, searchResult);
+			cacheTotalCnt(totalCntCacheKey, totalCount);
+            log.info("[REDIS] SEARCH - Cache Miss - {}", dataCacheKey);
+            log.info("[REDIS] SEARCH - Cache Miss - {}", totalCntCacheKey);
 		}
 
-		int totalCount = result.size();
 		SearchResponseDto response = SearchResponseDto.builder()
 				  .page(requestDto.getPage())
 				  .totalCount(totalCount)
 				  .totalPage((int) Math.ceil((double) totalCount / rowsPerPage))
-				  .posts(result)
+				  .posts(searchResult)
 				  .build();
 		
 		return response;
 	}
 
-    @ExecutionTime
+	@ExecutionTime
 	private List<SimplePostDto> getcachedSearchResult(String cacheKey) {
 		@SuppressWarnings("unchecked")
 		List<SimplePostDto> cachedData = (List<SimplePostDto>) redisTemplate.opsForValue().get(cacheKey);
 	    return cachedData;
+	}
+
+	@ExecutionTime
+	private int getcachedTotalCnt(String cacheKey) {
+		@SuppressWarnings("unchecked")
+		int cachedData = (int) redisTemplate.opsForValue().get(cacheKey);
+		return cachedData;
 	}
 
 	private void cacheSearchResult(String cacheKey, List<SimplePostDto> result) {
@@ -205,6 +220,10 @@ public class DiyServiceImpl implements DiyService{
 	    log.info("[REDIS] SEARCH - Cache 저장 - {}", cacheKey);
 	}
 
+    private void cacheTotalCnt(String cacheKey, int totalCount) {
+    	redisTemplate.opsForValue().set(cacheKey, totalCount, 60, TimeUnit. MINUTES);
+	    log.info("[REDIS] SEARCH - Cache 저장 - {}", cacheKey);
+	}
 
 	@Override
 	public boolean checkVoted(VoteRequestDto requestDto) {
