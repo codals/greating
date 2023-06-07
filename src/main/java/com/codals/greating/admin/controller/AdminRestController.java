@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codals.greating.admin.dto.AdminDailyDietResponseDto;
 import com.codals.greating.admin.dto.AdminDietRegisterRequestDto;
+import com.codals.greating.admin.dto.DiyToDietRequestDto;
 import com.codals.greating.admin.service.AdminService;
 import com.codals.greating.constant.MainCategoryCode;
 import com.codals.greating.diet.entity.Diet;
@@ -116,7 +117,13 @@ public class AdminRestController {
 		}
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
 	}
+	
+	@PostMapping("/diytodiet")
+	public ResponseEntity<Boolean> diyToDiet(DiyToDietRequestDto requestDto) {
+		log.info(requestDto);
+		return ResponseEntity.ok().build(); 
 
+	}
 	
 }
 

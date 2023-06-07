@@ -36,7 +36,7 @@
 
 	<div class="content">
 		<div class="content-div">
-			<h2 class="content-title">투표종료 인기 도시락 목록</h2>
+			<h2 class="content-title">투표종료 인기 DIY 도시락 목록</h2>
 			<table>
 				<thead>
 					<tr>

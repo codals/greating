@@ -1,3 +1,52 @@
+
+function approveToDiet(postId, button){
+    
+	Swal.fire({
+		  title: '해당 도시락을 판매 상품으로 등록하시겠습니까? ',
+		  text: '등록시 판매 상품으로 반영됩니다. ',
+		  html:  `<p>판매하고자 하는 금액을 입력해주세요</p>
+			    <input type="text" id="price" class="swal2-input">
+			  `,
+		  showCloseButton: true,
+		  showCancelButton: true,
+		  showConfirmButton: true,
+		  cancelButtonText: '닫기',
+		  confirmButtonText: 'OK',
+		  preConfirm: () => {
+			    return document.getElementById('price').value;
+		    
+		    // 입력값 처리 로직 작성
+		  }
+		}).then((result) => {
+		  if (result.isConfirmed) {
+			    const price = result.value
+			    console.log(price);
+			    
+			    $.ajax({
+	                url: '/greating/api/admin/diytodiet',
+	                method: 'POST',
+	                data: {
+	                    postId: postId,
+	                    price: price
+	                },
+	                success: function (response) {
+	                    Swal.fire('성공', '성공했습니다.', 'success');
+	                },
+	                error: function (error) {
+	                    // Handle error case
+	                    Swal.fire('에러', '요청을 처리하는 동안 오류가 발생했습니다.', 'error');
+	                }
+	            });
+
+		    // OK 버튼이 클릭된 경우 처리할 로직 작성
+		  } else if (result.isDismissed) {
+		    // 닫기 버튼이 클릭된 경우 처리할 로직 작성
+		  }
+		});
+}
+
+
+
 function approve(postId, button) {
 	console.log(postId);
 
