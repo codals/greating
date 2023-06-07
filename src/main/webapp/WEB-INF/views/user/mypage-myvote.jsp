@@ -52,7 +52,7 @@ rel="stylesheet">
 									style="color: #918c01;"></i> <img src=" ${list.imgUrl }">
 							</div>
 							<div class="myScrap-card-info">
-								<h3>${list.postTitle }</h3>
+								<h3>${list.title }</h3>
 								<div class="author-info">
 									<p>영양사</p>
 									<p>${list.userName }</p>

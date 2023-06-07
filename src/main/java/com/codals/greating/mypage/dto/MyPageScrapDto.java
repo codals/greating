@@ -13,7 +13,7 @@ public class MyPageScrapDto {
 	private long userId;
 	private long postId;
 	private String userName;
-	private String postTitle;
+	private String title;
 	private long minCalorie;
 	private long maxCalorie;
 	private long maxPrice;

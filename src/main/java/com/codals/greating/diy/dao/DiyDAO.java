@@ -29,6 +29,8 @@ public interface DiyDAO {
 
 	List<SimplePostDto> selectPostBySearchConditions(SearchRequestDto requestDto);
 
+	int getTotalSearchResultCount(SearchRequestDto requestDto);
+
 	Vote selectVoteByPostIdAndUserId(VoteRequestDto requestDto);
 
 	Scrap selectScrapByPostIdAndUserId(ScrapRequestDto requestDto);

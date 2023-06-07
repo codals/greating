@@ -4,6 +4,8 @@ import static com.codals.greating.constant.PostStatus.VOTE_FINISHED;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,8 +23,10 @@ import com.codals.greating.diy.entity.Scrap;
 import com.codals.greating.diy.entity.Vote;
 import com.codals.greating.exception.BusinessException;
 import com.codals.greating.exception.ErrorCode;
+import com.codals.greating.util.pagination.Pagination;
 import com.codals.greating.diy.dto.VoteRequestDto;
 
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -32,10 +36,8 @@ import lombok.extern.log4j.Log4j2;
 public class DiyDAOImpl implements DiyDAO {
 	
 	private final SqlSession sqlSession;
+    private final Pagination<SimplePostDto> pagination;
 	
-	Logger log = LogManager.getLogger("case3");
-
-
 	@Override
 	public PostResponseDto selectPostByPostId(int postId) {;
 		String statement = "post.selectPostByPostId";
@@ -107,9 +109,16 @@ public class DiyDAOImpl implements DiyDAO {
 
 	@Override
 	public List<SimplePostDto> selectPostBySearchConditions(SearchRequestDto requestDto) {
-		String statement = "post.selectPostBySearchConditions";
-		return sqlSession.selectList(statement,requestDto);
+		log.info("dao=" + requestDto);
+//		return pagination.getItems("post.selectPostBySearchConditions", page, pageSize);
+		return sqlSession.selectList("post.selectPostBySearchConditions", requestDto);
 	}
+	
+	@Override
+    public int getTotalSearchResultCount(SearchRequestDto requestDto) {
+		return sqlSession.selectOne("post.countTotalPostBySearchConditions", requestDto);
+//        return pagination.getTotalCount("post.countTotalPostBySearchConditions", requestDto);
+    }
 
 	@Override
 	public Vote selectVoteByPostIdAndUserId(VoteRequestDto requestDto) {

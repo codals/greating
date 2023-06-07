@@ -28,27 +28,26 @@
 		FETCH FIRST 10 ROWS ONLY
 	</select>
 
-	<select id="commingSoonList"
-		resultType="AdminTopList">
+	<select id="commingSoonList" resultType="AdminTopList">
 		SELECT
-			p.id,
-			p.title,
-			p.vote_cnt,
-			p.status,
-			p.created_at,
-			u.username,
-			mc.name AS mainCategoryName,
-			sc.name AS subCategoryName
+		p.id,
+		p.title,
+		p.vote_cnt,
+		p.status,
+		p.created_at,
+		u.username,
+		mc.name AS mainCategoryName,
+		sc.name AS subCategoryName
 		FROM
-			post p
-			INNER JOIN "user" u ON p.user_id = u.id
-			INNER JOIN main_category mc ON p.main_category_id = mc.id
-			INNER JOIN sub_category sc ON p.sub_category_id = sc.id
+		post p
+		INNER JOIN "user" u ON p.user_id = u.id
+		INNER JOIN main_category mc ON p.main_category_id = mc.id
+		INNER JOIN sub_category sc ON p.sub_category_id = sc.id
 		WHERE
-    		p.status = 2
+		p.status = 2
 		ORDER BY p.VOTE_CNT DESC
 	</select>
-	
+
 
 	<update id="approveCheck" parameterType="long">
 		UPDATE post
@@ -62,6 +61,41 @@
 		SET status =
 		0
 		WHERE id = #{postId}
+	</update>
+
+	<update id="approveDiyCheck" parameterType="long">
+		UPDATE post
+		SET status
+		=
+		3
+		WHERE id = #{postId}
+	</update>
+
+	<delete id="approveDiyCancel" parameterType="long">
+		DELETE FROM diet
+		WHERE name IN (
+		SELECT d.name
+		FROM diet d
+		JOIN post p ON d.name = p.title
+		WHERE p.id = #{postId}
+		)
+	</delete>
+
+	<update id="registerDiy" parameterType="int">
+		INSERT INTO diet (main_category_id, sub_category_id, name, price,
+		thumbnail_img_url)
+		(SELECT main_category_id, sub_category_id, title, max_price, img_url
+		FROM post
+		WHERE id = #{postId})
+	</update>
+
+	<update id="submitPrice" parameterType="java.util.Map">
+		UPDATE diet
+		SET price = #{price}
+		WHERE name = (
+		SELECT title
+		FROM post
+		WHERE id = #{postId})
 	</update>
 
 	<update id="insertDailyDiets" parameterType="java.util.List">
@@ -82,7 +116,7 @@
 		</foreach>
 		) T
 	</update>
-	
+
 	<select id="selectDailyDietsByDate" parameterType="String"
 		resultType="AdminDailyDietResponseDto">
 		select daily_diet.id as id,

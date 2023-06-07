@@ -13,8 +13,7 @@
 		<result property="imgUrl" column="img_url" />
 	</resultMap>
 
-	<resultMap id="postResponseDtoResultMap"
-		type="PostResponseDto">
+	<resultMap id="postResponseDtoResultMap" type="PostResponseDto">
 		<result property="foodCountry" column="food_country"></result>
 		<association property="post" javaType="Post">
 			<id property="id" column="id" />
@@ -80,8 +79,7 @@
 	</resultMap>
 
 	<!-- SELECT 쿼리 실행 -->
-	<select id="selectPostByPostId" parameterType="int"
-		resultMap="postResponseDtoResultMap">
+	<select id="selectPostByPostId" parameterType="int" resultMap="postResponseDtoResultMap">
 		SELECT p.*, u.id as user_id , u.username as username, u.name
 		as name,
 		main_cate.id as main_cate_id, main_cate.name as
@@ -105,8 +103,7 @@
 		=#{postId}
 	</select>
 
-	<select id="selectFoodById" parameterType="int"
-		resultMap="foodResultMap">
+	<select id="selectFoodById" parameterType="int" resultMap="foodResultMap">
 		SELECT id, name, price, description, img_url
 		FROM food
 		WHERE
@@ -120,8 +117,7 @@
 	    ]]>
 	</insert>
 
-	<!-- 현재 세션에 대한 마지막 삽입 ID를 반환하기 때문에 다른 스레드가 동시에 삽입을 수행하는 경우에도 올바른 ID 값을 반환할 
-		수 있음 -->
+	<!-- 현재 세션에 대한 마지막 삽입 ID를 반환하기 때문에 다른 스레드가 동시에 삽입을 수행하는 경우에도 올바른 ID 값을 반환할 수 있음 -->
 	<select id="nextPostId" resultType="java.lang.Integer">
 		SELECT POST_ID_SEQ.NEXTVAL
 		FROM DUAL
@@ -132,11 +128,7 @@
 		POST_ID_SEQ.CURRVAL AS id FROM DUAL
 	</select>
 
-
-
-
-	<select id="selectPostsByMainCategory" parameterType="int"
-		resultType="Post">
+	<select id="selectPostsByMainCategory" parameterType="int" resultType="Post">
 		SELECT *
 		from post
 		where main_category_id = #{mainCategoryId}
@@ -146,14 +138,12 @@
 		ONLY
 	</select>
 
-	<select id="selectPostsBySubCategory" parameterType="int"
-		resultType="SimplePostDto">
+	<select id="selectPostsBySubCategory" parameterType="int" resultType="SimplePostDto">
 		select p.* from (select * from post where sub_category_id=#{subCategoryId} order by dbms_random.value) p
 		OFFSET 0 ROWS FETCH FIRST 4 ROWS ONLY
 	</select>
 
-	<select id="selectPostBySearchConditions"
-		parameterType="SearchRequestDto" resultType="SimplePostDto">
+	<select id="selectPostBySearchConditions" parameterType="SearchRequestDto" resultType="SimplePostDto">
 		SELECT *
 		FROM post
 		<where>
@@ -178,11 +168,34 @@
 				</foreach>
 			</if>
 		</where>
-		<!-- OFFSET 0 ROWS FETCH FIRST 10 ROWS ONLY -->
-
+		OFFSET #{startRow} ROWS FETCH NEXT #{endRow} ROWS ONLY
 	</select>
 
-
+	<select id="countTotalPostBySearchConditions" parameterType="SearchRequestDto" resultType="Integer">
+		SELECT COUNT(*)
+		FROM post
+		<where>
+				<if test="hasRice != null">
+					AND nvl2(rice_food_id, 1, 0)= #{hasRice}
+				</if>
+				<if test="hasSoup != null">
+					AND nvl2(soup_food_id, 1, 0)= #{hasSoup}
+				</if>
+				<if test="mainCategories != null and mainCategories.size() > 0">
+					AND main_category_id IN
+					<foreach item="category" collection="mainCategories"
+						separator="," open="(" close=")">
+						#{category.id}
+					</foreach>
+				</if>
+				<if test="foodCountries != null and foodCountries.size() > 0">
+					AND food_country_id IN
+					<foreach item="country" collection="foodCountries" separator="," open="(" close=")">
+						#{country.id}
+					</foreach>
+				</if> 
+		</where>
+	</select>
 
 
 	<!-- scrap 관련 -->
@@ -203,8 +216,6 @@
 		where
 		post_id=#{postId} and user_id=#{userId}
 	</select>
-
-
 
 	<!-- vote 관련 -->
 	<insert id="insertVote" parameterType="VoteRequestDto">
