@@ -2,6 +2,8 @@ package com.codals.greating.user.controller;
 
 import static com.codals.greating.constant.SessionKey.LOGIN_USER;
 
+import javax.servlet.http.HttpSession;
+
 import com.codals.greating.user.entity.Role;
 import com.codals.greating.user.exception.AlreadyLoggedInException;
 import lombok.RequiredArgsConstructor;
@@ -51,8 +53,13 @@ public class UserController {
     	if(userService.register(user)) {
     		return "/user/login";
     	};
-    	
         return "redirect:/";
+    }
+    
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+    	session.invalidate();
+    	return "redirect:/";
     }
 
     private void checkAlreadyLogin(User loginUser) {

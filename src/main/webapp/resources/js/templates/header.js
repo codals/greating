@@ -47,3 +47,11 @@ $(document).ready(function () {
     location.href = '/greating/admin/popular';
   });
 });
+
+function logout() {
+    var confirmed = confirm("로그아웃하시겠습니까?");
+    if (confirmed) {
+        alert("로그아웃되었습니다.");
+        window.location.href = "/greating/logout";
+    }
+}
