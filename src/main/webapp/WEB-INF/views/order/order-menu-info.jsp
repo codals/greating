@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>Greating | 메뉴 미리보기</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <link href="${pageContext.request.contextPath}/resources/css/order/order-menu-info.css" rel="stylesheet">

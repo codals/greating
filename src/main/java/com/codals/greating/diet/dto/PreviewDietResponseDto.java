@@ -1,7 +1,11 @@
 package com.codals.greating.diet.dto;
 
 import com.codals.greating.diet.entity.Diet;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 public class PreviewDietResponseDto {
