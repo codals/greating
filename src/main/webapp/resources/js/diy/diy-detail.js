@@ -261,7 +261,7 @@ function fetchChartData(){
 			      {
 			        label: "여성",
 			        backgroundColor: "#D7AC87",
-			        data: [data.female10sVoteCount, data.female20sVoteCount, data.female30sVoteCount, data.female40VoteCount, data.female50sVoteCount]
+			        data: [data.female10sVoteCount, data.female20sVoteCount, data.female30sVoteCount, data.female40sVoteCount, data.female50sVoteCount]
 			      }
 			    ]
 			  },
