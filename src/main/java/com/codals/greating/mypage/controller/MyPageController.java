@@ -30,30 +30,6 @@ public class MyPageController {
 	@Autowired
 	MyPageService service;
     
-    
-    @GetMapping("/main")
-    public String myPage(@SessionAttribute("loginUser") User loginUser, Model model) {
-
-        // 세션에서 로그인된 사용자 정보 가져오기
-    	model.addAttribute("username", loginUser.getUsername());
-       
-        // 사용자 정보를 모델에 추가하여 화면에 표시
-        
-        model.addAttribute("email", loginUser.getEmail());
-        
-        return "user/mypage-welcome";
-
-
-    }
-    
-
-    @GetMapping("/dietsList")
-    public List<MyPageDto> loadMyDietPageList() {
-    	
-    	
-        return null;
-    }
-    
     @GetMapping("/diets")
     public String loadMyDietPage(@SessionAttribute("loginUser") User loginUser, MyPageDto dto,
     		@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
@@ -68,7 +44,6 @@ public class MyPageController {
         model.addAttribute("list", dietList);
         return "user/mypage-mydiy";
     }
-
 
     @GetMapping("/scrap")
     public String loadMyScrapPage(@SessionAttribute("loginUser") User loginUser, MyPageScrapDto dto,
@@ -115,8 +90,5 @@ public class MyPageController {
     	service.deleteMyDiy(id);
     	return ResponseEntity.ok(true);
     }
-    
-    
-
 
 }
