@@ -36,7 +36,6 @@ import lombok.extern.log4j.Log4j2;
 public class DiyDAOImpl implements DiyDAO {
 	
 	private final SqlSession sqlSession;
-    private final Pagination<SimplePostDto> pagination;
 	
 	@Override
 	public PostResponseDto selectPostByPostId(int postId) {;
