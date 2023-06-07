@@ -28,14 +28,17 @@ public class DietRestController {
     public static final int DELIVERY_MAX_INACTIVE_INTERVAL = 300;
 
     @PostMapping("/orders")
-    public ResponseEntity<Boolean> order(@SessionAttribute(LOGIN_USER) User user, @RequestBody OrderRequestDto orderRequestDto, HttpSession session) {
+    public ResponseEntity<Boolean> order(@SessionAttribute(LOGIN_USER) User user,
+                                         @RequestBody OrderRequestDto orderRequestDto,
+                                         HttpSession session) {
         OrderResponseDto response = dietService.order(user, orderRequestDto);
         session.setAttribute(ORDER_ID, response.getOrderId());
         return ResponseEntity.ok(true);
     }
 
     @PostMapping("/orders/delivery")
-    public ResponseEntity<Boolean> saveDelivery(@RequestBody DietDeliveryRequestDto dietDeliveryRequestDto, HttpSession session) {
+    public ResponseEntity<Boolean> saveDelivery(@RequestBody DietDeliveryRequestDto dietDeliveryRequestDto,
+                                                HttpSession session) {
         session.setAttribute(DELIVERY_DATES, dietDeliveryRequestDto.getDates());
         session.setMaxInactiveInterval(DELIVERY_MAX_INACTIVE_INTERVAL);
         return ResponseEntity.ok(true);
