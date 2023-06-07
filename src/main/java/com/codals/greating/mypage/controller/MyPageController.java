@@ -85,8 +85,6 @@ public class MyPageController {
     
     @DeleteMapping("/deleteDiy/{id}")
     public ResponseEntity<Boolean> deleteMyDiy(@PathVariable("id") int id) {
-    	System.out.println("==================deleteMyDiy================");
-    	System.out.println(id);
     	service.deleteMyDiy(id);
     	return ResponseEntity.ok(true);
     }

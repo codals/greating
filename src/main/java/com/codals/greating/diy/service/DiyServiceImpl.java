@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.codals.greating.aop.ExecutionTime;
 import com.codals.greating.constant.CacheKey;
 import com.codals.greating.diy.SearchCodeBuilder;
 import com.codals.greating.diy.dao.DiyDAO;
@@ -47,10 +48,8 @@ public class DiyServiceImpl implements DiyService{
     
 	@Override
 	public PostResponseDto getPostDetail(int postId) {
-		
 		return diyDAO.selectPostByPostId(postId);
 	}
-	
 	
 	private Post createPost(User loginUser, DiyRequestDto postRequest) {    	
 		Post newPost = Post.builder()
@@ -132,34 +131,36 @@ public class DiyServiceImpl implements DiyService{
 
 	/* Redis 캐싱하기 */
 	@Override 
+    @ExecutionTime
 	public List<Post> loadPostsByCategoryType(int mainCategoryId) {
 		String cacheKey = CacheKey.TOP_10_CACHE_KEY + mainCategoryId;
 		List<Post> result = null;
 
 		List<Post> cachedData = getCachedPostsByCategoryType(cacheKey);
 		if(cachedData != null){ //캐시에 이미 있는 경우 
-			log.info("Cached Data Return");
-			log.info("캐시된 data=" + cachedData);
+	        log.info("[REDIS] TOP_10 - Cache Hit - {}", cacheKey);
 			return cachedData;
 		}
 		// 캐시된 데이터가 없는 경우 
+        log.info("[REDIS] TOP_10 - Cache Miss - {}", cacheKey);
 		result = diyDAO.selectPostsByMainCategory(mainCategoryId);
 		cacheTop10Posts(cacheKey, result);
 		return result;
 		
 	}
 
+    @ExecutionTime
 	private List<Post> getCachedPostsByCategoryType(String cacheKey){
 		return (List<Post>) redisTemplate.opsForValue().get(cacheKey);
 	}
 	
 	private void cacheTop10Posts(String cacheKey, List<Post> cachingData) {
-		log.info("캐싱 전=" + cachingData);
 		redisTemplate.opsForValue().set(cacheKey,cachingData, 1, TimeUnit.DAYS);
-		log.info("Top 10 datas Redis Caching");
+        log.info("[REDIS] TOP_10 - Cache 저장 - {}", cacheKey);
 	}
 	
 	@Override
+    @ExecutionTime
 	public SearchResponseDto search(SearchRequestDto requestDto) {
 		int rowsPerPage = 9;
 		requestDto.setStartRow((requestDto.getPage() - 1) * rowsPerPage);
@@ -192,6 +193,7 @@ public class DiyServiceImpl implements DiyService{
 		return response;
 	}
 
+    @ExecutionTime
 	private List<SimplePostDto> getcachedSearchResult(String cacheKey) {
 		@SuppressWarnings("unchecked")
 		List<SimplePostDto> cachedData = (List<SimplePostDto>) redisTemplate.opsForValue().get(cacheKey);
@@ -206,7 +208,6 @@ public class DiyServiceImpl implements DiyService{
 
 	@Override
 	public boolean checkVoted(VoteRequestDto requestDto) {
-
 		if(diyDAO.selectVoteByPostIdAndUserId(requestDto)!= null) {
 			return true;
 		}
@@ -253,7 +254,6 @@ public class DiyServiceImpl implements DiyService{
 
 	@Override
 	public List<CommentResponseDto> getComments(int postId){
-		
 		return diyDAO.selectComments(postId);
 	}
 

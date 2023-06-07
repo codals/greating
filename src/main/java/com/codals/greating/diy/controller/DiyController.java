@@ -132,13 +132,11 @@ public class DiyController {
 		
 		// 댓글 
 		List<CommentResponseDto> comments = diyService.getComments(postId);
-		log.info("comments {} ", comments);
 		model.addAttribute("comments", comments);
 		
 		model.addAttribute("imgApiToken", imgApiToken);
 		
 		model.addAttribute("kakaoShareKey", kakaoShareKey);
-		log.info(postDetail);
 		return "diy/diy-detail";
 	}
 	

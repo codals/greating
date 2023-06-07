@@ -19,7 +19,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         String requestURI = request.getRequestURI();
         HttpSession session = request.getSession();
         if (session == null || session.getAttribute(LOGIN_USER) == null) {
-            log.info("Unauthorized access detected. Request URI: {}", requestURI);
+            log.info("[Exception] Unauthorized access detected. Request URI: {}", requestURI);
             response.sendRedirect("/greating/login?redirectURL=" + requestURI);
             return false;
         }
