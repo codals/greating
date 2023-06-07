@@ -46,7 +46,7 @@ rel="stylesheet">
 				</div>
 				<ul>
 					<c:forEach items="${list }" var="list">
-						<li class="myScrap-card" data-id="${list.postId}">
+						<li class="myScrap-card" data-id="${list.id}">
 							<div class="myScrap-card-img">
 								<i class="fas fa-solid fa-thumbs-up fa-lg"
 									style="color: #918c01;"></i> <img src=" ${list.imgUrl }">

@@ -46,6 +46,10 @@
 	margin-top: 20px;
 }
 
+.myDiy-card-info span:first-child, .myDiy-card-img {
+cursor: pointer;
+}
+
 .myDiy-card-info>span {
 	display: block;
 	font-size: 22px;

@@ -15,13 +15,14 @@
 <link href="/greating/resources/css/user/mypage-myscrap.css"
 	rel="stylesheet">
 <link href="/greating/resources/css/user/mypage-pagination.css"
-rel="stylesheet">
+	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"
-		integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
-		crossorigin="anonymous"></script>
-<script src="${pageContext.request.contextPath}/resources/js/user/mypage-myscrap.js"></script>
+	integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+	crossorigin="anonymous"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/user/mypage-myscrap.js"></script>
 </head>
 <body>
 
@@ -51,13 +52,16 @@ rel="stylesheet">
 
 				<ul>
 					<c:forEach items="${list}" var="list">
-						<li class="myScrap-card" data-id="${list.postId}" >
+						<li class="myScrap-card" data-id="${list.id}">
 							<div class="myScrap-card-img">
-								<i class="fas fa-solid fa-bookmark fa-lg" style="color: #918c01;"></i>
-								<img src="${list.imgUrl}" alt="">
+								<i class="fas fa-solid fa-bookmark fa-lg"
+									style="color: #918c01;"></i>
+									<img src="${list.imgUrl}" alt="">
 							</div>
 							<div class="myScrap-card-info">
-								<h3>${list.title}</h3>
+								<h3>
+									${list.title}
+								</h3>
 								<div class="author-info">
 									<p>영양사</p>
 									<p>${list.userName}</p>
@@ -70,14 +74,15 @@ rel="stylesheet">
 						</li>
 					</c:forEach>
 				</ul>
-				
+
 				<c:if test="${dto.totalCount == 0 }">
 					<div class="noContentDiv">
-					<img class="mark_exclamation" src="/greating/resources/images/user/exclamationMark.png">
-					<p class="noContents">아직 스크랩한 식단이 없습니다.</p>
+						<img class="mark_exclamation"
+							src="/greating/resources/images/user/exclamationMark.png">
+						<p class="noContents">아직 스크랩한 식단이 없습니다.</p>
 					</div>
 				</c:if>
-				
+
 				<%-- <!-- 페이징 버튼 -->
 					<div class="pagination">
 						
@@ -126,8 +131,8 @@ rel="stylesheet">
 
 				<!-- 페이징 버튼 -->
 				<div class="pagination">
-					
-				
+
+
 					<c:if test="${dto.page > 1}">
 						<c:if test="${dto.totalPage > 5}">
 							<a href="/greating/mypage/scrap?page=1">처음</a>
@@ -146,9 +151,9 @@ rel="stylesheet">
 					<c:if test="${endPage > dto.totalPage}">
 						<c:set var="startPage" value="${dto.totalPage - 4}" />
 						<c:set var="endPage" value="${dto.totalPage}" />
-					</c:if> 
+					</c:if>
 
-			
+
 					<c:choose>
 						<c:when test="${startPage < 1}">
 							<c:set var="startPage" value="1" />
@@ -180,18 +185,18 @@ rel="stylesheet">
 
 					<c:if test="${dto.page < dto.totalPage}">
 						<c:if test="${dto.totalPage > 1}">
-						<a href="/greating/mypage/scrap?page=${dto.page + 1}">다음</a>
+							<a href="/greating/mypage/scrap?page=${dto.page + 1}">다음</a>
 						</c:if>
 						<c:if test="${dto.totalPage > 5}">
-					        <a href="/greating/mypage/scrap?page=${dto.totalPage}">끝</a>
-					    </c:if>
+							<a href="/greating/mypage/scrap?page=${dto.totalPage}">끝</a>
+						</c:if>
 					</c:if>
 				</div>
-				
-				
-				
-				
-				
+
+
+
+
+
 
 			</div>
 		</div>

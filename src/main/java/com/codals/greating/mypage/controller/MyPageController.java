@@ -76,11 +76,10 @@ public class MyPageController {
     }
 
     @GetMapping("/profile")
-    public String loadProfilePage() {
-        /**
-         * my-profile.jsp 예정
-         */
-        return "mypage/my-profile";
+    public String loadProfilePage(@SessionAttribute("loginUser") User loginUser, MyPageDto dto,Model model) {
+    	// 사용자 ID를 가져와서 dto에 설정
+        dto.setUserId(loginUser.getId());
+        return "user/mypage-main";
     }
     
     @DeleteMapping("/deleteDiy/{id}")
