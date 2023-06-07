@@ -29,7 +29,7 @@
 
 	<div class="content">
 		<div class="content-div">
-			<h2 class="content-title">출시 예정 식단 목록</h2>
+			<h2 class="content-title">출시 예정 도시락 목록</h2>
 			<table>
 				<thead>
 					<tr>

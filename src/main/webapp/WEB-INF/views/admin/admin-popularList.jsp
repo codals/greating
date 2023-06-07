@@ -10,9 +10,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<!-- <link rel="stylesheet"
-	href="/greating/resources/css/templates/reset.css"> -->
-
 <link rel="stylesheet" href="/greating/resources/css/admin/admin-popularList.css">
 <!-- jQuery 라이브러리 추가 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -31,11 +28,11 @@
 
 	<div class="content">
 		<div class="content-div">
-			<h2 class="content-title">투표종료 인기 식단 목록</h2>
+			<h2 class="content-title">투표종료 인기 도시락 목록</h2>
 			<table>
 				<thead>
 					<tr>
-						<th>식단 이름</th>
+						<th>도시락 명 </th>
 						<th>작성자</th>
 						<th>대분류</th>
 						<th>소분류</th>

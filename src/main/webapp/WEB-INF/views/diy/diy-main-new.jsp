@@ -33,8 +33,8 @@
 	<div class="banner-img">
 		<div class="banner-content">
 			<span class="banner-small-description" style="font-size: 20px;">그리팅 사용자들이 직접 제안하는</span>
-			<span class="banner-title">DIY 식단 검색</span>
-			<span class="banner-description">내가 원하는 스타일과 구성으로 제안된<br>DIY 식단이 있는지 찾아보세요.</span>
+			<span class="banner-title">DIY 도시락 검색</span>
+			<span class="banner-description">내가 원하는 스타일과 구성으로 제안된<br>DIY 도시락이 있는지 찾아보세요.</span>
 			<div class="search-keyword-box">
 				<input type="text" placeholder="검색어를 입력하세요">
 				<button class="icon" type="button" onclick="openSearchBox()"></button>
@@ -52,7 +52,7 @@
 
 			<div class="greating-category-sec">
 				<div class="sub-title">
-					카테고리 - 어떤 식단을 선호하시나요?
+					카테고리 - 어떤 도시락을 선호하시나요?
 					<hr>
 				</div>
 				<div class="greating-category-btns">
@@ -125,12 +125,12 @@
 					<h3 style="font-weight: bold;">조건 검색하기</h3>
 					
 					<br><br>
-					위의 검색 창 돋보기 버튼을 눌러서 내가 원하는 조건들로 검색해보세요!
+					위의 검색 창 돋보기 버튼을 눌러 내가 원하는 조건들로 DIY 도시락들을 검색해보세요!
 					<br><br><br><br>
 					
 					<hr>
 					
-					<h5 style="font-weight: bold;">실시간 인기 DIY 식단</h5>
+					<h5 style="font-weight: bold;">실시간 인기 DIY 도시락</h5>
 				</div>
 			<div class="diet-card-list">
 				<c:forEach var="post" items="${healthyPostTop10}" varStatus="loop" begin="0" end="8">
@@ -154,8 +154,6 @@
 				</c:forEach>
 			</div>
 			
-<%-- 			<!-- pagination 추가 -->
-			<jsp:include page="../templates/pagination.jsp" /> --%>
 			
 			<div id="paginationContainer"></div>
 			

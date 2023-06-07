@@ -35,13 +35,13 @@
 		<ul class="page-category">
 			<li>DIY 식단</li>
 			<li>></li>
-			<li class="highlight">DIY 식단 TOP 10</li>
+			<li class="highlight">DIY 도시락 TOP 10</li>
 		</ul>
 		<div class="main-content hd__inner960">
-			<div class="main-content-title">DIY 식단 TOP 10</div>
+			<div class="main-content-title">DIY 도시락 TOP 10</div>
 
 			<section class="healthy-top">
-				<div class="healthy-top-title">건강식단 TOP 10</div>
+				<div class="healthy-top-title">건강 도시락  TOP 10</div>
 				<hr>
 				<div class="healthy-top-slide fadeInUp">
 					<div class="slider healthy-slide">
@@ -64,7 +64,7 @@
 			</section>
 
 			<section class="care-top">
-				<div class="care-top-title">질환맞춤 TOP 10</div>
+				<div class="care-top-title">질환맞춤 도시락 TOP 10</div>
 				<hr>
 				<div class="care-top-slide fadeInUp">
 					<div class="slider care-slide">
@@ -87,7 +87,7 @@
 			</section>
 
 			<section class="challenge-top">
-				<div class="challenge-top-title">챌린지 TOP 10</div>
+				<div class="challenge-top-title">챌린지 도시락 TOP 10</div>
 				<hr>
 				<div class="challenge-top-slide fadeInUp">
 					<div class="slider challenge-slide">
