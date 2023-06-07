@@ -20,7 +20,6 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(BusinessException.class)
 	public ModelAndView handleBusinessException(BusinessException e) {
 		// BusinessException이 발생한 경우
-		log.info(e.getMessage());
 		e.printStackTrace();
 
 		ModelAndView modelAndView = new ModelAndView("error");
@@ -38,7 +37,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(NoHandlerFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	public ModelAndView handleNotFoundException(NoHandlerFoundException e) {
-		log.info("404 Not Found - " + e.getRequestURL());
+		log.info("[Exception] 404 Not Found - " + e.getRequestURL());
 		e.printStackTrace();
 
 		ModelAndView modelAndView = new ModelAndView("error");

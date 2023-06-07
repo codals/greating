@@ -138,11 +138,11 @@ public class DiyServiceImpl implements DiyService{
 
 		List<Post> cachedData = getCachedPostsByCategoryType(cacheKey);
 		if(cachedData != null){ //캐시에 이미 있는 경우 
-			log.info("Cached Data Return");
-			log.info("캐시된 data=" + cachedData);
+	        log.info("[REDIS] TOP_10 - Cache Hit - {}", cacheKey);
 			return cachedData;
 		}
 		// 캐시된 데이터가 없는 경우 
+        log.info("[REDIS] TOP_10 - Cache Miss - {}", cacheKey);
 		result = diyDAO.selectPostsByMainCategory(mainCategoryId);
 		cacheTop10Posts(cacheKey, result);
 		return result;
@@ -155,9 +155,8 @@ public class DiyServiceImpl implements DiyService{
 	}
 	
 	private void cacheTop10Posts(String cacheKey, List<Post> cachingData) {
-		log.info("캐싱 전=" + cachingData);
 		redisTemplate.opsForValue().set(cacheKey,cachingData, 1, TimeUnit.DAYS);
-		log.info("Top 10 datas Redis Caching");
+        log.info("[REDIS] TOP_10 - Cache 저장 - {}", cacheKey);
 	}
 	
 	@Override

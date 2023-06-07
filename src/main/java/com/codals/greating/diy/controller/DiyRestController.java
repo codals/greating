@@ -94,7 +94,6 @@ public class DiyRestController {
 
 		CommentResponseDto newComment = diyService.createComment(comment);
 		if(newComment!=null) {
-			log.info("new comment : {} ", newComment);
 			return new ResponseEntity<>(newComment, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

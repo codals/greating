@@ -65,9 +65,6 @@ public class DietServiceImpl implements DietService {
     	List<DailyDiet> data = null;
     	String currentDate = DateUtil.dateToString(new Date());
     	String cacheKey = CacheKey.TWO_WEEK_PREVIEW_CACHE_KEY + currentDate;
-
-    	log.info("today=" + currentDate);
-    	log.info("result=" + dailyDietDao.selectAllByStartDate(currentDate));
     	
     	List<PreviewResponseDto> response = null;
 
@@ -78,11 +75,8 @@ public class DietServiceImpl implements DietService {
     	} else {						// 2. 캐시에 없으면  DB에서 가져오기, 캐싱해두기
             log.info("[REDIS] TWO_WEEK_PREVIEW - Cache Miss - {}", cacheKey);
             data = dailyDietDao.selectAllByStartDate(currentDate);
-            log.info("data= " + data);
-
             cacheTwoWeekDailyDiets(cacheKey, data);
             response = getPreviewResponseDto(data);
-            log.info("response= " + data);
 		}
 
         return response;

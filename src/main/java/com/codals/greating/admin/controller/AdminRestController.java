@@ -33,22 +33,15 @@ public class AdminRestController {
 	@GetMapping("/register")
 	public ResponseEntity<List<Diet>> getDietsByMainCategory(MainCategoryCode category) {
 
-		log.info(category);
 		List<Diet> diets = adminService.getDietsByMainCategory(category);
-		log.info(diets);
 		return new ResponseEntity<>(diets, HttpStatus.OK);
 	}
 
 	@PostMapping("/register")
 	public ResponseEntity<Boolean> registerDailyDiets(@RequestBody AdminDietRegisterRequestDto requestDto) {
-
-		log.info(requestDto);
-
 		if (adminService.registerDailyDiets(requestDto)) {
 			return new ResponseEntity<>(true, HttpStatus.OK);
-
 		}
-		
 	    return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
   }
 	@PostMapping("/approve")
@@ -69,10 +62,7 @@ public class AdminRestController {
 
 	@GetMapping("daily-diets")
 	public ResponseEntity<List<AdminDailyDietResponseDto>> getDailyDiets(String date) {
-
-		log.info(date);
 		List<AdminDailyDietResponseDto> diets = adminService.getDailyDietsByDate(date);
-		log.info("controller diets{} ", diets);
 		return new ResponseEntity<>(diets, HttpStatus.OK);
 	}
 	
@@ -80,7 +70,6 @@ public class AdminRestController {
 	
 	@PostMapping("/approveDiy")
 	public ResponseEntity<Boolean> approveDiy(@RequestParam("postId") long postId) {
-		System.out.println("======approveDiy======");
 		if(adminService.approveDiy(postId)) {
 			return ResponseEntity.ok().build(); 
 		}
@@ -89,8 +78,6 @@ public class AdminRestController {
 	
 	@PostMapping("/registerDiy")
 	public ResponseEntity<Boolean> approveDiyRegister(@RequestParam("postId") int postId) {
-		System.out.println("======approveDiyRegister======");
-		System.out.println(postId);
 		if(adminService.approveDiyRegister(postId)) {
 			return ResponseEntity.ok().build(); 
 		}
@@ -99,7 +86,6 @@ public class AdminRestController {
 	
 	@PostMapping("/approveDiyCancel")
 	public ResponseEntity<Boolean> changeDiy(@RequestParam("postId") long postId) {
-		System.out.println("======changeDiy======");
 		if(adminService.approveDiyCancel(postId)) {
 			return ResponseEntity.ok().build(); 
 		}
@@ -108,9 +94,6 @@ public class AdminRestController {
 	
 	@PostMapping("/submitPrice")
 	public ResponseEntity<Boolean> submitPrice(@RequestParam int postId, @RequestParam int price) {
-		System.out.println("==================submitPrice================");
-	    System.out.println("Post ID: " + postId);
-	    System.out.println("Price: " + price);
 		if(adminService.submitPrice(postId,price)) {
 			return ResponseEntity.ok().build(); 
 		}

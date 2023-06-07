@@ -81,7 +81,6 @@ public class AdminDaoImpl implements AdminDao {
 
 	@Override
 	public boolean approveDiyRegister(int postId) {
-		System.out.println("DAO입니다." + postId);
 		int insertRows = sqlSession.insert("admin.registerDiy", postId);
 		return insertRows > 0;
 	}
@@ -92,7 +91,6 @@ public class AdminDaoImpl implements AdminDao {
 	    Map<String, Object> params = new HashMap<>();
 	    params.put("postId", postId);
 	    params.put("price", price);
-	    System.out.println("params: " + params);
 
 	    int insertRows = sqlSession.update("admin.submitPrice", params);
 	    return insertRows > 0;
