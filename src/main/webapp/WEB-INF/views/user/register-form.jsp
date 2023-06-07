@@ -8,20 +8,20 @@
 	rel="stylesheet"
 	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
-	integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
-	integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
-	crossorigin="anonymous"></script>
+
 <link
 	href="${pageContext.request.contextPath}/resources/css/user/register-form.css"
 	rel="stylesheet">
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/greating/resources/js/user/register.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<link href="/greating/resources/css/templates/alert.css"
+	rel="stylesheet">
 
 
 </head>
@@ -40,10 +40,12 @@
 				<div class="row justify-content-center">
 					<div class="col">
 						<h1 class="text-center title">정보입력</h1>
-						<div class="row justify-content-center social-login-img">
-							<img
-								src="${pageContext.request.contextPath}/resources/images/user/register-step.png"
-								alt="social-login.png" style="width: 450px">
+						<div class="join-header-section">
+							<ol class="join-header">
+								<li>약관동의</li>
+								<li class="on">정보입력</li>
+								<li>가입완료</li>
+							</ol>
 						</div>
 						<div class="form-main-content"
 							style="width: 750px; margin: 0 auto;">
@@ -63,8 +65,8 @@
 									<button type="button" class="btn-init" id="overlapCheck"
 										onclick="checkValidateUserName()">중복확인</button>
 								</div>
-								
-									<span id="username-validation"></span>
+
+								<span id="username-validation"></span>
 
 								<p class="register-comment">* 6자리 이상의 영문 혹은 영문, 숫자를 조합하여 입력해
 									주세요</p>
@@ -87,10 +89,11 @@
 									<label for="email">이메일</label> <input type="email"
 										class="btn-input" id="email" name="email"
 										placeholder="예: greating@hyundai.com" required>
-									<button type="button" class="btn-init" onclick="checkValidateUserEmail()">중복확인</button>
+									<button type="button" class="btn-init"
+										onclick="checkValidateUserEmail()">중복확인</button>
 								</div>
 								<span id="email-check-result"></span>
-								
+
 								<p class="register-comment" style="color: #918c00">＊ 맞춤상품 추천
 									및 Hpoint 서비스 이용을 위해 생년월일과 성별을 정확히 입력해 주세요.</p>
 								<div class="form-group">
@@ -150,8 +153,9 @@
 								</div>
 								<div class="button-container">
 									<input type="button" class="left-button"
-										onclick="location.href='${pageContext.request.contextPath}/register-agreement'" value="취소">
-									<input type="submit" class="submitBtn" value="회원가입" onclick="submitRegisterForm(event)">
+										onclick="location.href='${pageContext.request.contextPath}/register-agreement'"
+										value="취소"> <input type="submit" class="submitBtn"
+										value="회원가입" onclick="submitRegisterForm(event)">
 								</div>
 
 								<div class="checkInfo hidden">

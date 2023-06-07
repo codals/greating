@@ -40,8 +40,7 @@ public class UserRestController {
   
     @GetMapping("/check-username")
     public ResponseEntity<Boolean> checkUserName(String username) {
-      
-    	if(userService.getUserByUsername(username).getUsername() == null) {
+    	if(userService.getUserByUsername(username) == null) {
     		return ResponseEntity.ok(true);
     	}
     	

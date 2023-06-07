@@ -1,185 +1,236 @@
-
-.hidden{
-	display:none;
+.hidden {
+	display: none;
 }
-.content-info > li {
-  display: inline-block;
-  height: 50px;
-  line-height: 50px;
-  font-size: 14px;
-  color: #888;
+
+.content-info>li {
+	display: inline-block;
+	height: 50px;
+	line-height: 50px;
+	font-size: 14px;
+	color: #888;
 }
 
 .content-info li:last-child {
-  color: #1c1c1c;
-  font-weight: bold;
+	color: #1c1c1c;
+	font-weight: bold;
 }
 
 .content-info li:last-child:before {
-  content: '>';
-  color: #888;
-  margin: 0 10px;
+	content: '>';
+	color: #888;
+	margin: 0 10px;
 }
 
 .form-main {
-  width: 900px;
-  margin: 0 auto;
+	width: 900px;
+	margin: 0 auto;
 }
 
 hr {
-  border: none;
-  height: 1px;
-  background-color: #ccc;
+	border: none;
+	height: 1px;
+	background-color: #ccc;
 }
 
 .title {
-  margin: 50px 0 50px;
-  text-align: center;
-  font-size: 36px;
-  font-weight: 600;
+	margin: 50px 0 50px;
+	text-align: center;
+	font-size: 36px;
+	font-weight: 600;
 }
 
 .register-sub-title {
-  display: flex;
-  padding: 30px 0px;
-  margin-top: 50px;
-  border-top: 2px solid #000000;
-  border-bottom: 1px solid #ccc;
-  font-size: 20px;
-  font-weight: 600;
+	display: flex;
+	padding: 30px 0px;
+	margin-top: 50px;
+	border-top: 2px solid #000000;
+	border-bottom: 1px solid #ccc;
+	font-size: 20px;
+	font-weight: 600;
 }
 
 .form-group {
-  display: flex;
-  align-items: center !important;
-  margin-bottom: 0 !important;
+	display: flex;
+	align-items: center !important;
+	margin-bottom: 0 !important;
 }
 
-.form-group > label {
-display: inline-block !important;
-width: 100px !important;
+.form-group>label {
+	display: inline-block !important;
+	width: 100px !important;
 }
 
-.form-group > input {
-display: inline-block !important;
-width: 500px !important;
-margin: 10px;
-font-size: 12px;
-padding: 10px;
+.form-group>input {
+	display: inline-block !important;
+	width: 500px !important;
+	margin: 10px;
+	font-size: 12px;
+	padding: 10px;
 }
 
 .gender-group {
-display: inline-block;
-margin-left: 10px;
+	display: inline-block;
+	margin-left: 10px;
 }
 
 .register-comment {
-font-size: 12px !important;
-padding-left: 110px;
-margin-bottom: 10px;
-color: #888;
-font-weight: bold;
+	font-size: 12px !important;
+	padding-left: 110px;
+	margin-bottom: 10px;
+	color: #888;
+	font-weight: bold;
 }
 
 .form-check {
-display: inline-block !important;
-font-size: 11px;
+	display: inline-block !important;
+	font-size: 11px;
 }
 
 .btn-init {
-width: 110px;
-height: 40px;
-font-size: 13px;
-font-weight: bold;
-background: #918C00;
-border: none;
-color: #fff;
+	width: 110px;
+	height: 40px;
+	font-size: 13px;
+	font-weight: bold;
+	background: #918C00;
+	border: none;
+	color: #fff;
 }
 
 .button-container {
-margin-top: 30px;
-display: flex;
-justify-content: space-between;
+	margin-top: 30px;
+	display: flex;
+	justify-content: space-between;
 }
 
 .left-button, .submitBtn {
-flex: 1;
-margin: 0;
-display: block;
-width: 100%;
-padding: 20px;
-font-size: 14px;
-font-weight: bold;
-text-align: center;
-border: none #918c00;
-cursor: pointer;
+	flex: 1;
+	margin: 0;
+	display: block;
+	width: 100%;
+	padding: 20px;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	border: none #918c00;
+	cursor: pointer;
 }
 
 .left-button {
-background: #FFF;
-border: 1px solid #ccc;
+	background: #FFF;
+	border: 1px solid #ccc;
 }
 
 .submitBtn {
-color: #fff;
-background: #918C00;
+	color: #fff;
+	background: #918C00;
 }
 
 .favor-choice {
-font-size: 12px;
-color: #918c00;
-font-weight: bold;
-margin-top: 20px;
-margin-bottom: 20px;
-line-height: 20px;
+	font-size: 12px;
+	color: #918c00;
+	font-weight: bold;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	line-height: 20px;
 }
 
 .box-container {
-display: flex;
-gap: 10px; /* 각 직사각형 사이의 간격 */
-  flex-wrap: wrap;
-  justify-content: space-between;
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
-.box-container > div {
-  background: #F4F4F4;
-  height: 35px;
-  width: 240px;
-  font-size: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #ccc;
+.box-container>div {
+	background: #F4F4F4;
+	height: 35px;
+	width: 240px;
+	font-size: 12px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid #ccc;
 }
 
 .rectangle-active {
-  border: 1px solid #918c00 !important;
-  background: #918c00 !important;
-  color: #FFF;
-  font-weight: bold;
+	border: 1px solid #918c00 !important;
+	background: #918c00 !important;
+	color: #FFF;
+	font-weight: bold;
 }
 
 .referral-code {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
-.referral-code > input {
-  width: 630px;
+.referral-code>input {
+	width: 630px;
 }
 
-.referral-code > input {
-  font-size: 12px;
-  padding: 10px;
+.referral-code>input {
+	font-size: 12px;
+	padding: 10px;
 }
-#username-validation,
-#password-validation,
-#password-same-result,
-#email-check-result{
-	display:block;
+
+#username-validation, #password-validation, #password-same-result,
+	#email-check-result {
+	display: block;
 	font-size: 12px !important;
-    padding-left: 110px;
-    margin-bottom: 10px;
-    color: #918c01;
-    font-weight: bold;
+	padding-left: 110px;
+	margin-bottom: 10px;
+	color: #918c01;
+	font-weight: bold;
+}
+/**/
+.join-header-section {
+	max-width: 750px;
+	margin: 0 auto;
+}
+
+.join-header {
+	position: relative;
+	margin: 40px 0 45px;
+	text-align: center;
+	counter-reset: meals_list;
+}
+.join-header li{
+	display: inline-block;
+    position: relative;
+    width: 160px;
+    margin: 0 5px;
+    vertical-align: top;
+    color: #888;
+}
+.join-header:before {
+ content: '';
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    height: 1px;
+    width: 320px;
+    background: #918c00;
+    transform: translate(-50%, 0);
+}
+.join-header li:before {
+    counter-increment: meals_list;
+    content: counter(meals_list);
+    display: block;
+    box-sizing: border-box;
+    width: 35px;
+    height: 35px;
+    margin: 0 auto 10px;
+    text-align: center;
+    line-height: 31px;
+    border: 2px solid #918c00;
+    background: #FFF;
+    font-size: 14px;
+    font-weight: 600;
+    color: #918c00;
+    border-radius: 50%;
+}
+
+.join-header > .on:before{
+	background:#918c01 !important;
+	color:white !important;
 }

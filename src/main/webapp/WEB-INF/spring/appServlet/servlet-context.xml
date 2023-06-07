@@ -22,10 +22,10 @@
   <context:component-scan base-package="com.codals.greating"/>
 
   <interceptors>
-    <interceptor>
+<!--     <interceptor>
       <mapping path="/**"/>
       <beans:bean class="com.codals.greating.interceptor.TemporaryUserInterceptor"/>
-    </interceptor>
+    </interceptor> -->
     <interceptor>
       <mapping path="/mypage/**"/>
       <mapping path="/diets/**"/>
