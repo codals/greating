@@ -1,7 +1,9 @@
 package com.codals.greating.admin.dao;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -64,5 +66,38 @@ public class AdminDaoImpl implements AdminDao {
 		int updatedRows = sqlSession.update("admin.approveCancel", postId);
 		return updatedRows > 0;
 	}
+
+	@Override
+	public boolean approveDiy(long postId) {
+		int updatedRows = sqlSession.update("admin.approveDiyCheck", postId);
+		return updatedRows > 0;
+	}
+
+	@Override
+	public boolean approveDiyCancel(long postId) {
+		int updatedRows = sqlSession.delete("admin.approveDiyCancel", postId);
+		return updatedRows > 0;
+	}
+
+	@Override
+	public boolean approveDiyRegister(int postId) {
+		System.out.println("DAO입니다." + postId);
+		int insertRows = sqlSession.insert("admin.registerDiy", postId);
+		return insertRows > 0;
+	}
+
+	
+	@Override
+	public boolean submitPrice(int postId, int price) {
+	    Map<String, Object> params = new HashMap<>();
+	    params.put("postId", postId);
+	    params.put("price", price);
+	    System.out.println("params: " + params);
+
+	    int insertRows = sqlSession.update("admin.submitPrice", params);
+	    return insertRows > 0;
+	}
+
+
 
 }

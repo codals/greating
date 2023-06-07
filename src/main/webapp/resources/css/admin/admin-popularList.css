@@ -40,13 +40,20 @@ table td {
     text-align: center;
 }
 
-td
+td:not(:first-child)
 {
  max-width: 50px;
- overflow: hidden;
+ 
  text-align: center;
- text-overflow: ellipsis;
- white-space: nowrap;
+ 
+}
+
+td:first-child{
+	max-width: 50px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	text-align: left;
 }
 
 td:first-child:hover{
@@ -63,4 +70,9 @@ a {
 button {
 	border: 0;
 	background-color:transparent;
+}
+
+.cancel-button{
+	color: red;
+	border: solid 1px #ccc;
 }

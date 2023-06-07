@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -9,8 +10,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet"
-	href="/greating/resources/css/templates/reset.css">
+<!-- <link rel="stylesheet"
+	href="/greating/resources/css/templates/reset.css"> -->
 
 <link rel="stylesheet" href="/greating/resources/css/admin/admin-popularList.css">
 <!-- jQuery 라이브러리 추가 -->
@@ -30,7 +31,7 @@
 
 	<div class="content">
 		<div class="content-div">
-			<h2 class="content-title">인기 식단 목록</h2>
+			<h2 class="content-title">투표종료 인기 식단 목록</h2>
 			<table>
 				<thead>
 					<tr>
@@ -53,7 +54,7 @@
 	                        <td>${diet.mainCategoryName}</td>
 	                        <td>${diet.subCategoryName}</td>
 	                        <td>${diet.voteCnt}</td>
-	                        <td>${diet.createdAt}</td>
+	                        <td><c:out value="${fn:substring(diet.createdAt, 2, 10)}" /></td>
 	                        <td>
 	                            <button class="approve-${diet.id}" onclick="approve(${diet.id}, this)" style="display: inline-block; margin-right: 10px;">✅</button>
 	                        </td>
