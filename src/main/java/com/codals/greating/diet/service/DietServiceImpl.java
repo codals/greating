@@ -1,5 +1,6 @@
 package com.codals.greating.diet.service;
 
+import com.codals.greating.diet.OrderConfirmationEvent;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -33,21 +34,24 @@ import com.codals.greating.diet.dto.PreviewDietResponseDto;
 import com.codals.greating.diet.dto.PreviewResponseDto;
 import com.codals.greating.diet.entity.DailyDiet;
 import com.codals.greating.diet.entity.OrderDiet;
+import com.codals.greating.email.dto.OrderDto;
+import com.codals.greating.email.service.EmailService;
 import com.codals.greating.user.entity.User;
 import com.codals.greating.util.DateUtil;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @Service
-//@RequiredArgsConstructor
 public class DietServiceImpl implements DietService {
 
     private final OrderDao orderDao;
     private final OrderDietDao orderDietDao;
+    private final EmailService emailService;
+    private final ApplicationEventPublisher eventPublisher;
     private final DailyDietDao dailyDietDao;
-    
     private final RedisTemplate<String, Object> redisTemplate;
     
  // 생성자에 @Qualifier 적용
@@ -141,7 +145,9 @@ public class DietServiceImpl implements DietService {
 	}
 	
     @Override
-    @Transactional
+    @
+  
+  
     public OrderResponseDto order(User user, OrderRequestDto orderRequestDto) {
         orderRequestDto.updateOrderInfo(user);
         orderDao.saveOrder(orderRequestDto);
@@ -151,6 +157,8 @@ public class DietServiceImpl implements DietService {
                 orderDietDao.insertOrderDiet(orderDiet);
             }
         }
+        OrderConfirmationEvent orderEvent = new OrderConfirmationEvent(this, new OrderDto(user, orderRequestDto));
+        eventPublisher.publishEvent(orderEvent);
         return new OrderResponseDto(orderRequestDto.getOrderId());
     }
 
