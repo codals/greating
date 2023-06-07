@@ -15,7 +15,6 @@ import com.codals.greating.diet.dto.PlanResponseDto;
 import com.codals.greating.diet.dto.PreviewDietResponseDto;
 import com.codals.greating.diet.dto.PreviewResponseDto;
 import com.codals.greating.diet.entity.DailyDiet;
-import com.codals.greating.diet.entity.Diet;
 import com.codals.greating.diet.entity.OrderDiet;
 import com.codals.greating.user.entity.User;
 import com.codals.greating.util.DateUtil;
@@ -23,7 +22,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,7 +56,7 @@ public class DietServiceImpl implements DietService {
     	List<DailyDiet> cachedData = getCachedTwoWeekDailyDiets(cacheKey);
     	if (cachedData != null) {    	// 1. 캐시에 있는지 확인하고, 캐시에 있으면 가져오기
     		response = convertCacheToPreviews(cachedData);
-    	} else {						// 1. 캐시에 없으면  DB에서 가져오기, 캐싱해두기
+    	} else {						// 2. 캐시에 없으면  DB에서 가져오기, 캐싱해두기
             log.info("[REDIS] TWO_WEEK_PREVIEW - Cache Miss - {}", cacheKey);
             data = dailyDietDao.selectAllByStartDate(currentDate);
 
@@ -71,7 +69,8 @@ public class DietServiceImpl implements DietService {
  
     // 2주치 Daily Diet 캐시 가져오기
     private List<DailyDiet> getCachedTwoWeekDailyDiets(String cacheKey) {
-    	List<DailyDiet> cachedData = (List<DailyDiet>) redisTemplate.opsForValue().get(cacheKey);
+    	@SuppressWarnings("unchecked")
+		List<DailyDiet> cachedData = (List<DailyDiet>) redisTemplate.opsForValue().get(cacheKey);
         log.info("[REDIS] TWO_WEEK_PREVIEW - Cache Hit - {}", cacheKey);
     	return cachedData;
 	}
@@ -94,7 +93,8 @@ public class DietServiceImpl implements DietService {
             	String cacheKey = CacheKey.DAILY_PREVIEW_CACHE_KEY + deliveryDateFormat;
             	List<?> cachedData = getCachedDailyDiet(cacheKey);
             	if (cachedData != null) {
-            		List<DailyDiet> dailyDiets = cachedData.stream()
+            		@SuppressWarnings("unchecked")
+					List<DailyDiet> dailyDiets = cachedData.stream()
             											   .map(cache -> new DailyDiet((LinkedHashMap<String, Object>) cache))
             											   .collect(Collectors.toList());
             		dietsResponse = dailyDiets.stream()
@@ -116,7 +116,8 @@ public class DietServiceImpl implements DietService {
     }
 
     private List<DailyDiet> getCachedDailyDiet(String cacheKey) {
-    	List<DailyDiet> cachedData = (List<DailyDiet>) redisTemplate.opsForValue().get(cacheKey);
+    	@SuppressWarnings("unchecked")
+		List<DailyDiet> cachedData = (List<DailyDiet>) redisTemplate.opsForValue().get(cacheKey);
         log.info("[REDIS] DAILY_PREVIEW - Cache Hit - {}", cacheKey);
     	return cachedData;
 	}
@@ -174,7 +175,8 @@ public class DietServiceImpl implements DietService {
     	Map<LocalDate, List<PreviewDietResponseDto>> dateDietMap = new TreeMap<>();
     	
     	for (Object cacheUnit : cacheDiets) {
-    		DailyDiet dailyDiet = new DailyDiet((LinkedHashMap<String, Object>) cacheUnit);
+    		@SuppressWarnings("unchecked")
+			DailyDiet dailyDiet = new DailyDiet((LinkedHashMap<String, Object>) cacheUnit);
     		List<PreviewDietResponseDto> list = dateDietMap.computeIfAbsent(dailyDiet.getStartDate(), k -> new ArrayList<>());
             list.add(new PreviewDietResponseDto(dailyDiet.getDiet()));
     	}

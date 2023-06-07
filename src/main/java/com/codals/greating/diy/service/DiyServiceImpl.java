@@ -191,6 +191,7 @@ public class DiyServiceImpl implements DiyService{
 	}
 
 	private List<SimplePostDto> getcachedSearchResult(String cacheKey) {
+		@SuppressWarnings("unchecked")
 		List<SimplePostDto> cachedData = (List<SimplePostDto>) redisTemplate.opsForValue().get(cacheKey);
 	    return cachedData;
 	}
