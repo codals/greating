@@ -11,16 +11,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.codals.greating.constant.MainCategoryCode;
+
+import com.codals.greating.diy.dto.CommentResponseDto;
 import com.codals.greating.diy.dto.DiyRequestDto;
+import com.codals.greating.diy.dto.PostStaticResponseDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.dto.SearchRequestDto;
 import com.codals.greating.diy.dto.SearchResponseDto;
 import com.codals.greating.diy.dto.VoteRequestDto;
+import com.codals.greating.diy.entity.Comment;
 import com.codals.greating.diy.service.DiyService;
 import com.codals.greating.user.entity.User;
 
@@ -86,11 +92,47 @@ public class DiyRestController {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
 	}
 
+  @PostMapping("/comment-new")
+	public ResponseEntity<CommentResponseDto> createComment(Comment comment){
+
+		CommentResponseDto newComment = diyService.createComment(comment);
+		if(newComment!=null) {
+			log.info("new comment : {} ", newComment);
+			return new ResponseEntity<>(newComment, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+    @DeleteMapping("/{commentId}/comment")
+	public ResponseEntity<Boolean> deleteComment(@PathVariable("commentId") int commentId){
+    	if(diyService.deleteComment(commentId)) {
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+    }
+	
+	@PostMapping("/comment-update")
+	public ResponseEntity<Boolean> updateComment(Comment comment){
+		if(diyService.updateComment(comment)) {
+			return new ResponseEntity<>(true, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
+	   
+	}
+  
 	@GetMapping("/search")
 	public ResponseEntity<SearchResponseDto> search(SearchRequestDto requestDto, @RequestParam(value = "page", defaultValue = "1") int page) {
 		requestDto.setPage(page);
 		SearchResponseDto response = diyService.search(requestDto);	
 		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+	
+	@GetMapping("/statics")
+	public ResponseEntity<PostStaticResponseDto> statics(int postId) {
+		
+		PostStaticResponseDto postStatics = diyService.getPostVoteStatics(postId);
+	    return new ResponseEntity<>(postStatics, HttpStatus.OK);
+		
 	}
 
 }

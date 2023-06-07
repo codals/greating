@@ -236,10 +236,68 @@
 		where
 		post_id=#{postId} and user_id=#{userId}
 	</select>
+	
+	<select id="selectPostVoteStatics" parameterType="int" resultType="PostStaticResponseDto">
+
+		SELECT
+		  COUNT(*) AS total_vote_cnt,
+		  COUNT(CASE WHEN u.gender = 'female' THEN 1 END) AS female_total_vote_count,
+		  COUNT(CASE WHEN u.gender = 'male' THEN 1 END) AS male_total_vote_count,
+		  SUM(CASE WHEN u.gender = 'female' AND TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(u.birth, 'YYYYMMDD'))/12) BETWEEN 10 AND 19 THEN 1 ELSE 0 END) AS female_10s_vote_count,
+		  SUM(CASE WHEN u.gender = 'female' AND TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(u.birth, 'YYYYMMDD'))/12) BETWEEN 20 AND 29 THEN 1 ELSE 0 END) AS female_20s_vote_count,
+		  SUM(CASE WHEN u.gender = 'female' AND TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(u.birth, 'YYYYMMDD'))/12) BETWEEN 30 AND 39 THEN 1 ELSE 0 END) AS female_30s_vote_count,
+		  SUM(CASE WHEN u.gender = 'female' AND TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(u.birth, 'YYYYMMDD'))/12) BETWEEN 40 AND 49 THEN 1 ELSE 0 END) AS female_40s_vote_count,
+		  SUM(CASE WHEN u.gender = 'female' AND TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(u.birth, 'YYYYMMDD'))/12) >= 50 THEN 1 ELSE 0 END) AS female_50s_vote_count,
+		  SUM(CASE WHEN u.gender = 'male' AND TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(u.birth, 'YYYYMMDD'))/12) BETWEEN 10 AND 19 THEN 1 ELSE 0 END) AS male_10s_vote_count,
+		  SUM(CASE WHEN u.gender = 'male' AND TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(u.birth, 'YYYYMMDD'))/12) BETWEEN 20 AND 29 THEN 1 ELSE 0 END) AS male_20s_vote_count,
+		  SUM(CASE WHEN u.gender = 'male' AND TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(u.birth, 'YYYYMMDD'))/12) BETWEEN 30 AND 39 THEN 1 ELSE 0 END) AS male_30s_vote_count,
+		  SUM(CASE WHEN u.gender = 'male' AND TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(u.birth, 'YYYYMMDD'))/12) BETWEEN 40 AND 49 THEN 1 ELSE 0 END) AS male_40s_vote_count,
+		  SUM(CASE WHEN u.gender = 'male' AND TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(u.birth, 'YYYYMMDD'))/12) >= 50 THEN 1 ELSE 0 END) AS male_50s_vote_count
+		FROM
+		  vote v
+		JOIN
+		  "user" u ON v.user_id = u.id
+		WHERE
+		  v.post_id = #{postId}
+	
+	</select>
 
 	<update id="updateStatusOfExpiredPosts" parameterType="Integer">
 		UPDATE post
 		SET status = #{voteFinishedId}
 		WHERE created_at &lt; SYSDATE - 7
 	</update>
+	
+	
+	
+	<!-- comment 관련  -->
+	<select id="selectComments" parameterType="Integer" resultType="CommentResponseDto">
+		
+	select c.*, username 
+	from "comment" c join "user" u on u.id = c.user_id 
+	where post_id = #{postId} order by c.created_at desc
+	
+	</select>
+	
+	<select id="selectCommentById" parameterType="Integer" resultType="CommentResponseDto">
+		select c.*, username from "comment" c join "user" u on u.id = c.user_id where c.id = #{commentId}
+	</select>
+	<update id="updateComment" parameterType="Comment">
+		update "comment" set content = #{content}  where id= #{id}
+	</update>
+	
+	<insert id="insertComment" parameterType="Comment" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+		insert into "comment"(user_id, post_id, content, created_at) values(#{userId},#{postId}, #{content},sysdate)
+		<selectKey keyProperty="id" resultType="int" order="AFTER">
+			SELECT comment_id_seq.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+	
+	<delete id="deleteCommentById" parameterType="int">
+		delete from "comment"
+		where
+		id=#{commentId}
+	</delete>
+	
+	
 </mapper>

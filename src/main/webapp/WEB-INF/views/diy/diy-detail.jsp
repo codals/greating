@@ -16,6 +16,10 @@
 <link href="/greating/resources/css/diy/diy-detail.css" rel="stylesheet">
 
 <!-- js 가져오기 -->
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
 <script src="/greating/resources/js/diy/diy-detail.js"></script>
@@ -43,6 +47,7 @@
 <link href="/greating/resources/css/templates/alert.css"
 	rel="stylesheet">
 
+
 </head>
 
 <body>
@@ -62,6 +67,7 @@
 			<li>></li>
 			<li class="highlight">DIY 도시락 상세</li>
 		</ul>
+		<span class="postId" style="display:none;">${postDetail.post.id}</span>
 		<div class="main-info-container">
 
 			<div class="main-img">
@@ -157,13 +163,13 @@
 			<div class="tab-menu">
 				<ul class="nav nav-pills tab-menu__inner">
 					<li
-						class="nav-item tab-menu__list tnb-area__list tab-menu__list--on">
+						class="nav-item tab-menu__list tnb-area__list tab-menu__list--on tab1">
 						<a class="nav-link active" data-toggle="pill" href="#detail"><strong>식단
 								정보</strong></a>
 					</li>
-					<li class="nav-item tab-menu__list"><a class="nav-link"
+					<li class="nav-item tab-menu__list tab2"><a class="nav-link"
 						data-toggle="pill" href="#comments"> <strong>투표 현황 /
-								댓글</strong> <span class="tab-menu__count" id="reviwCnt">8</span>
+								댓글</strong> <span class="tab-menu__count" id="reviwCnt">${comments.size()}</span>
 					</a></li>
 				</ul>
 			</div>
@@ -323,8 +329,8 @@
 										<img src="${relatedFood.imgUrl}">
 									</div>
 									<div class="market-card-info">
-										<span class="market-food-name"> ${relatedFood.name} </span>
-										 <span class="market-tag"> 건강마켓 </span>
+										<span class="market-food-name"> ${relatedFood.name} </span> <span
+											class="market-tag"> 건강마켓 </span>
 
 									</div>
 								</li>
@@ -335,8 +341,66 @@
 
 				</div>
 				<!-- tab1 종료  -->
-				<div class="tab-pane fade container" id="comments">준비중인 기능입니다.</div>
+				<!-- tab2 시작  -->
+				<div class="tab-pane fade container" id="comments">
 
+					<div class="vote-static-section">
+						<span class="vote-static-title"> Greating Votes</span>
+						<hr>
+						<div class="vote-chart">
+
+							<canvas id="vote-gender-chart"></canvas>
+
+							<canvas id="vote-ages-chart"></canvas>
+
+						</div>
+						<hr>
+					</div>
+					<div class="comments-section">
+						<span class="comment-title">Greating Reviews </span>
+						<div class="comment-header-group">
+							<span> Total Reviews : ${comments.size()}</span>
+							<button class="btn btn-primary" type="button"
+								id="updateCommentOpenBtn" data-bs-toggle="collapse"
+								data-bs-target="#updateComment" aria-expanded="false"
+								aria-controls="updateComment">댓글 작성</button>
+						</div>
+
+						<div class="collapse" id="updateComment">
+							<div class="card card-body">
+								<div class="update-comments-group">
+									<input type="text" placeholder="댓글을 입력헤주세요"
+										class="update-comments" id="update-comment-content">
+									<button id="updateCommentBtn" onclick="updateComment(${postDetail.post.id}, ${loginUser.id})">댓글
+										등록</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="tab2-comments">
+
+							<c:forEach items="${comments}" var="postComment">
+								<div class="tab2-comment" id="tab2-comment-${postComment.id}">
+									<div class="tab2-comment-header">
+										<div class="tab2-comment-text">
+											<span> 작성자 : ${postComment.username} | </span>
+											<span class="comment-createdAt">${postComment.createdAt} </span>
+										</div>
+										<div class="btns">
+											<c:if test="${postComment.userId == loginUser.id}">
+												<button class="tab2-comment-reupload" onclick="enableCommentEdit(this,${postComment.id})">수정</button>
+												<button class="tab2-comment-delete" onclick="checkDeleteComment(${postComment.id})">삭제</button>
+											</c:if>
+										</div>
+									</div>
+									<div class="tab2-comment-content">
+										<textarea id="comment-${postComment.id}" readonly> ${postComment.content} </textarea>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+					</div>
+				</div>
 			</div>
 
 		</div>

@@ -11,10 +11,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
+import com.codals.greating.diy.dto.CommentResponseDto;
 import com.codals.greating.diy.dto.PostResponseDto;
+import com.codals.greating.diy.dto.PostStaticResponseDto;
 import com.codals.greating.diy.dto.ScrapRequestDto;
 import com.codals.greating.diy.dto.SearchRequestDto;
 import com.codals.greating.diy.dto.SimplePostDto;
+import com.codals.greating.diy.entity.Comment;
 import com.codals.greating.diy.entity.Post;
 import com.codals.greating.diy.entity.Scrap;
 import com.codals.greating.diy.entity.Vote;
@@ -141,4 +144,42 @@ public class DiyDAOImpl implements DiyDAO {
 		String statement ="post.selectPostsBySubCategory";
 		return sqlSession.selectList(statement, subCategoryId);
 	}
+
+	@Override
+	public PostStaticResponseDto selectPostVoteStatics(int postId) {
+		String statement ="post.selectPostVoteStatics";
+		return sqlSession.selectOne(statement,postId);
+	}
+
+	@Override
+	public List<CommentResponseDto> selectComments(int postId) {
+		String statement ="post.selectComments";
+		return sqlSession.selectList(statement, postId);
+	}
+
+	@Override
+	public int updateComment(Comment comment) {
+		String statement = "post.updateComment";
+		return sqlSession.update(statement,comment);
+	}
+
+	@Override
+	public int insertComment(Comment comment) {
+		String statement = "post.insertComment";
+		sqlSession.insert(statement, comment);
+		return comment.getId();
+	}
+
+	@Override
+	public CommentResponseDto selectCommentById(int commentId) {
+		String statement ="post.selectCommentById";
+		return sqlSession.selectOne(statement, commentId);
+	}
+
+	@Override
+	public int deleteCommentById(int commentId) {
+		String statement ="post.deleteCommentById";
+		return sqlSession.delete(statement, commentId);
+	}
+
 }
