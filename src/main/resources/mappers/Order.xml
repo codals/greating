@@ -15,4 +15,9 @@
     FROM "order"
     WHERE id = #{orderId}
   </select>
+  <select id="selectCountOfCompletedOrdersByUserId" parameterType="Integer" resultType="Integer">
+    select count(*)
+    from "order"
+    where USER_ID = #{userId} and status = 'PAYMENT_COMPLETED'
+  </select>
 </mapper>
