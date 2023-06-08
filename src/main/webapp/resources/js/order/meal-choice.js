@@ -28,7 +28,6 @@ $(document).ready(function () {
     	Swal.fire({
         	  title: '최대 6개까지 선택이 가능합니다.',
           });
-    	alert('최대 6개까지 선택이 가능합니다.');
       return;
     }
 
