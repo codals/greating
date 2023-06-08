@@ -151,7 +151,6 @@ function updateSearchResultBox(data){
 		    dietCardList.append(dietCard);
 		
 	});
-}
 	
 	// pagination 추가
     // 페이징 버튼 생성 및 추가
@@ -163,6 +162,8 @@ function updateSearchResultBox(data){
 	paginationContainer.appendChild(pagination);
 	
 	dietCardList.append(dietCardList);
+
+}
 
 //페이징 버튼 생성
 function generatePagination(dto) {
