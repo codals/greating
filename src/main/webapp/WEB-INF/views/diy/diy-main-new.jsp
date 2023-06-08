@@ -124,9 +124,8 @@
 			<div id="default-title" style="margin:30px 0px -30px 20px;">
 					<h3 style="font-weight: bold;">조건 검색하기</h3>
 					
-					<br><br>
 					위의 검색 창 돋보기 버튼을 눌러 내가 원하는 조건들로 DIY 도시락들을 검색해보세요!
-					<br><br><br><br>
+					<br><br><br><br><br><br><br><br><br><br><br><br><br>
 					
 					<hr>
 					
