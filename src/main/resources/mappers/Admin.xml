@@ -11,6 +11,7 @@
 		p.vote_cnt,
 		p.status,
 		p.created_at,
+		p.status,
 		u.username,
 		mc.name AS mainCategoryName,
 		sc.name
@@ -133,5 +134,29 @@
 		where #{date} =
 		daily_diet.start_date or #{date} = daily_diet.end_date
 	</select>
+	
+	<select id="allList" resultType="AdminTopList">
+	    SELECT
+	    p.id,
+	    p.title,
+	    p.vote_cnt,
+	    p.status,
+	    p.created_at,
+	    u.username,
+	    mc.name AS mainCategoryName,
+	    sc.name AS subCategoryName
+	    FROM
+	    post p
+	    INNER JOIN "user" u ON p.user_id = u.id
+	    INNER JOIN main_category mc ON p.main_category_id = mc.id
+	    INNER JOIN sub_category sc ON p.sub_category_id = sc.id
+	    ORDER BY
+	    p.created_at DESC
+	</select>
+	
+	<update id="deleteDiy" parameterType="int">
+		DELETE FROM post
+		WHERE id = #{postId}
+	</update>
 
 </mapper>

@@ -40,7 +40,6 @@ public class DiyDAOImpl implements DiyDAO {
 	@Override
 	public Integer savePost(Post post) {
 	    String insertStatement = "post.insertPost";
-	    String selectStatement = "post.selectLastInsertedId";
 	    String sequenceStatement = "post.nextPostId";
 	    
 	    // 게시글을 삽입합니다.
@@ -51,12 +50,8 @@ public class DiyDAOImpl implements DiyDAO {
 	    
 	    // 시퀀스의 NEXTVAL을 사용하여 다음 ID 값을 생성합니다.
 	    int nextVal = sqlSession.selectOne(sequenceStatement);
-	    log.info("nextVal=" + nextVal);
 	  
 	    // 생성된 게시글의 ID 값을 조회합니다.
-	    Integer postId = post.getId();
-		log.info("post 저장 직후=" + post);
-	    log.info("postId=" + postId);
 	    return nextVal-1;
 	}
 
@@ -92,7 +87,6 @@ public class DiyDAOImpl implements DiyDAO {
 
 	@Override
 	public List<SimplePostDto> selectPostBySearchConditions(SearchRequestDto requestDto) {
-		log.info("dao=" + requestDto);
 		return sqlSession.selectList("post.selectPostBySearchConditions", requestDto);
 	}
 	

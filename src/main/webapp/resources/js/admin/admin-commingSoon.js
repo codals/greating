@@ -91,10 +91,10 @@ function approve(postId, button) {
 						console.log("DIY식단 등록 성공!");
 
 						// 가격 입력 요소 생성
-						var priceInputText = $('<span>').text("가격을 입력하세요:");
+						var priceInputText = $('<span>').text("가격을 입력하세요:").attr('id', 'priceInputText-' + postId);
 						var priceInput = $('<input>').attr('type', 'text')
 								.attr('id', 'priceInput');
-						var submitButton = $('<button>').text("전송").click(
+						var submitButton = $('<button>').text("전송").attr('id', 'submitPrice-' + postId).click(
 								function() {
 									var price = $('#priceInput').val();
 									submitPrice(postId, price);
@@ -158,10 +158,16 @@ function cancelApproval(postId, button) {
 				// 성공 메시지로 텍스트 업데이트
 				$(button).text("승인");
 
+
+				
+				// 가격 입력 요소 제거
+				$(button).parent().find('span, input, button[id^="submitPrice-"]').remove();
+				
+
+                
+				// 상태를 업데이트하거나 화면을 갱신하는 등의 동작을 수행할 수 있습니다.
 				// 취소 버튼 삭제
 				$(button).next().remove();
-
-				// 상태를 업데이트하거나 화면을 갱신하는 등의 동작을 수행할 수 있습니다.
 			},
 			error : function() {
 				console.log("Failed to cancel post approval!");

@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+.mypage-main {
+	margin-top: 50px;
+	width: 100%;
+}
+
+.sub-cont {
+	float: left;
+	width: 870px;
+}
+
+/* .myDiy-cont {
+	margin-top: 20px;
+}
+
+.mypage-main{
+	display:block;
+	width: 800px;
+	height: 550px;
+	object-fit: scale-down;
+} */
+
+.myDiy-cont .mypage-main {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.myDiy-cont .img-on {
+  order: -1;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  text-decoration: none;
+  color: white;
+  background-color: black;
+  padding: 10px 20px;
+  font-weight: bold;
+}

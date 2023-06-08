@@ -24,7 +24,7 @@
 			<!-- 로그인된 사용자인 경우 -->
 			<c:if test="${not empty sessionScope.loginUser && sessionScope.loginUser.role == Role.USER}">
 				<span class="welcome-message">
-				<a href="${pageContext.request.contextPath}/mypage/diets"
+				<a href="${pageContext.request.contextPath}/mypage/profile"
 				style="color: inherit; text-decoration: none;">
 				${sessionScope.loginUser.name}님</a></span>
 				<span class="divider"></span>
@@ -32,12 +32,13 @@
 				<span class="divider"></span>
 				<span class="customer-service-label">고객센터</span>
 				<span class="divider"></span>
-				<span class="link">로그아웃</span>
+				<span class="link"><a href="javascript:logout()" style="color: black;">로그아웃</a></span>
+				
 			</c:if>
 
 			<c:if test="${not empty sessionScope.loginUser && sessionScope.loginUser.role == Role.ADMIN}">
 				<span class="welcome-message">
-				<a href="${pageContext.request.contextPath}/mypage/diets"
+				<a href="${pageContext.request.contextPath}/mypage/profile"
 				   style="color: inherit; text-decoration: none;">
 				${sessionScope.loginUser.name}님</a></span>
 				<span class="divider"></span>
@@ -45,7 +46,7 @@
 				<span class="divider"></span>
 				<span class="admin-page">관리자 페이지</span>
 				<span class="divider"></span>
-				<span class="link">로그아웃</span>
+				<span class="link"><a href="javascript:logout()" style="color: black;">로그아웃</a></span>
 			</c:if>
 
 			<!-- 로그인되지 않은 사용자인 경우 -->

@@ -97,5 +97,29 @@ function cancelApprovePost(postId){
 
 }
 
-
-
+function deleteDiet(dietId, button) {
+    var confirmation = confirm("식단을 삭제하시겠습니까?");
+    let data = {
+            'dietId': dietId
+    }
+    console.log(data);
+    if (confirmation) {
+        $.ajax({
+            url: "/greating/api/admin/deleteDiet",
+            type: "POST",
+            data: data,
+            success: function(response) {
+                console.log("Diet deleted successfully!");
+                alert("삭제되었습니다.");
+                // 해당 행을 삭제
+                $(button).closest("tr").remove();
+                
+                // 삭제 성공 메시지 등 필요한 동작 수행
+                
+            },
+            error: function() {
+                console.log("Failed to delete diet!");
+            }
+        });
+    }
+}

@@ -23,7 +23,7 @@ public class AdminController {
 	@GetMapping("/popular")
 	public String loadAdminMainPage(@SessionAttribute("loginUser") User loginUser, Model model) {
 		List<AdminDto> postList = service.topList();
-
+		System.out.println(loginUser);
 		model.addAttribute("list", postList);
 
 		return "admin/admin-popularList";
@@ -39,5 +39,15 @@ public class AdminController {
 		List<AdminDto> commingSoonList = service.commingSoonList();
 		model.addAttribute("list", commingSoonList);
 		return "admin/admin-commingsoon";
+	}
+	
+	@GetMapping("/allList")
+	public String loadAdminAllList(@SessionAttribute("loginUser") User loginUser, Model model) {
+		List<AdminDto> allList = service.allList();
+
+		model.addAttribute("list", allList);
+		System.out.println(allList);
+
+		return "admin/admin-allList";
 	}
 }

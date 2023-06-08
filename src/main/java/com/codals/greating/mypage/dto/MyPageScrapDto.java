@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class MyPageScrapDto {
 	private long userId;
-	private long postId;
+	private long id;
 	private String userName;
 	private String title;
 	private long minCalorie;

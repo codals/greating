@@ -34,4 +34,8 @@ public interface AdminDao {
 
 	boolean submitPrice(int postId, int price);
 
+	List<AdminDto> allList();
+
+	boolean deleteDiy(int postId);
+
 }
