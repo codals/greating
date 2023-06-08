@@ -29,7 +29,7 @@
 			<!-- 로그인된 사용자인 경우 -->
 			<c:if test="${not empty sessionScope.loginUser && sessionScope.loginUser.role == Role.USER}">
 				<span class="welcome-message">
-				<a href="${pageContext.request.contextPath}/mypage/profile"
+				<a href="${pageContext.request.contextPath}/mypage"
 				style="color: inherit; text-decoration: none;">
 				${sessionScope.loginUser.name}님</a></span>
 				<span class="divider"></span>
@@ -42,7 +42,7 @@
 
 			<c:if test="${not empty sessionScope.loginUser && sessionScope.loginUser.role == Role.ADMIN}">
 				<span class="welcome-message">
-				<a href="${pageContext.request.contextPath}/mypage/profile"
+				<a href="${pageContext.request.contextPath}/mypage"
 				   style="color: inherit; text-decoration: none;">
 				${sessionScope.loginUser.name}님</a></span>
 				<span class="divider"></span>

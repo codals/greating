@@ -28,4 +28,9 @@ public class OrderDaoImpl implements OrderDao {
     public Order selectById(Integer orderId) {
         return sqlSession.selectOne("order.selectById", orderId);
     }
+
+    @Override
+    public int selectCountOfCompletedOrdersByUserId(Integer userId) {
+        return sqlSession.selectOne("order.selectCountOfCompletedOrdersByUserId", userId);
+    }
 }

@@ -8,4 +8,6 @@ public interface OrderDao {
     void saveOrder(OrderRequestDto orderRequestDto);
 
     Order selectById(Integer orderId);
+
+    int selectCountOfCompletedOrdersByUserId(Integer userId);
 }

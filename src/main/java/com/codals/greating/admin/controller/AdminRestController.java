@@ -106,7 +106,7 @@ public class AdminRestController {
 	@PostMapping("/diytodiet")
 	public ResponseEntity<Boolean> diyToDiet(DiyToDietRequestDto requestDto) {
 		log.info(requestDto);
-		return ResponseEntity.ok().build(); 
+		return ResponseEntity.ok().build();
 	}
 
 	@PostMapping("/deleteDiet")
