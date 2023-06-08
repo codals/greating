@@ -75,8 +75,8 @@
 
 .floating-button {
 	position: fixed;
-	right: 10%; 
-	top: 760px;
+	right: 151px;
+    bottom: 60px;
 	color: #918c01;
 	cursor: pointer;
 	transition: transform 0.3s ease-in-out;

@@ -111,6 +111,7 @@ body {
 	color: rgba(145, 140, 1, 1);
 }
 
+
 .button-group {
 	display: flex;
 	justify-content: center;
@@ -132,6 +133,10 @@ body {
 	text-align: center;
 	border: 1px solid rgba(145, 140, 1, 1);
 	flex-grow: 1;
+}
+.vote-btn-text{
+	    display: block;
+    font-size: 10px;
 }
 
 .scrap-button {

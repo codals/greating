@@ -90,7 +90,7 @@ function search(page){
 		 } else {
 			 url += "&page=" + page;
 		 }
-	 }
+	 };
 	 
 	 $.ajax({
 	        url: url,

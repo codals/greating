@@ -135,9 +135,12 @@
 
 					</c:if>
 					<c:if test="${isVoted ne true}">
+					
 						<button class="vote-button"
 							onclick="checkVote(${postDetail.post.id})">
-							<i class="far fa-thumbs-up"></i><span> 투표하기</span>
+							<i class="far fa-thumbs-up"></i>
+							<span> 투표하기</span>
+							<span class="vote-btn-text"> 이 도시락을 만나보고 싶으신가요? </span>
 						</button>
 					</c:if>
 					<c:if test="${isScrapped eq true}">
@@ -152,10 +155,6 @@
 							<i class="far fa-bookmark"></i> <span>스크랩</span>
 						</button>
 					</c:if>
-					<div class="tooltiptext3">
-						<span> 정식 식단으로 만나고 싶나요? </span>
-						<p> 🔰 여러분의 투표를 기다립니다. 🔰</p>
-					</div>
 
 				</div>
 
