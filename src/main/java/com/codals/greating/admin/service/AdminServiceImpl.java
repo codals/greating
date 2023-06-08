@@ -25,8 +25,6 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService {
 	private final AdminDao adminDao;
-	private final DailyDietDao dailyDietDao;
-	private final RedisTemplate<String, Object> redisTemplate;
 
 	
 	@Override

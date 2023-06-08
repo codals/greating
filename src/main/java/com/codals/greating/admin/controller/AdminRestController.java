@@ -127,13 +127,7 @@ public class AdminRestController {
 
 	}
 
-	@PostMapping("/deleteDiet")
-	public ResponseEntity<Boolean> deleteDiy(@RequestParam("dietId") int postId) {
-		if(adminService.deleteDiy(postId)) {
-			return ResponseEntity.ok().build(); 
-		}
-		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
-	} 
+
 	
 }
 

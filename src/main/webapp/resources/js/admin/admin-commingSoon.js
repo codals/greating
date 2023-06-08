@@ -30,7 +30,7 @@ function approveToDiet(postId, button){
 	              $(button).removeClass('approve-to-diet-'+postId);
 	              $(button).addClass('cancel-diet-'+postId);
 	              $(button).attr('onclick', 'cancelDiet(' + postId + ', this)');
-	              $(button).closest('tr').find('td span').text('상품 등록됨');
+	              $(button).closest('tr').find('td span').text('출시 완료');
 		        })
 		        .catch(function(error) {
 		          Swal.fire('승인 실패하였습니다!', 'error');
