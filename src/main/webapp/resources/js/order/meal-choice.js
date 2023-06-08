@@ -64,12 +64,6 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.btn-buy').click(function () {
-    if (totalCount !== 6) {
-    	Swal.fire({
-      	  title: '6개를 선택해야 합니다.',
-        });
-      return;
-    }
     const mealCards = document.getElementsByClassName("meal-card");
     const order = [];
 
@@ -83,6 +77,12 @@ $(document).ready(function () {
       if (cnt > 0) {
         order.push({dietId, cnt, name, price, deliveryDate});
       }
+    }
+    if (order.length !== 6) {
+      Swal.fire({
+        title: '6개를 선택해야 합니다.',
+      });
+      return;
     }
     console.log(order);
     let data = {
