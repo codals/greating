@@ -29,7 +29,7 @@
 	<!-- 1. 배너 -->
 	<div class="banner-img">
 		<div class="banner-content">
-			<span class="banner-title">나만의 DIY 식단 </span> <span
+			<span class="banner-title">나만의 DIY 도시락 </span> <span
 				class="banner-description"> 원하는 밥/메인반찬/사이드 반찬 등을 담아<br>
 				나만의 새로운 식단을 제안해보세요
 			</span> <span class="banner-inner-icon"> <a href="${pageContext.request.contextPath}/mealdiy/new">
@@ -44,8 +44,8 @@
 
 			<div class="secondary-main-content">
 				<div class="simple-search-container">
-					<span class="title">DIY 식단 간단 검색</span> <span class="search-text">다른
-						유저가 이미 제안한 식단 중,<br>내가 원하는 식단이 있는지 쉽게 검색해보세요!
+					<span class="title">DIY 도시락 간단 검색</span> <span class="search-text">다른
+						Greater들이 제안한 도시락 중,<br>내가 원하는 도시락이 있는지 쉽게 검색해보세요!
 					</span>
 					<div class="search-box">
 						<input type="text" placeholder="검색어를 입력하세요">
@@ -112,7 +112,7 @@
 				<div class="today-post-container mb-5">
 					<div class="today-title-sec">
 						<div class="today-title-left">
-							<span class="sub-title">오늘 업로드된 식단</span> <span class="sub-more">
+							<span class="sub-title">오늘 업로드된 도시락</span> <span class="sub-more">
 								더보기 </span>
 						</div>
 						<div class="today-title-right">
@@ -122,26 +122,7 @@
 					<div class="hr"></div>
 
 					<div class="today-post-list row row-cols-3">
-						<c:forEach var="i" begin="1" end="3">
-							<div class="col-4 today-post-card">
-								<div class="today-post-img">
-									<img src="${pageContext.request.contextPath}/resources/images/diet/우삼겹덮밥1.jpg">
-								</div>
-								<div class="today-post-info">
-									<span> 연자육 소불고기 & 두부 도시락 세트 </span>
-									<div class="today-post-sub-info">
-										<div class="post-heart">348</div>
-										<div class="post-writer">주먹왕 진우</div>
-									</div>
-									<div class="hr"></div>
-									<div class="today-post-sub-info2">
-										<div class="post-kcal">300 - 400 kcal</div>
-										<div class="post-price">7000 - 8000원</div>
-
-									</div>
-								</div>
-							</div>
-						</c:forEach>
+						
 					</div>
 				</div>
 

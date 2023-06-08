@@ -20,6 +20,13 @@
 
 <link rel="stylesheet"
 	href="/greating/resources/css/admin/admin-popularList.css">
+	
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<link href="/greating/resources/css/templates/alert.css"
+	rel="stylesheet">
 </head>
 <body>
 	<!--사이드바-->
@@ -29,7 +36,7 @@
 
 	<div class="content">
 		<div class="content-div">
-			<h2 class="content-title">출시 예정 식단 목록</h2>
+			<h2 class="content-title">출시 예정 도시락 목록</h2>
 			<table>
 				<thead>
 					<tr>
@@ -39,7 +46,7 @@
 						<th>소분류</th>
 						<th>투표수</th>
 						<th>작성일</th>
-						<th>정식식단승인</th>
+						<th>정식식단등록 관리</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -54,7 +61,7 @@
 	                        <td>${diet.voteCnt}</td>
 	                        <td><c:out value="${fn:substring(diet.createdAt, 2, 10)}" /></td>
 	                        <td>
-	                            <button class="approve-${diet.id}" onclick="approve(${diet.id}, this)" style="display: inline-block; margin-right: 10px;">승인</button>
+	                            <button class="approve-to-diet-${diet.id}"  id="diyToDietBtn" onclick="approveToDiet(${diet.id}, this)">승인</button>
 	                        </td>
 	                    </tr>
 	                </c:forEach>

@@ -230,23 +230,33 @@ table td {
 	width: 100%;
 	overflow-x: scroll;
 	display: flex;
-	height: 200px;
+	height: 220px;
 	margin-bottom:20px;
 }
 
 .slide-wrapper {
 	display: flex;
+	    margin-top: 10px;
 }
 
 .card {
 	width: 120px;
 	height: 160px;
-	border: 1px solid black;
-	margin: 5px;
+    border: 2px solid #918c01;
+    border-radius: 5px;	
+    margin:5px;
 	display: inline-block;
 	text-align: center;
 	padding:0;
 	background:none;
+	overflow: hidden;
+	
+}
+.card:hover{
+	 transform: scale(1.1);
+}
+.card img {
+  transition: all 0.2s linear;
 }
 
 .card>img {

@@ -4,51 +4,66 @@
     padding: 0;
     background-color: #e5e5e5;
 } */
-
-
-
 .content {
-    margin-left: 250px;
-    padding-left: 80px;
-    position: absolute;
-    width: 80%;
-  
+	margin-left: 250px;
+	padding-left: 80px;
+	position: absolute;
+	width: 80%;
+	margin-top: 150px;
 }
 
-.content-div{
-    margin-top: 200px;
+.content-div {
+	min-width: 1100px;
+    max-width: 1500px;
+    margin: 0px auto;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
+	width: 100%;
+	border-collapse: collapse;
 }
 
 table th, table td {
-    padding: 10px;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+	padding: 10px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 }
 
 table th {
-    background-color: #f1f1f1;
-    font-weight: bold;
-    text-align: center;
+	background-color: #f1f1f1;
+	font-weight: bold;
+	text-align: center;
 }
 
 table td {
-    text-align: center;
+	text-align: center;
 }
 
-td:not(:first-child)
+td
+:not
+ 
+(
+:first-child
+ 
+)
 {
- max-width: 50px;
+max-width
+:
  
- text-align: center;
- 
-}
+50
+px
+;
 
-td:first-child{
+	
+text-align
+:
+ 
+center
+;
+
+
+}
+td:first-child {
 	max-width: 50px;
 	text-overflow: ellipsis;
 	overflow: hidden;
@@ -56,23 +71,35 @@ td:first-child{
 	text-align: left;
 }
 
-td:first-child:hover{
+td:first-child:hover {
 	background-color: #ccc
 }
 
 a {
 	text-decoration: none;
 	color: black;
-	
 }
 
-
-button {
-	border: 0;
-	background-color:transparent;
+#approveBtn {
+	display: inline-block;
+	margin-right: 10px;
+	padding: 5px;
+	border: 1px solid #918c01;
+	border-radius: 5px;
 }
 
-.cancel-button{
+#cancelApprovalBtn {
+	display: inline-block;
+	margin-right: 10px;
+	padding: 5px;
+	border: 1px solid #918c01;
+	border-radius: 5px;
 	color: red;
-	border: solid 1px #ccc;
+}
+
+#diyToDietBtn {
+	padding: 5px;
+	width: 55px;
+	border-radius: 5px;
+	border: 1px solid #918c01;
 }

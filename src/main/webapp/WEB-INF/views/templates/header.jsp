@@ -134,11 +134,11 @@
 			                            <li><a href="#" class="L-Affiliate-Tagged">프로틴업</a></li>
 			                        </ul>
 			                    </li>
-			                    <li><a href="${pageContext.request.contextPath}/mealdiy" class="L-Affiliate-Tagged">DIY 식단</a>
+			                    <li><a href="${pageContext.request.contextPath}/mealdiy" class="L-Affiliate-Tagged">DIY 도시락</a>
 			                        <ul class="all-menu__depth2">
 			                            <li><a href="${pageContext.request.contextPath}/mealdiy/popular" class="L-Affiliate-Tagged">TOP 10 모아보기</a></li>
 			                            <li><a href="#" class="L-Affiliate-Tagged">테마별 모아보기</a></li>
-			                            <li><a href="${pageContext.request.contextPath}/mealdiy/new" class="L-Affiliate-Tagged">DIY 식단 만들기</a></li>
+			                            <li><a href="${pageContext.request.contextPath}/mealdiy/new" class="L-Affiliate-Tagged">DIY 도시락 만들기</a></li>
 			                        </ul>
 			                    </li>
 			                    <li><a href="#" class="L-Affiliate-Tagged">서비스</a>
@@ -165,7 +165,7 @@
 				          <li class="gnb__list"><a href="#" class="gnb__list-name L-Affiliate-Tagged">건강식단</a></li>
 				          <li class="gnb__list"><a href="#" class="gnb__list-name L-Affiliate-Tagged">질환맞춤식단</a></li>
 				          <li class="gnb__list"><a href="#" class="gnb__list-name L-Affiliate-Tagged">챌린지식단</a></li>
-				          <li class="gnb__list"><a href="${pageContext.request.contextPath}/mealdiy" class="gnb__list-name L-Affiliate-Tagged">DIY 식단</a></li>
+				          <li class="gnb__list"><a href="${pageContext.request.contextPath}/mealdiy" class="gnb__list-name L-Affiliate-Tagged">DIY 도시락</a></li>
 				          <li class="gnb__list"><a href="#" class="gnb__list-name L-Affiliate-Tagged">이벤트</a></li>
 				          <li class="gnb__list"><a href="#" class="gnb__list-name L-Affiliate-Tagged">리뷰</a></li>
 				          <li class="gnb__list"><a href="#" class="gnb__list-name L-Affiliate-Tagged">이용방법</a></li>

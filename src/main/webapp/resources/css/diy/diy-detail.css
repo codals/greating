@@ -442,18 +442,7 @@ body {
 	display: flex;
 	justify-content: space-around;
 }
-/* .related-post-card-img{
-    width: 100%;
-    padding: 7px;
-    height: 85%
-}
-.related-post-card-img > img{
-	    width: inherit;
-    height: inherit;
-    object-fit: cover;
-    border-radius:10px;
-}
- */
+
 .related-post-card-img, .market-card-img {
 	position: relative;
 	width: 250px;
@@ -501,9 +490,18 @@ body {
 	left: -3px
 }
 
+.related-post-card a {
+	color: black;
+}
+
+.related-post-card a:hover {
+	color: #918c01;
+	text-decoration: none;
+}
+
 .related-post-card-info {
 	padding: 5px;
-	font-size: 25px;
+	font-size: 20px;
 	font-weight: bold;
 }
 
@@ -607,7 +605,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
-	    border: 1px solid #ccc;
+	border: 1px solid #ccc;
 }
 
 #updateCommentOpenBtn {
@@ -615,6 +613,8 @@ body {
 	background: white;
 	padding: 8px;
 	border: 1px solid #918c01;
+	color: #918c01;
+	border-radius: 5px;
 }
 
 #updateComment {
@@ -622,35 +622,40 @@ body {
 }
 
 #updateCommentBtn {
-	    width: 100px;
-    margin: 6px;
-    border: 1px solid gray;
-    padding: 6px;
-}
-.tab2-comment{
-	padding:10px;
+	width: 100px;
+	margin: 6px;
 	border: 1px solid gray;
-    border-radius: 10px;
-    margin-bottom:20px;
+	padding: 6px;
 }
-.tab2-comment-header{
-	    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
+
+.tab2-comment {
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	margin-bottom: 20px;
 }
-.tab2-comment-header > .btns{
-	display:inline-block;
+
+.tab2-comment-header {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 5px;
 }
-.tab2-comment-header > .btns > button{
+
+.tab2-comment-header>.btns {
+	display: inline-block;
+}
+
+.tab2-comment-header>.btns>button {
 	border: 1px solid gray;
-    padding: 4px;
-    width: 75px;
-    border-radius: 8px;
-    margin: 0px 5px 0px 5px;
+	padding: 4px;
+	width: 75px;
+	border-radius: 8px;
+	margin: 0px 5px 0px 5px;
 }
-.tab2-comment-content > textarea{
-	width:100%;
-	border-radius:10px;
+
+.tab2-comment-content>textarea {
+	width: 100%;
+	border-radius: 10px;
 	height: 65px;
-	
+	border:1px solid #ccc;
 }

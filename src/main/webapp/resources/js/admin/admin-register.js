@@ -216,7 +216,11 @@ function registerDailyDiet() {
 	var selectedDate = $('#date').val();
 
 	if (selectedDate === '') {
-		alert('날짜를 선택해주세요.');
+		  Swal.fire({
+			  icon: "error",
+        	  title: ' 날짜를 선택해주세요!',
+        	  confirmButtonText: '닫기'
+          });
 		return;
 	}
 
@@ -229,6 +233,14 @@ function registerDailyDiet() {
 		dietIdsList.push(idValue);
 	}
 
+	if(dietIdsList.length===0){
+		 Swal.fire({
+			  icon: "error",
+       	  title: ' 도시락을 선택해주세요!',
+       	  confirmButtonText: '닫기'
+         });
+		return;
+	}
 	const data = {
 		dietIds : dietIdsList,
 		startDate : selectedDate

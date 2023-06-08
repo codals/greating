@@ -67,7 +67,7 @@
 			<li>></li>
 			<li class="highlight">DIY 도시락 상세</li>
 		</ul>
-		<span class="postId" style="display:none;">${postDetail.post.id}</span>
+		<span class="postId" style="display: none;">${postDetail.post.id}</span>
 		<div class="main-info-container">
 
 			<div class="main-img">
@@ -198,13 +198,13 @@
 								<div class="sub-info-line">
 									<span class="info-title">분류</span> <span class="info-text">
 										<span>${postDetail.mainCategory.name} >
-											${postDetail.subCategory.name} </span> , <span>한식</span>
+											${postDetail.subCategory.name}  >  ${postDetail.foodCountry} </span>
 
 									</span>
 								</div>
 								<div class="sub-info-line">
 									<span class="info-title">희망 칼로리</span> <span class="info-text">${postDetail.post.minCalorie}
-										~ ${postDetail.post.maxCalorie}</span>
+										~ ${postDetail.post.maxCalorie} Kcal</span>
 								</div>
 								<div class="sub-info-line">
 									<span class="info-title">희망 가격대</span> <span class="info-text">${postDetail.post.minPrice}
@@ -302,10 +302,12 @@
 							<c:forEach items="${relatedPosts}" var="relatedPost">
 
 								<div class="related-post-card">
-									<div class="related-post-card-img">
-										<img src="${relatedPost.imgUrl}">
-									</div>
-									<div class="related-post-card-info">${relatedPost.title}</div>
+									<a href="/greating/mealdiy/${relatedPost.id}">
+										<div class="related-post-card-img">
+											<img src="${relatedPost.imgUrl}">
+										</div>
+										<div class="related-post-card-info">${relatedPost.title}</div>
+									</a>
 								</div>
 							</c:forEach>
 						</div>
@@ -345,7 +347,7 @@
 				<div class="tab-pane fade container" id="comments">
 
 					<div class="vote-static-section">
-						<span class="vote-static-title"> Greating Votes</span>
+						<span class="vote-static-title"><img src="/greating/resources/images/diy/comment-icon.png" style="width:80px;"> Greating Votes</span>
 						<hr>
 						<div class="vote-chart">
 
@@ -357,9 +359,11 @@
 						<hr>
 					</div>
 					<div class="comments-section">
-						<span class="comment-title">Greating Reviews </span>
+						<span class="comment-title"><img src="/greating/resources/images/diy/comment-icon.png" style="width:80px;">
+						Greating Reviews 
+						</span>
 						<div class="comment-header-group">
-							<span> Total Reviews : ${comments.size()}</span>
+							<span> Total Reviews : <span class="comment-count"> ${comments.size()} </span></span>
 							<button class="btn btn-primary" type="button"
 								id="updateCommentOpenBtn" data-bs-toggle="collapse"
 								data-bs-target="#updateComment" aria-expanded="false"
@@ -383,13 +387,15 @@
 								<div class="tab2-comment" id="tab2-comment-${postComment.id}">
 									<div class="tab2-comment-header">
 										<div class="tab2-comment-text">
-											<span> 작성자 : ${postComment.username} | </span>
-											<span class="comment-createdAt">${postComment.createdAt} </span>
+											<span> 작성자 : ${postComment.username} | </span> <span
+												class="comment-createdAt">${postComment.createdAt} </span>
 										</div>
 										<div class="btns">
 											<c:if test="${postComment.userId == loginUser.id}">
-												<button class="tab2-comment-reupload" onclick="enableCommentEdit(this,${postComment.id})">수정</button>
-												<button class="tab2-comment-delete" onclick="checkDeleteComment(${postComment.id})">삭제</button>
+												<button class="tab2-comment-reupload"
+													onclick="enableCommentEdit(this,${postComment.id})">수정</button>
+												<button class="tab2-comment-delete"
+													onclick="checkDeleteComment(${postComment.id})">삭제</button>
 											</c:if>
 										</div>
 									</div>

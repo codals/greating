@@ -67,7 +67,10 @@
 .slick-list {
 	margin: 0 30px 0 30px;
 }
-
+.slider-card span a:hover{
+	text-decoration:none;
+	color:#918c01;
+}
 .slick-prev:before, .slick-next:before {
 	font-family: 'slick';
 	font-size: 40px;
