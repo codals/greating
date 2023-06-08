@@ -15,7 +15,7 @@ public class OrderDetailResponseDto {
     private String totalPriceFormat;
 
     public OrderDetailResponseDto(Order order, List<OrderDiet> orderDiets) {
-        this.subCategoryName = "저당식단"; // enum 예정
+        this.subCategoryName = "마이그리팅";
         this.week = order.getWeek();
         this.mealCnt = order.getMealCnt();
         this.deliveryCnt = order.getDeliveryCnt();

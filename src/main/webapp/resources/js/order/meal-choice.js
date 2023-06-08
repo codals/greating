@@ -17,7 +17,6 @@ $(document).ready(function () {
     	Swal.fire({
       	  title: '0개 이상 선택해주세요.',
         });
-//    	alert('0개 이상 선택해주세요.');
     }
   });
 
@@ -65,13 +64,6 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.btn-buy').click(function () {
-    if (totalCount !== 6) {
-    	Swal.fire({
-      	  title: '6개를 선택해야 합니다.',
-        });
-    	alert('6개를 선택해야 합니다.');
-      return;
-    }
     const mealCards = document.getElementsByClassName("meal-card");
     const order = [];
 
@@ -85,6 +77,14 @@ $(document).ready(function () {
       if (cnt > 0) {
         order.push({dietId, cnt, name, price, deliveryDate});
       }
+    }
+    let totalCnt = 0;
+    for (let i = 0; i < order.length; i++) {
+      totalCnt += order[i].cnt;
+    }
+    if (totalCnt !== 6) {
+      Swal.fire({title: '6개를 선택해야 합니다.'});
+      return;
     }
     console.log(order);
     let data = {

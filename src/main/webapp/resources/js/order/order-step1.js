@@ -21,7 +21,10 @@ $(document).ready(function () {
 
   $('.green_normal').on('click', function () {
     if (totalMeals === 0) {
-      alert('선택을 완료해주세요');
+      Swal.fire({
+        title : '선택을 완료해주세요',
+      });
+      // alert('선택을 완료해주세요');
       return;
     }
     location.href = '/greating/diets/mygreating/orders/delivery';
