@@ -75,7 +75,7 @@ public class MyPageController {
         return "user/mypage-myvote";
     }
 
-    @GetMapping("/profile")
+    @GetMapping
     public String loadProfilePage(@SessionAttribute("loginUser") User loginUser, HttpSession session) {
         int completedOrderCnt = orderService.getCompletedOrderCnt(loginUser.getId());
         session.setAttribute(COMPLETED_ORDER_CNT, completedOrderCnt);
