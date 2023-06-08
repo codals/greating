@@ -247,6 +247,10 @@ function fetchChartData(){
 			        display: false,
 			        text: ''
 			      },
+			      tooltips: {
+			          enabled: true,
+			          bodyFontSize: 50 // 툴팁의 글꼴 크기 조정
+			      },
 			      legend: {
 						labels: {
 							fontColor: "#000",
@@ -292,6 +296,10 @@ function fetchChartData(){
 			        }
 			      }]
 			    },
+			    tooltips: {
+			          enabled: true,
+			          bodyFontSize: 50 // 툴팁의 글꼴 크기 조정
+			      },
 			    legend: {
 					labels: {
 						fontColor: "#000",

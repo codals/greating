@@ -1,4 +1,22 @@
-
+//$(function () {
+//	$(document).ready(function(){
+//        //tooltip custom tag
+//		console.log("testinn");
+//        var tooltipHtml = [];
+//        
+//        tooltipHtml.push("<div class='tooltip'>");
+//        tooltipHtml.push("    <div class='tooltip-arrow'></div>");
+//        tooltipHtml.push("    <h3> Tooltip Title</h3>");
+//        tooltipHtml.push("    <div class='tooltip-head'></div>");
+//        tooltipHtml.push("    <div class='tooltip-inner'></div>");
+//        tooltipHtml.push("</div>");
+//        
+//        //커스텀 Tooltip
+//        $(".tooltip_custom").tooltip({
+//            template: tooltipHtml.join("")
+//        });
+//    });
+//})
 function openSearchBox() {
   var searchContainer = $('.search-container');
   
@@ -72,7 +90,7 @@ function search(page){
 		 } else {
 			 url += "&page=" + page;
 		 }
-	 }
+	 };
 	 
 	 $.ajax({
 	        url: url,

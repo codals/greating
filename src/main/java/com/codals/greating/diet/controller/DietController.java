@@ -35,12 +35,15 @@ public class DietController {
     }
 
     @GetMapping("/orders/schedule")
-    public String loadOrderSchedulePage() {
+    public String loadOrderSchedulePage(Model model) {
+    	model.addAttribute("orderPageNum", 1);
         return "order/order-step1";
     }
 
     @GetMapping("/orders/delivery")
-    public String loadOrderDeliveryPage() {
+    public String loadOrderDeliveryPage(Model model) {
+    	model.addAttribute("orderPageNum", 2);
+
         return "order/order-step2";
     }
 
@@ -50,6 +53,8 @@ public class DietController {
             return "redirect:/diets/mygreating/orders/schedule";
         }
         model.addAttribute("dailyDiets", dietService.getDailyDietsByDeliveryDates(deliveryDates));
+    	model.addAttribute("orderPageNum", 3);
+
         return "order/meal-choice";
     }
 
