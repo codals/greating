@@ -1,5 +1,6 @@
 var currentDate = new Date();
-var selectableDays = 7;
+var selectableDays = 3;
+var aWeek = 7;
 let selectedDates = [];
 
 // 달력 생성 및 초기화
@@ -51,8 +52,8 @@ function createCalendar() {
 
     if (date >= currentDate
         && date <= new Date(currentDate.getFullYear(), currentMonth,
-            currentDate.getDate() + selectableDays - 1)
-        && selectedDates.length < selectableDays) { // 수정된 부분:
+            currentDate.getDate() + aWeek)
+        && selectedDates.length <= aWeek) { // 수정된 부분:
       // selectableDays에서
       // 1을 빼고 선택 가능한 날짜
       // 수를 체크함
@@ -77,6 +78,7 @@ function createCalendar() {
     var date = new Date(currentDate.getFullYear(), currentMonth, day);
     if (date.getDay() === 0) {
       td.classList.add('disabled');
+      td.removeAttribute("onclick");
     }
   });
 }
@@ -134,7 +136,10 @@ $(document).ready(function () {
         if (response) {
           location.href = 'http://localhost:8080/greating/diets/mygreating/orders/choice';
         } else {
-          alert("날짜별 식단 조회 실패");
+          Swal.fire({
+            title: '식단 조회를 실패하였습니다.',
+          });
+          // alert("날짜별 식단 조회 실패");
         }
       },
       error: function () {

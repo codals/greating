@@ -471,9 +471,7 @@
 									        </span>
 										</label>
 									</c:forEach>
-
 								</div>
-
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="modalCloseBtn" data-dismiss="modal">취소</button>
