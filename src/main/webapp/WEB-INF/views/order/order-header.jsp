@@ -1,31 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
-    <link href="/greating/resources/css/order/order-header.css"
+<link href="/greating/resources/css/order/order-header.css"
 	rel="stylesheet">
-    
-   <section class="order-header">
-			<div class="order-header-cont">
-				<h2 class="order-header-title">
-					<span> 설계하기 </span>
-				</h2>
-				<div class="order-radios">
-					<input type="radio" id="order-radio1" name="order-radio" value="1">
-					<label for="order-radio1"> 1</label>
-					<hr>
-					<input type="radio" id="order-radio2" name="order-radio" value="2">
-					<label for="order-radio2"> 2 </label>
-						<hr>
 
-					<input type="radio" id="order-radio3" name="order-radio" value="3">
-					<label for="order-radio3"> 3 </label>
+<section class="order-header">
+	<div class="order-header-cont">
+		<h2 class="order-header-title">
+			<span> 설계하기 </span>
+		</h2>
+		<div class="order-radios">
+			<input type="radio" id="order-radio1" name="order-radio" value="1">
+			<label for="order-radio1"> 1</label>
+			<hr>
+			<input type="radio" id="order-radio2" name="order-radio" value="2">
+			<label for="order-radio2"> 2 </label>
+			<hr>
 
-				</div>
-				<div class="radio-info">
-					<span> 기간 / 끼니수 선택 </span>
-					<span> 배송일 선택 </span>
-					<span> 메뉴 선택 </span>
-				</div>
-			</div>
+			<input type="radio" id="order-radio3" name="order-radio" value="3">
+			<label for="order-radio3"> 3 </label>
 
-		</section>
+		</div>
+		<div class="radio-info">
+			<span> 기간 / 끼니수 선택 </span> <span> 배송일 선택 </span> <span> 메뉴 선택
+			</span>
+		</div>
+	</div>
+
+</section>
+
+<script>
+	// 컨트롤러에서 전달된 값에 따라 라디오 버튼 선택
+	var controllerValue = ${orderPageNum}; // 컨트롤러에서 받아온 값
+	var radioBtn = document.getElementById("order-radio" + controllerValue);
+	if (radioBtn) {
+		radioBtn.checked = true;
+	}
+</script>
