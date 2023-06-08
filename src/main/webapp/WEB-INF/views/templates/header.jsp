@@ -33,7 +33,6 @@
 				<span class="customer-service-label">고객센터</span>
 				<span class="divider"></span>
 				<span class="link"><a href="javascript:logout()" style="color: black;">로그아웃</a></span>
-				
 			</c:if>
 
 			<c:if test="${not empty sessionScope.loginUser && sessionScope.loginUser.role == Role.ADMIN}">
