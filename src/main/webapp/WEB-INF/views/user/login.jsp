@@ -88,6 +88,15 @@
 	    </div>
 	</div>
 	
+	<script>
+		document.addEventListener('keydown', function(event) {
+			if (event.keyCode === 13) {
+				event.preventDefault();
+				document.querySelector('.login-btn').click();
+			}
+		});
+	</script>
+	
 	<jsp:include page="/WEB-INF/views/templates/footer.jsp"/>
 	
 </body>
