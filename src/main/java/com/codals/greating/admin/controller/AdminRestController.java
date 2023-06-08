@@ -84,11 +84,15 @@ public class AdminRestController {
 	
 	@PostMapping("/approveDiyCancel")
 	public ResponseEntity<Boolean> changeDiy(@RequestParam("postId") long postId) {
-		if(adminService.approveDiyCancel(postId)) {
-			return ResponseEntity.ok().build(); 
-		}
-		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+	    adminService.approveDiyCancel(postId);
+	    boolean success = adminService.approveDiy(postId);
+	    if (success) {
+	        return ResponseEntity.ok().build(); 
+	    } else {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+	    }
 	}
+
 	
 	@PostMapping("/submitPrice")
 	public ResponseEntity<Boolean> submitPrice(@RequestParam int postId, @RequestParam int price) {
@@ -98,6 +102,13 @@ public class AdminRestController {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
 	}
 
+	@PostMapping("/deleteDiet")
+	public ResponseEntity<Boolean> deleteDiy(@RequestParam("dietId") int postId) {
+		if(adminService.deleteDiy(postId)) {
+			return ResponseEntity.ok().build(); 
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+	}
 	
 }
 

@@ -126,5 +126,15 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.submitPrice(postId,price);
 	}
 
+	@Override
+	public List<AdminDto> allList() {
+		return adminDao.allList();
+	}
+
+	@Override
+	public boolean deleteDiy(int postId) {
+		return adminDao.deleteDiy(postId);
+	}
+
 
 }
