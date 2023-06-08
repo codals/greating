@@ -583,3 +583,25 @@
     font-weight: 300 !important;
     line-height: 1 !important;
 }
+
+.modal-food-card-name,
+.modal-food-card-description {
+    max-width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#etcFoodModal .modal-food-card-name {
+    font-size: 18.5px !important;
+}
+
+#etcFoodModal .modal-food-card-description {
+    font-size: 14px !important;
+}
+
+#etcFoodModal .modal-food-card-price {
+	margin-top: 2px;
+    font-size: 16px !important;
+}
+}
