@@ -7,6 +7,7 @@ import com.codals.greating.admin.dto.AdminDietRegisterRequestDto;
 import com.codals.greating.constant.MainCategoryCode;
 import com.codals.greating.diet.entity.Diet;
 import com.codals.greating.admin.dto.AdminDto;
+import com.codals.greating.admin.dto.DiyToDietRequestDto;
 
 public interface AdminService {
 
@@ -16,24 +17,26 @@ public interface AdminService {
 	
 	List<AdminDto> topList();
 
-	boolean approveCheck(long postId);
+	boolean approveCheck(int postId);
 
 	List<AdminDto> commingSoonList();
 
 	List<AdminDailyDietResponseDto> getDailyDietsByDate(String date);
 
-	boolean approveCancel(long postId);
+	boolean approveCancel(int postId);
 
-	boolean approveDiy(long postId);
 
-	boolean approveDiyCancel(long postId);
+//	boolean approveDiyCancel(long postId);
 
 	boolean approveDiyRegister(int postId);
 
-	boolean submitPrice(int postId, int price);
 
 	List<AdminDto> allList();
 
-	boolean deleteDiy(int postId);
+	boolean cancelDiet(int postId);
+
+	boolean diyToDiet(DiyToDietRequestDto requestDto);
+
+	boolean deletePost(int postId);
 
 }

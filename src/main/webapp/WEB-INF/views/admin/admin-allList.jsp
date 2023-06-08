@@ -23,13 +23,14 @@
 
 <link rel="stylesheet"
 	href="/greating/resources/css/admin/admin-popularList.css">
+
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script
 	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <link href="/greating/resources/css/templates/alert.css"
 	rel="stylesheet">
-	
+
 </head>
 <body>
 
@@ -68,7 +69,7 @@
 							<td><c:out value="${fn:substring(diet.createdAt, 2, 10)}" /></td>
 							<td><c:choose>
 									<c:when test="${diet.status == 0}">
-								                    투표완료
+								                    투표종료
 		            			    </c:when>
 									<c:when test="${diet.status == 1}">
                  						   투표중
@@ -80,7 +81,7 @@
 								                   식단등록완료
 					               </c:when>
 								</c:choose></td>
-							<td><button class="delete-button" onclick="deleteDiet(${diet.id}, this)">X</button></td>
+							<td><button class="delete-button" onclick="deletePost(${diet.id}, this)">X</button></td>
 						</tr>
 					</c:forEach>
 				</tbody>

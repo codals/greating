@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.codals.greating.admin.dto.AdminDailyDietResponseDto;
 import com.codals.greating.admin.dto.AdminDto;
+import com.codals.greating.admin.dto.DiyToDietRequestDto;
 import com.codals.greating.constant.MainCategoryCode;
 import com.codals.greating.diet.entity.DailyDiet;
 import com.codals.greating.diet.entity.Diet;
@@ -44,7 +45,7 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public boolean approveCheck(long postId) {
+	public boolean approveCheck(int postId) {
 		int updatedRows = sqlSession.update("admin.approveCheck", postId);
 		return updatedRows > 0;
 
@@ -61,24 +62,24 @@ public class AdminDaoImpl implements AdminDao {
 		return sqlSession.selectList(statement, date);
 	}
 
+	// 출시 예정 고려 취소 
 	@Override
-	public boolean approveCancel(long postId) {
+	public boolean approveCancel(int postId) {
 		int updatedRows = sqlSession.update("admin.approveCancel", postId);
 		return updatedRows > 0;
 	}
 
 	@Override
-	public boolean approveDiy(long postId) {
-		System.out.println("내가 확인하려는 것입니다.");
-		int updatedRows = sqlSession.update("admin.approveCheck", postId);
+	public boolean updatePostStatusToDiet(int postId) {
+		int updatedRows = sqlSession.update("admin.updatePostStatusToDiet", postId);
 		return updatedRows > 0;
 	}
 
-	@Override
-	public boolean approveDiyCancel(long postId) {
-		int updatedRows = sqlSession.delete("admin.approveDiyCancel", postId);
-		return updatedRows > 0;
-	}
+//	@Override
+//	public boolean approveDiyCancel(long postId) {
+//		int updatedRows = sqlSession.delete("admin.approveDiyCancel", postId);
+//		return updatedRows > 0;
+//	}
 
 	@Override
 	public boolean approveDiyRegister(int postId) {
@@ -87,15 +88,6 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	
-	@Override
-	public boolean submitPrice(int postId, int price) {
-	    Map<String, Object> params = new HashMap<>();
-	    params.put("postId", postId);
-	    params.put("price", price);
-
-	    int insertRows = sqlSession.update("admin.submitPrice", params);
-	    return insertRows > 0;
-	}
 
 	@Override
 	public List<AdminDto> allList() {
@@ -103,11 +95,29 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public boolean deleteDiy(int postId) {
-		// TODO Auto-generated method stub
-		int insertRows = sqlSession.update("admin.deleteDiy", postId);
+	public boolean deletePost(int postId) {
+		int insertRows = sqlSession.delete("admin.deletePost", postId);
 		return insertRows > 0;
 	}
+
+	@Override
+	public boolean insertPostToDiet(DiyToDietRequestDto requestDto) {
+		int result = sqlSession.insert("admin.insertPostToDiet", requestDto);
+		return result>0;
+	}
+
+	@Override
+	public boolean deleteDietByPost(int postId) {
+		int result = sqlSession.delete("admin.deleteDietByPost", postId);
+		return result > 0;
+	}
+
+	@Override
+	public boolean updatePostStatusToReady(int postId) {
+		int updatedRows = sqlSession.update("admin.updatePostStatusToReady", postId);
+		return updatedRows > 0;		
+	}
+
 
 
 

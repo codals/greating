@@ -36,7 +36,9 @@
     <typeAlias alias="SimplePostDto" type="com.codals.greating.diy.dto.SimplePostDto"/>
     <typeAlias alias="AdminTopList" type="com.codals.greating.admin.dto.AdminDto"/>
     <typeAlias alias="AdminDailyDietResponseDto" type="com.codals.greating.admin.dto.AdminDailyDietResponseDto"/>
+    <typeAlias alias="DiyToDietRequestDto" type="com.codals.greating.admin.dto.DiyToDietRequestDto"/>
         
   </typeAliases>
   
 </configuration>
+

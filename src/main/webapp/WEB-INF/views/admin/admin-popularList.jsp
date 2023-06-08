@@ -27,8 +27,7 @@
 <link href="/greating/resources/css/templates/alert.css"
 	rel="stylesheet">
 	
-	
-	
+
 </head>
 <body>
 	<!--사이드바-->

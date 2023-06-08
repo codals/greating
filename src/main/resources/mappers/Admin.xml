@@ -45,34 +45,43 @@
 		INNER JOIN main_category mc ON p.main_category_id = mc.id
 		INNER JOIN sub_category sc ON p.sub_category_id = sc.id
 		WHERE
-		p.status = 2 or p.status = 3
+
+		p.status = 2 or p.status=3
+
 		ORDER BY p.VOTE_CNT DESC
 	</select>
 
 
-	<update id="approveCheck" parameterType="long">
+	<update id="approveCheck" parameterType="int">
 		UPDATE post
 		SET status =
 		2
 		WHERE id = #{postId}
 	</update>
+	
+	<update id="updatePostStatusToReady" parameterType="int">
+		UPDATE post
+		SET status =
+		2
+		WHERE id = #{postId}
+	
+	</update>
 
-	<update id="approveCancel" parameterType="long">
+	<update id="approveCancel" parameterType="int">
 		UPDATE post
 		SET status =
 		0
 		WHERE id = #{postId}
 	</update>
 
-	<update id="approveDiyCheck" parameterType="long">
+	<update id="updatePostStatusToDiet" parameterType="int">
 		UPDATE post
 		SET status
-		=
-		3
+		=3
 		WHERE id = #{postId}
 	</update>
 
-	<delete id="approveDiyCancel" parameterType="long">
+	<delete id="deleteDietByPost" parameterType="int">
 		DELETE FROM diet
 		WHERE name IN (
 		SELECT d.name
@@ -82,22 +91,15 @@
 		)
 	</delete>
 
-	<update id="registerDiy" parameterType="int">
+	<update id="insertPostToDiet" parameterType="DiyToDietRequestDto">	
 		INSERT INTO diet (main_category_id, sub_category_id, name, price,
 		thumbnail_img_url)
-		(SELECT main_category_id, sub_category_id, title, max_price, img_url
+		(SELECT main_category_id, sub_category_id, title as name, #{price} as price, img_url as thumbnail_img_url
 		FROM post
 		WHERE id = #{postId})
+        
 	</update>
 
-	<update id="submitPrice" parameterType="java.util.Map">
-		UPDATE diet
-		SET price = #{price}
-		WHERE name = (
-		SELECT title
-		FROM post
-		WHERE id = #{postId})
-	</update>
 
 	<update id="insertDailyDiets" parameterType="java.util.List">
 		INSERT INTO daily_diet (
@@ -154,9 +156,9 @@
 	    p.created_at DESC
 	</select>
 	
-	<update id="deleteDiy" parameterType="int">
+	<delete id="deletePost" parameterType="int">
 		DELETE FROM post
 		WHERE id = #{postId}
-	</update>
+	</delete>
 
 </mapper>
