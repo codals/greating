@@ -80,7 +80,7 @@ function search(page){
 	        success: function(response) {
 	        	var data = response;
 	        	console.log(data);
-	        	if(data.length ===0 ){
+	        	if(data.length === 0){
 	        		$('.search-container').css('display','none');
 
 	        		Swal.fire({
@@ -89,12 +89,13 @@ function search(page){
 			        });
 	        		return;
 	        	}
-	        	updateSearchResultBox(data);
-	        	Swal.fire({
-		        	  title: '검색이 완료되었습니다.!',
-		        	  confirmButtonText: '닫기'
-		        });
-	        
+        		updateSearchResultBox(data);
+	        	if (!page) {
+		        	Swal.fire({
+			        	  title: '검색이 완료되었습니다.!',
+			        	  confirmButtonText: '닫기'
+			        });
+	        	}
 	        },
 	        error: function(xhr, status, error) {
 	            alert('검색 실패하였습니다. ');
@@ -210,6 +211,7 @@ function generatePagination(dto) {
             goToPage(Number(this.getAttribute("data-page"))); // 데이터 속성에서 페이지 번호 가져와서 goToPage() 함수 호출
         });
         if (pageNum === dto.page) {
+            pageLink.classList.add("selected");
             var strong = document.createElement("strong");
             strong.innerText = pageNum;
             pageLink.appendChild(strong);
@@ -244,5 +246,4 @@ function goToPage(page) {
 function resetSelection(){
 	  $('input[type="checkbox"]').prop('checked', false);
 	  $('input[type="radio"]').prop('checked', false);
-	
 }

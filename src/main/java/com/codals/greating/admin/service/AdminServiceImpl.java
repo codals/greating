@@ -2,13 +2,8 @@ package com.codals.greating.admin.service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,11 +14,8 @@ import com.codals.greating.admin.dto.AdminDto;
 import com.codals.greating.admin.dto.DiyToDietRequestDto;
 import com.codals.greating.constant.CacheKey;
 import com.codals.greating.constant.MainCategoryCode;
-import com.codals.greating.diet.dao.DailyDietDao;
-import com.codals.greating.diet.dto.PreviewResponseDto;
 import com.codals.greating.diet.entity.DailyDiet;
 import com.codals.greating.diet.entity.Diet;
-import com.codals.greating.util.DateUtil;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -33,9 +25,8 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService {
 	private final AdminDao adminDao;
-	private final DailyDietDao dailyDietDao;
-	private final RedisTemplate<String, Object> redisTemplate;
 
+	
 	@Override
 	public List<Diet> getDietsByMainCategory(MainCategoryCode category) {
 		return adminDao.selectDietsByMainCategory(category);
@@ -56,19 +47,13 @@ public class AdminServiceImpl implements AdminService {
 
 		// 2. DAO를 활용하여 데이터 저장
 		int resultCnt = adminDao.insertDailyDiets(diets);
-		if (resultCnt == selectedCnt) { // 개수대로 제대로 저장이 되었으면
-			cacheTwoWeekDailyDiets(requestDto.getStartDate()); // Redis에 캐싱하기 (이미 key가 있어도 업데이트된 데이터로 덮어씌움)
-			return true;
+
+		if (resultCnt == selectedCnt) {
+		    return true;
 		}
 		return false;
 	}
 
-	private void cacheTwoWeekDailyDiets(String targetDate) {
-		String cacheKey = CacheKey.TWO_WEEK_PREVIEW_CACHE_KEY + targetDate;
-		List<DailyDiet> cachingDiets = dailyDietDao.selectAllByStartDate(DateUtil.dateToString(new Date()));
-		redisTemplate.opsForValue().set(cacheKey, cachingDiets, 1, TimeUnit.DAYS);
-		log.info("[REDIS] TWO_WEEK_PREVIEW - Cache 저장 - {}", cacheKey);
-	}
 
 	@Override
 	public List<AdminDailyDietResponseDto> getDailyDietsByDate(String targetDate) {

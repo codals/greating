@@ -121,10 +121,13 @@ public class AdminRestController {
 	@PostMapping("/diytodiet")
 	public ResponseEntity<Boolean> diyToDiet(DiyToDietRequestDto requestDto) {
 		if(adminService.diyToDiet(requestDto)) {
-			return ResponseEntity.ok().build(); 
-		}
-		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
-	} 
+		  return ResponseEntity.ok().build();
+    }
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+
+	}
+
+
 	
 }
 

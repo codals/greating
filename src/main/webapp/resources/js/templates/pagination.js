@@ -1,9 +1,4 @@
-// 페이징 버튼 클릭 시 페이지 이동
-function goToPage(page) {
-    location.href = "?page=" + page;
-}
-
-// 페이징 버튼 생성
+//페이징 버튼 생성
 function generatePagination(dto) {
     var pagination = document.createElement("div");
     pagination.classList.add("pagination");
@@ -44,8 +39,12 @@ function generatePagination(dto) {
 
     for (var pageNum = startPage; pageNum <= endPage; pageNum++) {
         var pageLink = document.createElement("a");
-        pageLink.href = "?page=" + pageNum;
+        pageLink.setAttribute("data-page", pageNum); // 데이터 속성에 페이지 번호 저장
+        pageLink.addEventListener("click", function(event) {
+            goToPage(Number(this.getAttribute("data-page"))); // 데이터 속성에서 페이지 번호 가져와서 goToPage() 함수 호출
+        });
         if (pageNum === dto.page) {
+            pageLink.classList.add("selected");
             var strong = document.createElement("strong");
             strong.innerText = pageNum;
             pageLink.appendChild(strong);
@@ -72,13 +71,7 @@ function generatePagination(dto) {
     return pagination;
 }
 
-// dto 객체는 다음과 같이 전달됩니다.
-var dto = {
-    page: 2,
-    totalPage: 10
-};
-
-// 페이징 버튼 생성 및 추가
-var paginationContainer = document.getElementById("paginationContainer");
-var pagination = generatePagination(dto);
-paginationContainer.appendChild(pagination);
+//페이징 버튼 클릭 시 페이지 이동
+function goToPage(page) {
+    search(page);
+}

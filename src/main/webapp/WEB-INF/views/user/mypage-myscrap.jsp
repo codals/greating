@@ -34,7 +34,7 @@
 		<ul class="page-category">
 			<li>Home</li>
 			<li>></li>
-			<li class="highlight">마이페이지, ${dto.totalPage}</li>
+			<li class="highlight">마이페이지</li>
 		</ul>
 
 		<div class="mypage-main d-flex">
