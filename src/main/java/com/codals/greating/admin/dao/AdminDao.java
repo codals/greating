@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.codals.greating.admin.dto.AdminDailyDietResponseDto;
 import com.codals.greating.admin.dto.AdminDto;
+import com.codals.greating.admin.dto.DiyToDietRequestDto;
 import com.codals.greating.constant.MainCategoryCode;
 import com.codals.greating.diet.entity.DailyDiet;
 import com.codals.greating.diet.entity.Diet;
@@ -18,24 +19,28 @@ public interface AdminDao {
 
 	List<AdminDto> topList();
 
-	boolean approveCheck(long postId);
+	boolean approveCheck(int postId);
 
 	List<AdminDto> commingSoonList();
 
 	List<AdminDailyDietResponseDto> selectDailyDietsByDate(String date);
 
-	boolean approveCancel(long postId);
+	public boolean approveCancel(int postId);
 
-	boolean approveDiy(long postId);
+	boolean updatePostStatusToDiet(int postId) throws Exception;
 
-	boolean approveDiyCancel(long postId);
+	//boolean approveDiyCancel(long postId);
 
 	boolean approveDiyRegister(int postId);
 
-	boolean submitPrice(int postId, int price);
-
 	List<AdminDto> allList();
 
-	boolean deleteDiy(int postId);
+	boolean deletePost(int postId);
+
+	boolean insertPostToDiet(DiyToDietRequestDto requestDto) throws Exception;
+
+	boolean deleteDietByPost(int postId);
+
+	boolean updatePostStatusToReady(int postId);
 
 }

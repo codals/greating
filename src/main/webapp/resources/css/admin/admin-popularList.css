@@ -14,8 +14,8 @@
 
 .content-div {
 	min-width: 1100px;
-    max-width: 1500px;
-    margin: 0px auto;
+	max-width: 1500px;
+	margin: 0px auto;
 }
 
 table {
@@ -40,28 +40,42 @@ table td {
 }
 
 td
+
+
 :not
+
  
+
 (
 :first-child
+
  
+
 )
 {
 max-width
+
+
 :
+
  
+
 50
 px
-;
 
-	
+
+;
 text-align
+
+
 :
+
  
+
 center
+
+
 ;
-
-
 }
 td:first-child {
 	max-width: 50px;
@@ -98,8 +112,16 @@ a {
 }
 
 #diyToDietBtn {
-	padding: 5px;
-	width: 55px;
+	padding: 7px;
+	width: 73px;
 	border-radius: 5px;
 	border: 1px solid #918c01;
+}
+
+#cancelDiet {
+	padding: 7px;
+	color: red; width : 73px;
+	border-radius: 5px;
+	border: 1px solid #918c01;
+	width: 73px;
 }

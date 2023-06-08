@@ -97,29 +97,47 @@ function cancelApprovePost(postId){
 
 }
 
-function deleteDiet(dietId, button) {
-    var confirmation = confirm("식단을 삭제하시겠습니까?");
-    let data = {
-            'dietId': dietId
-    }
-    console.log(data);
-    if (confirmation) {
-        $.ajax({
-            url: "/greating/api/admin/deleteDiet",
-            type: "POST",
-            data: data,
-            success: function(response) {
-                console.log("Diet deleted successfully!");
-                alert("삭제되었습니다.");
-                // 해당 행을 삭제
-                $(button).closest("tr").remove();
-                
-                // 삭제 성공 메시지 등 필요한 동작 수행
-                
-            },
-            error: function() {
-                console.log("Failed to delete diet!");
-            }
-        });
-    }
+
+
+function deletePost(postId, button) {
+    console.log(postId);
+    
+    Swal.fire({
+	    title: '해당 인기 DIY 도시락을 삭제하시겠습니까?',
+	    text: '삭제 시 도시락 정보는 모두 삭제됩니다.',
+	    showCancelButton: true,
+	    confirmButtonText: ' 삭제하기',
+	  }).then(function(result) {
+	    if (result.isConfirmed) {
+	      approveDeletePost(postId)
+	        .then(function(response) {
+	          Swal.fire({
+	        	  title: ' 삭제 완료 되었습니다!',
+	        	  confirmButtonText: '닫기'
+	          });
+	          $(button).closest("tr").remove();
+	          })
+	        .catch(function(error) {
+	          Swal.fire('승인 취소 실패하였습니다!', 'error');
+	        });
+	    }
+	  });
+    
+}
+
+
+function approveDeletePost(postId) {
+	  return new Promise(function(resolve, reject) {
+		  $.ajax({
+		        url: "/greating/api/admin/"+postId,
+		        type: "DELETE",
+		        success: function(response) {
+			        resolve(response);
+		        },
+		        error: function() {
+			        reject(error);
+		        }
+		    });
+		  });
+
 }

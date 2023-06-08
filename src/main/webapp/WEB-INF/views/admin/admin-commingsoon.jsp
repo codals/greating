@@ -44,8 +44,8 @@
 						<th>작성자</th>
 						<th>대분류</th>
 						<th>소분류</th>
-						<th>투표수</th>
-						<th>작성일</th>
+						<th>등록일</th>
+						<th>출시여부</th>
 						<th>정식식단등록 관리</th>
 					</tr>
 				</thead>
@@ -58,11 +58,19 @@
 	                        <td>${diet.username}</td>
 	                        <td>${diet.mainCategoryName}</td>
 	                        <td>${diet.subCategoryName}</td>
-	                        <td>${diet.voteCnt}</td>
 	                        <td><c:out value="${fn:substring(diet.createdAt, 2, 10)}" /></td>
-	                        <td>
-	                            <button class="approve-to-diet-${diet.id}"  id="diyToDietBtn" onclick="approveToDiet(${diet.id}, this)">승인</button>
-	                        </td>
+	                        <c:if test="${diet.status eq 2}"> <!--  출시 예정  -->
+		                        <td> <span>출시 고려중</span></td>
+		                         <td>
+		                            <button class="approve-to-diet-${diet.id}"  id="diyToDietBtn" onclick="approveToDiet(${diet.id}, this)">상품등록</button>
+		                        </td>
+	                        </c:if>
+	                        <c:if test="${diet.status eq 3}"> <!--  출시 예정  -->
+		                        <td> <span>출시 완료</span></td>
+		                         <td>
+		                            <button class="cancel-diet-${diet.id}"  id="cancelDiet" onclick="cancelDiet(${diet.id}, this)">등록 취소</button>
+		                        </td>
+	                        </c:if>
 	                    </tr>
 	                </c:forEach>
 				</tbody>
