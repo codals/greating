@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>admin</title>
 
 <!-- <link rel="stylesheet"
 	href="/greating/resources/css/templates/reset.css"> -->
