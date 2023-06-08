@@ -14,13 +14,13 @@ import org.springframework.web.servlet.HandlerInterceptor;
 public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-        throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String requestURI = request.getRequestURI();
         HttpSession session = request.getSession();
         if (session == null || session.getAttribute(LOGIN_USER) == null) {
             log.info("[Exception] Unauthorized access detected. Request URI: {}", requestURI);
-            response.sendRedirect("/greating/login?redirectURL=" + requestURI);
+            session.setAttribute("showAlert", true);
+            response.sendRedirect("/greating/login");
             return false;
         }
         return true;

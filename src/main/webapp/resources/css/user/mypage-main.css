@@ -29,7 +29,6 @@
 
 .myDiy-cont .img-on {
   order: -1;
-  position: absolute;
   top: 50%;
   left: 0;
   transform: translateY(-50%);

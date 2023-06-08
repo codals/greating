@@ -19,8 +19,7 @@
 
 
 <link rel="stylesheet"
-	href="/greating/resources/css/admin/admin-popularList.css">
-	
+	href="/greating/resources/css/admin/admin-popularList.css">	
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script
