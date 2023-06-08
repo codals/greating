@@ -1,14 +1,13 @@
 @charset "UTF-8";
 
-
 /* 상위 배너 */
 .banner-img {
 	height: auto;
 	background: url("/greating/resources/images/diy/img_healthy.png");
 	position: relative;
 	height: 300px;
-	overflow: hidden;
-	background-size: cover;
+/* 	overflow: hidden;
+ */	background-size: cover;
 }
 
 .banner-content {
@@ -76,33 +75,30 @@
 }
 
 /* search container*/
-
 .search-container {
 	display: none;
 	position: absolute;
 	width: 960px;
-	padding:10px;
+	padding: 10px;
 	background: rgba(255, 255, 255, 1);
 	box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.25);
 	overflow: hidden;
-	margin-top:-15px;
+	margin-top: -15px;
 	border-top: 8px solid #918C01;
-	z-index:999;
-
+	z-index: 999;
 }
 
 .search-keyword-box {
 	height: 50px;
-    margin: 10px 15px 10px 11px;
-    border: 2px solid rgba(178, 172, 0, 1);
+	margin: 10px 15px 10px 11px;
+	border: 2px solid rgba(178, 172, 0, 1);
 	border-radius: 40px;
 	overflow: hidden;
 	display: flex;
 	align-items: center;
-    justify-content: space-around;
-    background:white;
-    width: 100%;
-    
+	justify-content: space-around;
+	background: white;
+	width: 100%;
 }
 
 .search-keyword-box input {
@@ -131,16 +127,12 @@
 	border: none;
 }
 
-
-.greating-category-sec, 
-.greating-country-sec,
-.greating-sub-sec {
-    padding: 10px 10px 10px 20px;	
+.greating-category-sec, .greating-country-sec, .greating-sub-sec {
+	padding: 10px 10px 10px 20px;
 }
 
-.greating-category-sec .sub-title,
-.greating-country-sec .sub-title,
-.greating-sub-sec .sub-title {
+.greating-category-sec .sub-title, .greating-country-sec .sub-title,
+	.greating-sub-sec .sub-title {
 	width: 100%;
 	font-family: Noto Sans KR;
 	font-weight: Bold;
@@ -148,33 +140,36 @@
 	opacity: 1;
 	text-align: left;
 }
-.greating-sub-sec{
+
+.greating-sub-sec {
 	display: flex;
-    justify-content: space-between;
+	justify-content: space-between;
 }
-.greating-rice-sec,
-.greating-soup-sec{
-	display:inline-block;
-	width:48%;
+
+.greating-rice-sec, .greating-soup-sec {
+	display: inline-block;
+	width: 48%;
 }
-.greating-category-btns{
-	margin-top:10px;
+
+.greating-category-btns {
+	margin-top: 10px;
 }
+
 .greating-category-btns label {
 	width: 120px;
 }
-.greating-country-btns label{
-	width:100px;
+
+.greating-country-btns label {
+	width: 100px;
 }
-.greating-category-btns>input, 
-.greating-country-btns>input,
-.greating-rice-btns>input, 
-.greating-soup-btns>input {
+
+.greating-category-btns>input, .greating-country-btns>input,
+	.greating-rice-btns>input, .greating-soup-btns>input {
 	display: none;
 }
-.greating-category-btns>input:checked+label,
-.greating-country-btns>input:checked+label,
-.greating-rice-btns>:checked+label {
+
+.greating-category-btns>input:checked+label, .greating-country-btns>input:checked+label,
+	.greating-rice-btns>:checked+label {
 	border: 2px solid rgba(178, 172, 0, 1);
 	border-radius: 20px;
 	padding: 10px;
@@ -184,8 +179,9 @@
 	background-color: rgba(178, 172, 0, 1);
 	color: white;
 }
-.greating-rice-btns>input:checked+label,
-.greating-soup-btns>input:checked+label {
+
+.greating-rice-btns>input:checked+label, .greating-soup-btns>input:checked+label
+	{
 	border: 2px solid rgba(178, 172, 0, 1);
 	border-radius: 20px;
 	padding: 10px;
@@ -195,8 +191,9 @@
 	background-color: rgba(178, 172, 0, 1);
 	color: white;
 }
+
 .greating-category-btns label, .greating-country-btns label,
-.greating-rice-btns label, .greating-soup-btns label {
+	.greating-rice-btns label, .greating-soup-btns label {
 	background: white;
 	border: 1.5px solid #C3C3C3;
 	border-radius: 20px;
@@ -214,6 +211,7 @@
 	margin-top: 30px;
 	margin-bottom: 30px;
 }
+
 .rectangle-gray-button {
 	width: 120px;
 	height: 40px;
@@ -245,44 +243,88 @@
 .rectangle-green-button:hover {
 	background-color: #7e7900; /* 마우스를 갖다 대었을 때의 배경색 */
 }
-.main-content{
+
+.main-content {
 	min-height: 700px !important;
 	margin-top: 40px;
 }
 
-.diet-card-list{
+.diet-card-list {
 	margin-top: 50px;
 	display: flex;
 	flex-wrap: wrap;
 }
-.diet-card{
+
+.diet-card {
 	width: 300px;
-    padding: 0px 20px 0px 20px;
-    display: inline-block;
+	padding: 0px 20px 0px 20px;
+	display: inline-block;
 	margin-bottom: 50px;
 }
-.diet-card-img >img{
+
+.diet-card-img>img {
 	width: 100%;
 	height: 230px;
 }
 
-.diet-card-info{
-	min-height:100px;
+.diet-card-info {
+	min-height: 100px;
 }
-.diet-card-info >span {
+
+.diet-card-info>span {
 	font-size: 18px;
 	font-weight: bold;
 	margin-top: 10px;
 	display: block;
 	min-height: 55px;
 }
-.diet-card-sub-info>*,
-.diet-card-sub-info2>*{
+
+.diet-card-sub-info>*, .diet-card-sub-info2>* {
 	display: inline-block;
 }
-.diet-card-sub-info,
-.diet-card-sub-info2{
+
+.diet-card-sub-info, .diet-card-sub-info2 {
 	display: flex;
 	margin-top: 4px;
 	justify-content: space-between;
+}
+
+
+
+.tooltip3 .tooltiptext3 {
+    visibility: hidden;
+    width: 500px;
+    height: 100px;
+    background-color: white;
+    color: black;
+    text-align: center;
+    border:2px solid #918c01;
+    border-radius: 6px;
+    padding: 10px 5px 5px 5px;
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    margin-left: -60px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 1s;
+    
+}
+
+.tooltip3:hover .tooltiptext3 {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip3 .tooltiptext3::after {
+  content: "";
+  width:40px;
+  height:40px;
+  position: absolute;
+  bottom: 100%;
+  left: 60%;
+  margin-left: -5px;
+    border-width: 25px;
+      border-style: solid;
+  border-color: transparent transparent #918c01 transparent;
 }

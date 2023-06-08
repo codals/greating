@@ -657,5 +657,45 @@ body {
 	width: 100%;
 	border-radius: 10px;
 	height: 65px;
-	border:1px solid #ccc;
+	border: 1px solid #ccc;
+}
+
+.tooltiptext3 {
+	visibility: visible;
+	width: 200px;
+	height: 67px;
+	margin-top: 80px;
+	background-color: white;
+	color: black;
+	text-align: center;
+	border: 2px solid #918c01;
+	border-radius: 6px;
+	padding: 10px 5px 5px 5px;
+	position: absolute;
+	margin-left: -160px;
+/* 	z-index: 1000; */
+	opacity: 1;
+	transition: opacity 1s;
+}
+
+.tooltiptext3>span {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.tooltiptext3>p {
+	font-size: 13px;
+}
+
+.tooltiptext3::after {
+	content: "";
+	width: 30px;
+	height: 40px;
+	position: absolute;
+	bottom: 100%;
+	left: 10%;
+	margin-left: -5px;
+	border-width: 15px;
+	border-style: solid;
+	border-color: transparent transparent #918c01 transparent;
 }

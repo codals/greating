@@ -2,7 +2,7 @@
 
 .advertise {
 	position: fixed;
-	top: 300px;
+	top: 200px;
 	right: 5%;
 	width: 220px;
 	height: auto;
@@ -76,7 +76,7 @@
 .floating-button {
 	position: fixed;
 	right: 10%; 
-	top: 220px;
+	top: 760px;
 	color: #918c01;
 	cursor: pointer;
 	transition: transform 0.3s ease-in-out;
@@ -125,5 +125,6 @@
 .floating-overlay-button>img {
 	width: 50px;
 	height: 50px;
+	border-radius: 50px;
 	cursor: pointer;
 }

@@ -6,7 +6,11 @@ function toggleBox() {
 function copyLink() {
   var currentUrl = window.location.href;
   navigator.clipboard.writeText(currentUrl).then(function() {
-    alert("링크가 복사되었습니다!");
+	  Swal.fire({
+    	  title: '링크가 복사되었습니다.',
+    	  confirmButtonText: '닫기',
+    	  icon:'success'
+      });
   }, function() {
     alert("링크 복사 실패");
   });

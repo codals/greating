@@ -152,7 +152,14 @@
 							<i class="far fa-bookmark"></i> <span>스크랩</span>
 						</button>
 					</c:if>
+					<div class="tooltiptext3">
+						<span> 정식 식단으로 만나고 싶나요? </span>
+						<p> 🔰 여러분의 투표를 기다립니다. 🔰</p>
+					</div>
+
 				</div>
+
+
 
 			</div>
 		</div>
@@ -198,7 +205,7 @@
 								<div class="sub-info-line">
 									<span class="info-title">분류</span> <span class="info-text">
 										<span>${postDetail.mainCategory.name} >
-											${postDetail.subCategory.name}  >  ${postDetail.foodCountry} </span>
+											${postDetail.subCategory.name} > ${postDetail.foodCountry} </span>
 
 									</span>
 								</div>
@@ -347,7 +354,9 @@
 				<div class="tab-pane fade container" id="comments">
 
 					<div class="vote-static-section">
-						<span class="vote-static-title"><img src="/greating/resources/images/diy/comment-icon.png" style="width:80px;"> Greating Votes</span>
+						<span class="vote-static-title"><img
+							src="/greating/resources/images/diy/comment-icon.png"
+							style="width: 80px;"> Greating Votes</span>
 						<hr>
 						<div class="vote-chart">
 
@@ -359,11 +368,12 @@
 						<hr>
 					</div>
 					<div class="comments-section">
-						<span class="comment-title"><img src="/greating/resources/images/diy/comment-icon.png" style="width:80px;">
-						Greating Reviews 
-						</span>
+						<span class="comment-title"><img
+							src="/greating/resources/images/diy/comment-icon.png"
+							style="width: 80px;"> Greating Reviews </span>
 						<div class="comment-header-group">
-							<span> Total Reviews : <span class="comment-count"> ${comments.size()} </span></span>
+							<span> Total Reviews : <span class="comment-count">
+									${comments.size()} </span></span>
 							<button class="btn btn-primary" type="button"
 								id="updateCommentOpenBtn" data-bs-toggle="collapse"
 								data-bs-target="#updateComment" aria-expanded="false"
@@ -375,7 +385,8 @@
 								<div class="update-comments-group">
 									<input type="text" placeholder="댓글을 입력헤주세요"
 										class="update-comments" id="update-comment-content">
-									<button id="updateCommentBtn" onclick="updateComment(${postDetail.post.id}, ${loginUser.id})">댓글
+									<button id="updateCommentBtn"
+										onclick="updateComment(${postDetail.post.id}, ${loginUser.id})">댓글
 										등록</button>
 								</div>
 							</div>
