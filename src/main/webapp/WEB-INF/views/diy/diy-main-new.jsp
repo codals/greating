@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -9,6 +8,7 @@
 <title>DIY 식단</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/greating/resources/js/diy/diy-main.js"></script>
+<script src="/greating/resources/js/templates/pagination.js"></script>
 
 <link href="${pageContext.request.contextPath}/resources/css/diy/diy-main-new.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/templates/pagination.css" rel="stylesheet">
@@ -18,13 +18,11 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <link href="/greating/resources/css/templates/alert.css" rel="stylesheet">
 
-
 </head>
 <body>
 
 	<!-- header 가져오기 -->
 	<jsp:include page="../templates/header.jsp" />
-	
 	
 	<!-- floating -->	
 	<jsp:include page="/WEB-INF/views/templates/floating-adv.jsp" />
@@ -42,13 +40,8 @@
 		</div>
 	</div>
 
-
 	<div class="hd__inner960">
 		<div class="search-container">
-			<!-- <div class="search-keyword-box">
-			<input type="text" placeholder="검색어를 입력하세요">
-			<button class="icon" type="button" onclick="openSearchBox();"></button>
-		</div> -->
 
 			<div class="greating-category-sec">
 				<div class="sub-title">
@@ -124,9 +117,8 @@
 			<div id="default-title" style="margin:30px 0px -30px 20px;">
 					<h3 style="font-weight: bold;">조건 검색하기</h3>
 					
-					<br><br>
 					위의 검색 창 돋보기 버튼을 눌러 내가 원하는 조건들로 DIY 도시락들을 검색해보세요!
-					<br><br><br><br>
+					<br><br><br><br><br><br><br><br><br><br><br><br><br>
 					
 					<hr>
 					

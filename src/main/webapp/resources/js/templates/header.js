@@ -49,9 +49,19 @@ $(document).ready(function () {
 });
 
 function logout() {
-    var confirmed = confirm("로그아웃하시겠습니까?");
-    if (confirmed) {
-        alert("로그아웃되었습니다.");
-        window.location.href = "/greating/logout";
-    }
+    Swal.fire({
+        title: '로그아웃하시겠습니까?',
+        showCancelButton: true,
+        confirmButtonText: '로그아웃',
+        cancelButtonText: '취소'
+    }).then(function(result) {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: '로그아웃되었습니다.',
+                confirmButtonText: '닫기'
+            }).then(function() {
+                window.location.href = "/greating/logout";
+            });
+        }
+    });
 }
