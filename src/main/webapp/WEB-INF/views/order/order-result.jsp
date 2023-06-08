@@ -30,7 +30,7 @@
 		</ul>
     <div class="order">
         <div class="order-result-hp">
-            <h2 class="meals__title"><span>설계완료</span></h2>
+            <h2 class="meals__title"><span>주문완료</span></h2>
             <section class="meals-area">
                 <div class="meals-area__cont">
                     <div class="mealsConfirm__head">
@@ -74,8 +74,7 @@
             </div>
             <div class="meals-btn">
                 <a href="${pageContext.request.contextPath}/diets/mygreating/choice" class="btn-init white prev" id="btnPrev"><span>이전으로</span></a>
-                <a href="${pageContext.request.contextPath}/diets/mygreating/cart" class="btn-init orange" id="btnCart"><span>장바구니 담기</span></a>
-                <a href="#" class="btn-init green" id="btnOrder"><span>바로주문</span></a>
+                <a href="${pageContext.request.contextPath}" class="btn-init green" id="btnCart"><span>메인으로</span></a>
             </div>
         </div>
     </div>

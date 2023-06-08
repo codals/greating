@@ -134,7 +134,10 @@ $(document).ready(function () {
         if (response) {
           location.href = 'http://localhost:8080/greating/diets/mygreating/orders/choice';
         } else {
-          alert("날짜별 식단 조회 실패");
+          Swal.fire({
+            title: '식단 조회를 실패하였습니다.',
+          });
+          // alert("날짜별 식단 조회 실패");
         }
       },
       error: function () {

@@ -17,7 +17,6 @@ $(document).ready(function () {
     	Swal.fire({
       	  title: '0개 이상 선택해주세요.',
         });
-//    	alert('0개 이상 선택해주세요.');
     }
   });
 
@@ -28,7 +27,6 @@ $(document).ready(function () {
     	Swal.fire({
         	  title: '최대 6개까지 선택이 가능합니다.',
           });
-    	alert('최대 6개까지 선택이 가능합니다.');
       return;
     }
 
@@ -70,7 +68,6 @@ $(document).ready(function () {
     	Swal.fire({
       	  title: '6개를 선택해야 합니다.',
         });
-    	alert('6개를 선택해야 합니다.');
       return;
     }
     const mealCards = document.getElementsByClassName("meal-card");
