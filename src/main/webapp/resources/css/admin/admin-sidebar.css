@@ -9,7 +9,7 @@
 }
 
 .sidebar-div {
-	margin-top: 70px;
+	margin-top: 40px;
 }
 
 .profile {
@@ -39,4 +39,8 @@
 
 .menu li a {
 	text-decoration: none;
+}
+
+.greating-go-home{
+	text-align: center;
 }
