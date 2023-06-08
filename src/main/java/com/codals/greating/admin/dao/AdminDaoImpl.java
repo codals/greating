@@ -69,7 +69,8 @@ public class AdminDaoImpl implements AdminDao {
 
 	@Override
 	public boolean approveDiy(long postId) {
-		int updatedRows = sqlSession.update("admin.approveDiyCheck", postId);
+		System.out.println("내가 확인하려는 것입니다.");
+		int updatedRows = sqlSession.update("admin.approveCheck", postId);
 		return updatedRows > 0;
 	}
 
@@ -81,7 +82,6 @@ public class AdminDaoImpl implements AdminDao {
 
 	@Override
 	public boolean approveDiyRegister(int postId) {
-		System.out.println("DAO입니다." + postId);
 		int insertRows = sqlSession.insert("admin.registerDiy", postId);
 		return insertRows > 0;
 	}
@@ -92,10 +92,21 @@ public class AdminDaoImpl implements AdminDao {
 	    Map<String, Object> params = new HashMap<>();
 	    params.put("postId", postId);
 	    params.put("price", price);
-	    System.out.println("params: " + params);
 
 	    int insertRows = sqlSession.update("admin.submitPrice", params);
 	    return insertRows > 0;
+	}
+
+	@Override
+	public List<AdminDto> allList() {
+		return sqlSession.selectList("admin.allList");
+	}
+
+	@Override
+	public boolean deleteDiy(int postId) {
+		// TODO Auto-generated method stub
+		int insertRows = sqlSession.update("admin.deleteDiy", postId);
+		return insertRows > 0;
 	}
 
 
