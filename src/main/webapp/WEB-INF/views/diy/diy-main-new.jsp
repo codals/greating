@@ -7,8 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>DIY 식단</title>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/greating/resources/js/templates/pagination.js"></script>
+
 
 
 <link
@@ -27,10 +26,15 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<script src="/greating/resources/js/diy/diy-main.js"></script>
 <link
 	href="${pageContext.request.contextPath}/resources/css/diy/diy-main-new.css"
 	rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="/greating/resources/js/diy/diy-main.js"></script>
+<script src="/greating/resources/js/templates/pagination.js"></script>
+
 </head>
 <body>
 
@@ -54,8 +58,8 @@
 				<input type="text" placeholder="검색어를 입력하세요">
 				<button class="icon" type="button" onclick="openSearchBox()"></button>
 				<div class="tooltiptext3">
-					<h3>🌱 맞춤 도시락 찾기 🌱</h3>
-					<span> 검색 창 돋보기 버튼을 눌러 원하는 조건들로 DIY 도시락들을 검색해보세요</span>
+					<span>🌱 맞춤 도시락 찾기 🌱</span>
+					<p> 검색 창 돋보기 버튼을 눌러 원하는 조건들로 DIY 도시락들을 검색해보세요</p>
 				</div>
 			</div>
 		</div>
