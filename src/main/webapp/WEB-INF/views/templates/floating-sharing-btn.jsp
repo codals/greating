@@ -40,7 +40,7 @@
 				</div>
 				
 				<div class="floating-overlay-button">
-				<img src="/greating/resources/images/templates/youtube.png" onclick="linkYoutube()">
+				<img src="/greating/resources/images/diy/youtube-new.png" onclick="linkYoutube()">
 				</div>
 			</div>
 		</div>
