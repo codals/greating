@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MyPage</title>
 <link href="/greating/resources/css/user/mypage-pagination.css"
 	rel="stylesheet">
 <link rel="stylesheet"
