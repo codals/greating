@@ -263,8 +263,11 @@ function registerDailyDiet() {
 
 			$('.slide-wrapper').empty();
 
-			alert('등록이 완료되었습니다. ');
-
+			 Swal.fire({
+				  icon: "success",
+	        	  title: ' 등록이 완료되었습니다.!',
+	        	  confirmButtonText: '닫기'
+	          });
 		},
 		error : function() {
 			console.log('컨트롤러 호출 실패');
