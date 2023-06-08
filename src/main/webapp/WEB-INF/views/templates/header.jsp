@@ -141,7 +141,7 @@
 			                    <li><a href="${pageContext.request.contextPath}/mealdiy" class="L-Affiliate-Tagged">DIY 도시락</a>
 			                        <ul class="all-menu__depth2">
 			                            <li><a href="${pageContext.request.contextPath}/mealdiy/popular" class="L-Affiliate-Tagged">TOP 10 모아보기</a></li>
-			                            <li><a href="#" class="L-Affiliate-Tagged">테마별 모아보기</a></li>
+			                            <li><a href="/greating/mealdiy" class="L-Affiliate-Tagged"> DIY 도시락 찾기 </a></li>
 			                            <li><a href="${pageContext.request.contextPath}/mealdiy/new" class="L-Affiliate-Tagged">DIY 도시락 만들기</a></li>
 			                        </ul>
 			                    </li>

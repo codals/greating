@@ -291,9 +291,12 @@
 
 
 .tooltiptext3 > span{
-	font-size: 18px;
+	font-size: 17px;
     font-weight: bold;
 
+}
+.tooltiptext3>p{
+	    font-size: 13px;
 }
 .tooltip3 .tooltiptext3 {
     visibility: hidden;

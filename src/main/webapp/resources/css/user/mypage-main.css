@@ -28,13 +28,18 @@
 }
 
 .myDiy-cont .img-on {
-  order: -1;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  text-decoration: none;
-  color: white;
-  background-color: black;
-  padding: 10px 20px;
-  font-weight: bold;
+      order: -1;
+   
+    position: absolute;
+    transform: translateY(-510%);
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    padding: 10px 20px;
+    font-weight: bold;
+    z-index: 100;
+    margin-left: 83px;
+    border-radius: 10px;
+    height: 50px;
+    background: #c7ad02;
 }
