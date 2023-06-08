@@ -78,10 +78,12 @@ $(document).ready(function () {
         order.push({dietId, cnt, name, price, deliveryDate});
       }
     }
-    if (order.length !== 6) {
-      Swal.fire({
-        title: '6개를 선택해야 합니다.',
-      });
+    let totalCnt = 0;
+    for (let i = 0; i < order.length; i++) {
+      totalCnt += order[i].cnt;
+    }
+    if (totalCnt !== 6) {
+      Swal.fire({title: '6개를 선택해야 합니다.'});
       return;
     }
     console.log(order);
