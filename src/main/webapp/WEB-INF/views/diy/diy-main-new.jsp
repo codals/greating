@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -25,7 +24,6 @@
 	<!-- header 가져오기 -->
 	<jsp:include page="../templates/header.jsp" />
 	
-	
 	<!-- floating -->	
 	<jsp:include page="/WEB-INF/views/templates/floating-adv.jsp" />
 	
@@ -42,13 +40,8 @@
 		</div>
 	</div>
 
-
 	<div class="hd__inner960">
 		<div class="search-container">
-			<!-- <div class="search-keyword-box">
-			<input type="text" placeholder="검색어를 입력하세요">
-			<button class="icon" type="button" onclick="openSearchBox();"></button>
-		</div> -->
 
 			<div class="greating-category-sec">
 				<div class="sub-title">
